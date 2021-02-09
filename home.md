@@ -1,6 +1,6 @@
-# Product name (e.g. MediaLibrary)
+# Fneuc
 
-> Project vision
+To help customers get what then need when they need it during these troubling times with an enjoyable browsing experience.
 
 ## Project Components
 
