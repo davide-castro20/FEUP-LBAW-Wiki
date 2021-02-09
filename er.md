@@ -53,13 +53,13 @@ Buyers are able to acquire products. Additionally, the admins have full access a
 
 | Identifier | Name                 | Priority | Description                                                                                                                 |
 |------------|----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------|
-| US21       | Purchase history see | high     | As a Buyer, I want to see my purchasing history, so that I can see the products I have bought.                              |
-| US22       | Wish list see        | medium   | As a Buyer, I want to see my wish list, so that I can decide if I want to purchase them.                                    |
-| US23       | Wish list add        | medium   | As a Buyer, I want to add items to my wish list, so that I can purchase them easily in the future.                          |
-| US24       | Wish list remove     | medium   | As a Buyer, I want to remove an item from my wish list, so that I can forget the item.                                      |
-| US25       | Item buy             | high     | As a Buyer, I would like to purchase an item, so that I can use it.                                                         |
-| US26       | Item rate            | high     | As a Buyer, I would like to attribute a score to an item, so that other users can know my basic opinion of the item.        |
-| US27       | Comment item         | high     | As a Buyer, I would like to attach a comment to an item, so that other users can know my more complete opinion of the item. |
+| US21       | Purchase history see | high     | As a *Buyer*, I want to see my purchasing history, so that I can see the products I have bought.                              |
+| US22       | Wish list see        | medium   | As a *Buyer*, I want to see my wish list, so that I can decide if I want to purchase them.                                    |
+| US23       | Wish list add        | medium   | As a *Buyer*, I want to add items to my wish list, so that I can purchase them easily in the future.                          |
+| US24       | Wish list remove     | medium   | As a *Buyer*, I want to remove an item from my wish list, so that I can forget the item.                                      |
+| US25       | Item buy             | high     | As a *Buyer*, I would like to purchase an item, so that I can use it.                                                         |
+| US26       | Item rate            | high     | As a *Buyer*, I would like to attribute a score to an item, so that other users can know my basic opinion of the item.        |
+| US27       | Comment item         | high     | As a *Buyer*, I would like to attach a comment to an item, so that other users can know my more complete opinion of the item. |
 
 #### 2.4 **Administrator**
 
