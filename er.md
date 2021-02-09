@@ -2,7 +2,7 @@
 
 > Project vision
 
-## A1: Project Name
+## A1: Online Shop
 This project intends to specify, develop and promote an information system available through the web for the management of an online store, in which users can buy products.  
 
 We have a group of products to sell and we feel that a physical storefront wouldn't be enough to sell them. In addition, because of current circumstances, the physical contact required to sell our products in such a way has been heavily discouraged, to say the least. Because of this, we are creating an online website to facilitate the transactions and increase the scope of potential buyers. We aim to create a platform with a responsive design, to give our uses the best browsing experience available in the market, allowing users to search through various categories, filter items, search them by name or choose from a recommended list.  
