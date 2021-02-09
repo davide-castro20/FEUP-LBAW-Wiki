@@ -1,6 +1,6 @@
 # EBD: Database Specification Component
 
-> Project vision
+Our website aim's to help customers get what then need when they need it during these troubling times with an enjoyable browsing experience.
 
 ## A4: Conceptual Data Model
 
