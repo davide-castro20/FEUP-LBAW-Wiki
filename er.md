@@ -32,7 +32,7 @@ Buyers are able to acquire products. Additionally, the admins have full access a
 
 ### 2. User Stories
 
-**Guest**
+#### 2.1 **Guest**
 | Identifier | Name                       | Priority | Description                                                                                  |
 |------------|----------------------------|----------|----------------------------------------------------------------------------------------------|
 | US01       | Sign-up                    | high     | As a guest i want to be able to create a new account so that I'm able to authenticate myself |
@@ -41,7 +41,7 @@ Buyers are able to acquire products. Additionally, the admins have full access a
 | US04       | Sign-up using external API | low      | As a guest i want to be able to create a new account using my existant Google account        |
 | US05       | Sign-in using external API | low      | As a guest I want to be able to sign-in using my Google account                              |
 
-**Administrator**
+#### 2.2 **Administrator**
 
 | Identifier  | Name  | Priority  | Description  |
 |---|---|---|---|
@@ -49,11 +49,6 @@ Buyers are able to acquire products. Additionally, the admins have full access a
 |   |   |   |   |
 |   |   |   |   |
 
-#### 2.1. Actor 1
-
-#### 2.2. Actor 2
-
-#### 2.N. Actor n
 
 
 ### 3. Supplementary Requirements
