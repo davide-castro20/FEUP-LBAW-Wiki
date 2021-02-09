@@ -32,6 +32,15 @@ Buyers are able to acquire products. Additionally, the admins have full access a
 
 ### 2. User Stories
 
+**Guest**
+| Identifier | Name                       | Priority | Description                                                                                  |
+|------------|----------------------------|----------|----------------------------------------------------------------------------------------------|
+| US01       | Sign-up                    | high     | As a guest i want to be able to create a new account so that I'm able to authenticate myself |
+| US02       | Sign-in                    | high     | As a guest i want to be able to authenticate myself so that I'm able to buy products         |
+| US03       | Administrator Sign-in      | high     | As a guest i want to be able to sign-in as an administrator if I'm given permition to do so  |
+| US04       | Sign-up using external API | low      | As a guest i want to be able to create a new account using my existant Google account        |
+| US05       | Sign-in using external API | low      | As a guest I want to be able to sign-in using my Google account                              |
+
 **Administrator**
 
 | Identifier  | Name  | Priority  | Description  |
