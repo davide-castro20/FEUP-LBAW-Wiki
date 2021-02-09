@@ -11,7 +11,7 @@
 
 ## Artefacts Checklist
 
-* The artefacts checklist is available at: <https://docs.google.com/spreadsheets/d/1mwavM8kLpesipozTY41QnlGKpB2rnABMiwQqg57064s/edit?ts=6022572b#gid=844934792>
+* The artefacts checklist is available at: <https://docs.google.com/spreadsheets/d/1mwavM8kLpesipozTY41QnlGKpB2rnABMiwQqg57064s>
 
 ## Team
 
