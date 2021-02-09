@@ -35,19 +35,27 @@ Buyers are able to acquire products. Additionally, the admins have full access a
 #### 2.1 **Guest**
 | Identifier | Name                       | Priority | Description                                                                                  |
 |------------|----------------------------|----------|----------------------------------------------------------------------------------------------|
-| US01       | Sign-up                    | high     | As a guest i want to be able to create a new account so that I'm able to authenticate myself |
-| US02       | Sign-in                    | high     | As a guest i want to be able to authenticate myself so that I'm able to buy products         |
-| US03       | Administrator Sign-in      | high     | As a guest i want to be able to sign-in as an administrator if I'm given permition to do so  |
-| US04       | Sign-up using external API | low      | As a guest i want to be able to create a new account using my existant Google account        |
-| US05       | Sign-in using external API | low      | As a guest I want to be able to sign-in using my Google account                              |
+| US01       | Sign-up                    | high     | As a *Guest*, I want to be able to create a new account so that I'm able to authenticate myself |
+| US02       | Sign-in                    | high     | As a *Guest*, I want to be able to authenticate myself so that I'm able to buy products         |
+| US03       | Administrator Sign-in      | high     | As a *Guest*, I want to be able to sign-in as an administrator if I'm given permition to do so  |
+| US04       | Sign-up using external API | low      | As a *Guest*, I want to be able to create a new account using my existent Google account        |
+| US05       | Sign-in using external API | low      | As a *Guest*, I want to be able to sign-in using my Google account                              |
 
-#### 2.2 **Administrator**
+#### 2.2 **User**
+| Identifier  | Name  | Priority  | Description  |
+|---|---|---|---|
+| US21  | Access Home  | high  | As a *User*, I want to access the website's homepage, so that I can know its general purpose  |
+| US22  | Access About Page  | high  | As a *User*, I want to access the 'About' page, so that I can see a complete and detailed description of the website  |
+| US23  | See Contacts  | high  | As a *User*, I want to consult the website's contacts, so that I know how to contact the team if needed  |
+| US24  | Search | high | As a *User*, I want to search for public information, like categories, items and prices, so that I can be informed about the platform's content |
+
+#### 2.3 **Administrator**
 
 | Identifier  | Name  | Priority  | Description  |
 |---|---|---|---|
 | US31  | Manage products  | high  | As an *Administrator*, I want to manage product listings, so that I can create, remove and edit items|
 | US32  | Create admin accounts  | high  | As an *Administrator*, I want to create administrator accounts, so that others can have administrator permissions  |
-| US33  | Remove comments  | high  | As an *Administrator*, I want to remove comments, so that I can filter inappropriate langugae|
+| US33  | Remove comments  | high  | As an *Administrator*, I want to remove comments, so that I can filter inappropriate language|
 
 
 
