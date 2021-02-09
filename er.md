@@ -3,11 +3,13 @@
 > Project vision
 
 ## A1: Project Name
+This project intends to specify, develop and promote an information system available through the web for the management of an online store, in which users can buy products.  
 
-> Goals, business context and environment.  
-> Motivation.  
-> Main features.  
-> User profiles.
+We have a group of products to sell and we feel that a physical storefront wouldn't be enough to sell them. In addition, because of current circumstances, the physical contact required to sell our products in such a way has been heavily discouraged, to say the least. Because of this, we are creating an online website to facilitate the transactions and increase the scope of potential buyers. We aim to create a platform with a responsive design, to give our uses the best browsing experience available in the market, allowing users to search through various categories, filter items, search them by name or choose from a recommended list.  
+
+Users are separated into two different types: system administrators and buyers, who have to register and log into the system.  
+
+The system admins can both buy and sell products, while the users are limited to the former. Additionally, the admins have full access and modification privileges, including removing ongoing sales and assign users as admins. In addition, all users can have a list of their favorite products and be able to see their history of products.
 
 
 ---
