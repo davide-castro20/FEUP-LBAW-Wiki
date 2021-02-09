@@ -1,6 +1,6 @@
 # EAP: Architecture Specification and Prototype
 
-> Project vision
+Our website aims to help customers get what then need when they need it during these troubling times with an enjoyable browsing experience.
 
 ## A7: High-level architecture. Privileges. Web resources specification
 
