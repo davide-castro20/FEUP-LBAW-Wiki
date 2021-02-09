@@ -11,14 +11,14 @@
 
 ## Artefacts Checklist
 
-* The artefacts checklist is available at: <docs.google.com/spreadsheets @ g.uporto>
+* The artefacts checklist is available at: <https://docs.google.com/spreadsheets/d/1mwavM8kLpesipozTY41QnlGKpB2rnABMiwQqg57064s/edit?ts=6022572b#gid=844934792>
 
 ## Team
 
-* Group member 1 name, email
-* Group member 2 name, email
-* Group member 3 name, email
-* Group member 4 name, email
+* Henrique Melo Ribeiro, up201806529@fe.up.pt
+* Diogo Guimarães do Rosário, up201806582@fe.up.pt
+* Davide António Ferreira Castro, up201806512@fe.up.pt
+* João Alexandre Lobo Cardoso, up201806531@fe.up.pt
 
 ***
-GROUP21gg, DD/MM/2021
+GROUP2111, 09/02/2021
