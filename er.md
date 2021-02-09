@@ -44,12 +44,24 @@ Buyers are able to acquire products. Additionally, the admins have full access a
 #### 2.2 **User**
 | Identifier  | Name  | Priority  | Description  |
 |---|---|---|---|
-| US21  | Access Home  | high  | As a *User*, I want to access the website's homepage, so that I can know its general purpose  |
-| US22  | Access About Page  | high  | As a *User*, I want to access the 'About' page, so that I can see a complete and detailed description of the website  |
-| US23  | See Contacts  | high  | As a *User*, I want to consult the website's contacts, so that I know how to contact the team if needed  |
-| US24  | Search | high | As a *User*, I want to search for public information, like categories, items and prices, so that I can be informed about the platform's content |
+| US11  | Access Home  | high  | As a *User*, I want to access the website's homepage, so that I can know its general purpose  |
+| US12  | Access About Page  | high  | As a *User*, I want to access the 'About' page, so that I can see a complete and detailed description of the website  |
+| US13  | See Contacts  | high  | As a *User*, I want to consult the website's contacts, so that I know how to contact the team if needed  |
+| US14  | Search | high | As a *User*, I want to search for public information, like categories, items and prices, so that I can be informed about the platform's content |
 
-#### 2.3 **Administrator**
+#### 2.3 **Buyer**
+
+| Identifier | Name                 | Priority | Description                                                                                                                 |
+|------------|----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------|
+| US21       | Purchase history see | high     | As a Buyer, I want to see my purchasing history, so that I can see the products I have bought.                              |
+| US22       | Wish list see        | medium   | As a Buyer, I want to see my wish list, so that I can decide if I want to purchase them.                                    |
+| US23       | Wish list add        | medium   | As a Buyer, I want to add items to my wish list, so that I can purchase them easily in the future.                          |
+| US24       | Wish list remove     | medium   | As a Buyer, I want to remove an item from my wish list, so that I can forget the item.                                      |
+| US25       | Item buy             | high     | As a Buyer, I would like to purchase an item, so that I can use it.                                                         |
+| US26       | Item rate            | high     | As a Buyer, I would like to attribute a score to an item, so that other users can know my basic opinion of the item.        |
+| US27       | Comment item         | high     | As a Buyer, I would like to attach a comment to an item, so that other users can know my more complete opinion of the item. |
+
+#### 2.4 **Administrator**
 
 | Identifier  | Name  | Priority  | Description  |
 |---|---|---|---|
