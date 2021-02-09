@@ -45,9 +45,9 @@ Buyers are able to acquire products. Additionally, the admins have full access a
 
 | Identifier  | Name  | Priority  | Description  |
 |---|---|---|---|
-|   |   |   |   |
-|   |   |   |   |
-|   |   |   |   |
+| US31  | Manage products  | high  | As an *Administrator*, I want to manage product listings, so that I can create, remove and edit items|
+| US32  | Create admin accounts  | high  | As an *Administrator*, I want to create administrator accounts, so that others can have administrator permissions  |
+| US33  | Remove comments  | high  | As an *Administrator*, I want to remove comments, so that I can filter inappropriate langugae|
 
 
 
