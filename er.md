@@ -9,7 +9,7 @@ We have a group of products to sell and we feel that a physical storefront would
 
 Users are separated into three different types: system administrators and buyers, who have to register and log into the system, and guests.
 
-Buyers are able to acquire products. Additionally, the admins have full access and modification privileges, including removing ongoing sales and assign users as admins. In addition, all users, including guests, can have a list of their favorite products and be able to see their history of products.
+Buyers are able to acquire products. Additionally, the admins have full access and modification privileges, including removing ongoing sales and assign users as admins. In addition, all users except guests, can have a list of their favorite products and be able to see their history of products.
 
 
 ---
