@@ -1,6 +1,6 @@
 # ER: Requirements Specification Component
 
-Our website aims to help customers get what then need when they need it during these troubling times with an enjoyable browsing experience.
+Our website aims to help customers get what they need when they need it during these troubling times with an enjoyable browsing experience.
 
 ## A1: Online Shop
 This project intends to specify, develop and promote an information system available through the web for the management of an online store, in which users can buy products.  
@@ -9,7 +9,7 @@ We have a group of products to sell and we feel that a physical storefront would
 
 Users are separated into three different types: system administrators, buyers who have to register and log into the system, and guests.
 
-Buyers are able to acquire products. Additionally, the admins have full access and modification privileges, including removing ongoing sales and assign users as admins. In addition, all users except guests, can have a list of their favorite products and be able to see their history of products.
+Buyers can acquire products. Additionally, the admins have full access and modification privileges, including removing ongoing sales and assign users as admins. In addition, all users except guests, can have a list of their favorite products and be able to see their history of products.
 
 
 ---
@@ -37,14 +37,14 @@ Buyers are able to acquire products. Additionally, the admins have full access a
 |------------|----------------------------|----------|----------------------------------------------------------------------------------------------|
 | US01       | Sign-up                    | high     | As a *Guest*, I want to be able to create a new account so that I'm able to authenticate myself |
 | US02       | Sign-in                    | high     | As a *Guest*, I want to be able to authenticate myself so that I'm able to buy products         |
-| US03       | Administrator Sign-in      | high     | As a *Guest*, I want to be able to sign-in as an administrator if I'm given permition to do so  |
+| US03       | Administrator Sign-in      | high     | As a *Guest*, I want to be able to sign-in as an administrator if I'm permitted to do so  |
 | US04       | Sign-up using external API | low      | As a *Guest*, I want to be able to create a new account using my existent Google account        |
 | US05       | Sign-in using external API | low      | As a *Guest*, I want to be able to sign-in using my Google account                              |
 
 #### 2.2 **User**
 | Identifier  | Name  | Priority  | Description  |
 |---|---|---|---|
-| US11  | Access Home  | high  | As a *User*, I want to access the website's homepage, so that I can know its general purpose  |
+| US11  | Access Home  | high  | As a *User*, I want to access the website's homepage, so that I can know its general-purpose  |
 | US12  | Access About Page  | high  | As a *User*, I want to access the 'About' page, so that I can see a complete and detailed description of the website  |
 | US13  | See Contacts  | high  | As a *User*, I want to consult the website's contacts, so that I know how to contact the team if needed  |
 | US14  | Search | high | As a *User*, I want to search for public information, like categories, items and prices, so that I can be informed about the platform's content |
@@ -53,12 +53,12 @@ Buyers are able to acquire products. Additionally, the admins have full access a
 
 | Identifier | Name                 | Priority | Description                                                                                                                 |
 |------------|----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------|
-| US21       | Purchase history see | high     | As a *Buyer*, I want to see my purchasing history, so that I can see the products I have bought.                              |
-| US22       | Wish list see        | medium   | As a *Buyer*, I want to see my wish list, so that I can decide if I want to purchase them.                                    |
-| US23       | Wish list add        | medium   | As a *Buyer*, I want to add items to my wish list, so that I can purchase them easily in the future.                          |
-| US24       | Wish list remove     | medium   | As a *Buyer*, I want to remove an item from my wish list, so that I can forget the item.                                      |
-| US25       | Item buy             | high     | As a *Buyer*, I would like to purchase an item, so that I can use it.                                                         |
-| US26       | Item rate            | high     | As a *Buyer*, I would like to attribute a score to an item, so that other users can know my basic opinion of the item.        |
+| US21       | See purchase history  | high     | As a *Buyer*, I want to see my purchasing history, so that I can see the products I have bought.                              |
+| US22       | See wish list        | medium   | As a *Buyer*, I want to see my wish list, so that I can decide if I want to purchase them.                                    |
+| US23       | Add to wish list        | medium   | As a *Buyer*, I want to add items to my wish list, so that I can purchase them easily in the future.                          |
+| US24       | Remove from wish list      | medium   | As a *Buyer*, I want to remove an item from my wish list, so that I can forget the item.                                      |
+| US25       | Buy item             | high     | As a *Buyer*, I would like to purchase an item, so that I can use it.                                                         |
+| US26       | Rate item             | high     | As a *Buyer*, I would like to attribute a score to an item, so that other users can know my basic opinion of the item.        |
 | US27       | Comment item         | high     | As a *Buyer*, I would like to attach a comment to an item, so that other users can know my more complete opinion of the item. |
 
 #### 2.4 **Administrator**
