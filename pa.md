@@ -1,6 +1,6 @@
 # PA: Product and Presentation
 
-> Project vision
+> Our website aims to help customers get what then need when they need it during these troubling times with an enjoyable browsing experience.
 
 ## A9: Product
 
