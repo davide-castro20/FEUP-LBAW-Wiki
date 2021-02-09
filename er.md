@@ -16,6 +16,11 @@ Buyers are able to acquire products. Additionally, the admins have full access a
 
 
 ## A2: Actors and User stories
+> Brief presentation of the product.  
+> Brief presentation of the artefact goals.
+
+
+### 1. Actors
 
 | Identifier    | Description                                                                                                                                                  | Example  |
 |---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
@@ -23,15 +28,6 @@ Buyers are able to acquire products. Additionally, the admins have full access a
 | User          | Generic user that has access to public information                                                                                                           | n/a      |
 | Buyer         | Authenticated user that can browse items, make purchases, add items to their favourites list, charge their account's balance and rate and comment item posts | lbaw2021 |
 | Administrator | Authenticated user that can browse items, add/remove/edit items, manage comments and users, create new administrator accounts                                | lbaw2021 |
-
-> Brief presentation of the product.  
-> Brief presentation of the artefact goals.
-
-
-### 1. Actors
-
-> Diagram identifying actors and their relationships.  
-> Table identifying actors, including a brief description and examples.
 
 
 ### 2. User Stories
