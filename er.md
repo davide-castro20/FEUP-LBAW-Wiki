@@ -24,7 +24,7 @@ Buyers are able to acquire products. Additionally, the admins have full access a
 
 | Identifier    | Description                                                                                                                                                  | Example  |
 |---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
-| Guest         | Unauthenticated user that can browse items                                                                                                                   | n/a      |
+| Guest         | Unauthenticated user that can register himself or log into the website                                                                                                                   | n/a      |
 | User          | Generic user that has access to public information                                                                                                           | n/a      |
 | Buyer         | Authenticated user that can browse items, make purchases, add items to their favourites list, charge their account's balance and rate and comment item posts | lbaw2021 |
 | Administrator | Authenticated user that can browse items, add/remove/edit items, manage comments and users, create new administrator accounts                                | lbaw2021 |
