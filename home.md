@@ -1,6 +1,6 @@
 # Fneuc
 
-Our website aim's to help customers get what then need when they need it during these troubling times with an enjoyable browsing experience.
+Our website aims to help customers get what then need when they need it during these troubling times with an enjoyable browsing experience.
 
 ## Project Components
 
