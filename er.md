@@ -32,8 +32,13 @@ Buyers are able to acquire products. Additionally, the admins have full access a
 
 ### 2. User Stories
 
-> User stories organized by actor.  
-> For each actor, a table containing a line for each user story, and for each user story: an identifier, a name, a priority, and a description (following the recommended structure).
+**Administrator**
+
+| Identifier  | Name  | Priority  | Description  |
+|---|---|---|---|
+|   |   |   |   |
+|   |   |   |   |
+|   |   |   |   |
 
 #### 2.1. Actor 1
 
