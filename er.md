@@ -12,6 +12,7 @@ Users are separated into three different types: system administrators, buyers wh
 Buyers can acquire products. Additionally, the admins have full access and modification privileges, including removing ongoing sales and assign users as admins. In addition, all users except guests, can have a list of their favorite products and be able to see their history of products.
 
 
+
 ---
 
 
@@ -53,13 +54,13 @@ Buyers can acquire products. Additionally, the admins have full access and modif
 
 | Identifier | Name                 | Priority | Description                                                                                                                 |
 |------------|----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------|
-| US21       | See purchase history  | high     | As a *Buyer*, I want to see my purchasing history, so that I can see the products I have bought.                              |
-| US22       | See wish list        | medium   | As a *Buyer*, I want to see my wish list, so that I can decide if I want to purchase them.                                    |
-| US23       | Add to wish list        | medium   | As a *Buyer*, I want to add items to my wish list, so that I can purchase them easily in the future.                          |
-| US24       | Remove from wish list      | medium   | As a *Buyer*, I want to remove an item from my wish list, so that I can forget the item.                                      |
-| US25       | Buy item             | high     | As a *Buyer*, I would like to purchase an item, so that I can use it.                                                         |
-| US26       | Rate item             | high     | As a *Buyer*, I would like to attribute a score to an item, so that other users can know my basic opinion of the item.        |
-| US27       | Comment item         | high     | As a *Buyer*, I would like to attach a comment to an item, so that other users can know my more complete opinion of the item. |
+| US21       | See purchase history  | high     | As a *Buyer*, I want to see my purchasing history, so that I can see the products I have bought                              |
+| US22       | See wish list        | medium   | As a *Buyer*, I want to see my wish list, so that I can decide if I want to purchase them                                    |
+| US23       | Add to wish list        | medium   | As a *Buyer*, I want to add items to my wish list, so that I can purchase them easily in the future                          |
+| US24       | Remove from wish list      | medium   | As a *Buyer*, I want to remove an item from my wish list, so that I can forget the item                                      |
+| US25       | Buy item             | high     | As a *Buyer*, I would like to purchase an item, so that I can use it                                                        |
+| US26       | Rate item             | high     | As a *Buyer*, I would like to attribute a score to an item, so that other users can know my basic opinion of the item        |
+| US27       | Comment item         | high     | As a *Buyer*, I would like to attach a comment to an item, so that other users can know my more complete opinion of the item |
 
 #### 2.4 **Administrator**
 
@@ -68,7 +69,8 @@ Buyers can acquire products. Additionally, the admins have full access and modif
 | US31  | Manage products  | high  | As an *Administrator*, I want to manage product listings, so that I can create, remove and edit items|
 | US32  | Create admin accounts  | high  | As an *Administrator*, I want to create administrator accounts, so that others can have administrator permissions  |
 | US33  | Remove comments  | high  | As an *Administrator*, I want to remove comments, so that I can filter inappropriate language|
-
+| US34  | View Buyer's History | medium | As an *Administrator*, I want to be able to view customer's purchase history in order to get a better understanding of what buyers look for the most|
+| US35  | Statistics of sold items | medium | As an *Administrator*, I want to have easy access to statistics of items filtered by different categories of users|
 
 
 ### 3. Supplementary Requirements
