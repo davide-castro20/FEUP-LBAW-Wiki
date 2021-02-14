@@ -2,7 +2,7 @@
 
 Our website aims to help customers get what they need when they need it during these troubling times with an enjoyable browsing experience.
 
-## A1: Online Shop
+## A1: Fneuc
 This project intends to specify, develop and promote an information system available through the web for the management of an online store, in which users can buy products.  
 
 We have a group of products to sell and we feel that a physical storefront wouldn't be enough to sell them. In addition, because of current circumstances, the physical contact required to sell our products in such a way has been heavily discouraged, to say the least. Because of this, we are creating an online website to facilitate the transactions and increase the scope of potential buyers. We aim to create a platform with a responsive design, to give our uses the best browsing experience available in the market, allowing users to search through various categories, filter items, search them by name or choose from a recommended list.
@@ -23,9 +23,8 @@ The website provides a notification system that warns admins when a product goes
 
 
 ## A2: Actors and User stories
-> Brief presentation of the product.  
-> Brief presentation of the artefact goals.
 
+The Fneuc shop website provides a reliable shopping service for the general public with easy access. This artifact contains information about the actors involved, the functionalities and requirements.
 
 ### 1. Actors
 
@@ -35,6 +34,7 @@ The website provides a notification system that warns admins when a product goes
 | User          | Generic user that has access to public information                                                                                                           | n/a      |
 | Buyer         | Authenticated user that can browse items, make purchases, add items to their favourites list, charge their account's balance and rate and comment item posts | lbaw2021 |
 | Administrator | Authenticated user that can browse items, add/remove/edit items, manage comments and users, create new administrator accounts                                | lbaw2021 |
+| OAuth API| External API that is used to register or log in a user                    | Google|
 
 
 ### 2. User Stories
