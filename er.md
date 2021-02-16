@@ -10,7 +10,7 @@ We have a group of products to sell and we feel that a physical storefront would
 
 Users are separated into three different types: system administrators, buyers who have to register and log into the system, and guests. The user authentication can be done with an external API or use our website's authentication system, which requires an e-mail, a username and a password.
 
-Buyers are able to acquire products and also rate and comment them after purchase. This means that customers are able to use different types of filtering in order to obtain the best rated products in accordace to their needs. Buyers are also able to charge their account with balance before commiting to a purchase. Buyers also have a purchase history they can check, a favourite list (wishlist) they can manage and a recommended items list provided by the system based on their previous purchases and ratings. They can, at any time, set the delivery address, (change the payment method/add balance to account (?)), and update their credentials.
+Buyers are able to acquire products and also rate and comment them after purchase. This means that customers are able to use different types of filtering in order to obtain the best rated products in accordace to their needs. Buyers are also able to charge their account with balance before commiting to a purchase. Buyers also have a purchase history they can check, a favourite list (wishlist) they can manage and a recommended items list provided by the system based on their previous purchases and ratings. They can, at any time, set the delivery address, deposit money into their account before or during checkout using an external method, and update their credentials.
 
 Admins have full access and modification privileges, including removing ongoing sales, assign users as admins and viewing the customers' purchase history. Admins also have the ability to make discounts of selected items in stock.
 
@@ -36,6 +36,7 @@ The Fneuc shop website provides a reliable shopping service for the general publ
 | Buyer         | Authenticated user that can browse items, make purchases, add items to their favourites list, charge their account's balance and rate and comment item posts | lbaw2021 |
 | Administrator | Authenticated user that can browse items, add/remove/edit items, manage comments and users, create new administrator accounts                                | lbaw2021 |
 | OAuth API| External API that is used to register or log in a user                    | Google|
+| Paypal API| Paypal API used for money transactions                    | Paypal|
 
 
 ### 2. User Stories
