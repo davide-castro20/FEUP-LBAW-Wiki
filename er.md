@@ -98,6 +98,7 @@ The Fneuc shop website provides a reliable shopping service for the general publ
 | BR01       | Stock Mindfulness | Only items that are in stock can be sold. OR A user can only buy an amout of an item lower or equal to it's amout in stock.|
 | BR02       | Out of stock           | A user can only purchase an item if it is in stock|
 | BR03       |  Account balance check   |   A user can only purchase an item if they have enough money in the account to buy it. |
+| BR04       |  Account deletion   |   When an account is deleted only his profile is deleted, his rating , comments and purchase history are kept in system. |
 
 #### 3.2. Technical requirements
 
