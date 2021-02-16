@@ -10,15 +10,15 @@ We have a group of products to sell and we feel that a physical storefront would
 
 Users are separated into three different types: system administrators, buyers who have to register and log into the system, and guests. The user authentication can be done with an external API or use our website's authentication system, which requires an e-mail, a username and a password.
 
-Buyers are able to acquire products and also rate and comment them after purchase. This means that customers are able to use different types of filtering in order to obtain the best rated products in accordace to their needs. Buyers are also able to charge their account with balance before commiting to a purchase. Buyers also have a purchase history they can check, a favourite list (wishlist) they can manage and a recommended items list provided by the system based on their previous purchases and ratings. They can, at any time, set the delivery address, deposit money into their account before or during checkout using an external method, and update their credentials.
+Buyers are able to acquire products and also rate and comment on them after purchase. This means that customers are able to use different types of filtering in order to obtain the best-rated products in accordance with their needs. Buyers are also able to charge their account with balance before committing to a purchase. Buyers also have a purchase history they can check, a favourite list (wishlist) they can manage and a recommended items list provided by the system based on their previous purchases and ratings. They can, at any time, set the delivery address, deposit money into their account before or during checkout using an external method, and update their credentials.
 
-Admins have full access and modification privileges, including removing ongoing sales, assign users as admins and viewing the customers' purchase history. Admins also have the ability to make discounts of selected items in stock.
+Admins have full access and modification privileges, including removing ongoing sales, assign users as admins and viewing the customers' purchase history. Admins also have the ability to make discounts on selected items in stock.
 
-Guest are able to browse the catalog but they are not allowed to make any purchase, rate or comment any product as they need to log in first.
+Guest are able to browse the catalogue but they are not allowed to make any purchase, rate or comment on any product as they need to log in first.
 
-Every user has access to an "about" page, contacts and FAQ so they can obtain information about the website and usefull contacts.
+Every user has access to an "about" page, contacts and FAQ so they can obtain information about the website and useful contacts.
 
-The website provides a notification system that warns admins when a product goes out of stock, or notifies a buyer when a wishlist item has been re-stocked or is on sale.
+The website provides a notification system that warns admins when a product goes out of stock or notifies a buyer when a wishlist item has been re-stocked or is on sale.
 
 ---
 
@@ -83,7 +83,7 @@ This section contains the user stories that will be considered during developmen
 | US31  | Manage products  | high  | As an *Administrator*, I want to manage product listings, so that I can create, remove and edit items|
 | US32  | Create admin accounts  | high  | As an *Administrator*, I want to create administrator accounts, so that others can have administrator permissions  |
 | US33  | Remove comments  | high  | As an *Administrator*, I want to remove comments, so that I can filter inappropriate language|
-| US34  | Notification of items without stock | high | As an *Administrator*, I want to have a notification allert me when an items is out of stock, so that I can re-stock them as soon as possible|
+| US34  | Notification of items without stock | high | As an *Administrator*, I want to have a notification alert me when an item is out of stock, so that I can re-stock them as soon as possible|
 | US35  | On sale| medium | As an *Administrator*, I want to have the ability to put items on sale, so that I can get attract uses to buy products that are not selling as well|
 | US36  | Statistics of sold items | medium | As an *Administrator*, I want to have easy access to statistics of items filtered by different categories of users, so that I can have a better overview of what items sell better|
 | US37  | View Buyer's History | low | As an *Administrator*, I want to be able to view customer's purchase history, so that I can get a better understanding of what buyers look for the most|
@@ -98,10 +98,10 @@ This section contains the user stories that will be considered during developmen
 
 | Identifier | Name              | Description |
 |------------|-------------------|-------------|
-| BR01       | Stock Mindfulness | Only items that are in stock can be sold. OR A user can only buy an amout of an item lower or equal to it's amout in stock.|
+| BR01       | Stock Mindfulness | Only items that are in stock can be sold. OR A user can only buy an amount of an item lower or equal to its amount in stock.|
 | BR02       | Out of stock           | A user can only purchase an item if it is in stock|
 | BR03       |  Account balance check   |   A user can only purchase an item if they have enough money in the account to buy it. |
-| BR04       |  Account deletion   |   When an account is deleted only his profile is deleted, his rating , comments and purchase history are kept in system. |
+| BR04       |  Account deletion   |   When an account is deleted only his profile is deleted, his rating, comments and purchase history are kept in the system. |
 
 #### 3.2. Technical requirements
 
