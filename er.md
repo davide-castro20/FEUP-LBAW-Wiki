@@ -56,6 +56,7 @@ The Fneuc shop website provides a reliable shopping service for the general publ
 | US12  | Access About Page  | high  | As a *User*, I want to access the 'About' page, so that I can see a complete and detailed description of the website  |
 | US13  | See Contacts  | high  | As a *User*, I want to consult the website's contacts, so that I know how to contact the team if needed  |
 | US14  | Search | high | As a *User*, I want to search for public information, like categories, items and prices, so that I can be informed about the platform's content |
+| US15  | Delete account | medium| As a *User*, I want to be able to delete my account, so that I can remove my account from the system |
 
 #### 2.3 **Buyer**
 
