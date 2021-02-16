@@ -10,13 +10,7 @@ We have a group of products to sell and we feel that a physical storefront would
 
 Users are separated into three different types: system administrators, buyers who have to register and log into the system, and guests. The user authentication can be done with an external API or use our website's authentication system, which requires an e-mail, a username and a password.
 
-Buyers are able to acquire products and also rate and comment on them after purchase. This means that customers are able to use different types of filtering in order to obtain the best-rated products in accordance with their needs. Buyers are also able to charge their account with balance before committing to a purchase. Buyers also have a purchase history they can check, a favourite list (wishlist) they can manage and a recommended items list provided by the system based on their previous purchases and ratings. They can, at any time, set the delivery address, deposit money into their account before or during checkout using an external method, and update their credentials.
-
-Admins have full access and modification privileges, including removing ongoing sales, assign users as admins and viewing the customers' purchase history. Admins also have the ability to make discounts on selected items in stock.
-
-Guest are able to browse the catalogue but they are not allowed to make any purchase, rate or comment on any product as they need to log in first.
-
-Every user has access to an "about" page, contacts and FAQ so they can obtain information about the website and useful contacts.
+Buyers are able to acquire products and also rate and comment on them after purchase. This means that customers are able to use different types of filtering in order to obtain the best-rated products in accordance with their needs. Buyers are also able to charge their account with balance before committing to a purchase. Buyers also have a purchase history they can check, a favourite list (wishlist) they can manage and a recommended items list provided by the system based on their previous purchases and ratings. They can, at any time, set the delivery address, deposit money into their account before or during checkout using an external method, and update their credentials. Admins have full access and modification privileges, including removing ongoing sales, assign users as admins and viewing the customers' purchase history. Admins also have the ability to make discounts on selected items in stock. Guest are able to browse the catalogue but they are not allowed to make any purchase, rate or comment on any product as they need to log in first. Every user has access to an "about" page, contacts and FAQ so they can obtain information about the website and useful contacts.
 
 The website provides a notification system that warns admins when a product goes out of stock or notifies a buyer when a wishlist item has been re-stocked or is on sale.
 
