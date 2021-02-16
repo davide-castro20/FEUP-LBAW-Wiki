@@ -25,7 +25,7 @@ The website provides a notification system that warns admins when a product goes
 
 ## A2: Actors and User stories
 
-The Fneuc shop website provides a reliable shopping service for the general public with easy access. This artifact contains information about the actors involved, the functionalities and requirements.
+The Fneuc shop website provides a reliable shopping service for the general public with easy access. This section contains information about the actors involved, the functionalities and requirements.
 
 ### 1. Actors
 
@@ -39,6 +39,8 @@ The Fneuc shop website provides a reliable shopping service for the general publ
 
 
 ### 2. User Stories
+
+This section contains the user stories that will be considered during development.
 
 #### 2.1 **Guest**
 | Identifier | Name                       | Priority | Description                                                                                  |
