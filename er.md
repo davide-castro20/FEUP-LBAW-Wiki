@@ -36,25 +36,25 @@ The Fneuc shop website provides a reliable shopping service for the general publ
 ### 2. User Stories
 
 This section contains the user stories that will be considered during development.
-
-#### 2.1 **Guest**
-| Identifier | Name                       | Priority | Description                                                                                  |
-|------------|----------------------------|----------|----------------------------------------------------------------------------------------------|
-| US01       | Sign-up                    | high     | As a *Guest*, I want to be able to create a new account so that I'm able to authenticate myself |
-| US02       | Sign-in                    | high     | As a *Guest*, I want to be able to authenticate myself so that I'm able to buy products         |
-| US03       | Administrator Sign-in      | high     | As a *Guest*, I want to be able to sign-in as an administrator if I'm permitted to do so  |
-| US04       | Sign-up using external API | low      | As a *Guest*, I want to be able to create a new account using my existent Google account        |
-| US05       | Sign-in using external API | low      | As a *Guest*, I want to be able to sign-in using my Google account                              |
-
-#### 2.2 **User**
+                          
+#### 2.1 **User**
 | Identifier  | Name  | Priority  | Description  |
 |---|---|---|---|
-| US11  | Access Home  | high  | As a *User*, I want to access the website's homepage, so that I can know its general-purpose  |
-| US12  | Access About Page  | high  | As a *User*, I want to access the 'About' page, so that I can see a complete and detailed description of the website  |
-| US13  | See Contacts  | high  | As a *User*, I want to consult the website's contacts, so that I know how to contact the team if needed  |
-| US14  | Search | high | As a *User*, I want to search for public information, like categories, items and prices, so that I can be informed about the platform's content |
-| US15  | Logout | high | As a *User*, I want to be able to log out from my account, so that I can exit my account|
-| US16  | Delete account | medium| As a *User*, I want to be able to delete my account, so that I can remove my account from the system |
+| US01  | Access Home  | high  | As a *User*, I want to access the website's homepage, so that I can know its general-purpose  |
+| US02  | Access About Page  | high  | As a *User*, I want to access the 'About' page, so that I can see a complete and detailed description of the website  |
+| US03  | See Contacts  | high  | As a *User*, I want to consult the website's contacts, so that I know how to contact the team if needed  |
+| US04  | Search | high | As a *User*, I want to search for public information, like categories, items and prices, so that I can be informed about the platform's content |
+| US05  | Logout | high | As a *User*, I want to be able to log out from my account, so that I can exit my account|
+| US06  | Delete account | medium| As a *User*, I want to be able to delete my account, so that I can remove my account from the system |
+
+#### 2.2 **Visitor**
+| Identifier | Name                       | Priority | Description                                                                                  |
+|------------|----------------------------|----------|----------------------------------------------------------------------------------------------|
+| US11       | Sign-up                    | high     | As a *Visitor*, I want to be able to create a new account so that I'm able to authenticate myself |
+| US12       | Sign-in                    | high     | As a *Visitor*, I want to be able to authenticate myself so that I'm able to buy products         |
+| US13       | Administrator Sign-in      | high     | As a *Visitor*, I want to be able to sign-in as an administrator if I'm permitted to do so  |
+| US14       | Sign-up using external API | low      | As a *Visitor*, I want to be able to create a new account using my existent Google account        |
+| US15       | Sign-in using external API | low      | As a *Visitor*, I want to be able to sign-in using my Google account
 
 #### 2.3 **Buyer**
 
