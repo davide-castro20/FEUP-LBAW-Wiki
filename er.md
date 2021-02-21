@@ -93,8 +93,7 @@ This section contains the user stories that will be considered during developmen
 
 ### 3. Supplementary Requirements
 
-> Annex including business rules, technical requirements, and restrictions.  
-> For each subsection, a table containing identifiers, names, and descriptions for each requirement.
+In this annex are presented the project's business rules, technical requirements and restrictions.
 
 #### 3.1. Business rules
 
@@ -105,12 +104,33 @@ This section contains the user stories that will be considered during developmen
 | BR03       |  Account balance check   |   A user can only purchase an item if they have enough money in the account to buy it. |
 | BR04       |  Account deletion   |   When an account is deleted only his profile is deleted, his rating, comments and purchase history are kept in the system. |
 | BR05      |  Decreasing stock   |   The item's stock is decreased when a buyer adds the item to his/her's shopping cart. |
-| BR06      |  Removing from shopping cart|   If a buyer hasn't bought an item that is in his/her's shopping cart for two days the item is removed from the cart |
+| BR06      |  Removing from shopping cart |   If a buyer hasn't bought an item that is in his/her's shopping cart for two days the item is removed from the cart (checkout_date <= date_added_to_cart + 2 days) |
+| BR07      |  Checkout with discounts applied |   If a buyer adds items with a discount to the cart, the discount will only be applied if it is still valid when doing the checkout |
 
 #### 3.2. Technical requirements
 
+| Identifier | Name              | Description |
+|------------|-------------------|-------------|
+| TR01       | Availability | The system must be available most of the time everyday |
+| TR02       | Accessibility | The system must be accessible for all users regardless of the used browser or physical limitations |
+| TR03       | Usability | The platform should be of easy use and navigation |
+| TR04       | Performance | The system should be as fast as possible to maximize user's experience |
+| TR05       | Web application | The system should be implemented as a Web application with dynamic pages (HTML5, JavaScript, CSS3 and PHP) |
+| TR06       | Portability | The server-side system should work across multiple platforms (Linux, Mac OS, Windows, etc.) |
+| TR07       | Database | The system must use database management through PostgreSQL 9.4 |
+| TR08       | Security | The system must use authentication, verification and secure payment systems to protect information from unauthorised access |
+| TR09       | Robustness | The system must be able to handle and prevent errors |
+| TR10       | Scalability | The system must be able to handle growth of users, actions and items. |
+| TR11       | Ethics | The system must respect the ethical principles in software development (for example, the password must be stored encrypted to ensure that only the owner knows it) |
+| TR12       | Manageability | The system should be easy to manage by administrators |
+
+We consider that three of these requirements are more important and critical to the system. These requirements are TR05, TR07, and TR08, because the main purpose of the platform is to be a Web application that contains useful information, for and from the users, and that is safe to use.
+
 #### 3.3. Restrictions
 
+| Identifier | Name              | Description |
+|------------|-------------------|-------------|
+| C01       | Deadline | The system should be ready to be used at the end of the semester |
 
 ---
 
