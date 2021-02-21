@@ -104,6 +104,8 @@ This section contains the user stories that will be considered during developmen
 | BR02       | Out of stock           | A user can only purchase an item if it is in stock|
 | BR03       |  Account balance check   |   A user can only purchase an item if they have enough money in the account to buy it. |
 | BR04       |  Account deletion   |   When an account is deleted only his profile is deleted, his rating, comments and purchase history are kept in the system. |
+| BR05      |  Decreasing stock   |   The item's stock is decreased when a buyer adds the item to his/her's shopping cart. |
+| BR06      |  Removing from shopping cart|   If a buyer hasn't bought an item that is in his/her's shopping cart for two days the item is removed from the cart |
 
 #### 3.2. Technical requirements
 
