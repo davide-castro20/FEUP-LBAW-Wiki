@@ -21,6 +21,9 @@ The website provides a notification system that warns admins when a product goes
 
 The Fneuc shop website provides a reliable shopping service for the general public with easy access. This section contains information about the actors involved, the functionalities and requirements.
 
+![Actors](./images/UML.png)  
+Figure 1: Actors.
+
 ### 1. Actors
 
 | Identifier    | Description                                                                                                                                                  | Example  |
