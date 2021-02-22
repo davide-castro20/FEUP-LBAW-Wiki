@@ -88,7 +88,9 @@ This section contains the user stories that will be considered during developmen
 | US35  | Logout | high | As a *Administrator*, I want to be able to log out from my account, so that I can exit my account|
 | US36  | On sale| medium | As an *Administrator*, I want to have the ability to put items on sale, so that I can get attract uses to buy products that are not selling as well|
 | US37  | Statistics of sold items | medium | As an *Administrator*, I want to have easy access to statistics of items filtered by different categories of users, so that I can have a better overview of what items sell better|
-| US38  | View Buyer's History | low | As an *Administrator*, I want to be able to view customer's purchase history, so that I can get a better understanding of what buyers look for the most|
+| US38  | Manage users accounts | medium | As an *Administrator*, I want to be able to ban and unban users, so that I'm able to remove problematic users|
+| US39  | View Buyer's History | low | As an *Administrator*, I want to be able to view customer's purchase history, so that I can get a better understanding of what buyers look for the most|
+
 
 
 ### 3. Supplementary Requirements
