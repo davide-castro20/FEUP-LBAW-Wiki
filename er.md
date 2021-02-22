@@ -106,6 +106,8 @@ In this annex are presented the project's business rules, technical requirements
 | BR05      |  Decreasing stock   |   The item's stock is decreased when a buyer adds the item to his/her's shopping cart. |
 | BR06      |  Removing from shopping cart |   If a buyer hasn't bought an item that is in his/her's shopping cart for two days the item is removed from the cart (checkout_date <= date_added_to_cart + 2 days) |
 | BR07      |  Checkout with discounts applied |   If a buyer adds items with a discount to the cart, the discount will only be applied if it is still valid when doing the checkout |
+| BR08      |  Adding to stock when removed from cart |   If a buyer removes an items from his/her's cart, the items are put back in stock |
+| BR09      |  Removing money from an account |   If a buyer commits to checkout, only then is the money removed from his/her's account |
 
 #### 3.2. Technical requirements
 
