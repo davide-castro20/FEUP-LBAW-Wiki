@@ -68,10 +68,10 @@ This section contains the user stories that will be considered during developmen
 | US23       | Rate item             | high     | As a *Buyer*, I would like to attribute a score to an item, so that other users can know my basic opinion of the item        |
 | US24       | Comment item         | high     | As a *Buyer*, I would like to attach a comment to an item, so that other users can know my more complete opinion of the item |
 | US25  | Logout | high | As a *Buyer*, I want to be able to log out from my account, so that I can exit my account|
-| US26       | Edit profile     | high| As a *Buyer*, I want to be able to edit my profile so that i can keep up to date     |
+| US26       | Edit profile     | high| As a *Buyer*, I want to be able to edit my profile so that i can keep it up to date     |
 | US27       | Recommended list| medium | As a *Buyer*, I would like to have a list of recommended items according to my history of products, so that I can easily find products that may be of my interest |
 | US28       | Notifications| medium | As a *Buyer*, I would like to have notifications when my comment is answered, a product in my wishlist is re-stocked or put on sale, so that I can be on time to make the best purchases|
-| US29       | See wish list        | medium   | As a *Buyer*, I want to see my wish list, so that I can decide if I want to purchase them                                    |
+| US29       | See wish list        | medium   | As a *Buyer*, I want to see my wish list, so that I can decide if I want to purchase the items in it|
 | US210       | Add to wish list        | medium   | As a *Buyer*, I want to add items to my wish list, so that I can purchase them easily in the future                          |
 | US211       | Remove from wish list      | medium   | As a *Buyer*, I want to remove an item from my wish list, so that I can forget the item                                      |
 | US212     | Remove comments      | medium   | As a *Buyer*, I want to be able to be able to delete my own comments so that I'm able to remove comments that I don't find usefull                        |
