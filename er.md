@@ -67,14 +67,16 @@ This section contains the user stories that will be considered during developmen
 | US22       | Buy item             | high     | As a *Buyer*, I would like to purchase an item, so that I can obtain it                                                        |
 | US23       | Rate item             | high     | As a *Buyer*, I would like to attribute a score to an item, so that other users can know my basic opinion of the item        |
 | US24       | Comment item         | high     | As a *Buyer*, I would like to attach a comment to an item, so that other users can know my more complete opinion of the item |
-| US25  | Logout | high | As a *Buyer*, I want to be able to log out from my account, so that I can exit my account|
-| US26       | Edit profile     | high| As a *Buyer*, I want to be able to edit my profile so that i can keep it up to date     |
-| US27       | Recommended list| medium | As a *Buyer*, I would like to have a list of recommended items according to my history of products, so that I can easily find products that may be of my interest |
-| US28       | Notifications| medium | As a *Buyer*, I would like to have notifications when my comment is answered, a product in my wishlist is re-stocked or put on sale, so that I can be on time to make the best purchases|
-| US29       | See wish list        | medium   | As a *Buyer*, I want to see my wish list, so that I can decide if I want to purchase the items in it|
-| US210       | Add to wish list        | medium   | As a *Buyer*, I want to add items to my wish list, so that I can purchase them easily in the future                          |
-| US211       | Remove from wish list      | medium   | As a *Buyer*, I want to remove an item from my wish list, so that I can forget the item                                      |
-| US212     | Remove comments      | medium   | As a *Buyer*, I want to be able to be able to delete my own comments so that I'm able to remove comments that I don't find usefull                        |
+| US25       | Add to cart          | high     | As a *Buyer*, I want to add an item to my cart, so that I am able to purchase it|
+| US25       | Remove from cart          | high     | As a *Buyer*, I want to remove an item from my cart, so that I can reconsider my purchase before I finalize it.|
+| US27  | Logout | high | As a *Buyer*, I want to be able to log out from my account, so that I can exit my account|
+| US28       | Edit profile     | high| As a *Buyer*, I want to be able to edit my profile so that I can keep it up to date     |
+| US29       | Recommended list| medium | As a *Buyer*, I would like to have a list of recommended items according to my history of products, so that I can easily find products that may be of my interest |
+| US210       | Notifications| medium | As a *Buyer*, I would like to have notifications when my comment is answered, a product in my wishlist is re-stocked or put on sale, so that I can be on time to make the best purchases|
+| US211       | See wish list        | medium   | As a *Buyer*, I want to see my wish list, so that I can decide if I want to purchase the items in it|
+| US212       | Add to wish list        | medium   | As a *Buyer*, I want to add items to my wish list, so that I can purchase them easily in the future                          |
+| US213       | Remove from wish list      | medium   | As a *Buyer*, I want to remove an item from my wish list, so that I can forget the item                                      |
+| US214     | Remove comments      | medium   | As a *Buyer*, I want to be able to be able to delete my own comments so that I'm able to remove comments that I don't find usefull                        |
                                  
 
 #### 2.4 **Administrator**
@@ -85,7 +87,7 @@ This section contains the user stories that will be considered during developmen
 | US32  | Create admin accounts  | high  | As an *Administrator*, I want to create administrator accounts, so that others can have administrator permissions  |
 | US33  | Remove comments  | high  | As an *Administrator*, I want to remove comments, so that I can filter inappropriate language|
 | US34  | Notification of items without stock | high | As an *Administrator*, I want to have a notification alert me when an item is out of stock, so that I can re-stock them as soon as possible|
-| US35  | Logout | high | As a *Administrator*, I want to be able to log out from my account, so that I can exit my account|
+| US35  | Logout | high | As an *Administrator*, I want to be able to log out from my account, so that I can exit my account|
 | US36  | On sale| medium | As an *Administrator*, I want to have the ability to put items on sale, so that I can get attract uses to buy products that are not selling as well|
 | US37  | Statistics of sold items | medium | As an *Administrator*, I want to have easy access to statistics of items filtered by different categories of users, so that I can have a better overview of what items sell better|
 | US38  | Manage users accounts | medium | As an *Administrator*, I want to be able to ban and unban users, so that I'm able to remove problematic users|
