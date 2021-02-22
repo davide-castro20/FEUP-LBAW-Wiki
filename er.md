@@ -64,7 +64,7 @@ This section contains the user stories that will be considered during developmen
 | Identifier | Name                 | Priority | Description                                                                                                                 |
 |------------|----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------|
 | US21       | See purchase history  | high     | As a *Buyer*, I want to see my purchasing history, so that I can see the products I have bought|
-| US22       | Buy item             | high     | As a *Buyer*, I would like to purchase an item, so that I can use it                                                        |
+| US22       | Buy item             | high     | As a *Buyer*, I would like to purchase an item, so that I can obtain it                                                        |
 | US23       | Rate item             | high     | As a *Buyer*, I would like to attribute a score to an item, so that other users can know my basic opinion of the item        |
 | US24       | Comment item         | high     | As a *Buyer*, I would like to attach a comment to an item, so that other users can know my more complete opinion of the item |
 | US25  | Logout | high | As a *Buyer*, I want to be able to log out from my account, so that I can exit my account|
