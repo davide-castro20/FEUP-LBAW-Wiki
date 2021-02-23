@@ -30,7 +30,7 @@ Figure 1: Actors.
 |---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
 | Guest         | Unauthenticated user that can register himself or log into the website                                                                                                                   | n/a      |
 | User          | Generic user that has access to public information                                                                                                           | n/a      |
-| Buyer         | Authenticated user that can browse items, make purchases, add items to their favourites list, charge their account's balance and rate and comment item posts | lbaw2021 |
+| Authenticated         | Authenticated user that can browse items, make purchases, add items to their favourites list, charge their account's balance and rate and comment item posts | lbaw2021 |
 | Administrator | Authenticated user that can browse items, add/remove/edit items, manage comments and users, create new administrator accounts                                | lbaw2021 |
 | OAuth API| External API that is used to register or log in a user                    | Google|
 | Paypal API| Paypal API used for money transactions                    | Paypal|
@@ -46,9 +46,10 @@ This section contains the user stories that will be considered during developmen
 | US01  | Access Home  | high  | As a *User*, I want to access the website's homepage, so that I can know its general-purpose  |
 | US02  | Access About Page  | high  | As a *User*, I want to access the 'About' page, so that I can see a complete and detailed description of the website  |
 | US03  | See Contacts  | high  | As a *User*, I want to consult the website's contacts, so that I know how to contact the team if needed  |
-| US04  | Search | high | As a *User*, I want to search for public information, like categories, items and prices, so that I can be informed about the platform's content |
-| US05 | Logout | high | As a *User*, I want to be able to log out from my account, so that I can exit my account|
-| US06  | Delete account | medium | As a *User*, I want to be able to delete my account, so that I can remove my account from the system |
+| US04  | Search items | high | As a *User*, I want to search for an item's name, so that I can get more information about it |
+| US05  | Filter items | high | As a *User*, I want to filter for public information, like categories, items and prices, so that I can be informed about the platform's content |
+| US06  | View items | high | As a *User*, I want to view all the items, so that I can see all the products available |
+| US07  | Delete account | medium | As a *User*, I want to be able to delete my account, so that I can remove my account from the system |
 
 #### 2.2 **Visitor**
 | Identifier | Name                       | Priority | Description                                                                                  |
@@ -59,39 +60,44 @@ This section contains the user stories that will be considered during developmen
 | US14       | Sign-up using external API | low      | As a *Visitor*, I want to be able to create a new account using my existent Google account        |
 | US15       | Sign-in using external API | low      | As a *Visitor*, I want to be able to sign-in using my Google account
 
-#### 2.3 **Buyer**
+#### 2.3 **Authenticated**
 
 | Identifier | Name                 | Priority | Description                                                                                                                 |
 |------------|----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------|
-| US21       | See purchase history  | high     | As a *Buyer*, I want to see my purchasing history, so that I can see the products I have bought|
-| US22       | Buy item             | high     | As a *Buyer*, I would like to purchase an item, so that I can obtain it                                                        |
-| US23       | Rate item             | high     | As a *Buyer*, I would like to attribute a score to an item, so that other users can know my basic opinion of the item        |
-| US24       | Comment item         | high     | As a *Buyer*, I would like to attach a comment to an item, so that other users can know my more complete opinion of the item |
-| US25       | Add to cart          | high     | As a *Buyer*, I want to add an item to my cart, so that I am able to purchase it|
-| US25       | Remove from cart          | high     | As a *Buyer*, I want to remove an item from my cart, so that I can reconsider my purchase before I finalize it.|
-| US27  | Logout | high | As a *Buyer*, I want to be able to log out from my account, so that I can exit my account|
-| US28       | Edit profile     | high| As a *Buyer*, I want to be able to edit my profile so that I can keep it up to date     |
-| US29       | Recommended list| medium | As a *Buyer*, I would like to have a list of recommended items according to my history of products, so that I can easily find products that may be of my interest |
-| US210       | Notifications| medium | As a *Buyer*, I would like to have notifications when my comment is answered, a product in my wishlist is re-stocked or put on sale, so that I can be on time to make the best purchases|
-| US211       | See wish list        | medium   | As a *Buyer*, I want to see my wish list, so that I can decide if I want to purchase the items in it|
-| US212       | Add to wish list        | medium   | As a *Buyer*, I want to add items to my wish list, so that I can purchase them easily in the future                          |
-| US213       | Remove from wish list      | medium   | As a *Buyer*, I want to remove an item from my wish list, so that I can forget the item                                      |
-| US214     | Remove comments      | medium   | As a *Buyer*, I want to be able to be able to delete my own comments so that I'm able to remove comments that I don't find usefull                        |
+| US21       | View purchase history  | high     | As an *Authenticated*, I want to see my purchasing history, so that I can see the products I have bought|                                                  |
+| US23       | Rate item             | high     | As an *Authenticated*, I would like to attribute a score to an item, so that other users can know my basic opinion of the item        |
+| US24       | Comment item         | high     | As an *Authenticated*, I would like to attach a comment to an item, so that other users can know my more complete opinion of the item |
+| US25     | Remove comment      | high   | As an *Authenticated*, I want to be able to be able to delete my own comments so that I'm able to remove comments that I don't find useful                      |
+| US26       | Add to cart          | high     | As an *Authenticated*, I want to add an item to my cart, so that I am able to purchase it|
+| US27       | Remove from cart          | high     | As an *Authenticated*, I want to remove an item from my cart, so that I can reconsider my purchase before I finalize it|
+| US28       | Checkout cart          | high     | As an *Authenticated*, I want to checkout my cart, so that I can purchase the items I want |
+| US29  | Logout | high | As an *Authenticated*, I want to be able to log out from my account, so that I can exit my account|
+| US210       | Edit profile     | high| As an *Authenticated*, I want to be able to edit my profile so that I can keep it up to date     |
+| US211       | Recharge account balance     | high| As an *Authenticated*, I want to be able to recharge my account balance, so that I can make more purchases     |
+| US212       | View product recommendations | medium | As an *Authenticated*, I would like to have a list of recommended items according to my history of products, so that I can easily find products that may be of my interest |
+| US213       | View notifications | medium | As an *Authenticated*, I would like to have notifications when my comment is answered, a product in my wishlist is re-stocked or put on sale, so that I can be on time to make the best purchases |
+| US214       | View wish list        | medium   | As an *Authenticated*, I want to see my wish list, so that I can decide if I want to purchase the items in it|
+| US215       | Add to wish list        | medium   | As an *Authenticated*, I want to add items to my wish list, so that I can purchase them easily in the future                          |
+| US216       | Remove from wish list      | medium   | As an *Authenticated*, I want to remove an item from my wish list, so that I can forget the item                                      |
+
                                  
 
 #### 2.4 **Administrator**
 
 | Identifier  | Name  | Priority  | Description  |
 |---|---|---|---|
-| US31  | Manage products  | high  | As an *Administrator*, I want to manage product listings, so that I can create, remove and edit items|
-| US32  | Create admin accounts  | high  | As an *Administrator*, I want to create administrator accounts, so that others can have administrator permissions  |
-| US33  | Remove comments  | high  | As an *Administrator*, I want to remove comments, so that I can filter inappropriate language|
-| US34  | Notification of items without stock | high | As an *Administrator*, I want to have a notification alert me when an item is out of stock, so that I can re-stock them as soon as possible|
-| US35  | Logout | high | As an *Administrator*, I want to be able to log out from my account, so that I can exit my account|
-| US36  | On sale| medium | As an *Administrator*, I want to have the ability to put items on sale, so that I can get attract uses to buy products that are not selling as well|
-| US37  | Statistics of sold items | medium | As an *Administrator*, I want to have easy access to statistics of items filtered by different categories of users, so that I can have a better overview of what items sell better|
-| US38  | Manage users accounts | medium | As an *Administrator*, I want to be able to ban and unban users, so that I'm able to remove problematic users|
-| US39  | View Buyer's History | low | As an *Administrator*, I want to be able to view customer's purchase history, so that I can get a better understanding of what buyers look for the most|
+| US31  | Create items  | high  | As an *Administrator*, I want to create item listings, so that I can sell new items |
+| US32  | Remove items  | high  | As an *Administrator*, I want to remove item listings, so that I can prevent users from buying certain items |
+| US33  | Edit items  | high  | As an *Administrator*, I want to edit item listings, so that I change the items I am selling |
+| US34  | Create admin accounts  | high  | As an *Administrator*, I want to create administrator accounts, so that others can have administrator permissions  |
+| US35  | Remove comments  | high  | As an *Administrator*, I want to remove comments, so that I can filter inappropriate language|
+| US36  | View notifications of items without stock | high | As an *Administrator*, I want to have a notification alert me when an item is out of stock, so that I can re-stock them as soon as possible|
+| US37  | Logout | high | As an *Administrator*, I want to be able to log out from my account, so that I can exit my account|
+| US38  | Put item on sale | medium | As an *Administrator*, I want to have the ability to put items on sale, so that I can get attract uses to buy products that are not selling as well|
+| US39  | View statistics of sold items | medium | As an *Administrator*, I want to have easy access to statistics of items filtered by different categories of users, so that I can have a better overview of what items sell better|
+| US310  | Ban user accounts | medium | As an *Administrator*, I want to be able to ban users, so that I'm able to remove problematic users|
+| US311  | Unban user accounts | medium | As an *Administrator*, I want to be able to unban users, so that I'm able to forgive certain users or correct a mistake I have made |
+| US312  | View Buyer's History | low | As an *Administrator*, I want to be able to view customer's purchase history, so that I can get a better understanding of what buyers look for the most|
 
 
 
@@ -103,15 +109,14 @@ In this annex are presented the project's business rules, technical requirements
 
 | Identifier | Name              | Description |
 |------------|-------------------|-------------|
-| BR01       | Stock Mindfulness | A user can only buy an amount of an item lower or equal to its amount in stock.|
-| BR02       | Out of stock           | A user can only purchase an item if it is in stock|
-| BR03       |  Account balance check   |   A user can only purchase an item if they have enough money in the account to buy it. |
-| BR04       |  Account deletion   |   When an account is deleted only his profile is deleted, his rating, comments and purchase history are kept in the system. |
-| BR05      |  Decreasing stock   |   The item's stock is decreased when a buyer adds the item to his/her's shopping cart. |
-| BR06      |  Removing from shopping cart |   If a buyer hasn't bought an item that is in his/her's shopping cart for two days the item is removed from the cart (checkout_date <= date_added_to_cart + 2 days) |
-| BR07      |  Checkout with discounts applied |   If a buyer adds items with a discount to the cart, the discount will only be applied if it is still valid when doing the checkout |
-| BR08      |  Adding to stock when removed from cart |   If a buyer removes an items from his/her's cart, the items are put back in stock |
-| BR09      |  Removing money from an account |   If a buyer commits to checkout, only then is the money removed from his/her's account |
+| BR01       | Out of Stock | A user can only buy an amount of an item lower or equal to its amount in stock |
+| BR02       |  Account balance check   |   A user can only purchase an item if they have enough money in the account to buy it |
+| BR03       |  Account deletion   |   When an account is deleted only his profile and cart are deleted, his rating, comments and purchase history are kept in the system |
+| BR04      |  Decreasing stock   |   The item's stock is decreased when a buyer adds the item to his/her's shopping cart |
+| BR05      |  Removing from shopping cart |   If an authenticated hasn't bought an item that is in his/her's shopping cart for two days the item is removed from the cart (checkout_date <= date_added_to_cart + 2 days) |
+| BR06      |  Checkout with discounts applied |   If an authenticated adds items with a discount to the cart, the discount will only be applied if it is still valid when doing the checkout |
+| BR07      |  Adding to stock when removed from cart |   If an authenticated removes an items from his/her's cart, the items are put back in stock |
+| BR08      |  Removing money from an account |   If an authenticated checks out, only then is the money removed from his/her's account |
 
 #### 3.2. Technical requirements
 
@@ -121,14 +126,13 @@ In this annex are presented the project's business rules, technical requirements
 | TR02       | Accessibility | The system must be accessible for all users regardless of the used browser or physical limitations |
 | TR03       | Usability | The platform should be of easy use and navigation |
 | TR04       | Performance | The system should be as fast as possible to maximize user's experience |
-| TR05       | Web application | The system should be implemented as a Web application with dynamic pages (HTML5, JavaScript, CSS3 and PHP) |
+| **TR05**       | Web application | The system should be implemented as a Web application with dynamic pages (HTML5, JavaScript, CSS3 and PHP) |
 | TR06       | Portability | The server-side system should work across multiple platforms (Linux, Mac OS, Windows, etc.) |
-| TR07       | Database | The system must use database management through PostgreSQL 9.4 |
-| TR08       | Security | The system must use authentication, verification and secure payment systems to protect information from unauthorised access |
+| **TR07**       | Database | The system must use database management through PostgreSQL 9.4 |
+| **TR08**       | Security | The system must use authentication, verification and secure payment systems to protect information from unauthorised access |
 | TR09       | Robustness | The system must be able to handle and prevent errors |
 | TR10       | Scalability | The system must be able to handle growth of users, actions and items. |
 | TR11       | Ethics | The system must respect the ethical principles in software development (for example, the password must be stored encrypted to ensure that only the owner knows it) |
-| TR12       | Manageability | The system should be easy to manage by administrators |
 
 We consider that three of these requirements are more important and critical to the system. These requirements are TR05, TR07, and TR08, because the main purpose of the platform is to be a Web application that contains useful information, for and from the users, and that is safe to use.
 
