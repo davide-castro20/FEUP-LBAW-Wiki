@@ -97,7 +97,9 @@ This section contains the user stories that will be considered during developmen
 | US39  | View statistics of sold items | medium | As an *Administrator*, I want to have easy access to statistics of items filtered by different categories of users, so that I can have a better overview of what items sell better|
 | US310  | Ban user accounts | medium | As an *Administrator*, I want to be able to ban users, so that I'm able to remove problematic users|
 | US311  | Unban user accounts | medium | As an *Administrator*, I want to be able to unban users, so that I'm able to forgive certain users or correct a mistake I have made |
-| US312  | View Buyer's History | low | As an *Administrator*, I want to be able to view customer's purchase history, so that I can get a better understanding of what buyers look for the most|
+| US312  | View  users profile | medium | As an *Administrator*, I want to be able to view all users profile, so that I can get check their information|
+| US313  | View users buy history | low | As an *Administrator*, I want to be able to view customer's purchase history, so that I can get a better understanding of what buyers look for the most|
+
 
 
 
@@ -109,7 +111,7 @@ In this annex are presented the project's business rules, technical requirements
 
 | Identifier | Name              | Description |
 |------------|-------------------|-------------|
-| BR01       | Out of Stock | A user can only buy an amount of an item lower or equal to its amount in stock |
+| BR01       | Out of stock | A user can only buy an amount of an item lower or equal to its amount in stock |
 | BR02       |  Account balance check   |   A user can only purchase an item if they have enough money in the account to buy it |
 | BR03       |  Account deletion   |   When an account is deleted only his profile and cart are deleted, his rating, comments and purchase history are kept in the system |
 | BR04      |  Decreasing stock   |   The item's stock is decreased when a buyer adds the item to his/her's shopping cart |
@@ -124,17 +126,20 @@ In this annex are presented the project's business rules, technical requirements
 |------------|-------------------|-------------|
 | TR01       | Availability | The system must be available most of the time everyday |
 | TR02       | Accessibility | The system must be accessible for all users regardless of the used browser or physical limitations |
-| TR03       | Usability | The platform should be of easy use and navigation |
+| **TR03**       | Usability | The platform should be of easy use and navigation |
 | TR04       | Performance | The system should be as fast as possible to maximize user's experience |
 | **TR05**       | Web application | The system should be implemented as a Web application with dynamic pages (HTML5, JavaScript, CSS3 and PHP) |
 | TR06       | Portability | The server-side system should work across multiple platforms (Linux, Mac OS, Windows, etc.) |
-| **TR07**       | Database | The system must use database management through PostgreSQL 9.4 |
+| TR07       | Database | The system must use database management through PostgreSQL 9.4 |
 | **TR08**       | Security | The system must use authentication, verification and secure payment systems to protect information from unauthorised access |
 | TR09       | Robustness | The system must be able to handle and prevent errors |
 | TR10       | Scalability | The system must be able to handle growth of users, actions and items. |
 | TR11       | Ethics | The system must respect the ethical principles in software development (for example, the password must be stored encrypted to ensure that only the owner knows it) |
 
-We consider that three of these requirements are more important and critical to the system. These requirements are TR05, TR07, and TR08, because the main purpose of the platform is to be a Web application that contains useful information, for and from the users, and that is safe to use.
+We consider that three of these requirements are more important and critical to the system. These requirements are TR05, TR07, and TR08.   
+We decided to choose TR03 because making a web application that is intuitive and easy to work with is very important.
+TR05 is also one of the most important due to the fact that these technologies are imperative to the correct operation of our online shop.  
+TR08 is a major focus for us aswell because everything we do, we must do it safely. We want to provide a platform that is safe for all our users.
 
 #### 3.3. Restrictions
 
