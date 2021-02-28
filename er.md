@@ -152,9 +152,7 @@ TR08 is a major focus for us aswell because everything we do, we must do it safe
 
 ## A3: User Interface Prototype
 
-> Brief presentation of the product.  
-> Brief presentation of the artefact goals.
-
+This section intends to preview the user interface of the Fneuc website. We intend to show how you can get from one page to another and also the main elements of each page.
 
 ### 1. Interface and common features
 
@@ -198,7 +196,7 @@ Changes made to the first submission:
 ***
 GROUP2111, 28/02/2021
 
-* Diogo Guimarães do Rosário, [up201806582@fe.up.pt](mailto:up201806582@fe.up.pt)(Editor)
+* Diogo Guimarães do Rosário, [up201806582@fe.up.pt](mailto:up201806582@fe.up.pt) (Editor)
 * Henrique Melo Ribeiro, [up201806529@fe.up.pt](mailto:up201806529@fe.up.pt)
 * Davide António Ferreira Castro, [up201806512@fe.up.pt](mailto:up201806512@fe.up.pt)
 * João Alexandre Lobo Cardoso, [up201806531@fe.up.pt](mailto:up201806531@fe.up.pt)
