@@ -164,10 +164,10 @@ This section intends to preview the user interface of the Fneuc website. We inte
 ![Sitemap](./images/sitemap.png)  
 Figure 2: Sitemap.
 
-### 3. Storyboards
+### 3. Wireflows
 
-> Storyboards for the main use cases of the system.  
-> Do not include trivial use cases.
+> Single image containing wireflows for the main use cases of the system.   
+> Do not include trivial use cases. Link to the InVision project.
 
 
 ### 4. Interfaces
@@ -177,11 +177,6 @@ Figure 2: Sitemap.
 #### UI01: Home
 
 #### UI02: About
-
-
-### 5. Hand-made materials
-
-> Include digitization of the hand-made materials, particularly the wireflows. 
 
 
 ---
