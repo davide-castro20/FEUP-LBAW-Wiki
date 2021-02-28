@@ -163,10 +163,8 @@ TR08 is a major focus for us aswell because everything we do, we must do it safe
 
 ### 2. Sitemap
 
-> Sitemap presenting the overall structure of the web application.  
-> Each screen must be identified in the sitemap.  
-> Multiple pages of the same screen (e.g. student profile in SIGARRA) are presented as page stacks.
-
+![Sitemap](./images/sitemap.png)  
+Figure 2: Sitemap.
 
 ### 3. Storyboards
 
@@ -183,7 +181,7 @@ TR08 is a major focus for us aswell because everything we do, we must do it safe
 #### UI02: About
 
 
-### 4. Hand-made materials
+### 5. Hand-made materials
 
 > Include digitization of the hand-made materials, particularly the wireflows. 
 
