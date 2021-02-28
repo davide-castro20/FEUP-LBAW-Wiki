@@ -10,7 +10,7 @@ We have a group of products to sell and we feel that a physical storefront would
 
 Users are separated into three different types: system administrators and buyers, who have to register and log into the system, and guests. The user authentication can be done with an external API or using our website's authentication system, which requires an e-mail, a username and a password.
 
-Buyers are able to acquire products and also rate/comment on them after purchase. This means that customers are able to use different types of filtering to obtain the best-rated products in accordance with their needs. Buyers are also able to charge their account with balance before committing to a purchase. Buyers also have a purchase history they can check, a favourite list (wishlist) they can manage and a recommended items list provided by the system based on their previous purchases and ratings. They can, at any time, set the delivery address, deposit money into their account before or during checkout using an external method, and update their credentials. Admins have full access and modification privileges, including removing ongoing sales, assign users as admins and viewing the customers' purchase history. Admins also have the ability to make discounts on selected items in stock. Guests are able to browse the catalogue but they are not allowed to make any purchase, rate or comment on any product as they need to log in first. Every user has access to an "about" page, contacts and FAQ so they can obtain information about the website and useful contacts.
+Buyers are able to acquire products and also rate/comment on them after purchase. This means that customers are able to use different types of filtering to obtain the best-rated products in accordance with their needs. Buyers are also able to charge their account with balance before committing to a purchase. These users have a purchase history they can check, a favourite list (wishlist) they can manage and a recommended items list provided by the system based on their previous purchases and ratings. They can, at any time, set the delivery address, deposit money into their account before or during checkout using an external method, and update their credentials. Admins have full access and modification privileges, including removing ongoing sales, assign users as admins and viewing the customers' purchase history. Admins also have the ability to make discounts on selected items in stock. Guests are able to browse the catalogue but they are not allowed to make any purchase, rate or comment on any product as they need to log in first. Every user has access to an "about" page, contacts and FAQ so they can obtain information about the website and useful contacts.
 
 The website provides a notification system that warns admins when a product goes out of stock and notifies a buyer when a wishlist item has been re-stocked or is on sale.
 
@@ -98,7 +98,7 @@ This section contains the user stories that will be considered during developmen
 | US310  | Ban user accounts | medium | As an *Administrator*, I want to be able to ban users, so that I'm able to remove problematic users|
 | US311  | Unban user accounts | medium | As an *Administrator*, I want to be able to unban users, so that I'm able to forgive certain users or correct a mistake I have made |
 | US312  | View  users profile | medium | As an *Administrator*, I want to be able to view all users profile, so that I can get check their information|
-| US313  | View users buy history | low | As an *Administrator*, I want to be able to view customer's purchase history, so that I can get a better understanding of what buyers look for the most|
+| US313  | View users buy history | low | As an *Administrator*, I want to be able to view customer's purchase history, so that I can get a better understanding of what users look for the most|
 
 
 
@@ -114,7 +114,7 @@ In this annex are presented the project's business rules, technical requirements
 | BR01       | Out of stock | A user can only buy an amount of an item lower or equal to its amount in stock |
 | BR02       |  Account balance check   |   A user can only purchase an item if they have enough money in the account to buy it |
 | BR03       |  Account deletion   |   When an account is deleted only his profile and cart are deleted, his rating, comments and purchase history are kept in the system |
-| BR04      |  Decreasing stock   |   The item's stock is decreased when a buyer adds the item to his/her's shopping cart |
+| BR04      |  Decreasing stock   |   The item's stock is decreased when an authenticaded user (Buyer) adds the item to his/her's shopping cart |
 | BR05      |  Removing from shopping cart |   If an authenticated hasn't bought an item that is in his/her's shopping cart for two days the item is removed from the cart (checkout_date <= date_added_to_cart + 2 days) |
 | BR06      |  Checkout with discounts applied |   If an authenticated adds items with a discount to the cart, the discount will only be applied if it is still valid when doing the checkout |
 | BR07      |  Adding to stock when removed from cart |   If an authenticated removes an items from his/her's cart, the items are put back in stock |
