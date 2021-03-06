@@ -180,6 +180,10 @@ Figure 2: Sitemap.
 > Single image containing wireflows for the main use cases of the system.   
 > Do not include trivial use cases. Link to the InVision project.
 
+![Footer Wireflow](./images/footerWireFlow.png)
+
+The footer allows the user to visit some pages that are not related to buying product but might prove useful.
+
 [Invision](https://projects.invisionapp.com/freehand/document/yG4NadLWr)
 
 
