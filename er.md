@@ -166,9 +166,9 @@ Figure 1: Common interface features
     4. Company logo
 
 In this figure some common characteristics are highlighted such as:
-    - The web site present a responsive design which supports many screen sizes, from mobile to laptop.
-    - Common links, mainly the navegation bar and footer maintain their location when moving from page to page.
-    - Visual feedback when something is clickable, such as change of color on buttons or images zooming into them.
+ * The web site present a responsive design which supports many screen sizes, from mobile to laptop.
+ * Common links, mainly the navegation bar and footer maintain their location when moving from page to page.
+ * Visual feedback when something is clickable, such as change of color on buttons or images zooming into them.
 
 ### 2. Sitemap
 
@@ -179,6 +179,10 @@ Figure 2: Sitemap.
 
 > Single image containing wireflows for the main use cases of the system.   
 > Do not include trivial use cases. Link to the InVision project.
+
+![Footer Wireflow](./images/footerWireFlow.png)
+
+The footer allows the user to visit some pages that are not related to buying product but might prove useful.
 
 [Invision](https://projects.invisionapp.com/freehand/document/yG4NadLWr)
 
