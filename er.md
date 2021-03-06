@@ -177,10 +177,14 @@ Figure 2: Sitemap.
 
 ### 3. Wireflows
 
-> Single image containing wireflows for the main use cases of the system.   
-> Do not include trivial use cases. Link to the InVision project.
+![Main Wireflow](./images/mainWireflow.png)
+Figure 3: Main Wireflow
+
+This is the wireflow for the main features of our website. The wireflow presents how the different users utilize our website. The user's flow is represented by a grey arrow, the authenticated users is represented by a green arrow, a guest is represented by an orange arrow and finally the admins are represented by a blue arrow
+
 
 ![Footer Wireflow](./images/footerWireFlow.png)
+Figure 4: Footer Wireflow
 
 The footer allows the user to visit some pages that are not related to buying product but might prove useful.
 
