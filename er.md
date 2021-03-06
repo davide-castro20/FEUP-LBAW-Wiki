@@ -156,8 +156,19 @@ This section intends to preview the user interface of the Fneuc website. We inte
 
 ### 1. Interface and common features
 
-> Screenshots highlighting the main elements of the interface, for desktop and mobile.
+![Common features](./images/commonFeatures.png)  
 
+Figure 1: Common interface features
+
+    1. Navegation bar
+    2. Footer
+    3. Page Content
+    4. Company logo
+
+In this figure some common characteristics are highlighted such as:
+    - The web site present a responsive design which supports many screen sizes, from mobile to laptop.
+    - Common links, mainly the navegation bar and footer maintain their location when moving from page to page.
+    - Visual feedback when something is clickable, such as change of color on buttons or images zooming into them.
 
 ### 2. Sitemap
 
