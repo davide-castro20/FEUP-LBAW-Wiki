@@ -180,7 +180,7 @@ Figure 2: Sitemap.
 ![Main Wireflow](./images/mainWireflow.png)
 Figure 3: Main Wireflow
 
-This is the wireflow for the main features of our website. The wireflow presents how the different users utilize our website. The user's flow is represented by a grey arrow, the authenticated users is represented by a green arrow, a guest is represented by an orange arrow and finally the admins are represented by a blue arrow
+This is the wireflow for the main features of our website. The wireflow presents how the different users utilize our website. The user's flow is represented by a grey arrow, the authenticated users is represented by a green arrow, a guest is represented by an orange arrow and finally the admins are represented by a blue arrow. The wireflow for each individual one is presented below.
 
 ![Footer Wireflow](./images/footerWireFlow.png)
 Figure 4: Footer Wireflow
@@ -207,7 +207,7 @@ Figure 8: Sign in/Sign up Wireflow
 
 These pages allow users to sign in/sign up.
 
-[Invision](https://projects.invisionapp.com/freehand/document/yG4NadLWr)
+[Link to Invision Invision](https://projects.invisionapp.com/freehand/document/yG4NadLWr)
 
 
 ### 4. Interfaces
