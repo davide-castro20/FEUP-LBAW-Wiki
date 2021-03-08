@@ -235,7 +235,7 @@ Page with a short description about how the site came to be.
 ![FAQ PC](./images/faq_pc.png) ![FAQ mobile](./images/faq_mobile.png)  
 Figure 11: FAQ
 
-[FAQ](http://lbaw2111-piu.lbaw-prod.fe.up.pt/faq.php)  
+[FAQ](http://lbaw2111-piu.lbaw-prod.fe.up.pt/FAQ.php)  
 
 Frequently asked questions about our site/products.
 
