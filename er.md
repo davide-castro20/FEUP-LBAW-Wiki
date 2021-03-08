@@ -212,7 +212,7 @@ These pages allow users to sign in/sign up.
 
 ### 4. Interfaces
 
-> Screenshots, structured in subsections, including a reference, a description and a URL to the working version.
+
 
 #### UI01: Homepage
 ![Homepage PC](./images/homepage_pc.png) ![Homepage mobile](./images/homepage_mobile.png)  
