@@ -215,78 +215,63 @@ These pages allow users to sign in/sign up.
 > Screenshots, structured in subsections, including a reference, a description and a URL to the working version.
 
 #### UI01: Homepage
-![Homepage PC](./images/homepage_pc.png)
-![Homepage mobile](./images/homepage_mobile.png)
+![Homepage PC](./images/homepage_pc.png) ![Homepage mobile](./images/homepage_mobile.png)  
 Figure 9: Homepage
 
 #### UI02: About
-![About PC](./images/about_pc.png)
-![About mobile](./images/about_mobile.png)
+![About PC](./images/about_pc.png) ![About mobile](./images/about_mobile.png)  
 Figure 10: About
 
 #### UI03: FAQ
-![FAQ PC](./images/faq_pc.png)
-![FAQ mobile](./images/faq_mobile.png)
+![FAQ PC](./images/faq_pc.png) ![FAQ mobile](./images/faq_mobile.png)  
 Figure 11: FAQ
 
 #### UI04: Contacts
-![Contacts PC](./images/contact_pc.png)
-![Contacts mobile](./images/contact_mobile.png)
+![Contacts PC](./images/contact_pc.png) ![Contacts mobile](./images/contact_mobile.png)  
 Figure 10: Contacts
 
 #### UI05: Add a new item
-![Add item PC](./images/addItem_pc.png)
-![Add item mobile](./images/addItem_mobile.png)
+![Add item PC](./images/addItem_pc.png) ![Add item mobile](./images/addItem_mobile.png)  
 Figure 11: Add a new item
 
 #### UI06: Admin Main page
-![Admin Main page PC](./images/adminMainPage_pc.png)
-![Admin Main page mobile](./images/adminMainPage_mobile.png)
+![Admin Main page PC](./images/adminMainPage_pc.png) ![Admin Main page mobile](./images/adminMainPage_mobile.png)   
 Figure 12: Admin Main page
 
 #### UI07: Cart 
-![Cart PC](./images/cart_pc.png)
-![Cart mobile](./images/cart_mobile.png)
+![Cart PC](./images/cart_pc.png) ![Cart mobile](./images/cart_mobile.png)   
 Figure 13: Cart
 
 #### UI08: Item
-![Item PC](./images/item_pc.png)
-![Item mobile](./images/item_mobile.png)
+![Item PC](./images/item_pc.png) ![Item mobile](./images/item_mobile.png)   
 Figure 14: Item
 
 #### UI09: Purchase History
-![Purchase History PC](./images/purchaseHistory_pc.png)
-![Purchase History mobile](./images/purchaseHistory_mobile.png)
+![Purchase History PC](./images/purchaseHistory_pc.png) ![Purchase History mobile](./images/purchaseHistory_mobile.png)   
 Figure 15: Purchase History
 
 #### UI10: Search Results
-![Search Results PC](./images/searchResults_pc.png)
-![Search Results mobile](./images/searchResults_mobile.png)
+![Search Results PC](./images/searchResults_pc.png) ![Search Results mobile](./images/searchResults_mobile.png)   
 Figure 16: Search Results
 
 #### UI11: Sign in
-![Sign in PC](./images/signin.png)
-![Sign in mobile](./images/signin_mobile.png)
+![Sign in PC](./images/signin.png) ![Sign in mobile](./images/signin_mobile.png)   
 Figure 17: Sign in
 
 #### UI12: Sign up
-![Sign up PC](./images/signup_pc.png)
-![Sign up mobile](./images/signup_mobile.png)
+![Sign up PC](./images/signup_pc.png) ![Sign up mobile](./images/signup_mobile.png)   
 Figure 18: Sign up
 
 #### UI13: User Profile 
-![User Profile PC](./images/user_pc.png)
-![User Profile mobile](./images/user_mobile.png)
+![User Profile PC](./images/user_pc.png) ![User Profile mobile](./images/user_mobile.png)   
 Figure 19: User Profile
 
 #### UI14: User Administration 
-![User Administration PC](./images/userAdministration_pc.png)
-![User Administration mobile](./images/userAdministration_mobile.png)
+![User Administration PC](./images/userAdministration_pc.png) ![User Administration mobile](./images/userAdministration_mobile.png)   
 Figure 20: User Administration
 
 #### UI15: Wishlist
-![Wishlist PC](./images/wishlist_pc.png)
-![Wishlist mobile](./images/wishlist_mobile.png)
+![Wishlist PC](./images/wishlist_pc.png) ![Wishlist mobile](./images/wishlist_mobile.png)   
 Figure 21: Wishlist
 
 ---
