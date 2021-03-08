@@ -180,15 +180,34 @@ Figure 2: Sitemap.
 ![Main Wireflow](./images/mainWireflow.png)
 Figure 3: Main Wireflow
 
-This is the wireflow for the main features of our website. The wireflow presents how the different users utilize our website. The user's flow is represented by a grey arrow, the authenticated users is represented by a green arrow, a guest is represented by an orange arrow and finally the admins are represented by a blue arrow
-
+This is the wireflow for the main features of our website. The wireflow presents how the different users utilize our website. The user's flow is represented by a grey arrow, the authenticated users is represented by a green arrow, a guest is represented by an orange arrow and finally the admins are represented by a blue arrow. The wireflow for each individual one is presented below.
 
 ![Footer Wireflow](./images/footerWireFlow.png)
 Figure 4: Footer Wireflow
 
 The footer allows the user to visit some pages that are not related to buying product but might prove useful.
 
-[Invision](https://projects.invisionapp.com/freehand/document/yG4NadLWr)
+![Administration Wireflow](./images/administration.png)
+Figure 5: Administration Wireflow
+
+This area allows administrators to manage items and users.
+
+![Buying Wireflow](./images/buying.png)
+Figure 6: Buying an item Wireflow
+
+This wireflow shows the different ways a user can buy an item.
+
+![Common Wireflow](./images/commonActions.png)
+Figure 7: Common Actions Wireflow
+
+This wireflow demonstrates the actions that all the users can do whether they are an unauthenticated user/authenticated user/administrator.
+
+![Signin Wireflow](./images/signin.png)
+Figure 8: Sign in/Sign up Wireflow
+
+These pages allow users to sign in/sign up.
+
+[Link to Invision Invision](https://projects.invisionapp.com/freehand/document/yG4NadLWr)
 
 
 ### 4. Interfaces
