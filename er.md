@@ -218,61 +218,123 @@ These pages allow users to sign in/sign up.
 ![Homepage PC](./images/homepage_pc.png) ![Homepage mobile](./images/homepage_mobile.png)  
 Figure 9: Homepage
 
+[Homepage](http://lbaw2111-piu.lbaw-prod.fe.up.pt/homepage.php)  
+
+Site's main page. Presents the user with a list of good selling products for unauthenticated users and recommended items to authenticated users.
+
 #### UI02: About
 ![About PC](./images/about_pc.png) ![About mobile](./images/about_mobile.png)  
 Figure 10: About
+
+[About](http://lbaw2111-piu.lbaw-prod.fe.up.pt/about.php)  
+
+Page with a short description about how the site came to be.
+
 
 #### UI03: FAQ
 ![FAQ PC](./images/faq_pc.png) ![FAQ mobile](./images/faq_mobile.png)  
 Figure 11: FAQ
 
+[FAQ](http://lbaw2111-piu.lbaw-prod.fe.up.pt/faq.php)  
+
+Frequently asked questions about our site/products.
+
 #### UI04: Contacts
 ![Contacts PC](./images/contact_pc.png) ![Contacts mobile](./images/contact_mobile.png)  
 Figure 10: Contacts
+
+[Contacts](http://lbaw2111-piu.lbaw-prod.fe.up.pt/contacts.php)  
+
+Usefull contacts.
 
 #### UI05: Add a new item
 ![Add item PC](./images/addItem_pc.png) ![Add item mobile](./images/addItem_mobile.png)  
 Figure 11: Add a new item
 
+[Add Item](http://lbaw2111-piu.lbaw-prod.fe.up.pt/addItem.php)  
+
+Page where an admin can add new items that weren't prviously available.
+
 #### UI06: Admin Main page
 ![Admin Main page PC](./images/adminMainPage_pc.png) ![Admin Main page mobile](./images/adminMainPage_mobile.png)   
 Figure 12: Admin Main page
+
+[Admin Main page](http://lbaw2111-piu.lbaw-prod.fe.up.pt/adminMainPage.php)  
+
+Administration's main page where an admin can select what to do.
 
 #### UI07: Cart 
 ![Cart PC](./images/cart_pc.png) ![Cart mobile](./images/cart_mobile.png)   
 Figure 13: Cart
 
+[Cart](http://lbaw2111-piu.lbaw-prod.fe.up.pt/cart.php)  
+
+Page where an authenticated user can see what he/she has in the cart and procced to checkout.
+
 #### UI08: Item
 ![Item PC](./images/item_pc.png) ![Item mobile](./images/item_mobile.png)   
 Figure 14: Item
+
+[Item](http://lbaw2111-piu.lbaw-prod.fe.up.pt/item.php)  
+
+Page where a user can see the details of an item.
 
 #### UI09: Purchase History
 ![Purchase History PC](./images/purchaseHistory_pc.png) ![Purchase History mobile](./images/purchaseHistory_mobile.png)   
 Figure 15: Purchase History
 
+[Purchase History](http://lbaw2111-piu.lbaw-prod.fe.up.pt/purchaseHistory.php)  
+
+Page where an authenticated user can see his purchase history.
+
 #### UI10: Search Results
 ![Search Results PC](./images/searchResults_pc.png) ![Search Results mobile](./images/searchResults_mobile.png)   
 Figure 16: Search Results
 
+[Search Results](http://lbaw2111-piu.lbaw-prod.fe.up.pt/searchResults.php)  
+
+Page where a user can see the results of his search/filter.
+
 #### UI11: Sign in
-![Sign in PC](./images/signin.png) ![Sign in mobile](./images/signin_mobile.png)   
+![Sign in PC](./images/signin_pc.png) ![Sign in mobile](./images/signin_mobile.png)   
 Figure 17: Sign in
+
+[Sign in](http://lbaw2111-piu.lbaw-prod.fe.up.pt/signin.php)  
+
+Page where a guest can sign in via his account or a google account.
 
 #### UI12: Sign up
 ![Sign up PC](./images/signup_pc.png) ![Sign up mobile](./images/signup_mobile.png)   
 Figure 18: Sign up
 
+[Sign up](http://lbaw2111-piu.lbaw-prod.fe.up.pt/signup.php)  
+
+Page where a guest can sign up.
+
 #### UI13: User Profile 
 ![User Profile PC](./images/user_pc.png) ![User Profile mobile](./images/user_mobile.png)   
 Figure 19: User Profile
+
+[User Profile](http://lbaw2111-piu.lbaw-prod.fe.up.pt/user.php)  
+
+Page where an authenticated user can see his details and change them.
+
 
 #### UI14: User Administration 
 ![User Administration PC](./images/userAdministration_pc.png) ![User Administration mobile](./images/userAdministration_mobile.png)   
 Figure 20: User Administration
 
+[User Administration](http://lbaw2111-piu.lbaw-prod.fe.up.pt/userAdministration.php)  
+
+Page where an admin can manage users(ban them or promote them to admin).
+
 #### UI15: Wishlist
 ![Wishlist PC](./images/wishlist_pc.png) ![Wishlist mobile](./images/wishlist_mobile.png)   
 Figure 21: Wishlist
+
+[Wishlist](http://lbaw2111-piu.lbaw-prod.fe.up.pt/wishlist.php)  
+
+Page where an authenticated user can see and manage his wishlist.
 
 ---
 
