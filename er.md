@@ -52,14 +52,13 @@ This section contains the user stories that will be considered during developmen
 | US07  | Delete account | medium | As a *User*, I want to be able to delete my account, so that I can remove my account from the system |
 
 #### 2.2 **Visitor**
-| Identifier | Name                       | Priority | Description                                                                                  |
-|------------|----------------------------|----------|----------------------------------------------------------------------------------------------|
+| Identifier | Name                       | Priority | Description                                                  |
+| ---------- | -------------------------- | -------- | ------------------------------------------------------------ |
 | US11       | Sign-up                    | high     | As a *Visitor*, I want to be able to create a new account so that I'm able to authenticate myself |
-| US12       | Sign-in                    | high     | As a *Visitor*, I want to be able to authenticate myself so that I'm able to buy products         |
-| US13       | Administrator Sign-in      | high     | As a *Visitor*, I want to be able to sign-in as an administrator if I'm permitted to do so  |
-| US14       | Sign-up using external API | low      | As a *Visitor*, I want to be able to create a new account using my existent Google account        |
-| US15       | Sign-in using external API | low      | As a *Visitor*, I want to be able to sign-in using my Google account
-
+| US12       | Sign-in                    | high     | As a *Visitor*, I want to be able to authenticate myself so that I'm able to buy products |
+| US13       | Administrator Sign-in      | high     | As a *Visitor*, I want to be able to sign-in as an administrator if I'm permitted to do so |
+| US14       | Sign-up using external API | low      | As a *Visitor*, I want to be able to create a new account using my existent Google account |
+| US15       | Sign-in using external API | low      | As a *Visitor*, I want to be able to sign-in using my Google account |
 #### 2.3 **Authenticated**
 
 | Identifier | Name                 | Priority | Description                                                                                                                 |
@@ -80,7 +79,7 @@ This section contains the user stories that will be considered during developmen
 | US215       | Add to wish list        | medium   | As an *Authenticated*, I want to add items to my wish list, so that I can purchase them easily in the future                          |
 | US216       | Remove from wish list      | medium   | As an *Authenticated*, I want to remove an item from my wish list, so that I can forget the item                                      |
 
-                                 
+​                                 
 
 #### 2.4 **Administrator**
 
