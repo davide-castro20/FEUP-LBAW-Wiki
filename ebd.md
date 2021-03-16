@@ -14,7 +14,7 @@ Figure 1: Class Diagram.
 
 ### 2. Additional Business Rules
 
- 
+
 Additional business rules are represented as UML notes in the class diagram.
 
 ---
@@ -26,9 +26,6 @@ Additional business rules are represented as UML notes in the class diagram.
 > Brief presentation of the artefact goals.
 
 ### 1. Relational Schema
-
-> The Relational Schema includes the relation schemas, attributes, domains, primary keys, foreign keys and other integrity rules: UNIQUE, DEFAULT, NOT NULL, CHECK.  
-> Relation schemas are specified in the compact notation:  
 
 | Relation referenct | Relation Compact Notation                                    |
 | ------------------ | ------------------------------------------------------------ |
