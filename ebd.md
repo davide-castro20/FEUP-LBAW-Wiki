@@ -4,18 +4,18 @@ Our website aims to help customers get what then need when they need it during t
 
 ## A4: Conceptual Data Model
 
-> Brief presentation of the product.  
-> Brief presentation of the artefact goals.
+The Fneuc shop website provides a reliable shopping service for the general public with easy access.
+This artefact contains the conceptual data model for the platform, including business rules.
 
 ### 1. Class diagram
 
-> UML class diagram containing the classes, associations, multiplicity and roles.  
-> For each class, the attributes, associations and constraints are included in the class diagram.
+![Class Diagram](./images/A4/UML.png)  
+Figure 1: Class Diagram.
 
 ### 2. Additional Business Rules
 
-> Business rules can be included in the UML diagram as UML notes or in a table in this section.
-
+ 
+Additional business rules are represented as UML notes in the class diagram.
 
 ---
 
