@@ -29,12 +29,12 @@ Additional business rules are represented as UML notes in the class diagram.
 
 | Relation referenct | Relation Compact Notation                                    |
 | ------------------ | ------------------------------------------------------------ |
-| R01                | user(<ins>userID</ins>, name <b>NN</b>, username <b>UK NN </b>, email <b>UK NN </b>, password <b>NN</b>, billingAddr, shippingAddr) |
+| R01                | user(<ins>userID</ins>, name <b>NN</b>, username <b>UK NN </b>, email <b>UK NN </b>, password <b>NN</b>, billingAddr&#8594;address, shippingAddr&#8594;address) |
 | R02                | admin(<u>userID</u>&#8594;user )                             |
 | R03                | authenticated(userID&#8594;user, balance **DF** 0)           |
 | R04                | review(<u>id</u>, userID&#8594;authenticated, comment, date **DF** Today, rating **NN CK** rating > 0 AND rating < = 5) |
 | R05                | category(<u>categoryID</u>, category)                        |
-| R06                | detail()                                                     |
+| R06                | detail(<u>id</u>, detailName **NN UK**)                      |
 | R07                | item(<u>itemID</u>, name **NN**, stock **NN CK** stock >= 0, brief_description, description **NN**, price **NN CK** price> 0, isNumber **DF** False, category&#8594;category) |
 | R08                | ban(<u>adminID</u>&#8594;admin,<u>userID&#8594;</u>authenticacted, date **DF** Today, reason **NN**) |
 | R09                | country(<u>id</u>, countryName **NN**)                       |
@@ -42,12 +42,18 @@ Additional business rules are represented as UML notes in the class diagram.
 | R11                | purchase(<u>id</u>, date **DF** Today)                       |
 | R12                | purchaseInfo(purchaseID&#8594;purchase, <u>itemID</u>&#8594;item, purchasePrice **NN**, quantity **NN**) |
 | R13                | photo(<u>photoID</u>, path **NN**)                           |
-| R14                | itemPhoto(<u>photoID</u>&#8594;photo, itemID&#8594;item)     |
-| R15                | advertisement(<u>id</u>, title **NN UK**, beginDate **DF** Today, endDate **CK** endDate > beginDate) |
-| R16                | cart(<u>userID</u>&#8594;user, <u>itemID</u>&#8594;item, addDate **DF** Today, quantity **CK** quantity > 0) |
-| R17                | wishlist(<u>userID</u>&#8594;user, <u>itemID</u>&#8594;item, addDate **DF** Today) |
-| R18                | notification(<u>userID</u>&#8594;user,itemID&#8594;item, date **DF** Today, isSeen **DF** False, type **NN**) |
-| R19                | discount(<u>id</u>, percentage **CK** percentage > 0, beginDate **DF** Today, endDate **CK** endDate > beginDate) |
+| R14                | advertisement(<u>id</u>, title **NN UK**, beginDate **DF** Today, endDate **CK** endDate > beginDate) |
+| R15                | itemPhoto(<u>photoID</u>&#8594;photo, itemID&#8594;item)     |
+| R16                | addvertisementPhoto(<u>photoID</u>&#8594;photo, advertisementID&#8594;advertisement) |
+| R17                | cart(<u>userID</u>&#8594;user, <u>itemID</u>&#8594;item, addDate **DF** Today, quantity **CK** quantity > 0) |
+| R18                | wishlist(<u>userID</u>&#8594;user, <u>itemID</u>&#8594;item, addDate **DF** Today) |
+| R19                | notification(<u>userID</u>&#8594;user,itemID&#8594;item, date **DF** Today, isSeen **DF** False, type **NN**) |
+| R20                | discount(<u>id</u>, percentage **CK** percentage > 0 && percentage < 100, beginDate **DF** Today, endDate **CK** endDate > beginDate) |
+| R21                | applyDiscount(i<u>temID</u>&#8594;item, <u>discountID</u>&#8594;discount) |
+| R22                | itemDetail(<u>itemID</u>&#8594;item, <u>detailID</u>&#8594;detail, detailInfo **NN**) |
+| R23                | categoryDetail(<u>categoryID</u>&#8594;category, <u>detailID</u>&#8594;detail) |
+| R24                | discountNotification(<u>notificationID</u>&#8594;notification, discountID&#8594;discount) |
+| R25                | stockNotification(<u>notificationID</u>&#8594;notification)  |
 
 ### 2. Domains
 
