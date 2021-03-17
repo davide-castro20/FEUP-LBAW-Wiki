@@ -46,7 +46,7 @@ Additional business rules are represented as UML notes in the class diagram.
 | R15                | itemPhoto(<ins>photoID</ins>&#8594;photo, itemID&#8594;item) |
 | R16                | cart(<ins>userID</ins>&#8594;user, <ins>itemID</ins>&#8594;item, addDate **DF** Today, quantity **CK** quantity > 0) |
 | R17                | wishlist(<ins>userID</ins>&#8594;user, <ins>itemID</ins>&#8594;item, addDate **DF** Today) |
-| R18                | notification(<u>notificationID</u>, userID&#8594;user, itemID&#8594;item, date **DF** Today, isSeen **DF** False) |
+| R18                | notification(<ins>notificationID</ins>, userID&#8594;user, itemID&#8594;item, date **DF** Today, isSeen **DF** False) |
 | R19                | discountNotification(<ins>notificationID</ins>&#8594;notification, discountID&#8594;discount) |
 | R20                | stockNotification(<ins>notificationID</ins>&#8594;notification) |
 | R21                | discount(<ins>discountID</ins>, percentage **CK** percentage > 0 && percentage < 100, beginDate **DF** Today, endDate **CK** endDate > beginDate) |
@@ -157,7 +157,83 @@ Additional business rules are represented as UML notes in the class diagram.
 | FD1301                       | { photoID } → { path } |
 | **NORMAL FORM**              | BCNF                   |
 
+|  TABLE R014                  | advertisement                           |
+| ---------------------------- | --------------------------------------- |
+| **Keys**                     | { advertisementID }, { title }          |
+| **Functional Dependencies:** |                                         |
+| FD1401                       | { id } → { title, beginDate,  endDate } |
+| FD1402                       | { title } -> { id }                     |
+| **NORMAL FORM**              | BCNF                                    |
 
+| TABLE R015                   | itemPhoto                |
+| ---------------------------- | ------------------------ |
+| **Keys**                     | { photoID }              |
+| **Functional Dependencies:** |                          |
+| FD1501                       | { photoID } → { itemID } |
+| **NORMAL FORM**              | BCNF                     |
+
+| TABLE R016                   | cart                                           |
+| ---------------------------- | ---------------------------------------------- |
+| **Keys**                     | { userID, itemID }                             |
+| **Functional Dependencies:** |                                                |
+| FD1601                       | { userID, itemID } → { addDate, isSeen, type } |
+| **NORMAL FORM**              | BCNF                                           |
+
+| TABLE R017                   | wishlist                         |
+| ---------------------------- | -------------------------------- |
+| **Keys**                     | { userID, itemID }               |
+| **Functional Dependencies:** |                                  |
+| FD1701                       | { userID, itemID } → { addDate } |
+| **NORMAL FORM**              | BCNF                             |
+
+| TABLE R018                   | notification                                   |
+| ---------------------------- | ---------------------------------------------- |
+| **Keys**                     | { userID, itemID }                             |
+| **Functional Dependencies:** |                                                |
+| FD1801                       | { userID, itemID } → { addDate, isSeen, type } |
+| **NORMAL FORM**              | BCNF                                           |
+
+| TABLE R019                   | discountNotification          |
+| ---------------------------- | ----------------------------- |
+| **Keys**                     | { notificationID, discountID} |
+| **Functional Dependencies:** |                               |
+| (none)                       |                               |
+| **NORMAL FORM**              | BCNF                          |
+
+| TABLE R020                   | stockNotification  |
+| ---------------------------- | ------------------ |
+| **Keys**                     | { notificationID } |
+| **Functional Dependencies:** |                    |
+| (none)                       |                    |
+| **NORMAL FORM**              | BCNF               |
+
+| TABLE R021                   | discount                                    |
+| ---------------------------- | ------------------------------------------- |
+| **Keys**                     | { id }                                      |
+| **Functional Dependencies:** |                                             |
+| FD1901                       | { id } → { percentage, beginDate, endDate } |
+| **NORMAL FORM**              | BCNF                                        |
+
+| TABLE R022                   | applyDiscount          |
+| ---------------------------- | ---------------------- |
+| **Keys**                     | { itemID, discountID } |
+| **Functional Dependencies:** |                        |
+| (none)                       |                        |
+| **NORMAL FORM**              | BCNF                   |
+
+| TABLE R023                   | itemDetail                             |
+| ---------------------------- | -------------------------------------- |
+| **Keys**                     | { itemID, detailID }                   |
+| **Functional Dependencies:** |                                        |
+| FD2101                       | { itemID, detailID } -> { detailInfo } |
+| **NORMAL FORM**              | BCNF                                   |
+
+| TABLE R024                   | categoryDetail                         |
+| ---------------------------- | -------------------------------------- |
+| **Keys**                     | { categoryID, detailID }               |
+| **Functional Dependencies:** |                                        |
+| FD2101                       | { itemID, detailID } -> { detailInfo } |
+| **NORMAL FORM**              | BCNF                                   |
 
 
 
