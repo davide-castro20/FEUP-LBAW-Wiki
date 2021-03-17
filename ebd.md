@@ -1,4 +1,4 @@
-EBD: Database Specification Component
+# EBD: Database Specification Component
 
 Our website aims to help customers get what then need when they need it during these troubling times with an enjoyable browsing experience.
 
@@ -31,7 +31,7 @@ Additional business rules are represented as UML notes in the class diagram.
 | ------------------ | ------------------------------------------------------------ |
 | R01                | user(<ins>userID</ins>, name <b>NN</b>, username <b>UK NN </b>, email <b>UK NN </b>, password <b>NN</b>, billingAddr&#8594;address, shippingAddr&#8594;address) |
 | R02                | admin(<u>userID</u>&#8594;user )                             |
-| R03                | authenticated(userID&#8594;user, balance **DF** 0)           |
+| R03                | authenticated(<u>userID</u>&#8594;user, balance **DF** 0)    |
 | R04                | review(<u>id</u>, userID&#8594;authenticated, comment, date **DF** Today, rating **NN CK** rating > 0 AND rating < = 5) |
 | R05                | category(<u>categoryID</u>, category)                        |
 | R06                | detail(<u>id</u>, detailName **NN UK**)                      |
@@ -57,12 +57,10 @@ Additional business rules are represented as UML notes in the class diagram.
 
 ### 2. Domains
 
-> The specification of additional domains can also be made in a compact form, using the notation:  
-
-| Domain Name | Domain Specification           |
-| ----------- | ------------------------------ |
-| Today	      | DATE DEFAULT CURRENT_DATE      |
-| Priority    | ENUM ('High', 'Medium', 'Low') |
+| Domain Name | Domain Specification                               |
+| ----------- | -------------------------------------------------- |
+| Today       | DATE DEFAULT CURRENT_DATE                          |
+| Status      | ENUM ('Processing', 'Delivered', 'Shipped','Lost') |
 
 ### 3. Functional Dependencies and schema validation
 
