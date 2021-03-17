@@ -29,7 +29,7 @@ Additional business rules are represented as UML notes in the class diagram.
 
 | Relation referenct | Relation Compact Notation                                    |
 | ------------------ | ------------------------------------------------------------ |
-| R01                | user(<ins>userID</ins>, first_name <b>NN</b>, last_name <b>NN</b>, username <b>UK NN </b>, email <b>UK NN </b>, password <b>NN</b>, billingAddr&#8594;address, shippingAddr&#8594;address) |
+| R01                | user(<ins>userID</ins>, first_name <b>NN</b>, last_name <b>NN</b>, username <b>UK NN </b>, email <b>UK NN </b>, password <b>NN</b>, billingAddr&#8594;address, shippingAddr&#8594;address,photoID&#8594;photo) |
 | R02                | admin(<ins>userID</ins>&#8594;user)                          |
 | R03                | authenticated(<ins>userID</ins>&#8594;user, balance **DF** 0) |
 | R04                | review(<ins>reviewID</ins>, userID&#8594;authenticated, comment, date **DF** Today, rating **NN CK** rating > 0 AND rating < = 5) |
@@ -69,7 +69,7 @@ Additional business rules are represented as UML notes in the class diagram.
 | --------------  | ---                |
 | **Keys**        | { userID }, { email }, { username } |
 | **Functional Dependencies:** |       |
-| FD0101          | { userID } → { email, name, username, password, billingAddr, shippingAddr } |
+| FD0101          | { userID } → { email, name, username, password, billingAddr, shippingAddr,photoID } |
 | FD0102          | { email } → { userID }                                       |
 | FD0103                       | { username } → { userID } |
 | **NORMAL FORM** | BCNF               |
