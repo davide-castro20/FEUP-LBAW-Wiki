@@ -75,7 +75,7 @@ Additional business rules are represented as UML notes in the class diagram.
 | ...             | ...                |
 | **NORMAL FORM** | BCNF               |
 
-| *TABLE R014*                 | advertisement                           |
+|  TABLE R014                  | advertisement                           |
 | ---------------------------- | --------------------------------------- |
 | **Keys**                     | { advertisementID }, { title }          |
 | **Functional Dependencies:** |                                         |
