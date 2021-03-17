@@ -75,6 +75,87 @@ Additional business rules are represented as UML notes in the class diagram.
 | ...             | ...                |
 | **NORMAL FORM** | BCNF               |
 
+| *TABLE R014*                 | advertisement                           |
+| ---------------------------- | --------------------------------------- |
+| **Keys**                     | { advertisementID }, { title }          |
+| **Functional Dependencies:** |                                         |
+| FD1401                       | { id } → { title, beginDate,  endDate } |
+| FD1402                       | { title } -> { id }                     |
+| **NORMAL FORM**              | BCNF                                    |
+
+| TABLE R015                   | itemPhoto                |
+| ---------------------------- | ------------------------ |
+| **Keys**                     | { photoID }              |
+| **Functional Dependencies:** |                          |
+| FD1501                       | { photoID } → { itemID } |
+| **NORMAL FORM**              | BCNF                     |
+
+| TABLE R016                   | cart                                           |
+| ---------------------------- | ---------------------------------------------- |
+| **Keys**                     | { userID, itemID }                             |
+| **Functional Dependencies:** |                                                |
+| FD1601                       | { userID, itemID } → { addDate, isSeen, type } |
+| **NORMAL FORM**              | BCNF                                           |
+
+| TABLE R017                   | wishlist                         |
+| ---------------------------- | -------------------------------- |
+| **Keys**                     | { userID, itemID }               |
+| **Functional Dependencies:** |                                  |
+| FD1701                       | { userID, itemID } → { addDate } |
+| **NORMAL FORM**              | BCNF                             |
+
+| TABLE R018                   | notification                                   |
+| ---------------------------- | ---------------------------------------------- |
+| **Keys**                     | { userID, itemID }                             |
+| **Functional Dependencies:** |                                                |
+| FD1801                       | { userID, itemID } → { addDate, isSeen, type } |
+| **NORMAL FORM**              | BCNF                                           |
+
+| TABLE R019                   | discount                                    |
+| ---------------------------- | ------------------------------------------- |
+| **Keys**                     | { id }                                      |
+| **Functional Dependencies:** |                                             |
+| FD1901                       | { id } → { percentage, beginDate, endDate } |
+| **NORMAL FORM**              | BCNF                                        |
+
+| TABLE R020                   | applyDiscount          |
+| ---------------------------- | ---------------------- |
+| **Keys**                     | { itemID, discountID } |
+| **Functional Dependencies:** |                        |
+| (none)                       |                        |
+| **NORMAL FORM**              | BCNF                   |
+
+| TABLE R021                   | itemDetail                             |
+| ---------------------------- | -------------------------------------- |
+| **Keys**                     | { itemID, detailID }                   |
+| **Functional Dependencies:** |                                        |
+| FD2101                       | { itemID, detailID } -> { detailInfo } |
+| **NORMAL FORM**              | BCNF                                   |
+
+| TABLE R022                   | categoryDetail                         |
+| ---------------------------- | -------------------------------------- |
+| **Keys**                     | { categoryID, detailID }               |
+| **Functional Dependencies:** |                                        |
+| FD2101                       | { itemID, detailID } -> { detailInfo } |
+| **NORMAL FORM**              | BCNF                                   |
+
+| TABLE R023                   | discountNotification          |
+| ---------------------------- | ----------------------------- |
+| **Keys**                     | { notificationID, discountID} |
+| **Functional Dependencies:** |                               |
+| (none)                       |                               |
+| **NORMAL FORM**              | BCNF                          |
+
+| TABLE R024                   | stockNotification  |
+| ---------------------------- | ------------------ |
+| **Keys**                     | { notificationID } |
+| **Functional Dependencies:** |                    |
+| (none)                       |                    |
+| **NORMAL FORM**              | BCNF               |
+
+
+
+
 > If necessary, description of the changes necessary to convert the schema to BCNF.  
 > Justification of the BCNF.  
 
