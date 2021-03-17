@@ -29,31 +29,30 @@ Additional business rules are represented as UML notes in the class diagram.
 
 | Relation referenct | Relation Compact Notation                                    |
 | ------------------ | ------------------------------------------------------------ |
-| R01                | user(<ins>userID</ins>, name <b>NN</b>, username <b>UK NN </b>, email <b>UK NN </b>, password <b>NN</b>, billingAddr&#8594;address, shippingAddr&#8594;address) |
-| R02                | admin(<u>userID</u>&#8594;user )                             |
-| R03                | authenticated(<u>userID</u>&#8594;user, balance **DF** 0)    |
-| R04                | review(<u>id</u>, userID&#8594;authenticated, comment, date **DF** Today, rating **NN CK** rating > 0 AND rating < = 5) |
-| R05                | category(<u>categoryID</u>, category)                        |
-| R06                | detail(<u>id</u>, detailName **NN UK**)                      |
-| R07                | item(<u>itemID</u>, name **NN**, stock **NN CK** stock >= 0, brief_description, description **NN**, price **NN CK** price> 0, isNumber **DF** False, category&#8594;category) |
-| R08                | ban(<u>adminID</u>&#8594;admin,<u>userID&#8594;</u>authenticacted, date **DF** Today, reason **NN**) |
-| R09                | country(<u>id</u>, countryName **NN**)                       |
-| R10                | address(<u>id</u>, city **NN**, street **NN**, zipCode **NN**, country&#8594;country) |
-| R11                | purchase(<u>id</u>, date **DF** Today)                       |
-| R12                | purchaseInfo(purchaseID&#8594;purchase, <u>itemID</u>&#8594;item, purchasePrice **NN**, quantity **NN**) |
-| R13                | photo(<u>photoID</u>, path **NN**)                           |
-| R14                | advertisement(<u>id</u>, title **NN UK**, beginDate **DF** Today, endDate **CK** endDate > beginDate) |
-| R15                | itemPhoto(<u>photoID</u>&#8594;photo, itemID&#8594;item)     |
-| R16                | addvertisementPhoto(<u>photoID</u>&#8594;photo, advertisementID&#8594;advertisement) |
-| R17                | cart(<u>userID</u>&#8594;user, <u>itemID</u>&#8594;item, addDate **DF** Today, quantity **CK** quantity > 0) |
-| R18                | wishlist(<u>userID</u>&#8594;user, <u>itemID</u>&#8594;item, addDate **DF** Today) |
-| R19                | notification(<u>userID</u>&#8594;user,itemID&#8594;item, date **DF** Today, isSeen **DF** False, type **NN**) |
-| R20                | discount(<u>id</u>, percentage **CK** percentage > 0 && percentage < 100, beginDate **DF** Today, endDate **CK** endDate > beginDate) |
-| R21                | applyDiscount(i<u>temID</u>&#8594;item, <u>discountID</u>&#8594;discount) |
-| R22                | itemDetail(<u>itemID</u>&#8594;item, <u>detailID</u>&#8594;detail, detailInfo **NN**) |
-| R23                | categoryDetail(<u>categoryID</u>&#8594;category, <u>detailID</u>&#8594;detail) |
-| R24                | discountNotification(<u>notificationID</u>&#8594;notification, discountID&#8594;discount) |
-| R25                | stockNotification(<u>notificationID</u>&#8594;notification)  |
+| R01                | user(<ins>userID</ins>, first_name <b>NN</b>, last_name <b>NN</b>, username <b>UK NN </b>, email <b>UK NN </b>, password <b>NN</b>, billingAddr&#8594;address, shippingAddr&#8594;address) |
+| R02                | admin(<ins>userID</ins>&#8594;user)                          |
+| R03                | authenticated(<ins>userID</ins>&#8594;user, balance **DF** 0) |
+| R04                | review(<ins>reviewID</ins>, userID&#8594;authenticated, comment, date **DF** Today, rating **NN CK** rating > 0 AND rating < = 5) |
+| R05                | category(<ins>categoryID</ins>, name)                        |
+| R06                | detail(<ins>detailID</ins>, name **NN UK**)                  |
+| R07                | item(<ins>itemID</ins>, name **NN**, stock **NN CK** stock >= 0, brief_description, description **NN**, price **NN CK** price> 0, isArchived **DF** False, category&#8594;category) |
+| R08                | ban(<ins>adminID</ins>&#8594;admin,<ins>userID&#8594;</ins>authenticacted, date **DF** Today, reason **NN**) |
+| R09                | country(<ins>countryID</ins>, name **NN**)                   |
+| R10                | address(<ins>addressID</ins>, city **NN**, street **NN**, zip_code **NN**, country&#8594;country) |
+| R11                | purchase(<ins>purchaseID</ins>, date **DF** Today)           |
+| R12                | purchaseItem(purchaseID&#8594;purchase, <ins>itemID</ins>&#8594;item, purchasePrice **NN**, quantity **NN**) |
+| R13                | photo(<ins>photoID</ins>, path **NN**)                       |
+| R14                | advertisement(<ins>advertisementID</ins>, title **NN UK**, beginDate **DF** Today, endDate **CK** endDate > beginDate, photoID&#8594;photo) |
+| R15                | itemPhoto(<ins>photoID</ins>&#8594;photo, itemID&#8594;item) |
+| R16                | cart(<ins>userID</ins>&#8594;user, <ins>itemID</ins>&#8594;item, addDate **DF** Today, quantity **CK** quantity > 0) |
+| R17                | wishlist(<ins>userID</ins>&#8594;user, <ins>itemID</ins>&#8594;item, addDate **DF** Today) |
+| R18                | notification(<u>notificationID</u>, userID&#8594;user, itemID&#8594;item, date **DF** Today, isSeen **DF** False) |
+| R19                | discountNotification(<ins>notificationID</ins>&#8594;notification, discountID&#8594;discount) |
+| R20                | stockNotification(<ins>notificationID</ins>&#8594;notification) |
+| R21                | discount(<ins>discountID</ins>, percentage **CK** percentage > 0 && percentage < 100, beginDate **DF** Today, endDate **CK** endDate > beginDate) |
+| R22                | applyDiscount(i<ins>temID</ins>&#8594;item, <ins>discountID</ins>&#8594;discount) |
+| R23                | itemDetail(<ins>itemID</ins>&#8594;item, <ins>detailID</ins>&#8594;detail, detailInfo **NN**) |
+| R24                | categoryDetail(<ins>categoryID</ins>&#8594;category, <ins>detailID</ins>&#8594;detail) |
 
 ### 2. Domains
 
@@ -66,14 +65,103 @@ Additional business rules are represented as UML notes in the class diagram.
 
 > To validate the Relational Schema obtained from the Conceptual Model, all functional dependencies are identified and the normalization of all relation schemas is accomplished. Should it be necessary, in case the scheme is not in the Boyce–Codd Normal Form (BCNF), the relational schema is refined using normalization.  
 
-| **TABLE R01**   | User               |
+| **TABLE R01** | user              |
 | --------------  | ---                |
-| **Keys**        | { id }, { email }  |
+| **Keys**        | { userID }, { email }, { username } |
 | **Functional Dependencies:** |       |
-| FD0101          | id → {email, name} |
-| FD0102          | email → {id, name} |
-| ...             | ...                |
+| FD0101          | { userID } → { email, name, username, password, billingAddr, shippingAddr } |
+| FD0102          | { email } → { userID }                                       |
+| FD0103                       | { username } → { userID } |
 | **NORMAL FORM** | BCNF               |
+
+| **TABLE R02**                | admin      |
+| ---------------------------- | ---------- |
+| **Keys**                     | { userID } |
+| **Functional Dependencies:** | None       |
+| **NORMAL FORM**              | BCNF       |
+
+| TABLE R03                    | authenticated            |
+| ---------------------------- | ------------------------ |
+| **Keys**                     | { userID }               |
+| **Functional Dependencies:** |                          |
+| FD0301                       | { userID } → { balance } |
+| **NORMAL FORM**              | BCNF                     |
+
+| **TABLE R0**4                | review                                           |
+| :--------------------------- | :----------------------------------------------- |
+| **Keys**                     | { reviewID }, { userID }                         |
+| **Functional Dependencies:** |                                                  |
+| FD0401                       | { reviewID } → { userID, comment, date, rating } |
+| **NORMAL FORM**              | BCNF                                             |
+
+| **TABLE R05**                | category                 |
+| ---------------------------- | ------------------------ |
+| **Keys**                     | { categoryID }           |
+| **Functional Dependencies:** |                          |
+| FD0501                       | { categoryID} → { name } |
+| **NORMAL FORM**              | BCNF                     |
+
+| TABLE R06                    | detail                  |
+| ---------------------------- | ----------------------- |
+| **Keys**                     | { detailID }            |
+| **Functional Dependencies:** |                         |
+| FD0601                       | { detailID } → { name } |
+| **NORMAL FORM**              | BCNF                    |
+
+| **TABLE R07**                | item                                                         |
+| ---------------------------- | ------------------------------------------------------------ |
+| **Keys**                     | { itemID }                                                   |
+| **Functional Dependencies:** |                                                              |
+| FD0701                       | { itemID } → { name, stock, description, price, brief_description, price, isArchived, category} |
+| **NORMAL FORM**              | BCNF                                                         |
+
+| **TABLE R08**                | ban                                    |
+| ---------------------------- | -------------------------------------- |
+| **Keys**                     | { adminID, userID }                    |
+| **Functional Dependencies:** |                                        |
+| FD0801                       | { adminID, userID } → { date, reason } |
+| **NORMAL FORM**              | BCNF                                   |
+
+| **TABLE R09**                | country                  |
+| ---------------------------- | ------------------------ |
+| **Keys**                     | { countryID }            |
+| **Functional Dependencies:** |                          |
+| FD0901                       | { countryID } → { name } |
+| **NORMAL FORM**              | BCNF                     |
+
+| **TABLE R10**                | address                                             |
+| ---------------------------- | --------------------------------------------------- |
+| **Keys**                     | { addressID }                                       |
+| **Functional Dependencies:** |                                                     |
+| FD1001                       | { addressID } → { city, street, zip_code, country } |
+| **NORMAL FORM**              | BCNF                                                |
+
+| **TABLE R11**                | purchase                  |
+| ---------------------------- | ------------------------- |
+| **Keys**                     | { purchaseID }            |
+| **Functional Dependencies:** |                           |
+| FD1101                       | { purchaseID } → { date } |
+| **NORMAL FORM**              | BCNF                      |
+
+| **TABLE R12**                | purchaseItem                                         |
+| ---------------------------- | ---------------------------------------------------- |
+| **Keys**                     | { purchaseID, itemID }                               |
+| **Functional Dependencies:** |                                                      |
+| FD1201                       | { purchaseID, itemID } → { purchasePrice, quantity } |
+| **NORMAL FORM**              | BCNF                                                 |
+
+| **TABLE R13**                | photo                  |
+| ---------------------------- | ---------------------- |
+| **Keys**                     | { photoID }            |
+| **Functional Dependencies:** |                        |
+| FD1301                       | { photoID } → { path } |
+| **NORMAL FORM**              | BCNF                   |
+
+
+
+
+
+
 
 > If necessary, description of the changes necessary to convert the schema to BCNF.  
 > Justification of the BCNF.  
