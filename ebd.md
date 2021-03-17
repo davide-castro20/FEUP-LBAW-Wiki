@@ -29,27 +29,27 @@ Additional business rules are represented as UML notes in the class diagram.
 
 | Relation referenct | Relation Compact Notation                                    |
 | ------------------ | ------------------------------------------------------------ |
-| R01                | user(<ins>userID</ins>, first_name <b>NN</b>, last_name <b>NN</b>, username <b>UK NN </b>, email <b>UK NN </b>, password <b>NN</b>, billingAddr&#8594;address, shippingAddr&#8594;address,photoID&#8594;photo) |
-| R02                | admin(<ins>userID</ins>&#8594;user)                          |
-| R03                | authenticated(<ins>userID</ins>&#8594;user, balance **DF** 0) |
-| R04                | review(<ins>reviewID</ins>, userID&#8594;authenticated, comment, date **DF** Today, rating **NN CK** rating > 0 AND rating < = 5) |
-| R05                | category(<ins>categoryID</ins>, name)                        |
-| R06                | detail(<ins>detailID</ins>, name **NN UK**)                  |
-| R07                | item(<ins>itemID</ins>, name **NN**, stock **NN CK** stock >= 0, brief_description, description **NN**, price **NN CK** price> 0, isArchived **DF** False, category&#8594;category) |
-| R08                | ban(<ins>adminID</ins>&#8594;admin,<ins>userID&#8594;</ins>authenticacted, date **DF** Today, reason **NN**) |
-| R09                | country(<ins>countryID</ins>, name **NN**)                   |
-| R10                | address(<ins>addressID</ins>, city **NN**, street **NN**, zip_code **NN**, country&#8594;country) |
-| R11                | purchase(<ins>purchaseID</ins>, date **DF** Today)           |
-| R12                | purchaseItem(purchaseID&#8594;purchase, <ins>itemID</ins>&#8594;item, purchasePrice **NN**, quantity **NN**) |
-| R13                | photo(<ins>photoID</ins>, path **NN**)                       |
+| R01                | country(<ins>countryID</ins>, name **NN**)                   |
+| R02                | address(<ins>addressID</ins>, city **NN**, street **NN**, zip_code **NN**, country&#8594;country) |
+| R03                | photo(<ins>photoID</ins>, path **NN**)                       |
+| R04                | user(<ins>userID</ins>, first_name <b>NN</b>, last_name <b>NN</b>, username <b>UK NN </b>, email <b>UK NN </b>, password <b>NN</b>, billingAddr&#8594;address, shippingAddr&#8594;address,photoID&#8594;photo) |
+| R05                | admin(<ins>userID</ins>&#8594;user)                          |
+| R06                | authenticated(<ins>userID</ins>&#8594;user, balance **DF** 0) |
+| R07                | review(<ins>reviewID</ins>, userID&#8594;authenticated, comment, date **DF** Today, rating **NN CK** rating > 0 AND rating < = 5) |
+| R08                | category(<ins>categoryID</ins>, name)                        |
+| R09                | detail(<ins>detailID</ins>, name **NN UK**)                  |
+| R10                | item(<ins>itemID</ins>, name **NN**, stock **NN CK** stock >= 0, brief_description, description **NN**, price **NN CK** price> 0, isArchived **DF** False, category&#8594;category) |
+| R11                | ban(<ins>adminID</ins>&#8594;admin,<ins>userID&#8594;</ins>authenticacted, date **DF** Today, reason **NN**) |
+| R12                | purchase(<ins>purchaseID</ins>, date **DF** Today)           |
+| R13                | purchaseItem(purchaseID&#8594;purchase, <ins>itemID</ins>&#8594;item, purchasePrice **NN**, quantity **NN**) |
 | R14                | advertisement(<ins>advertisementID</ins>, title **NN UK**, beginDate **DF** Today, endDate **CK** endDate > beginDate, photoID&#8594;photo) |
 | R15                | itemPhoto(<ins>photoID</ins>&#8594;photo, itemID&#8594;item) |
 | R16                | cart(<ins>userID</ins>&#8594;user, <ins>itemID</ins>&#8594;item, addDate **DF** Today, quantity **CK** quantity > 0) |
 | R17                | wishlist(<ins>userID</ins>&#8594;user, <ins>itemID</ins>&#8594;item, addDate **DF** Today) |
-| R18                | notification(<ins>notificationID</ins>, userID&#8594;user, itemID&#8594;item, date **DF** Today, isSeen **DF** False) |
-| R19                | discountNotification(<ins>notificationID</ins>&#8594;notification, discountID&#8594;discount) |
-| R20                | stockNotification(<ins>notificationID</ins>&#8594;notification) |
-| R21                | discount(<ins>discountID</ins>, percentage **CK** percentage > 0 && percentage < 100, beginDate **DF** Today, endDate **CK** endDate > beginDate) |
+| R18                | discount(<ins>discountID</ins>, percentage **CK** percentage > 0 && percentage < 100, beginDate **DF** Today, endDate **CK** endDate > beginDate) |
+| R19                | notification(<ins>notificationID</ins>, userID&#8594;user, itemID&#8594;item, date **DF** Today, isSeen **DF** False) |
+| R20                | discountNotification(<ins>notificationID</ins>&#8594;notification, discountID&#8594;discount) |
+| R21                | stockNotification(<ins>notificationID</ins>&#8594;notification) |
 | R22                | applyDiscount(i<ins>temID</ins>&#8594;item, <ins>discountID</ins>&#8594;discount) |
 | R23                | itemDetail(<ins>itemID</ins>&#8594;item, <ins>detailID</ins>&#8594;detail, detailInfo **NN**) |
 | R24                | categoryDetail(<ins>categoryID</ins>&#8594;category, <ins>detailID</ins>&#8594;detail) |
