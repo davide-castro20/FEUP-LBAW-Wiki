@@ -36,12 +36,12 @@ Additional business rules are represented as UML notes in the class diagram.
 | R05                | admin(<ins>userID</ins>&#8594;user)                          |
 | R06                | authenticated(<ins>userID</ins>&#8594;user, balance **DF** 0) |
 | R07                | review(<ins>reviewID</ins>, userID&#8594;authenticated, comment, date **DF** Today, rating **NN CK** rating > 0 AND rating < = 5) |
-| R08                | category(<ins>categoryID</ins>, name)                        |
+| R08                | category(<ins>categoryID</ins>, name **UK**)                 |
 | R09                | detail(<ins>detailID</ins>, name **NN UK**)                  |
 | R10                | item(<ins>itemID</ins>, name **NN**, stock **NN CK** stock >= 0, brief_description, description **NN**, price **NN CK** price> 0, isArchived **DF** False, category&#8594;category) |
-| R11                | ban(<ins>adminID</ins>&#8594;admin,<ins>userID&#8594;</ins>authenticacted, date **DF** Today, reason **NN**) |
-| R12                | purchase(<ins>purchaseID</ins>, date **DF** Today)           |
-| R13                | purchaseItem(purchaseID&#8594;purchase, <ins>itemID</ins>&#8594;item, purchasePrice **NN**, quantity **NN**) |
+| R11                | ban(<ins>adminID</ins>&#8594;admin, <ins>userID&#8594;</ins>authenticated, date **DF** Today, reason **NN**) |
+| R12                | purchase(<ins>purchaseID</ins>, userID&#8594;authenticated, date **DF** Today) |
+| R13                | purchaseItem(<ins>purchaseID</ins>&#8594;purchase, <ins>itemID</ins>&#8594;item, purchasePrice **NN**, quantity **NN**) |
 | R14                | advertisement(<ins>advertisementID</ins>, title **NN UK**, beginDate **DF** Today, endDate **CK** endDate > beginDate, photoID&#8594;photo) |
 | R15                | itemPhoto(<ins>photoID</ins>&#8594;photo, itemID&#8594;item) |
 | R16                | cart(<ins>userID</ins>&#8594;user, <ins>itemID</ins>&#8594;item, addDate **DF** Today, quantity **CK** quantity > 0) |
@@ -246,6 +246,173 @@ Additional business rules are represented as UML notes in the class diagram.
 
 > SQL code necessary to build (and rebuild) the database.  
 > This code should also be included in the group's git repository as an SQL script, and a link include here.  
+
+```sql
+CREATE TABLE country (
+    countryID SERIAL PRIMARY KEY,
+    name text NOT NULL CONSTRAINT country_name_uk UNIQUE
+);  
+
+CREATE TABLE "address" (
+    addressID SERIAL PRIMARY KEY,
+    city text NOT NULL,
+    street text NOT NULL,
+    zip_code text NOT NULL,
+    countryID INTEGER REFERENCES "country" (countryID) ON UPDATE CASCADE
+);
+
+CREATE TABLE photo (
+    photoID SERIAL PRIMARY KEY,
+    path text NOT NULL DEFAULT "./images/noImage.png"
+);
+
+CREATE TABLE user (
+    userID SERIAL PRIMARY KEY,
+    username text NOT NULL CONSTRAINT username_uk UNIQUE,
+    email text NOT NULL CONSTRAINT user_email_uk UNIQUE,
+    first_name text NOT NULL,
+    last_name text NOT NULL,
+    password text NOT NULL,
+    img INTEGER REFERENCES "photo" (photoID) ON UPDATE CASCADE,
+    billingAddress INTEGER REFERENCES "address" (addressID) ON UPDATE CASCADE,
+    shippingAddress INTEGER REFERENCES "address" (addressID) ON UPDATE CASCADE
+);
+
+CREATE TABLE admin (
+    adminID INTEGER REFERENCES "user" (userID) ON UPDATE CASCADE PRIMARY KEY
+);
+
+CREATE TABLE authenticated (
+    authenticatedID INTEGER REFERENCES "user" (userID) ON UPDATE CASCADE PRIMARY KEY,
+    balance money DEFAULT 0 NOT NULL,
+);
+ 
+
+CREATE TABLE review (
+    reviewID SERIAL PRIMARY KEY,
+    userID INTEGER REFERENCES "authenticated" (authenticatedID) ON UPDATE CASCADE,
+    comment text
+    "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
+    rating INTEGER NOT NULL CONSTRAINT rating_ck CHECK (((rating > 0) AND (rating <= 5)))
+);
+
+CREATE TABLE category (
+    categoryID SERIAL PRIMARY KEY,
+    name text NOT NULL CONSTRAINT name_uk UNIQUE
+);
+ 
+CREATE TABLE detail (
+    detailID SERIAL PRIMARY KEY,
+    name text NOT NULL CONSTRAINT name_uk UNIQUE
+);
+ 
+CREATE TABLE item (
+    itemID SERIAL PRIMARY KEY,
+    name text NOT NULL,
+    stock INTEGER NOT NULL CONSTRAINT pos_stock CHECK stock >= 0,
+    brief_description text,
+    description text NOT NULL,
+    price MONEY NOT NULL CONSTRAINT pos_price CHECK price >= 0,
+    isArchived BOOLEAN NOT NULL DEFAULT false,
+    categoryID INTEGER REFERENCES "category" (categoryID) ON UPDATE CASCADE,
+    CONSTRAINT year_positive_ck CHECK (("year" > 0))
+);
+ 
+CREATE TABLE ban (
+    adminID INTEGER NOT NULL REFERENCES admin (adminID) ON UPDATE CASCADE,
+    userID INTEGER NOT NULL REFERENCES user (userID) ON UPDATE CASCADE,
+    "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
+    reason text NOT NULL,
+    PRIMARY KEY (adminID, userID)
+);
+
+CREATE TABLE purchase (
+    purchaseID SERIAL PRIMARY KEY,
+    userID INTEGER REFERENCES "authenticated" (authenticatedID) ON UPDATE CASCADE,
+    "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
+);
+ 
+CREATE TABLE purchaseItem (
+    purchaseID INTEGER NOT NULL REFERENCES "purchase" (purchaseID) ON UPDATE CASCADE,
+    itemID INTEGER NOT NULL REFERENCES "item" (itemID) ON UPDATE CASCADE,
+    price MONEY NOT NULL,
+    quantity INTEGER NOT NULL CONSTRAINT quantity_more_zero CHECK quantity > 0,
+    PRIMARY KEY (purchaseID, itemID)
+);
+
+CREATE TABLE advertisement (
+    advertisementID INTEGER PRIMARY KEY,
+    title text NOT NULL,
+    beginDate TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
+    endDate TIMESTAMP WITH TIME zone NOT NULL,
+    photoID INTEGER REFERENCES "photo" (photoID) ON UPDATE CASCADE,
+    CONSTRAINT ad_dates_ck CHECK (beginDate < endDate)
+);
+
+CREATE TABLE itemPhoto (
+    photoID INTEGER NOT NULL REFERENCES "photo" (photoID) ON UPDATE CASCADE PRIMARY KEY,
+    itemID INTEGER NOT NULL REFERENCES "item" (itemID) ON UPDATE CASCADE
+
+);
+ 
+CREATE TABLE cart (
+    userID INTEGER REFERENCES "authenticated" (authenticatedID) ON UPDATE CASCADE,
+    itemID INTEGER NOT NULL REFERENCES "item" (itemID) ON UPDATE CASCADE,
+    addDate TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
+    quantity INTEGER NOT NULL CONSTRAINT quantity_more_zero CHECK quantity > 0
+    PRIMARY KEY (userID, itemID)
+);
+ 
+CREATE TABLE wishlist (
+    userID INTEGER REFERENCES "authenticated" (authenticatedID) ON UPDATE CASCADE,
+    itemID INTEGER NOT NULL REFERENCES "item" (itemID) ON UPDATE CASCADE,
+    addDate TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
+    PRIMARY KEY (userID, itemID)
+);
+ 
+CREATE TABLE discount (
+    discountID SERIAL PRIMARY KEY,
+    "percentage" INTEGER NOT NULL CONSTRAINT valid_percentage CHECK ((("percentage" > 0) AND ("percentage" <= 100))),
+    beginDate TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
+    endDate TIMESTAMP WITH TIME zone NOT NULL
+    CONSTRAINT ad_dates_ck CHECK (beginDate < endDate)
+);
+
+CREATE TABLE "notification" (
+    notificationID SERIAL PRIMARY KEY,
+    
+);
+
+CREATE TABLE discountNotification (
+    notificationID INTEGER NOT NULL REFERENCES discount (discountID) ON UPDATE CASCADE PRIMARY KEY,
+    discountID INTEGER NOT NULL REFERENCES discount (discountID) ON UPDATE CASCADE
+);
+
+CREATE TABLE stockNotification (
+    notificationID SERIAL PRIMARY KEY
+);
+
+CREATE TABLE applyDiscount (
+    itemID INTEGER NOT NULL REFERENCES "item" (itemID) ON UPDATE CASCADE,
+    discountID INTEGER NOT NULL REFERENCES discount (discountID) ON UPDATE CASCADE,
+    PRIMARY KEY (itemID, discountID)
+);
+
+CREATE TABLE itemDetail (
+    itemID INTEGER NOT NULL REFERENCES "item" (itemID) ON UPDATE CASCADE,
+    detailID INTEGER NOT NULL REFERENCES "detail" (detailID) ON UPDATE CASCADE,
+    detailInfo text NOT NULL,
+    PRIMARY KEY (detailID, itemID)
+);
+
+CREATE TABLE categoryDetail (
+    categoryID INTEGER NOT NULL REFERENCES "category" (categoryID) ON UPDATE CASCADE,
+    detailID INTEGER NOT NULL REFERENCES "detail" (detailID) ON UPDATE CASCADE,
+    PRIMARY KEY (categoryID, detailID)
+);
+```
+
+
 
 
 ---
