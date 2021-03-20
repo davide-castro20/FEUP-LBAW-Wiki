@@ -248,7 +248,6 @@ Additional business rules are represented as UML notes in the class diagram.
 > This code should also be included in the group's git repository as an SQL script, and a link include here.  
 
 ```sql
-
 DROP TABLE IF EXISTS "country";
 CREATE TABLE "country" (
     countryID SERIAL PRIMARY KEY,
@@ -291,7 +290,7 @@ CREATE TABLE "admin" (
 DROP TABLE IF EXISTS authenticated;
 CREATE TABLE authenticated (
     authenticatedID INTEGER REFERENCES "user"(userID) ON UPDATE CASCADE PRIMARY KEY,
-    balance money DEFAULT 0 NOT NULL,
+    balance money DEFAULT 0 NOT NULL
 );
  
 DROP TABLE IF EXISTS review;
@@ -306,26 +305,25 @@ CREATE TABLE review (
 DROP TABLE IF EXISTS category;
 CREATE TABLE category (
     categoryID SERIAL PRIMARY KEY,
-    name text NOT NULL CONSTRAINT name_uk UNIQUE
+    name text NOT NULL UNIQUE
 );
  
 DROP TABLE IF EXISTS details;
 CREATE TABLE detail (
     detailID SERIAL PRIMARY KEY,
-    name text NOT NULL CONSTRAINT name_uk UNIQUE
+    name text NOT NULL UNIQUE
 );
 
 DROP TABLE IF EXISTS item;
 CREATE TABLE item (
     itemID SERIAL PRIMARY KEY,
     name text NOT NULL,
-    stock INTEGER NOT NULL CONSTRAINT pos_stock CHECK stock >= 0,
+    stock INTEGER NOT NULL CONSTRAINT pos_stock CHECK (stock >= 0),
     brief_description text,
     description text NOT NULL,
-    price MONEY NOT NULL CONSTRAINT pos_price CHECK price >= 0,
+    price MONEY NOT NULL CONSTRAINT pos_price CHECK (price >= 0::MONEY),
     isArchived BOOLEAN NOT NULL DEFAULT false,
-    categoryID INTEGER REFERENCES category (categoryID) ON UPDATE CASCADE,
-    CONSTRAINT year_positive_ck CHECK (("year" > 0))
+    categoryID INTEGER REFERENCES category (categoryID) ON UPDATE CASCADE
 );
  
 DROP TABLE IF EXISTS ban;
@@ -349,7 +347,7 @@ CREATE TABLE purchaseItem (
     purchaseID INTEGER NOT NULL REFERENCES purchase (purchaseID) ON UPDATE CASCADE,
     itemID INTEGER NOT NULL REFERENCES item (itemID) ON UPDATE CASCADE,
     price MONEY NOT NULL,
-    quantity INTEGER NOT NULL CONSTRAINT quantity_more_zero CHECK quantity > 0,
+    quantity INTEGER NOT NULL CONSTRAINT quantity_more_zero CHECK (quantity > 0),
     PRIMARY KEY (purchaseID, itemID)
 );
 
@@ -375,7 +373,7 @@ CREATE TABLE cart (
     userID INTEGER REFERENCES authenticated (authenticatedID) ON UPDATE CASCADE,
     itemID INTEGER NOT NULL REFERENCES item (itemID) ON UPDATE CASCADE,
     addDate TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
-    quantity INTEGER NOT NULL CONSTRAINT quantity_more_zero CHECK quantity > 0
+    quantity INTEGER NOT NULL CONSTRAINT quantity_more_zero CHECK (quantity > 0),
     PRIMARY KEY (userID, itemID)
 );
  
@@ -434,6 +432,8 @@ CREATE TABLE categoryDetail (
     detailID INTEGER NOT NULL REFERENCES detail (detailID) ON UPDATE CASCADE,
     PRIMARY KEY (categoryID, detailID)
 );
+
+
 ```
 
 
