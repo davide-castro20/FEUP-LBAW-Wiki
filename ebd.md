@@ -22,8 +22,7 @@ Additional business rules are represented as UML notes in the class diagram.
 
 ## A5: Relational Schema, validation and schema refinement
 
-> Brief presentation of the product.  
-> Brief presentation of the artefact goals.
+In this artifact our website's database relational schema is presented as well as it's valitation and refinements.
 
 ### 1. Relational Schema
 
@@ -63,7 +62,7 @@ Additional business rules are represented as UML notes in the class diagram.
 
 ### 3. Functional Dependencies and schema validation
 
-> To validate the Relational Schema obtained from the Conceptual Model, all functional dependencies are identified and the normalization of all relation schemas is accomplished. Should it be necessary, in case the scheme is not in the Boyce–Codd Normal Form (BCNF), the relational schema is refined using normalization.  
+In this section, the functional dependencies and the normal form each table is in is presented
 
 | **TABLE R01** | user              |
 | --------------  | ---                |
@@ -237,16 +236,9 @@ Additional business rules are represented as UML notes in the class diagram.
 
 
 
-
-
-> If necessary, description of the changes necessary to convert the schema to BCNF.  
-> Justification of the BCNF.  
-
 ### 4. SQL Code
 
-> SQL code necessary to build (and rebuild) the database.  
-> This code should also be included in the group's git repository as an SQL script, and a link include here.  
-
+This SQL script is responsible for creating our website's database using postgreSQL
 ```sql
 DROP TABLE IF EXISTS "country";
 CREATE TABLE "country" (
