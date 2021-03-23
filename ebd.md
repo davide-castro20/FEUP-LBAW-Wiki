@@ -436,7 +436,7 @@ CREATE TABLE categoryDetail (
 
 ## A6: Indexes, triggers, user functions, transactions and population
 
-
+This artifact contains the physical schema of the database as well as the necessary indexes to make queries efficient, the support of data integrity rules with triggers and the definition of user defined functions. This artifact also contains the estimation of the database's workload, the complete sql script for the database's creation and it's constriants, triggers and indexes.
 
 ### 1. Database Workload
 
@@ -448,20 +448,43 @@ CREATE TABLE categoryDetail (
 
 | **Relation reference** | **Relation Name** | **Order of magnitude**        | **Estimated growth** |
 | ------------------ | ------------- | ------------------------- | -------- |
-| R01                | Table1        | units|dozens|hundreds|etc | order per time |
-| R02                | Table2        | units|dozens|hundreds|etc | dozens per month |
-| R03                | Table3        | units|dozens|hundreds|etc | hundreds per day |
-| R04                | Table4        | units|dozens|hundreds|etc | no growth |
+| R01 | country | hundreds |none|
+| R02 | photo | thousands |units per day|
+| R03               | address | thousands |units per day|
+| R04             | users                | thousands |dozens per day|
+| R05 | admins | hundred |units per month|
+| R06 | authenticated | thousands |dozens per day|
+| R07 | review | tens of thousands |hundreds per day|
+| R08 | details | hundreds |units per year|
+| R09 | category | units |units per year|
+| R10 | item | thousands |units per month|
+| R11 | ban | hundreds |units per week|
+| R12 | purchase | thousands |units per day|
+| R13 | purchaseItem | tens of thousands |dozens per day|
+| R14 | advertisement | thousands |units per week|
+| R15 | itemPhoto | thousands |units per day|
+| R16             | cart    | tens of thousands |dozens per day|
+| R17             | wishlist | tens of thousands |dozens per day|
+| R18 | discount | hundred |units per month|
+| R19 | notification | tens of thousands |dozens per day|
+| R20 | discountNotification | thousands |dozens per day|
+| R21 | stockNotification | thousands |dozens per day|
+| R22 | applyDiscount | thousand |hundred per month|
+| R23 | itemDetail | tens of thousands |dozens per month|
+| R24 | categoryDetail | hundreds |dozens per year|
 
 #### 1.2. Frequent Queries
 
 > Most important queries (SELECT) and their frequency.  
 
-| **Query**       | SELECT01                               |
-| ---             | ---                                    |
-| **Description** | One sentence describing the query goal |
-| **Frequency**   | magnitude per time                     |
-| `SQL code`                                              ||
+| Query reference   | SELECT01          |
+| ----------------- | ----------------- |
+| Query description | get user info     |
+| Query frequency   | thousands per day |
+
+```sql
+SELECT * FROM users WHERE id = $id;
+```
 
 #### 1.3. Frequent Updates
 
@@ -471,7 +494,7 @@ CREATE TABLE categoryDetail (
 | ---             | ---                                    |
 | **Description** | One sentence describing the query goal |
 | **Frequency**   | magnitude per time                     |
-| `SQL code`                                              ||
+| `SQL code `                              ||
 
 | Query reference                                              | SELECT01         |
 | :----------------------------------------------------------- | ---------------- |
@@ -494,7 +517,7 @@ CREATE TABLE categoryDetail (
 | **Cardinality**     | Attribute cardinality: low/medium/high |
 | **Clustering**      | Clustering of the index                |
 | **Justification**   | Justification for the proposed index   |
-| `SQL code`                                                  |
+| `SQL code`                                                  ||
 
 #### 2.2. Full-text Search Indices 
 
