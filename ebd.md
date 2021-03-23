@@ -28,30 +28,30 @@ In this artifact our website's database relational schema is presented as well a
 
 | Relation referenct | Relation Compact Notation                                    |
 | ------------------ | ------------------------------------------------------------ |
-| R01                | country(<ins>countryID</ins>, name **NN**)                   |
-| R02                | address(<ins>addressID</ins>, city **NN**, street **NN**, zip_code **NN**, country&#8594;country) |
+| R01                | country(<ins>country_id</ins>, name **NN**)                  |
+| R02                | address(<ins>address_id</ins>, city **NN**, street **NN**, zip_code **NN**, country&#8594;country) |
 | R03                | photo(<ins>photoID</ins>, path **NN**)                       |
-| R04                | user(<ins>userID</ins>, first_name , last_name, username <b>UK NN </b>, email <b>UK</b>, password, billingAddr&#8594;address, shippingAddr&#8594;address,photoID&#8594;photo) |
-| R05                | admin(<ins>userID</ins>&#8594;user)                          |
-| R06                | authenticated(<ins>userID</ins>&#8594;user, balance **DF** 0) |
-| R07                | review(<ins>reviewID</ins>, userID&#8594;authenticated, comment, date **DF** Today, rating **NN CK** rating > 0 AND rating < = 5) |
-| R08                | category(<ins>categoryID</ins>, name **UK**)                 |
-| R09                | detail(<ins>detailID</ins>, name **NN UK**)                  |
-| R10                | item(<ins>itemID</ins>, name **NN**, stock **NN CK** stock >= 0, brief_description, description **NN**, price **NN CK** price> 0, isArchived **DF** False, category&#8594;category) |
-| R11                | ban(<ins>adminID</ins>&#8594;admin, <ins>userID&#8594;</ins>authenticated, date **DF** Today, reason **NN**) |
-| R12                | purchase(<ins>purchaseID</ins>, userID&#8594;authenticated, date **DF** Today) |
-| R13                | purchaseItem(<ins>purchaseID</ins>&#8594;purchase, <ins>itemID</ins>&#8594;item, purchasePrice **NN**, quantity **NN**) |
-| R14                | advertisement(<ins>advertisementID</ins>, title **NN UK**, beginDate **DF** Today, endDate **CK** endDate > beginDate, photoID&#8594;photo) |
-| R15                | itemPhoto(<ins>photoID</ins>&#8594;photo, itemID&#8594;item) |
-| R16                | cart(<ins>userID</ins>&#8594;user, <ins>itemID</ins>&#8594;item, addDate **DF** Today, quantity **CK** quantity > 0) |
-| R17                | wishlist(<ins>userID</ins>&#8594;user, <ins>itemID</ins>&#8594;item, addDate **DF** Today) |
-| R18                | discount(<ins>discountID</ins>, percentage **CK** percentage > 0 && percentage < 100, beginDate **DF** Today, endDate **CK** endDate > beginDate) |
-| R19                | notification(<ins>notificationID</ins>, userID&#8594;user, itemID&#8594;item, date **DF** Today, isSeen **DF** False) |
-| R20                | discountNotification(<ins>notificationID</ins>&#8594;notification, discountID&#8594;discount) |
-| R21                | stockNotification(<ins>notificationID</ins>&#8594;notification) |
-| R22                | applyDiscount(i<ins>temID</ins>&#8594;item, <ins>discountID</ins>&#8594;discount) |
-| R23                | itemDetail(<ins>itemID</ins>&#8594;item, <ins>detailID</ins>&#8594;detail, detailInfo **NN**) |
-| R24                | categoryDetail(<ins>categoryID</ins>&#8594;category, <ins>detailID</ins>&#8594;detail) |
+| R04                | users(<ins>user_id</ins>, first_name , last_name, username <b>UK </b>, email <b>UK</b>, password, billing_addr&#8594;address, shipping_addr&#8594;address,photo_id&#8594;photo, deleted **DF** False) |
+| R05                | admin(<ins>user_id</ins>&#8594;user)                         |
+| R06                | authenticated(<ins>user_id</ins>&#8594;user, balance **DF** 0) |
+| R07                | review(<ins>review_id</ins>, user_id&#8594;authenticated, comment, date **DF** Today, rating **NN CK** rating > 0 AND rating < = 5) |
+| R08                | category(<ins>category_id</ins>, name **UK**)                |
+| R09                | detail(<ins>detail_id</ins>, name **NN UK**)                 |
+| R10                | item(<ins>item_id</ins>, name **NN**, stock **NN CK** stock >= 0, brief_description, description **NN**, price **NN CK** price> 0, isArchived **DF** False, category&#8594;category) |
+| R11                | ban(<ins>admin_id</ins>&#8594;admin, <ins>user_id&#8594;</ins>authenticated, date **DF** Today, reason **NN**) |
+| R12                | purchase(<ins>purchase_idD</ins>, user_id&#8594;authenticated, date **DF** Today) |
+| R13                | purchase_item(<ins>purchase_id</ins>&#8594;purchase, <ins>item_id</ins>&#8594;item, purchase_price **NN**, quantity **NN**) |
+| R14                | advertisement(<ins>advertisement_id</ins>, title **NN UK**, begin_date **DF** Today, end_date **CK** end_date > begin_date, photo_id&#8594;photo) |
+| R15                | item_photo(<ins>photo_id</ins>&#8594;photo, item_id&#8594;item) |
+| R16                | cart(<ins>user_id</ins>&#8594;user, <ins>item_id</ins>&#8594;item, add_date **DF** Today, quantity **CK** quantity > 0) |
+| R17                | wishlist(<ins>user_id</ins>&#8594;user, <ins>item_id</ins>&#8594;item, add_date **DF** Today) |
+| R18                | discount(<ins>discount_id</ins>, percentage **CK** percentage > 0 && percentage < 100, begin_date **DF** Today, end_date **CK** end_date > begin_date) |
+| R19                | notification(<ins>notification_id</ins>, user_id&#8594;user, item_id&#8594;item, discount_id&#8594;discount,date **DF** Today, is_seen **DF** False, type) |
+| R20                | apply_discount(<ins>item_id</ins>&#8594;item, <ins>discount_id</ins>&#8594;discount) |
+| R21                | item_detail(<ins>item_id</ins>&#8594;item, <ins>detail_id</ins>&#8594;detail, detail_info **NN**) |
+| R22                | category_detail(<ins>category_id</ins>&#8594;category, <ins>detail_id</ins>&#8594;detail) |
+
+All users' attributes must be not null when deleted is false but all but the id are null when deleted is true. Because of this, the attributes cannot have the flag not null.
 
 ### 2. Domains
 
@@ -64,175 +64,159 @@ In this artifact our website's database relational schema is presented as well a
 
 In this section, the functional dependencies and the normal form each table is in is presented
 
-| **TABLE R01** | user              |
+| **TABLE R01** | users             |
 | --------------  | ---                |
-| **Keys**        | { userID }, { email }, { username } |
+| **Keys**        | { user_id } |
 | **Functional Dependencies:** |       |
-| FD0101          | { userID } → { email, name, username, password, billingAddr, shippingAddr,photoID } |
-| FD0102          | { email } → { userID, name, username, password, billingAddr, shippingAddr,photoID} |
-| FD0103                       | { username } → { userID, name, email, password, billingAddr, shippingAddr,photoID} |
+| FD0101          | { user_id } → { email, name, username, password, billing_addr, shipping_addr,photo_id,deleted} |
 | **NORMAL FORM** | BCNF               |
 
-| **TABLE R02**                | admin      |
-| ---------------------------- | ---------- |
-| **Keys**                     | { userID } |
-| **Functional Dependencies:** | None       |
-| **NORMAL FORM**              | BCNF       |
+| **TABLE R02**                | admin       |
+| ---------------------------- | ----------- |
+| **Keys**                     | { user_id } |
+| **Functional Dependencies:** | None        |
+| **NORMAL FORM**              | BCNF        |
 
-| TABLE R03                    | authenticated            |
+| TABLE R03                    | authenticated             |
+| ---------------------------- | ------------------------- |
+| **Keys**                     | { user_id }               |
+| **Functional Dependencies:** |                           |
+| FD0301                       | { user_id } → { balance } |
+| **NORMAL FORM**              | BCNF                      |
+
+| **TABLE R0**4                | review                                             |
+| :--------------------------- | :------------------------------------------------- |
+| **Keys**                     | { review_id}                                       |
+| **Functional Dependencies:** |                                                    |
+| FD0401                       | { review_id } → { user_id, comment, date, rating } |
+| **NORMAL FORM**              | BCNF                                               |
+
+| **TABLE R05**                | category                  |
+| ---------------------------- | ------------------------- |
+| **Keys**                     | { category_id }           |
+| **Functional Dependencies:** |                           |
+| FD0501                       | { category_id} → { name } |
+| **NORMAL FORM**              | BCNF                      |
+
+| TABLE R06                    | detail                   |
 | ---------------------------- | ------------------------ |
-| **Keys**                     | { userID }               |
+| **Keys**                     | { detail_id }            |
 | **Functional Dependencies:** |                          |
-| FD0301                       | { userID } → { balance } |
+| FD0601                       | { detail_id } → { name } |
 | **NORMAL FORM**              | BCNF                     |
-
-| **TABLE R0**4                | review                                           |
-| :--------------------------- | :----------------------------------------------- |
-| **Keys**                     | { reviewID }, { userID }                         |
-| **Functional Dependencies:** |                                                  |
-| FD0401                       | { reviewID } → { userID, comment, date, rating } |
-| **NORMAL FORM**              | BCNF                                             |
-
-| **TABLE R05**                | category                 |
-| ---------------------------- | ------------------------ |
-| **Keys**                     | { categoryID }           |
-| **Functional Dependencies:** |                          |
-| FD0501                       | { categoryID} → { name } |
-| **NORMAL FORM**              | BCNF                     |
-
-| TABLE R06                    | detail                  |
-| ---------------------------- | ----------------------- |
-| **Keys**                     | { detailID }            |
-| **Functional Dependencies:** |                         |
-| FD0601                       | { detailID } → { name } |
-| **NORMAL FORM**              | BCNF                    |
 
 | **TABLE R07**                | item                                                         |
 | ---------------------------- | ------------------------------------------------------------ |
-| **Keys**                     | { itemID }                                                   |
+| **Keys**                     | { item_id }                                                  |
 | **Functional Dependencies:** |                                                              |
-| FD0701                       | { itemID } → { name, stock, description, price, brief_description, price, isArchived, category} |
+| FD0701                       | { item_id } → { name, stock, description, price, brief_description, price, is_archived, category} |
 | **NORMAL FORM**              | BCNF                                                         |
 
-| **TABLE R08**                | ban                                    |
-| ---------------------------- | -------------------------------------- |
-| **Keys**                     | { adminID, userID }                    |
-| **Functional Dependencies:** |                                        |
-| FD0801                       | { adminID, userID } → { date, reason } |
-| **NORMAL FORM**              | BCNF                                   |
+| **TABLE R08**                | ban                                      |
+| ---------------------------- | ---------------------------------------- |
+| **Keys**                     | { admin_id, user_id }                    |
+| **Functional Dependencies:** |                                          |
+| FD0801                       | { admin_id, user_id } → { date, reason } |
+| **NORMAL FORM**              | BCNF                                     |
 
-| **TABLE R09**                | country                  |
-| ---------------------------- | ------------------------ |
-| **Keys**                     | { countryID }            |
-| **Functional Dependencies:** |                          |
-| FD0901                       | { countryID } → { name } |
-| **NORMAL FORM**              | BCNF                     |
-
-| **TABLE R10**                | address                                             |
-| ---------------------------- | --------------------------------------------------- |
-| **Keys**                     | { addressID }                                       |
-| **Functional Dependencies:** |                                                     |
-| FD1001                       | { addressID } → { city, street, zip_code, country } |
-| **NORMAL FORM**              | BCNF                                                |
-
-| **TABLE R11**                | purchase                  |
+| **TABLE R09**                | country                   |
 | ---------------------------- | ------------------------- |
-| **Keys**                     | { purchaseID }            |
+| **Keys**                     | { country_id }            |
 | **Functional Dependencies:** |                           |
-| FD1101                       | { purchaseID } → { date } |
+| FD0901                       | { country_id } → { name } |
 | **NORMAL FORM**              | BCNF                      |
 
-| **TABLE R12**                | purchaseItem                                         |
+| **TABLE R10**                | address                                              |
 | ---------------------------- | ---------------------------------------------------- |
-| **Keys**                     | { purchaseID, itemID }                               |
+| **Keys**                     | { address_id }                                       |
 | **Functional Dependencies:** |                                                      |
-| FD1201                       | { purchaseID, itemID } → { purchasePrice, quantity } |
+| FD1001                       | { address_id } → { city, street, zip_code, country } |
 | **NORMAL FORM**              | BCNF                                                 |
 
-| **TABLE R13**                | photo                  |
-| ---------------------------- | ---------------------- |
-| **Keys**                     | { photoID }            |
-| **Functional Dependencies:** |                        |
-| FD1301                       | { photoID } → { path } |
-| **NORMAL FORM**              | BCNF                   |
+| **TABLE R11**                | purchase                   |
+| ---------------------------- | -------------------------- |
+| **Keys**                     | { purchase_id }            |
+| **Functional Dependencies:** |                            |
+| FD1101                       | { purchase_id } → { date } |
+| **NORMAL FORM**              | BCNF                       |
 
-| TABLE R014                   | advertisement                                         |
-| ---------------------------- | ----------------------------------------------------- |
-| **Keys**                     | { advertisementID }, { title }                        |
-| **Functional Dependencies:** |                                                       |
-| FD1401                       | { advertisementID} → { title, beginDate,  endDate }   |
-| FD1402                       | { title } -> { advertisementID, beginDate,  endDate } |
-| **NORMAL FORM**              | BCNF                                                  |
+| **TABLE R12**                | purchase_item                                           |
+| ---------------------------- | ------------------------------------------------------- |
+| **Keys**                     | { purchase_id, item_id }                                |
+| **Functional Dependencies:** |                                                         |
+| FD1201                       | { purchase_id, item_id } → { purchase_price, quantity } |
+| **NORMAL FORM**              | BCNF                                                    |
 
-| TABLE R015                   | itemPhoto                |
+| **TABLE R13**                | photo                   |
+| ---------------------------- | ----------------------- |
+| **Keys**                     | { photo_id }            |
+| **Functional Dependencies:** |                         |
+| FD1301                       | { photo_id } → { path } |
+| **NORMAL FORM**              | BCNF                    |
+
+| TABLE R014                   | advertisement                                            |
+| ---------------------------- | -------------------------------------------------------- |
+| **Keys**                     | { advertisement_id }, { title }                          |
+| **Functional Dependencies:** |                                                          |
+| FD1401                       | { advertisement_id} → { title, begin_date,  end_date }   |
+| FD1402                       | { title } -> { advertisement_id, begin_date,  end_date } |
+| **NORMAL FORM**              | BCNF                                                     |
+
+| TABLE R015                   | item_photo                 |
+| ---------------------------- | -------------------------- |
+| **Keys**                     | { photo_id }               |
+| **Functional Dependencies:** |                            |
+| FD1501                       | { photo_id } → { item_id } |
+| **NORMAL FORM**              | BCNF                       |
+
+| TABLE R016                   | cart                                               |
+| ---------------------------- | -------------------------------------------------- |
+| **Keys**                     | { user_id, item_id }                               |
+| **Functional Dependencies:** |                                                    |
+| FD1601                       | { user_id, item_id } → { add_date, is_seen, type } |
+| **NORMAL FORM**              | BCNF                                               |
+
+| TABLE R017                   | wishlist                            |
+| ---------------------------- | ----------------------------------- |
+| **Keys**                     | { user_id, item_id }                |
+| **Functional Dependencies:** |                                     |
+| FD1701                       | { user_id, item_id } → { add_date } |
+| **NORMAL FORM**              | BCNF                                |
+
+| TABLE R018                   | notification                                                 |
+| ---------------------------- | ------------------------------------------------------------ |
+| **Keys**                     | { user_id, item_id }                                         |
+| **Functional Dependencies:** |                                                              |
+| FD1801                       | { user_id, item_id } → {item_id, discount_id,date, is_seen, type } |
+| **NORMAL FORM**              | BCNF                                                         |
+
+| TABLE R019                   | discount                                      |
+| ---------------------------- | --------------------------------------------- |
+| **Keys**                     | { id }                                        |
+| **Functional Dependencies:** |                                               |
+| FD1901                       | { id } → { percentage, begin_date, end_date } |
+| **NORMAL FORM**              | BCNF                                          |
+
+| TABLE R020                   | apply_discount           |
 | ---------------------------- | ------------------------ |
-| **Keys**                     | { photoID }              |
+| **Keys**                     | { item_id, discount_id } |
 | **Functional Dependencies:** |                          |
-| FD1501                       | { photoID } → { itemID } |
+| (none)                       |                          |
 | **NORMAL FORM**              | BCNF                     |
 
-| TABLE R016                   | cart                                           |
-| ---------------------------- | ---------------------------------------------- |
-| **Keys**                     | { userID, itemID }                             |
-| **Functional Dependencies:** |                                                |
-| FD1601                       | { userID, itemID } → { addDate, isSeen, type } |
-| **NORMAL FORM**              | BCNF                                           |
+| TABLE R021                   | item_detail                               |
+| ---------------------------- | ----------------------------------------- |
+| **Keys**                     | { item_id, detail_id }                    |
+| **Functional Dependencies:** |                                           |
+| FD2101                       | { item_id, detail_id } -> { detail_info } |
+| **NORMAL FORM**              | BCNF                                      |
 
-| TABLE R017                   | wishlist                         |
-| ---------------------------- | -------------------------------- |
-| **Keys**                     | { userID, itemID }               |
-| **Functional Dependencies:** |                                  |
-| FD1701                       | { userID, itemID } → { addDate } |
-| **NORMAL FORM**              | BCNF                             |
-
-| TABLE R018                   | notification                                   |
-| ---------------------------- | ---------------------------------------------- |
-| **Keys**                     | { userID, itemID }                             |
-| **Functional Dependencies:** |                                                |
-| FD1801                       | { userID, itemID } → { addDate, isSeen, type } |
-| **NORMAL FORM**              | BCNF                                           |
-
-| TABLE R019                   | discountNotification          |
-| ---------------------------- | ----------------------------- |
-| **Keys**                     | { notificationID, discountID} |
-| **Functional Dependencies:** |                               |
-| (none)                       |                               |
-| **NORMAL FORM**              | BCNF                          |
-
-| TABLE R020                   | stockNotification  |
-| ---------------------------- | ------------------ |
-| **Keys**                     | { notificationID } |
-| **Functional Dependencies:** |                    |
-| (none)                       |                    |
-| **NORMAL FORM**              | BCNF               |
-
-| TABLE R021                   | discount                                    |
-| ---------------------------- | ------------------------------------------- |
-| **Keys**                     | { id }                                      |
-| **Functional Dependencies:** |                                             |
-| FD1901                       | { id } → { percentage, beginDate, endDate } |
-| **NORMAL FORM**              | BCNF                                        |
-
-| TABLE R022                   | applyDiscount          |
-| ---------------------------- | ---------------------- |
-| **Keys**                     | { itemID, discountID } |
-| **Functional Dependencies:** |                        |
-| (none)                       |                        |
-| **NORMAL FORM**              | BCNF                   |
-
-| TABLE R023                   | itemDetail                             |
-| ---------------------------- | -------------------------------------- |
-| **Keys**                     | { itemID, detailID }                   |
-| **Functional Dependencies:** |                                        |
-| FD2101                       | { itemID, detailID } -> { detailInfo } |
-| **NORMAL FORM**              | BCNF                                   |
-
-| TABLE R024                   | categoryDetail                         |
-| ---------------------------- | -------------------------------------- |
-| **Keys**                     | { categoryID, detailID }               |
-| **Functional Dependencies:** |                                        |
-| FD2101                       | { itemID, detailID } -> { detailInfo } |
-| **NORMAL FORM**              | BCNF                                   |
+| TABLE R022                   | category_detail                           |
+| ---------------------------- | ----------------------------------------- |
+| **Keys**                     | { category_id, detail_id }                |
+| **Functional Dependencies:** |                                           |
+| FD2101                       | { item_id, detail_id } -> { detail_info } |
+| **NORMAL FORM**              | BCNF                                      |
 
 
 
@@ -240,55 +224,56 @@ In this section, the functional dependencies and the normal form each table is i
 
 This SQL script is responsible for creating our website's database using postgreSQL
 ```sql
-DROP TABLE IF EXISTS "country";
-CREATE TABLE "country" (
-    countryID SERIAL PRIMARY KEY,
+DROP TABLE IF EXISTS country;
+CREATE TABLE country (
+    country_id SERIAL PRIMARY KEY,
     name text NOT NULL CONSTRAINT country_name_uk UNIQUE
 ); 
 
 DROP TABLE IF EXISTS photo;
 CREATE TABLE photo (
-    photoID SERIAL PRIMARY KEY,
+    photo_id SERIAL PRIMARY KEY,
     path text NOT NULL 
 );
 
 DROP TABLE IF EXISTS address;
 CREATE TABLE address (
-    addressID SERIAL PRIMARY KEY,
+    address_id SERIAL PRIMARY KEY,
     city text NOT NULL,
     street text NOT NULL,
     zip_code text NOT NULL,
-    countryID INTEGER REFERENCES "country"(countryID) ON UPDATE CASCADE
+    country_id INTEGER REFERENCES country(country_id) ON UPDATE CASCADE
 );
 
-DROP TABLE IF EXISTS "user";
-CREATE TABLE "user" (
-    userID SERIAL PRIMARY KEY,
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
+    user_id SERIAL PRIMARY KEY,
     username text NOT NULL CONSTRAINT username_uk UNIQUE,
     email text NOT NULL CONSTRAINT user_email_uk UNIQUE,
     first_name text NOT NULL,
     last_name text NOT NULL,
     password text NOT NULL,
+    deleted BOOLEAN DEFAULT FALSE,
     img INTEGER REFERENCES photo(photoID) ON UPDATE CASCADE,
     billingAddress INTEGER REFERENCES address(addressID) ON UPDATE CASCADE,
     shippingAddress INTEGER REFERENCES address(addressID) ON UPDATE CASCADE
 );
 
-DROP TABLE IF EXISTS "admin";
-CREATE TABLE "admin" (
-    adminID INTEGER REFERENCES "user"(userID) ON UPDATE CASCADE PRIMARY KEY
+DROP TABLE IF EXISTS admin;
+CREATE TABLE admin (
+    admin_id INTEGER REFERENCES users(user_id) ON UPDATE CASCADE PRIMARY KEY
 );
 
 DROP TABLE IF EXISTS authenticated;
 CREATE TABLE authenticated (
-    authenticatedID INTEGER REFERENCES "user"(userID) ON UPDATE CASCADE PRIMARY KEY,
+    authenticated_id INTEGER REFERENCES user(userID) ON UPDATE CASCADE PRIMARY KEY,
     balance money DEFAULT 0 NOT NULL
 );
  
 DROP TABLE IF EXISTS review;
 CREATE TABLE review (
-    reviewID SERIAL PRIMARY KEY,
-    userID INTEGER REFERENCES authenticated(authenticatedID) ON UPDATE CASCADE,
+    review_id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES authenticated(authenticated_id) ON UPDATE CASCADE,
     comment text,
     "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     rating INTEGER NOT NULL CONSTRAINT rating_ck CHECK (((rating > 0) AND (rating <= 5)))
@@ -296,32 +281,32 @@ CREATE TABLE review (
 
 DROP TABLE IF EXISTS category;
 CREATE TABLE category (
-    categoryID SERIAL PRIMARY KEY,
+    category_id SERIAL PRIMARY KEY,
     name text NOT NULL UNIQUE
 );
  
 DROP TABLE IF EXISTS details;
 CREATE TABLE detail (
-    detailID SERIAL PRIMARY KEY,
+    detail_id SERIAL PRIMARY KEY,
     name text NOT NULL UNIQUE
 );
 
 DROP TABLE IF EXISTS item;
 CREATE TABLE item (
-    itemID SERIAL PRIMARY KEY,
+    item_id SERIAL PRIMARY KEY,
     name text NOT NULL,
     stock INTEGER NOT NULL CONSTRAINT pos_stock CHECK (stock >= 0),
     brief_description text,
     description text NOT NULL,
     price MONEY NOT NULL CONSTRAINT pos_price CHECK (price >= 0::MONEY),
-    isArchived BOOLEAN NOT NULL DEFAULT false,
-    categoryID INTEGER REFERENCES category (categoryID) ON UPDATE CASCADE
+    is_archived BOOLEAN NOT NULL DEFAULT false,
+    category_id INTEGER REFERENCES category (category_id) ON UPDATE CASCADE
 );
  
 DROP TABLE IF EXISTS ban;
 CREATE TABLE ban (
-    adminID INTEGER NOT NULL REFERENCES "admin"(adminID) ON UPDATE CASCADE,
-    userID INTEGER NOT NULL REFERENCES "user" (userID) ON UPDATE CASCADE,
+    admin_id INTEGER NOT NULL REFERENCES admin(admin_id) ON UPDATE CASCADE,
+    user_id INTEGER NOT NULL REFERENCES user (user_id) ON UPDATE CASCADE,
     "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     reason text NOT NULL,
     PRIMARY KEY (adminID, userID)
@@ -329,100 +314,100 @@ CREATE TABLE ban (
 
 DROP TABLE IF EXISTS purchase;
 CREATE TABLE purchase (
-    purchaseID SERIAL PRIMARY KEY,
-    userID INTEGER REFERENCES authenticated (authenticatedID) ON UPDATE CASCADE,
+    purchase_id SERIAL PRIMARY KEY,
+    userID INTEGER REFERENCES authenticated (authenticated_id) ON UPDATE CASCADE,
     "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
 );
  
-DROP TABLE IF EXISTS purchaseItem;
-CREATE TABLE purchaseItem (
-    purchaseID INTEGER NOT NULL REFERENCES purchase (purchaseID) ON UPDATE CASCADE,
-    itemID INTEGER NOT NULL REFERENCES item (itemID) ON UPDATE CASCADE,
+DROP TABLE IF EXISTS purchase_item;
+CREATE TABLE purchase_item (
+    purchase_id INTEGER NOT NULL REFERENCES purchase (purchase_id) ON UPDATE CASCADE,
+    itemID INTEGER NOT NULL REFERENCES item (item_id) ON UPDATE CASCADE,
     price MONEY NOT NULL,
     quantity INTEGER NOT NULL CONSTRAINT quantity_more_zero CHECK (quantity > 0),
-    PRIMARY KEY (purchaseID, itemID)
+    PRIMARY KEY (purchase_id, item_id)
 );
 
 DROP TABLE IF EXISTS advertisement;
 CREATE TABLE advertisement (
-    advertisementID INTEGER PRIMARY KEY,
+    advertisement_id INTEGER PRIMARY KEY,
     title text NOT NULL,
-    beginDate TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
-    endDate TIMESTAMP WITH TIME zone NOT NULL,
-    photoID INTEGER REFERENCES photo (photoID) ON UPDATE CASCADE,
-    CONSTRAINT ad_dates_ck CHECK (beginDate < endDate)
+    begin_date TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
+    end_date TIMESTAMP WITH TIME zone NOT NULL,
+    photo_id INTEGER REFERENCES photo (photo_id) ON UPDATE CASCADE,
+    CONSTRAINT ad_dates_ck CHECK (begin_date < end_date)
 );
 
-DROP TABLE IF EXISTS itemPhoto;
-CREATE TABLE itemPhoto (
-    photoID INTEGER NOT NULL REFERENCES photo (photoID) ON UPDATE CASCADE PRIMARY KEY,
-    itemID INTEGER NOT NULL REFERENCES item (itemID) ON UPDATE CASCADE
+DROP TABLE IF EXISTS item_photo;
+CREATE TABLE item_photo (
+    photo_id INTEGER NOT NULL REFERENCES photo (photo_id) ON UPDATE CASCADE PRIMARY KEY,
+    item_id INTEGER NOT NULL REFERENCES item (item_id) ON UPDATE CASCADE
 
 );
  
 DROP TABLE IF EXISTS cart;
 CREATE TABLE cart (
-    userID INTEGER REFERENCES authenticated (authenticatedID) ON UPDATE CASCADE,
-    itemID INTEGER NOT NULL REFERENCES item (itemID) ON UPDATE CASCADE,
-    addDate TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
+    user_id INTEGER REFERENCES authenticated (authenticated_id) ON UPDATE CASCADE,
+    item_id INTEGER NOT NULL REFERENCES item (item_id) ON UPDATE CASCADE,
+    add_date TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     quantity INTEGER NOT NULL CONSTRAINT quantity_more_zero CHECK (quantity > 0),
-    PRIMARY KEY (userID, itemID)
+    PRIMARY KEY (user_id, item_id)
 );
  
 DROP TABLE IF EXISTS wishlist;
 CREATE TABLE wishlist (
-    userID INTEGER REFERENCES authenticated (authenticatedID) ON UPDATE CASCADE,
-    itemID INTEGER NOT NULL REFERENCES item (itemID) ON UPDATE CASCADE,
-    addDate TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
+    user_id INTEGER REFERENCES authenticated (authenticated_id) ON UPDATE CASCADE,
+    item_id INTEGER NOT NULL REFERENCES item (item_id) ON UPDATE CASCADE,
+    add_date TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     PRIMARY KEY (userID, itemID)
 );
 
 DROP TABLE IF EXISTS discount;
 CREATE TABLE discount (
-    discountID SERIAL PRIMARY KEY,
+    discount_id SERIAL PRIMARY KEY,
     "percentage" INTEGER NOT NULL CONSTRAINT valid_percentage CHECK ((("percentage" > 0) AND ("percentage" <= 100))),
-    beginDate TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
-    endDate TIMESTAMP WITH TIME zone NOT NULL,
+    begin_date TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
+    end_date TIMESTAMP WITH TIME zone NOT NULL,
     CONSTRAINT ad_dates_ck CHECK (beginDate < endDate)
 );
 
 DROP TABLE IF EXISTS "notification";
 CREATE TABLE "notification" (
-    notificationID SERIAL PRIMARY KEY
+    notification_id SERIAL PRIMARY KEY
     
 );
 
-DROP TABLE IF EXISTS discountNotification;
-CREATE TABLE discountNotification (
-    notificationID INTEGER NOT NULL REFERENCES discount (discountID) ON UPDATE CASCADE PRIMARY KEY,
-    discountID INTEGER NOT NULL REFERENCES discount (discountID) ON UPDATE CASCADE
+DROP TABLE IF EXISTS discount_notification;
+CREATE TABLE discount_notification (
+    notification_id INTEGER NOT NULL REFERENCES discount (discount_id) ON UPDATE CASCADE PRIMARY KEY,
+    discount_id INTEGER NOT NULL REFERENCES discount (discount_id) ON UPDATE CASCADE
 );
 
-DROP TABLE IF EXISTS stockNotification;
-CREATE TABLE stockNotification (
-    notificationID SERIAL PRIMARY KEY
+DROP TABLE IF EXISTS stock_notification;
+CREATE TABLE stock_notification (
+    notification_id SERIAL PRIMARY KEY
 );
 
-DROP TABLE IF EXISTS applyDiscount;
-CREATE TABLE applyDiscount (
-    itemID INTEGER NOT NULL REFERENCES item (itemID) ON UPDATE CASCADE,
-    discountID INTEGER NOT NULL REFERENCES discount (discountID) ON UPDATE CASCADE,
+DROP TABLE IF EXISTS apply_discount;
+CREATE TABLE apply_discount (
+    item_id INTEGER NOT NULL REFERENCES item (item_id) ON UPDATE CASCADE,
+    discount_id INTEGER NOT NULL REFERENCES discount (discount_id) ON UPDATE CASCADE,
     PRIMARY KEY (itemID, discountID)
 );
 
-DROP TABLE IF EXISTS itemDetail;
+DROP TABLE IF EXISTS item_detail;
 CREATE TABLE itemDetail (
-    itemID INTEGER NOT NULL REFERENCES item (itemID) ON UPDATE CASCADE,
-    detailID INTEGER NOT NULL REFERENCES detail (detailID) ON UPDATE CASCADE,
-    detailInfo text NOT NULL,
-    PRIMARY KEY (detailID, itemID)
+    item_id INTEGER NOT NULL REFERENCES item (item_id) ON UPDATE CASCADE,
+    detail_id INTEGER NOT NULL REFERENCES detail (detail_id) ON UPDATE CASCADE,
+    detail_info text NOT NULL,
+    PRIMARY KEY (detail_id, item_id)
 );
 
-DROP TABLE IF EXISTS categoryDetail;
-CREATE TABLE categoryDetail (
-    categoryID INTEGER NOT NULL REFERENCES category (categoryID) ON UPDATE CASCADE,
-    detailID INTEGER NOT NULL REFERENCES detail (detailID) ON UPDATE CASCADE,
-    PRIMARY KEY (categoryID, detailID)
+DROP TABLE IF EXISTS category_detail;
+CREATE TABLE category_detail (
+    category_id INTEGER NOT NULL REFERENCES category (category_id) ON UPDATE CASCADE,
+    detail_id INTEGER NOT NULL REFERENCES detail (detail_id) ON UPDATE CASCADE,
+    PRIMARY KEY (category_id, detail_id)
 );
 
 
@@ -444,7 +429,7 @@ This artifact contains the physical schema of the database as well as the necess
 
 #### 1.1. Tuple Estimation
 
-> Estimate of tuples at each relation.  
+> Estimate of tuples at each relation.  	
 
 | **Relation reference** | **Relation Name** | **Order of magnitude**        | **Estimated growth** |
 | ------------------ | ------------- | ------------------------- | -------- |
