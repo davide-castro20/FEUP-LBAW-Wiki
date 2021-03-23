@@ -518,11 +518,28 @@ CREATE TABLE categoryDetail (
 
 > Transactions needed to assure the integrity of the data.  
 
-| SQL Reference   | Transaction Name                    |
+| T01 | Add to Cart, update stock                                    |
 | --------------- | ----------------------------------- |
-| Justification   | Justification for the transaction.  |
-| Isolation level | Isolation level of the transaction. |
-| `Complete SQL Code`                                   ||
+| Justification   | When adding an item to the cart, the stock must be decreased, but if more than one user adds the same item simultaneously, an error can occur and so the transaction is necessary.  Repeatable Read isolation is used to avoid dirty and nonrepeatable reads, while allowing new rows to be inserted in items. |
+| Isolation level | Repeatable Read |
+
+```sql
+BEGIN TRANSACTION;
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ
+
+DO
+$do$
+BEGIN
+    IF (SELECT stock FROM item WHERE item_id = $item_id) > 0 THEN
+		UPDATE item SET stock = stock - 1 WHERE item_id = $item_id 
+    END IF;
+END
+$do$
+
+COMMIT;
+```
+
+
 
 ### 5. Complete SQL Code
 
