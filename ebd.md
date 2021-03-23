@@ -470,9 +470,81 @@ CREATE TABLE categoryDetail (
 
 | **Query**       | UPDATE01                               |
 | ---             | ---                                    |
-| **Description** | One sentence describing the query goal |
-| **Frequency**   | magnitude per time                     |
-| `SQL code`                                              ||
+| **Description** | Update user information |
+| **Frequency**   | hundred per month                     |
+```sql 
+UPDATE "user"
+    SET first_name = $first_name, last_name = $last_name, email = $email, 
+    password = $password, billingAddress = $billingAddress, 
+    shippingAddress = $shippingAddress, photoID = $photoID
+    WHERE userID = $userID
+```              
+
+| **Query**       | UPDATE02                             |
+| ---             | ---                                    |
+| **Description** | Update item information |
+| **Frequency**   | hundred per month                     |
+```sql 
+UPDATE "item"
+    SET stock = $stock, brief_description = $brief_description, description = $description,
+    price = $price, isArchived = $isArchived, category = $category
+    WHERE itemID = $itemID
+```                
+
+| **Query**       | UPDATE03                             |
+| ---             | ---                                    |
+| **Description** | Update cart information |
+| **Frequency**   | hundred per month                     |
+```sql 
+UPDATE "cart"
+    SET addDate = $addDate, quantity = $quantity
+    WHERE userID = $userID AND itemID = $itemID
+```              
+
+| **Query**       | INSERT01                           |
+| ---             | ---                                    |
+| **Description** | New user registered |
+| **Frequency**   | dozens per day                     |
+```sql 
+INSERT INTO "user" (first_name,last_name,username,email,password)
+    VALUES($first_name,$last_name,$username,$email,$password)
+```          
+
+| **Query**       | INSERT02                           |
+| ---             | ---                                    |
+| **Description** | New item for sale |
+| **Frequency**   | hundreds per month                     |
+```sql 
+INSERT INTO "item" (name,stock,brief_description,description,price,category)
+    VALUES ($name,$stock,$brief_description,$description,$price,$category)
+```        
+
+| **Query**       | INSERT03                           |
+| ---             | ---                                    |
+| **Description** | Create new review |
+| **Frequency**   | hundreds per month                     |
+```sql 
+INSERT INTO "review" (userID,comment,date,rating)
+    VALUES ($userID,$comment,$date,$rating)
+```             
+
+| **Query**       | INSERT04                           |
+| ---             | ---                                    |
+| **Description** | Create new address |
+| **Frequency**   | hundreds per month                     |
+```sql 
+INSERT INTO "address" (city,street,zip_code,country)
+    VALUES ($city,$street,$zip_code,$country)
+```             
+
+| **Query**       | INSERT05                           |
+| ---             | ---                                    |
+| **Description** | Ban user |
+| **Frequency**   | dozens per month                     |
+```sql 
+INSERT INTO "ban" (adminID,userID,date,reason)
+    VALUES ($adminID,$userID,$date,$reason)
+```   
 
 ### 2. Proposed Indices
 
