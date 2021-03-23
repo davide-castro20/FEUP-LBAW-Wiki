@@ -436,7 +436,8 @@ CREATE TABLE categoryDetail (
 
 ## A6: Indexes, triggers, user functions, transactions and population
 
-This artifact contains the physical schema of the database as well as the necessary indexes to make queries efficient, the support of data integrity rules with triggers and the definition of user defined functions. This artifact also contains the estimation of the database's workload, the complete sql script for the database's creation and it's constriants, triggers and indexes.
+> Brief presentation of the product.  
+> Brief presentation of the artefact goals.
 
 ### 1. Database Workload
 
@@ -448,43 +449,20 @@ This artifact contains the physical schema of the database as well as the necess
 
 | **Relation reference** | **Relation Name** | **Order of magnitude**        | **Estimated growth** |
 | ------------------ | ------------- | ------------------------- | -------- |
-| R01 | country | hundreds |none|
-| R02 | photo | thousands |units per day|
-| R03               | address | thousands |units per day|
-| R04             | users                | thousands |dozens per day|
-| R05 | admins | hundred |units per month|
-| R06 | authenticated | thousands |dozens per day|
-| R07 | review | tens of thousands |hundreds per day|
-| R08 | details | hundreds |units per year|
-| R09 | category | units |units per year|
-| R10 | item | thousands |units per month|
-| R11 | ban | hundreds |units per week|
-| R12 | purchase | thousands |units per day|
-| R13 | purchaseItem | tens of thousands |dozens per day|
-| R14 | advertisement | thousands |units per week|
-| R15 | itemPhoto | thousands |units per day|
-| R16             | cart    | tens of thousands |dozens per day|
-| R17             | wishlist | tens of thousands |dozens per day|
-| R18 | discount | hundred |units per month|
-| R19 | notification | tens of thousands |dozens per day|
-| R20 | discountNotification | thousands |dozens per day|
-| R21 | stockNotification | thousands |dozens per day|
-| R22 | applyDiscount | thousand |hundred per month|
-| R23 | itemDetail | tens of thousands |dozens per month|
-| R24 | categoryDetail | hundreds |dozens per year|
+| R01                | Table1        | units|dozens|hundreds|etc | order per time |
+| R02                | Table2        | units|dozens|hundreds|etc | dozens per month |
+| R03                | Table3        | units|dozens|hundreds|etc | hundreds per day |
+| R04                | Table4        | units|dozens|hundreds|etc | no growth |
 
 #### 1.2. Frequent Queries
 
 > Most important queries (SELECT) and their frequency.  
 
-| Query reference   | SELECT01          |
-| ----------------- | ----------------- |
-| Query description | get user info     |
-| Query frequency   | thousands per day |
-
-```sql
-SELECT * FROM users WHERE id = $id;
-```
+| **Query**       | SELECT01                               |
+| ---             | ---                                    |
+| **Description** | One sentence describing the query goal |
+| **Frequency**   | magnitude per time                     |
+| `SQL code`                                              ||
 
 #### 1.3. Frequent Updates
 
@@ -492,15 +470,81 @@ SELECT * FROM users WHERE id = $id;
 
 | **Query**       | UPDATE01                               |
 | ---             | ---                                    |
-| **Description** | One sentence describing the query goal |
-| **Frequency**   | magnitude per time                     |
-| `SQL code `                              ||
+| **Description** | Update user information |
+| **Frequency**   | hundred per month                     |
+```sql 
+UPDATE "user"
+    SET first_name = $first_name, last_name = $last_name, email = $email, 
+    password = $password, billingAddress = $billingAddress, 
+    shippingAddress = $shippingAddress, photoID = $photoID
+    WHERE userID = $userID
+```              
 
-| Query reference                                              | SELECT01         |
-| :----------------------------------------------------------- | ---------------- |
-| Query description                                            | User's profile   |
-| Query frequency                                              | hundreds per day |
-| ` SELECT name, email, obs, img   FROM "user"   WHERE "user".email = $email; ` |                  |
+| **Query**       | UPDATE02                             |
+| ---             | ---                                    |
+| **Description** | Update item information |
+| **Frequency**   | hundred per month                     |
+```sql 
+UPDATE "item"
+    SET stock = $stock, brief_description = $brief_description, description = $description,
+    price = $price, isArchived = $isArchived, category = $category
+    WHERE itemID = $itemID
+```                
+
+| **Query**       | UPDATE03                             |
+| ---             | ---                                    |
+| **Description** | Update cart information |
+| **Frequency**   | hundred per month                     |
+```sql 
+UPDATE "cart"
+    SET addDate = $addDate, quantity = $quantity
+    WHERE userID = $userID AND itemID = $itemID
+```              
+
+| **Query**       | INSERT01                           |
+| ---             | ---                                    |
+| **Description** | New user registered |
+| **Frequency**   | dozens per day                     |
+```sql 
+INSERT INTO "user" (first_name,last_name,username,email,password)
+    VALUES($first_name,$last_name,$username,$email,$password)
+```          
+
+| **Query**       | INSERT02                           |
+| ---             | ---                                    |
+| **Description** | New item for sale |
+| **Frequency**   | hundreds per month                     |
+```sql 
+INSERT INTO "item" (name,stock,brief_description,description,price,category)
+    VALUES ($name,$stock,$brief_description,$description,$price,$category)
+```        
+
+| **Query**       | INSERT03                           |
+| ---             | ---                                    |
+| **Description** | Create new review |
+| **Frequency**   | hundreds per month                     |
+```sql 
+INSERT INTO "review" (userID,comment,date,rating)
+    VALUES ($userID,$comment,$date,$rating)
+```             
+
+| **Query**       | INSERT04                           |
+| ---             | ---                                    |
+| **Description** | Create new address |
+| **Frequency**   | hundreds per month                     |
+```sql 
+INSERT INTO "address" (city,street,zip_code,country)
+    VALUES ($city,$street,$zip_code,$country)
+```             
+
+| **Query**       | INSERT05                           |
+| ---             | ---                                    |
+| **Description** | Ban user |
+| **Frequency**   | dozens per month                     |
+```sql 
+INSERT INTO "ban" (adminID,userID,date,reason)
+    VALUES ($adminID,$userID,$date,$reason)
+```   
 
 ### 2. Proposed Indices
 
