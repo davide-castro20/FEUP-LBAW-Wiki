@@ -436,8 +436,7 @@ CREATE TABLE categoryDetail (
 
 ## A6: Indexes, triggers, user functions, transactions and population
 
-> Brief presentation of the product.  
-> Brief presentation of the artefact goals.
+
 
 ### 1. Database Workload
 
@@ -474,6 +473,12 @@ CREATE TABLE categoryDetail (
 | **Frequency**   | magnitude per time                     |
 | `SQL code`                                              ||
 
+| Query reference                                              | SELECT01         |
+| :----------------------------------------------------------- | ---------------- |
+| Query description                                            | User's profile   |
+| Query frequency                                              | hundreds per day |
+| ` SELECT name, email, obs, img   FROM "user"   WHERE "user".email = $email; ` |                  |
+
 ### 2. Proposed Indices
 
 #### 2.1. Performance Indices
@@ -489,7 +494,7 @@ CREATE TABLE categoryDetail (
 | **Cardinality**     | Attribute cardinality: low/medium/high |
 | **Clustering**      | Clustering of the index                |
 | **Justification**   | Justification for the proposed index   |
-| `SQL code`                                                  ||
+| `SQL code`                                                  |
 
 #### 2.2. Full-text Search Indices 
 
