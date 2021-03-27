@@ -434,20 +434,45 @@ CREATE TABLE category_detail (
 
 | **Relation reference** | **Relation Name** | **Order of magnitude**        | **Estimated growth** |
 | ------------------ | ------------- | ------------------------- | -------- |
-| R01                | Table1        | units|dozens|hundreds|etc | order per time |
-| R02                | Table2        | units|dozens|hundreds|etc | dozens per month |
-| R03                | Table3        | units|dozens|hundreds|etc | hundreds per day |
-| R04                | Table4        | units|dozens|hundreds|etc | no growth |
+| R01 | country | hundreds |none|
+| R02 | photo | thousands |units per day|
+| R03               | address | thousands |units per day|
+| R04             | users                | thousands |dozens per day|
+| R05 | admins | hundred |units per month|
+| R06 | authenticated | thousands |dozens per day|
+| R07 | review | tens of thousands |hundreds per day|
+| R08 | details | hundreds |units per year|
+| R09 | category | units |units per year|
+| R10 | item | thousands |units per month|
+| R11 | ban | hundreds |units per week|
+| R12 | purchase | thousands |units per day|
+| R13 | purchaseItem | tens of thousands |dozens per day|
+| R14 | advertisement | thousands |units per week|
+| R15 | itemPhoto | thousands |units per day|
+| R16             | cart    | tens of thousands |dozens per day|
+| R17             | wishlist | tens of thousands |dozens per day|
+| R18 | discount | hundred |units per month|
+| R19 | notification | tens of thousands |dozens per day|
+| R20 | discountNotification | thousands |dozens per day|
+| R21 | stockNotification | thousands |dozens per day|
+| R22 | applyDiscount | thousand |hundred per month|
+| R23 | itemDetail | tens of thousands |dozens per month|
+| R24 | categoryDetail | hundreds |dozens per year|
+
 
 #### 1.2. Frequent Queries
 
 > Most important queries (SELECT) and their frequency.  
 
-| **Query**       | SELECT01                               |
-| ---             | ---                                    |
-| **Description** | One sentence describing the query goal |
-| **Frequency**   | magnitude per time                     |
-| `SQL code`                                              ||
+| Query reference   | SELECT01          |
+| ----------------- | ----------------- |
+| Query description | get user info     |
+| Query frequency   | thousands per day |
+
+```sql
+SELECT * FROM users WHERE id = $id;
+```
+
 
 #### 1.3. Frequent Updates
 
@@ -463,7 +488,7 @@ UPDATE "user"
     password = $password, billingAddress = $billingAddress, 
     shippingAddress = $shippingAddress, photoID = $photoID
     WHERE userID = $userID
-```              
+```
 
 | **Query**       | UPDATE02                             |
 | ---             | ---                                    |
@@ -474,7 +499,7 @@ UPDATE "item"
     SET stock = $stock, brief_description = $brief_description, description = $description,
     price = $price, isArchived = $isArchived, category = $category
     WHERE itemID = $itemID
-```                
+```
 
 | **Query**       | UPDATE03                             |
 | ---             | ---                                    |
@@ -484,7 +509,7 @@ UPDATE "item"
 UPDATE "cart"
     SET addDate = $addDate, quantity = $quantity
     WHERE userID = $userID AND itemID = $itemID
-```              
+```
 
 | **Query**       | INSERT01                           |
 | ---             | ---                                    |
@@ -493,7 +518,7 @@ UPDATE "cart"
 ```sql 
 INSERT INTO "user" (first_name,last_name,username,email,password)
     VALUES($first_name,$last_name,$username,$email,$password)
-```          
+```
 
 | **Query**       | INSERT02                           |
 | ---             | ---                                    |
@@ -502,7 +527,7 @@ INSERT INTO "user" (first_name,last_name,username,email,password)
 ```sql 
 INSERT INTO "item" (name,stock,brief_description,description,price,category)
     VALUES ($name,$stock,$brief_description,$description,$price,$category)
-```        
+```
 
 | **Query**       | INSERT03                           |
 | ---             | ---                                    |
@@ -511,7 +536,7 @@ INSERT INTO "item" (name,stock,brief_description,description,price,category)
 ```sql 
 INSERT INTO "review" (userID,comment,date,rating)
     VALUES ($userID,$comment,$date,$rating)
-```             
+```
 
 | **Query**       | INSERT04                           |
 | ---             | ---                                    |
@@ -520,7 +545,7 @@ INSERT INTO "review" (userID,comment,date,rating)
 ```sql 
 INSERT INTO "address" (city,street,zip_code,country)
     VALUES ($city,$street,$zip_code,$country)
-```             
+```
 
 | **Query**       | INSERT05                           |
 | ---             | ---                                    |
@@ -529,7 +554,7 @@ INSERT INTO "address" (city,street,zip_code,country)
 ```sql 
 INSERT INTO "ban" (adminID,userID,date,reason)
     VALUES ($adminID,$userID,$date,$reason)
-```   
+```
 
 ### 2. Proposed Indices
 
