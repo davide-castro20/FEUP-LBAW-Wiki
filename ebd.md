@@ -473,6 +473,254 @@ CREATE TABLE category_detail (
 SELECT * FROM users WHERE id = $id;
 ```
 
+| Query reference   | SELECT02                  |
+| ----------------- | ------------------------- |
+| Query description | get user shipping address |
+| Query frequency   | hundreds per day          |
+
+```sql
+SELECT addr.* 
+FROM users JOIN 
+(
+	SELECT * FROM address JOIN country USING (country_id)
+) AS addr ON (users.shipping_address = addr.address_id)
+WHERE users.id = $id
+```
+
+| Query reference   | SELECT03                 |
+| ----------------- | ------------------------ |
+| Query description | get user billing address |
+| Query frequency   | hundreds per day         |
+
+```sql
+SELECT addr.* 
+FROM users JOIN 
+(
+	SELECT * FROM address JOIN country USING (country_id)
+) AS addr ON (users.billing_address = addr.address_id)
+WHERE users.id = $id
+```
+
+| Query reference   | SELECT04          |
+| ----------------- | ----------------- |
+| Query description | sign in           |
+| Query frequency   | thousands per day |
+
+```sql
+SELECT user_id FROM USER
+WHERE (email = $username_or_email OR username = $username_or_email) AND password = $pwd
+```
+
+| Query reference   | SELECT05                 |
+| ----------------- | ------------------------ |
+| Query description | search items of category |
+| Query frequency   | thousands per day        |
+
+```sql
+SELECT item.* FROM item
+WHERE category_id = $cat_id AND item.is_archived = false
+```
+
+| Query reference   | SELECT06                  |
+| ----------------- | ------------------------- |
+| Query description | get item's info           |
+| Query frequency   | tens of thousands per day |
+
+```sql
+SELECT item.item_id, details_info.detail_info, details_info.name 
+FROM item 
+JOIN 
+(SELECT * FROM item_detail JOIN details USING (detail_id ))  AS details_info
+USING (item_id)
+```
+
+| Query reference   | SELECT07                                |
+| ----------------- | --------------------------------------- |
+| Query description | search for an item that is not archived |
+| Query frequency   | tens of thousands per day               |
+
+```sql
+SELECT * FROM items
+WHERE search @@ plainto_ts_query('english', $search) AND is_archived = false
+```
+
+| Query reference   | SELECT08                            |
+| ----------------- | ----------------------------------- |
+| Query description | search for an item in a price range |
+| Query frequency   | tens of thousands per day           |
+
+```sql
+SELECT item.* FROM item
+WHERE price < $max_price AND price > $min_price AND item.is_archived = false
+```
+
+| Query reference   | SELECT09                                              |
+| ----------------- | ----------------------------------------------------- |
+| Query description | search for an item in a price range within a cetegory |
+| Query frequency   | tens of thousands per day                             |
+
+```sql
+SELECT item.* FROM item
+WHERE price < $max_price AND price > $min_price AND category_id = $cat_id AND item.is_archived = false
+```
+
+| Query reference   | SELECT10                |
+| ----------------- | ----------------------- |
+| Query description | search user by username |
+| Query frequency   | dozens per day          |
+
+```sql
+SELECT user FROM users
+WHERE username = $usrname
+```
+
+| Query reference   | SELECT11              |
+| ----------------- | --------------------- |
+| Query description | get a user's wishlist |
+| Query frequency   | thousands per day     |
+
+```sql
+SELECT wishlist_items.* 
+FROM users JOIN 
+(wishlist JOIN item USING (item_id)) AS wishlist_items
+ON (wishlist_items.user_id = users.user_id)
+WHERE users.user_id = $usr_id
+```
+
+| Query reference   | SELECT12          |
+| ----------------- | ----------------- |
+| Query description | get a user's cart |
+| Query frequency   | thousands per day |
+
+```sql
+SELECT cart_items.* 
+FROM users JOIN 
+(cart INNER JOIN item USING (item_id)) AS cart_items
+ON (cart_items.user_id = users.user_id)
+WHERE users.user_id = $usr_id
+```
+
+| Query reference   | SELECT13                        |
+| ----------------- | ------------------------------- |
+| Query description | all detail's name of a category |
+| Query frequency   | hundreds per day                |
+
+```sql
+SELECT detail_name.name
+FROM category JOIN (category_detail JOIN details USING (detail_id)) AS detail_name USING (category_id) 
+WHERE category.category_id = $cat_id 
+```
+
+| Query reference   | SELECT14                       |
+| ----------------- | ------------------------------ |
+| Query description | categories for dropdown filter |
+| Query frequency   | thousands per day              |
+
+```sql
+SELECT category.name
+FROM category 
+WHERE category.category_id = $cat_id
+```
+
+| Query reference   | SELECT15          |
+| ----------------- | ----------------- |
+| Query description | get items reviews |
+| Query frequency   | thousands per day |
+
+```sql
+SELECT users.username, item_reviews.comment_text, item_reviews.date, item_reviews.rating
+FROM users JOIN (review JOIN item USING (item_id)) AS item_reviews USING (user_id)
+WHERE item_reviews.item_id = $item_id
+```
+
+| Query reference   | SELECT16          |
+| ----------------- | ----------------- |
+| Query description | get items reviews |
+| Query frequency   | thousands per day |
+
+```sql
+SELECT users.username, item_reviews.comment_text, item_reviews.date, item_reviews.rating
+FROM users JOIN (review JOIN item USING (item_id)) AS item_reviews USING (user_id)
+WHERE item_reviews.item_id = $item_id
+```
+
+| Query reference   | SELECT17                 |
+| ----------------- | ------------------------ |
+| Query description | get user's notifications |
+| Query frequency   | thousands per day        |
+
+```sql
+SELECT notification_item.*
+FROM users JOIN (SELECT notification.*, item.name AS item_name FROM notification JOIN item USING (item_id)) AS notification_item USING (user_id)
+WHERE users.user_id = $usr_id
+```
+
+| Query reference   | SELECT18                  |
+| ----------------- | ------------------------- |
+| Query description | search for an item        |
+| Query frequency   | tens of thousands per day |
+
+```sql
+SELECT * FROM items
+WHERE search @@ plainto_ts_query('english', $search)
+```
+
+| Query reference   | SELECT19                   |
+| ----------------- | -------------------------- |
+| Query description | search for item's discount |
+| Query frequency   | thousands per day          |
+
+```sql
+SELECT appliadble_discount.*
+FROM item JOIN (apply_discount JOIN discount USING (discount_id)) AS appliadble_discount USING (item_id)
+WHERE item.item_id = $itm_id
+```
+
+| Query reference   | SELECT20                    |
+| ----------------- | --------------------------- |
+| Query description | get all available discounts |
+| Query frequency   | thousands per day           |
+
+```sql
+SELECT *
+FROM advertisement
+WHERE begin_date >= now()::date AND end_date <= now()::date
+```
+
+| Query reference   | SELECT21          |
+| ----------------- | ----------------- |
+| Query description | get all discounts |
+| Query frequency   | thousands per day |
+
+```sql
+SELECT *
+FROM advertisement
+```
+
+| Query reference   | SELECT22                |
+| ----------------- | ----------------------- |
+| Query description | user's purchase history |
+| Query frequency   | thousands per day       |
+
+```sql
+SELECT prcs_items.*
+FROM users JOIN (purchase JOIN purchase_item USING (purchase_id)) AS prcs_items USING(user_id)
+WHERE users.user_id = $usr_id
+```
+
+| Query reference   | SELECT23                    |
+| ----------------- | --------------------------- |
+| Query description | get all of an item's photos |
+| Query frequency   | thousands per day           |
+
+```sql
+SELECT item_photos.path
+FROM item JOIN (item_photo JOIN photo USING (photo_id)) as item_photos USING (item_id)
+```
+
+
+#### 
+
 
 #### 1.3. Frequent Updates
 
@@ -563,7 +811,7 @@ INSERT INTO "ban" (adminID,userID,date,reason)
 ```sql 
 INSERT INTO "purchase" (purchase_id,userID,date)
     VALUES ($purchase_id,$userID,$date)
-```   
+```
 
 | **Query**       | INSERT07                           |
 | ---             | ---                                    |
@@ -572,7 +820,7 @@ INSERT INTO "purchase" (purchase_id,userID,date)
 ```sql 
 INSERT INTO "cart" (user_id,item_id,add_date,quantity)
     VALUES ($user_id,$item_id,$add_date,$quantity )
-```   
+```
 
 | **Query**       | INSERT08                           |
 | ---             | ---                                    |
@@ -581,7 +829,7 @@ INSERT INTO "cart" (user_id,item_id,add_date,quantity)
 ```sql 
 INSERT INTO "wishlist" (user_id,item_id,add_date)
     VALUES ($user_id,$item_id,$add_date)
-```   
+```
 
 | **Query**       | INSERT09                           |
 | ---             | ---                                    |
@@ -590,7 +838,7 @@ INSERT INTO "wishlist" (user_id,item_id,add_date)
 ```sql 
 INSERT INTO "notification" (notification_id,user_id,item_id,discount_id,date,is_seen,type)
     VALUES ($notification_id,$user_id,$item_id,$discount_id,$date,$is_seen,$type)
-```   
+```
 
 | **Query**       | DELETE01 |
 | ---             | ---                                    |
@@ -599,7 +847,7 @@ INSERT INTO "notification" (notification_id,user_id,item_id,discount_id,date,is_
 ```sql 
 DELETE FROM "cart"
     WHERE user_id=$user_id AND item_id=$item_id
-``` 
+```
 
 | **Query**       | DELETE02 |
 | ---             | ---                                    |
@@ -608,7 +856,7 @@ DELETE FROM "cart"
 ```sql 
 DELETE FROM "wishlist"
     WHERE user_id=$user_id AND item_id=$item_id
-``` 
+```
 
 ### 2. Proposed Indices
 
