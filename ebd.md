@@ -470,7 +470,7 @@ CREATE TABLE category_detail (
 | Query frequency   | thousands per day |
 
 ```sql
-SELECT * FROM users WHERE id = $id;
+SELECT * FROM users WHERE user_id = $id;
 ```
 
 | Query reference   | SELECT02                  |
@@ -484,7 +484,7 @@ FROM users JOIN
 (
 	SELECT * FROM address JOIN country USING (country_id)
 ) AS addr ON (users.shipping_address = addr.address_id)
-WHERE users.id = $id
+WHERE users.user_id = $id
 ```
 
 | Query reference   | SELECT03                 |
@@ -498,7 +498,7 @@ FROM users JOIN
 (
 	SELECT * FROM address JOIN country USING (country_id)
 ) AS addr ON (users.billing_address = addr.address_id)
-WHERE users.id = $id
+WHERE users.user_id = $id
 ```
 
 | Query reference   | SELECT04          |
