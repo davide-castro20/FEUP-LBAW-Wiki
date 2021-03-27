@@ -910,16 +910,21 @@ DELETE FROM "wishlist"
 
 ```sql
 BEGIN TRANSACTION;
-SET TRANSACTION ISOLATION LEVEL REPEATABLE READ
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
 
-DO
-$do$
+DO $$
 BEGIN
-    IF (SELECT stock FROM item WHERE item_id = $item_id) > 0 THEN
-		UPDATE item SET stock = stock - 1 WHERE item_id = $item_id 
+    IF (
+        SELECT stock 
+        FROM item 
+        WHERE item_id = $item_id) > 0 
+        THEN
+		    UPDATE item 
+            SET stock = stock - 1 
+            WHERE item_id = $item_id; 
     END IF;
 END
-$do$
+$$;
 
 COMMIT;
 ```
