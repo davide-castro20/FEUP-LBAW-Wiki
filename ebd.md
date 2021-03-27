@@ -708,6 +708,16 @@ FROM users JOIN (purchase JOIN purchase_item USING (purchase_id)) AS prcs_items 
 WHERE users.user_id = $usr_id
 ```
 
+| Query reference   | SELECT22                    |
+| ----------------- | --------------------------- |
+| Query description | get all of an item's photos |
+| Query frequency   | thousands per day           |
+
+```sql
+SELECT item_photos.path
+FROM item JOIN (item_photo JOIN photo USING (photo_id)) as item_photos USING (item_id)
+```
+
 
 #### 
 
@@ -837,7 +847,7 @@ INSERT INTO "notification" (notification_id,user_id,item_id,discount_id,date,is_
 ```sql 
 DELETE FROM "cart"
     WHERE user_id=$user_id AND item_id=$item_id
-``` 
+```
 
 | **Query**       | DELETE02 |
 | ---             | ---                                    |
@@ -846,7 +856,7 @@ DELETE FROM "cart"
 ```sql 
 DELETE FROM "wishlist"
     WHERE user_id=$user_id AND item_id=$item_id
-``` 
+```
 
 ### 2. Proposed Indices
 
