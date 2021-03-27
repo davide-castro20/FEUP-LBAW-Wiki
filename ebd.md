@@ -914,14 +914,38 @@ SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
 
 DO $$
 BEGIN
-    IF (
+    SELECT item_id
+    FROM cart
+    WHERE user_id = $user_id AND item_id = $item_id;
+
+    IF NOT found THEN
+        IF (
         SELECT stock 
         FROM item 
-        WHERE item_id = $item_id) > 0 
+        WHERE item_id = $item_id) >= $quantity 
         THEN
 		    UPDATE item 
-            SET stock = stock - 1 
+            SET stock = stock - $quantity 
             WHERE item_id = $item_id; 
+
+            INSERT INTO cart
+            VALUES($user_id, $item_id, now()::DATE, $quantity);
+            
+        END IF;
+    ELSE 
+        IF (
+            SELECT stock 
+            FROM item 
+            WHERE item_id = $item_id) >= $quantity 
+        THEN
+		    UPDATE item 
+            SET stock = stock - $quantity 
+            WHERE item_id = $item_id; 
+
+            UPDATE cart
+            SET quantity = quantity + $quantity;
+            
+        END IF;
     END IF;
 END
 $$;
@@ -931,7 +955,7 @@ COMMIT;
 
 | T02 | Balance on Checkout                             |
 | --------------- | ----------------------------------- |
-| Justification   | When a user performs a checkout using money from their account balance, it is important to make sure that their balance and the cart are not updated externally during the operation, and so it is necessary to use a transaction.  Repeatable Serializable isolation is used to avoid dirty and nonrepeatable reads on the balance and cart tables while also making sure that all necessary rows (items in the cart) are read (no phantoms). |
+| Justification   | When a user performs a checkout using money from their account balance, it is important to make sure that their balance and the cart are not updated externally during the operation, and so it is necessary to use a transaction. Serializable isolation is used to avoid dirty and nonrepeatable reads on the balance and cart tables while also making sure that all necessary rows, the items in the cart, are read (no phantoms). |
 | Isolation level | Serializable |
 
 ```sql
@@ -944,18 +968,17 @@ BEGIN
     IF (
         (SELECT balance 
         FROM authenticated 
-        WHERE authenticated_id = 1)
+        WHERE authenticated_id = $authenticated_id)
         -
         (SELECT sum(price) 
         FROM item 
-        WHERE item_id IN (SELECT item_id FROM cart WHERE user_id = 1)) 
+        WHERE item_id IN (SELECT item_id FROM cart WHERE authenticated_id = $authenticated_id)) 
         >= 0::MONEY
         ) THEN
         
-        UPDATE 
-        authenticated 
-        SET balance = balance - (SELECT price FROM item WHERE item_id =1) 
-        WHERE item_id = 1;
+        UPDATE authenticated 
+        SET balance = balance - (SELECT price FROM item WHERE item_id = $item_id) 
+        WHERE item_id = $item_id;
         
     END IF;
 END
