@@ -830,6 +830,24 @@ INSERT INTO "notification" (notification_id,user_id,item_id,discount_id,date,is_
     VALUES ($notification_id,$user_id,$item_id,$discount_id,$date,$is_seen,$type)
 ```
 
+| **Query**       | DELETE01 |
+| ---             | ---                                    |
+| **Description** | Remove item from cart |
+| **Frequency**   | dozens per day                     |
+```sql 
+DELETE FROM "cart"
+    WHERE user_id=$user_id AND item_id=$item_id
+``` 
+
+| **Query**       | DELETE02 |
+| ---             | ---                                    |
+| **Description** | Remove item from wishlist |
+| **Frequency**   | dozens per day                     |
+```sql 
+DELETE FROM "wishlist"
+    WHERE user_id=$user_id AND item_id=$item_id
+``` 
+
 ### 2. Proposed Indices
 
 #### 2.1. Performance Indices
