@@ -39,7 +39,7 @@ In this artifact our website's database relational schema is presented as well a
 | R09                | detail(<ins>detail_id</ins>, name **NN UK**)                 |
 | R10                | item(<ins>item_id</ins>, name **NN**, stock **NN CK** stock >= 0, brief_description, description **NN**, price **NN CK** price> 0, isArchived **DF** False, category&#8594;category) |
 | R11                | ban(<ins>admin_id</ins>&#8594;admin, <ins>user_id&#8594;</ins>authenticated, date **DF** Today, reason **NN**) |
-| R12                | purchase(<ins>purchase_idD</ins>, user_id&#8594;authenticated, date **DF** Today) |
+| R12                | purchase(<ins>purchase_id</ins>, user_id&#8594;authenticated, date **DF** Today) |
 | R13                | purchase_item(<ins>purchase_id</ins>&#8594;purchase, <ins>item_id</ins>&#8594;item, purchase_price **NN**, quantity **NN**) |
 | R14                | advertisement(<ins>advertisement_id</ins>, title **NN UK**, begin_date **DF** Today, end_date **CK** end_date > begin_date, photo_id&#8594;photo) |
 | R15                | item_photo(<ins>photo_id</ins>&#8594;photo, item_id&#8594;item) |
@@ -529,6 +529,42 @@ INSERT INTO "address" (city,street,zip_code,country)
 ```sql 
 INSERT INTO "ban" (adminID,userID,date,reason)
     VALUES ($adminID,$userID,$date,$reason)
+```   
+
+| **Query**       | INSERT06                           |
+| ---             | ---                                    |
+| **Description** | Make new purchase |
+| **Frequency**   | dozens per day                     |
+```sql 
+INSERT INTO "purchase" (purchase_id,userID,date)
+    VALUES ($purchase_id,$userID,$date)
+```   
+
+| **Query**       | INSERT07                           |
+| ---             | ---                                    |
+| **Description** | Add item to cart |
+| **Frequency**   | dozens per day                     |
+```sql 
+INSERT INTO "cart" (user_id,item_id,add_date,quantity)
+    VALUES ($user_id,$item_id,$add_date,$quantity )
+```   
+
+| **Query**       | INSERT08                           |
+| ---             | ---                                    |
+| **Description** | Add item to wishlist |
+| **Frequency**   | dozens per day                     |
+```sql 
+INSERT INTO "wishlist" (user_id,item_id,add_date)
+    VALUES ($user_id,$item_id,$add_date)
+```   
+
+| **Query**       | INSERT09                           |
+| ---             | ---                                    |
+| **Description** | New notification |
+| **Frequency**   | dozens per day                     |
+```sql 
+INSERT INTO "notification" (notification_id,user_id,item_id,discount_id,date,is_seen,type)
+    VALUES ($notification_id,$user_id,$item_id,$discount_id,$date,$is_seen,$type)
 ```   
 
 ### 2. Proposed Indices
