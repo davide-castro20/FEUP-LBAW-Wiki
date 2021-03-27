@@ -716,6 +716,7 @@ WHERE users.user_id = $usr_id
 ```sql
 SELECT item_photos.path
 FROM item JOIN (item_photo JOIN photo USING (photo_id)) as item_photos USING (item_id)
+WHERE item.item_id = $itm_id
 ```
 
 
