@@ -676,7 +676,7 @@ FROM item JOIN (apply_discount JOIN discount USING (discount_id)) AS appliadble_
 WHERE item.item_id = $itm_id
 ```
 
-| Query reference   | SELECT19                    |
+| Query reference   | SELECT20                    |
 | ----------------- | --------------------------- |
 | Query description | get all available discounts |
 | Query frequency   | thousands per day           |
@@ -687,7 +687,7 @@ FROM advertisement
 WHERE begin_date >= now()::date AND end_date <= now()::date
 ```
 
-| Query reference   | SELECT20          |
+| Query reference   | SELECT21          |
 | ----------------- | ----------------- |
 | Query description | get all discounts |
 | Query frequency   | thousands per day |
@@ -697,7 +697,7 @@ SELECT *
 FROM advertisement
 ```
 
-| Query reference   | SELECT21                |
+| Query reference   | SELECT22                |
 | ----------------- | ----------------------- |
 | Query description | user's purchase history |
 | Query frequency   | thousands per day       |
@@ -708,7 +708,7 @@ FROM users JOIN (purchase JOIN purchase_item USING (purchase_id)) AS prcs_items 
 WHERE users.user_id = $usr_id
 ```
 
-| Query reference   | SELECT22                    |
+| Query reference   | SELECT23                    |
 | ----------------- | --------------------------- |
 | Query description | get all of an item's photos |
 | Query frequency   | thousands per day           |
