@@ -983,14 +983,14 @@ CREATE TABLE apply_discount (
 
 CREATE TABLE item_detail (
     item_id INTEGER NOT NULL REFERENCES item (item_id) ON UPDATE CASCADE,
-    detail_id INTEGER NOT NULL REFERENCES detail (detail_id) ON UPDATE CASCADE,
+    detail_id INTEGER NOT NULL REFERENCES details (detail_id) ON UPDATE CASCADE,
     detail_info text NOT NULL,
     PRIMARY KEY (detail_id, item_id)
 );
 
 CREATE TABLE category_detail (
     category_id INTEGER NOT NULL REFERENCES category (category_id) ON UPDATE CASCADE,
-    detail_id INTEGER NOT NULL REFERENCES detail (detail_id) ON UPDATE CASCADE,
+    detail_id INTEGER NOT NULL REFERENCES details (detail_id) ON UPDATE CASCADE,
     PRIMARY KEY (category_id, detail_id)
 );
 ```
