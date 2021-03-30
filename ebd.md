@@ -672,13 +672,13 @@ DELETE FROM "wishlist"
 | ---                 | ---                                    |
 | **Related queries** | SELECT06                         |
 | **Relation**        | item_detail    |
-| **Attribute**       | "detail_id"   |
-| **Type**            | Hash             |
-| **Cardinality**     | High |
-| **Clustering**      | No                |
-| **Justification**   | Query SELECT06 that gets the details of an item is executed several times so it has to be fast; doesn't need query range support; cardinality is high so it's not a good candidate for clustering   |
+| **Attribute**       | "detail_id", "item_id"   |
+| **Type**            | B-tree             |
+| **Cardinality**     | Medium |
+| **Clustering**      | Yes                |
+| **Justification**   | To allow getting all details of an item. Its clustered to allow getting all the details of an item faster.  Cardinality is medium    |
 ```sql
-CREATE INDEX item_detail_detailID ON item_detail USING hash(detail_id);
+CREATE INDEX item_detail_itemID ON item_detail USING btree(item_id);
 ```
 #### 2.2. Full-text Search Indices 
 
