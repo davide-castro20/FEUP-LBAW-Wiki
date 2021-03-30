@@ -672,7 +672,7 @@ DELETE FROM "wishlist"
 | ---                 | ---                                    |
 | **Related queries** | SELECT06                         |
 | **Relation**        | item_detail    |
-| **Attribute**       | "detail_id", "item_id"   |
+| **Attribute**       | "item_id"   |
 | **Type**            | B-tree             |
 | **Cardinality**     | Medium |
 | **Clustering**      | Yes                |
