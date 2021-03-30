@@ -343,8 +343,8 @@ USING (item_id)
 | Query frequency   | tens of thousands per day               |
 
 ```sql
-SELECT * FROM items
-WHERE search @@ plainto_ts_query('english', $search) AND is_archived = false
+SELECT *, ts_rank_cd(search, query) FROM item, to_tsquery('english', 'description') AS query
+WHERE search @@ query AND is_archived = false
 ```
 
 | Query reference   | SELECT08                            |
@@ -677,10 +677,9 @@ DELETE FROM "wishlist"
 | **Cardinality**     | High |
 | **Clustering**      | No                |
 | **Justification**   | Query SELECT06 that gets the details of an item is executed several times so it has to be fast; doesn't need query range support; cardinality is high so it's not a good candidate for clustering   |
-| ```sql
+```sql
 CREATE INDEX item_detail_detailID ON item_detail USING hash(detail_id);
-```                                                  ||
-
+```
 #### 2.2. Full-text Search Indices 
 
 > The system being developed must provide full-text search features supported by PostgreSQL. Thus, it is necessary to specify the fields where full-text search will be available and the associated setup, namely all necessary configurations, indexes definitions and other relevant details.  
@@ -729,10 +728,10 @@ BEGIN
         FROM item 
         WHERE item_id = $item_id) >= $quantity 
         THEN
-		    UPDATE item 
+    	    UPDATE item 
             SET stock = stock - $quantity 
             WHERE item_id = $item_id; 
-
+    
             INSERT INTO cart
             VALUES($user_id, $item_id, now()::DATE, $quantity);
             
@@ -743,10 +742,10 @@ BEGIN
             FROM item 
             WHERE item_id = $item_id) >= $quantity 
         THEN
-		    UPDATE item 
+    	    UPDATE item 
             SET stock = stock - $quantity 
             WHERE item_id = $item_id; 
-
+    
             UPDATE cart
             SET quantity = quantity + $quantity;
             
@@ -879,7 +878,7 @@ CREATE TABLE category (
     category_id SERIAL PRIMARY KEY,
     name text NOT NULL UNIQUE
 );
- 
+
 CREATE TABLE details (
     detail_id SERIAL PRIMARY KEY,
     name text NOT NULL UNIQUE
@@ -896,7 +895,7 @@ CREATE TABLE item (
     category_id INTEGER REFERENCES category (category_id) ON UPDATE CASCADE,
     score INTEGER NOT NULL CONSTRAINT rating_ck CHECK (((score > 0) AND (score <= 5)))
 );
- 
+
 CREATE TABLE review (
     review_id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES authenticated(authenticated_id) ON UPDATE CASCADE,
@@ -905,7 +904,7 @@ CREATE TABLE review (
     "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     rating INTEGER NOT NULL CONSTRAINT rating_ck CHECK (((rating > 0) AND (rating <= 5)))
 );
- 
+
 CREATE TABLE ban (
     admin_id INTEGER NOT NULL REFERENCES admins(admin_id) ON UPDATE CASCADE,
     user_id INTEGER NOT NULL REFERENCES users(user_id) ON UPDATE CASCADE,
@@ -919,7 +918,7 @@ CREATE TABLE purchase (
     user_id INTEGER REFERENCES authenticated (authenticated_id) ON UPDATE CASCADE,
     "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
 );
- 
+
 CREATE TABLE purchase_item (
     purchase_id INTEGER NOT NULL REFERENCES purchase (purchase_id) ON UPDATE CASCADE,
     item_id INTEGER NOT NULL REFERENCES item (item_id) ON UPDATE CASCADE,
@@ -942,7 +941,7 @@ CREATE TABLE item_photo (
     item_id INTEGER NOT NULL REFERENCES item (item_id) ON UPDATE CASCADE
 
 );
- 
+
 
 CREATE TABLE cart (
     user_id INTEGER REFERENCES authenticated (authenticated_id) ON UPDATE CASCADE,
@@ -951,7 +950,7 @@ CREATE TABLE cart (
     quantity INTEGER NOT NULL CONSTRAINT quantity_more_zero CHECK (quantity > 0),
     PRIMARY KEY (user_id, item_id)
 );
- 
+
 
 CREATE TABLE wishlist (
     user_id INTEGER REFERENCES authenticated (authenticated_id) ON UPDATE CASCADE,
