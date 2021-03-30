@@ -319,7 +319,7 @@ USING (item_id)
 | Query frequency   | tens of thousands per day               |
 
 ```sql
-SELECT *, ts_rank_cd(search, query) FROM item, to_tsquery('english', 'description') AS query
+SELECT *, ts_rank_cd(search, query) FROM item, to_tsquery('english', $search) AS query
 WHERE search @@ query AND is_archived = false
 ```
 
@@ -615,13 +615,13 @@ DELETE FROM "wishlist"
 | ---                 | ---                                    |
 | **Related queries** | SELECT06                         |
 | **Relation**        | item_detail    |
-| **Attribute**       | "detail_id"   |
-| **Type**            | Hash             |
-| **Cardinality**     | High |
-| **Clustering**      | No                |
-| **Justification**   | Query SELECT06 that gets the details of an item is executed several times so it has to be fast; doesn't need query range support; cardinality is high so it's not a good candidate for clustering   |
+| **Attribute**       | "item_id"   |
+| **Type**            | B-tree             |
+| **Cardinality**     | Medium |
+| **Clustering**      | Yes                |
+| **Justification**   | To allow getting all details of an item. Its clustered to allow getting all the details of an item faster.  Cardinality is medium    |
 ```sql
-CREATE INDEX item_detail_detailID ON item_detail USING hash(detail_id);
+CREATE INDEX item_detail_itemID ON item_detail USING btree(item_id);
 ```
 #### 2.2. Full-text Search Indices 
 
@@ -643,8 +643,52 @@ CREATE INDEX item_detail_detailID ON item_detail USING hash(detail_id);
 
 | **Trigger**      | TRIGGER01                              |
 | ---              | ---                                    |
-| **Description**  | Trigger description, including reference to the business rules involved |
+| **Description**  | When a user is inserted into the database, an authenticated user is created too |
 | `SQL code`                                             ||
+
+CREATE FUNCTION add_authenticated() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF EXISTS(SELECT * FROM authenticated WHERE NEW.user_id = authenticated_id) THEN
+        RAISE EXCEPTION 'Authenticated already exists when user with same id did not.';
+    END IF;
+    INSERT INTO authenticated (
+        authenticated_id
+    )
+    VALUES(
+        NEW.user_id
+    );
+    RETURN NEW;
+
+END
+
+$BODY$
+LANGUAGE plpgsql;
+CREATE TRIGGER user_creation
+AFTER INSERT ON users
+FOR EACH ROW
+EXECUTE PROCEDURE add_authenticated();
+
+| **Trigger**     | TRIGGER02                                                    |
+| --------------- | ------------------------------------------------------------ |
+| **Description** | When an item is removed, it is also removed from every user's cart and wishlist |
+| `SQL code`      |                                                              |
+
+CREATE FUNCTION remove_cart_and_wishlist() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF (OLD.is_archived <> NEW.is_archived) THEN
+        DELETE FROM wishlist WHERE item_id = NEW.item_id;
+    END IF;
+    RETURN NEW;
+END
+$BODY$
+
+LANGUAGE plpgsql;
+CREATE TRIGGER remove_archived_from_cart_and_wishlist
+AFTER UPDATE ON item
+FOR EACH ROW
+EXECUTE PROCEDURE remove_cart_and_wishlist();
 
 ### 4. Transactions
 
