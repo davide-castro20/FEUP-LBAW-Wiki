@@ -343,7 +343,7 @@ USING (item_id)
 | Query frequency   | tens of thousands per day               |
 
 ```sql
-SELECT *, ts_rank_cd(search, query) FROM item, to_tsquery('english', 'description') AS query
+SELECT *, ts_rank_cd(search, query) FROM item, to_tsquery('english', $search) AS query
 WHERE search @@ query AND is_archived = false
 ```
 
