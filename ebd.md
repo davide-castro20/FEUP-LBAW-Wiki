@@ -646,6 +646,7 @@ CREATE INDEX item_detail_itemID ON item_detail USING btree(item_id);
 | **Description**  | When a user is inserted into the database, an authenticated user is created too |
 | `SQL code`                                             ||
 
+```sql
 CREATE FUNCTION add_authenticated() RETURNS TRIGGER AS
 $BODY$
 BEGIN
@@ -668,12 +669,16 @@ CREATE TRIGGER user_creation
 AFTER INSERT ON users
 FOR EACH ROW
 EXECUTE PROCEDURE add_authenticated();
+```
+
+
 
 | **Trigger**     | TRIGGER02                                                    |
 | --------------- | ------------------------------------------------------------ |
 | **Description** | When an item is removed, it is also removed from every user's cart and wishlist |
 | `SQL code`      |                                                              |
 
+```sql
 CREATE FUNCTION remove_cart_and_wishlist() RETURNS TRIGGER AS
 $BODY$
 BEGIN
@@ -689,6 +694,9 @@ CREATE TRIGGER remove_archived_from_cart_and_wishlist
 AFTER UPDATE ON item
 FOR EACH ROW
 EXECUTE PROCEDURE remove_cart_and_wishlist();
+```
+
+
 
 ### 4. Transactions
 
