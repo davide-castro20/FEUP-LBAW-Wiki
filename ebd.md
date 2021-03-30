@@ -670,14 +670,16 @@ DELETE FROM "wishlist"
 
 | **Index**           | IDX01                                  |
 | ---                 | ---                                    |
-| **Related queries** | SELECT01, ...                          |
-| **Relation**        | Relation where the index is applied    |
-| **Attribute**       | Attribute where the index is applied   |
-| **Type**            | B-tree, Hash, GiST or GIN              |
-| **Cardinality**     | Attribute cardinality: low/medium/high |
-| **Clustering**      | Clustering of the index                |
-| **Justification**   | Justification for the proposed index   |
-| `SQL code`                                                  ||
+| **Related queries** | SELECT06                         |
+| **Relation**        | item_detail    |
+| **Attribute**       | "detail_id"   |
+| **Type**            | Hash             |
+| **Cardinality**     | High |
+| **Clustering**      | No                |
+| **Justification**   | Query SELECT06 that gets the details of an item is executed several times so it has to be fast; doesn't need query range support; cardinality is high so it's not a good candidate for clustering   |
+| ```sql
+CREATE INDEX item_detail_detailID ON item_detail USING hash(detail_id);
+```                                                  ||
 
 #### 2.2. Full-text Search Indices 
 
