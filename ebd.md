@@ -31,25 +31,23 @@ In this artifact our website's database relational schema is presented as well a
 | R01                | country(<ins>country_id</ins>, name **NN**)                  |
 | R02                | address(<ins>address_id</ins>, city **NN**, street **NN**, zip_code **NN**, country&#8594;country) |
 | R03                | photo(<ins>photoID</ins>, path **NN**)                       |
-| R04                | users(<ins>user_id</ins>, first_name , last_name, username <b>UK </b>, email <b>UK</b>, password, billing_addr&#8594;address, shipping_addr&#8594;address,photo_id&#8594;photo, deleted **DF** False) |
-| R05                | admin(<ins>user_id</ins>&#8594;user)                         |
-| R06                | authenticated(<ins>user_id</ins>&#8594;user, balance **DF** 0) |
-| R07                | review(<ins>review_id</ins>, user_id&#8594;authenticated, comment, date **DF** Today, rating **NN CK** rating > 0 AND rating < = 5) |
-| R08                | category(<ins>category_id</ins>, name **UK**)                |
-| R09                | detail(<ins>detail_id</ins>, name **NN UK**)                 |
-| R10                | item(<ins>item_id</ins>, name **NN**, stock **NN CK** stock >= 0, brief_description, description **NN**, price **NN CK** price> 0, isArchived **DF** False, category&#8594;category) |
-| R11                | ban(<ins>admin_id</ins>&#8594;admin, <ins>user_id&#8594;</ins>authenticated, date **DF** Today, reason **NN**) |
-| R12                | purchase(<ins>purchase_id</ins>, user_id&#8594;authenticated, date **DF** Today) |
-| R13                | purchase_item(<ins>purchase_id</ins>&#8594;purchase, <ins>item_id</ins>&#8594;item, purchase_price **NN**, quantity **NN**) |
-| R14                | advertisement(<ins>advertisement_id</ins>, title **NN UK**, begin_date **DF** Today, end_date **CK** end_date > begin_date, photo_id&#8594;photo) |
-| R15                | item_photo(<ins>photo_id</ins>&#8594;photo, item_id&#8594;item) |
-| R16                | cart(<ins>user_id</ins>&#8594;user, <ins>item_id</ins>&#8594;item, add_date **DF** Today, quantity **CK** quantity > 0) |
-| R17                | wishlist(<ins>user_id</ins>&#8594;user, <ins>item_id</ins>&#8594;item, add_date **DF** Today) |
-| R18                | discount(<ins>discount_id</ins>, percentage **CK** percentage > 0 && percentage < 100, begin_date **DF** Today, end_date **CK** end_date > begin_date) |
-| R19                | notification(<ins>notification_id</ins>, user_id&#8594;user, item_id&#8594;item, discount_id&#8594;discount,date **DF** Today, is_seen **DF** False, type) |
-| R20                | apply_discount(<ins>item_id</ins>&#8594;item, <ins>discount_id</ins>&#8594;discount) |
-| R21                | item_detail(<ins>item_id</ins>&#8594;item, <ins>detail_id</ins>&#8594;detail, detail_info **NN**) |
-| R22                | category_detail(<ins>category_id</ins>&#8594;category, <ins>detail_id</ins>&#8594;detail) |
+| R04                | users(<ins>user_id</ins>, first_name , last_name, username <b>UK </b>, email <b>UK</b>, password, billing_addr&#8594;address, shipping_addr&#8594;address,photo_id&#8594;photo, deleted **DF** False, balance **DF** 0, is_admin **DF** False) |
+| R05                | review(<ins>review_id</ins>, user_id&#8594;authenticated, comment, date **DF** Today, rating **NN CK** rating > 0 AND rating < = 5) |
+| R06                | category(<ins>category_id</ins>, name **UK**)                |
+| R07                | detail(<ins>detail_id</ins>, name **NN UK**)                 |
+| R08                | item(<ins>item_id</ins>, name **NN**, stock **NN CK** stock >= 0, brief_description, description **NN**, price **NN CK** price> 0, isArchived **DF** False, category&#8594;category, score ) |
+| R09                | ban(<ins>admin_id</ins>&#8594;admin, <ins>user_id&#8594;</ins>authenticated, date **DF** Today, reason **NN**) |
+| R10                | purchase(<ins>purchase_id</ins>, user_id&#8594;authenticated, date **DF** Today) |
+| R11                | purchase_item(<ins>purchase_id</ins>&#8594;purchase, <ins>item_id</ins>&#8594;item, purchase_price **NN**, quantity **NN**) |
+| R12                | advertisement(<ins>advertisement_id</ins>, title **NN UK**, begin_date **DF** Today, end_date **CK** end_date > begin_date, photo_id&#8594;photo) |
+| R13                | item_photo(<ins>photo_id</ins>&#8594;photo, item_id&#8594;item) |
+| R14                | cart(<ins>user_id</ins>&#8594;user, <ins>item_id</ins>&#8594;item, add_date **DF** Today, quantity **CK** quantity > 0) |
+| R15                | wishlist(<ins>user_id</ins>&#8594;user, <ins>item_id</ins>&#8594;item, add_date **DF** Today) |
+| R16                | discount(<ins>discount_id</ins>, percentage **CK** percentage > 0 && percentage < 100, begin_date **DF** Today, end_date **CK** end_date > begin_date) |
+| R17                | notification(<ins>notification_id</ins>, user_id&#8594;user, item_id&#8594;item, discount_id&#8594;discount,date **DF** Today, is_seen **DF** False, type) |
+| R18                | apply_discount(<ins>item_id</ins>&#8594;item, <ins>discount_id</ins>&#8594;discount) |
+| R19                | item_detail(<ins>item_id</ins>&#8594;item, <ins>detail_id</ins>&#8594;detail, detail_info **NN**) |
+| R20                | category_detail(<ins>category_id</ins>&#8594;category, <ins>detail_id</ins>&#8594;detail) |
 
 All users' attributes must be not null when deleted is false but all but the id are null when deleted is true. Because of this, the attributes cannot have the flag not null.
 
@@ -68,154 +66,141 @@ In this section, the functional dependencies and the normal form each table is i
 | --------------  | ---                |
 | **Keys**        | { user_id } |
 | **Functional Dependencies:** |       |
-| FD0101          | { user_id } → { email, name, username, password, billing_addr, shipping_addr,photo_id,deleted} |
+| FD0101          | { user_id } → { email, name, username, password, billing_addr, shipping_addr,photo_id,deleted, balance, is_admin} |
 | **NORMAL FORM** | BCNF               |
 
-| **TABLE R02**                | admin       |
-| ---------------------------- | ----------- |
-| **Keys**                     | { user_id } |
-| **Functional Dependencies:** | None        |
-| **NORMAL FORM**              | BCNF        |
-
-| TABLE R03                    | authenticated             |
-| ---------------------------- | ------------------------- |
-| **Keys**                     | { user_id }               |
-| **Functional Dependencies:** |                           |
-| FD0301                       | { user_id } → { balance } |
-| **NORMAL FORM**              | BCNF                      |
-
-| **TABLE R0**4                | review                                             |
+| **TABLE R0**2                | review                                             |
 | :--------------------------- | :------------------------------------------------- |
 | **Keys**                     | { review_id}                                       |
 | **Functional Dependencies:** |                                                    |
 | FD0401                       | { review_id } → { user_id, comment, date, rating } |
 | **NORMAL FORM**              | BCNF                                               |
 
-| **TABLE R05**                | category                  |
+| **TABLE R03**                | category                  |
 | ---------------------------- | ------------------------- |
 | **Keys**                     | { category_id }           |
 | **Functional Dependencies:** |                           |
 | FD0501                       | { category_id} → { name } |
 | **NORMAL FORM**              | BCNF                      |
 
-| TABLE R06                    | detail                   |
+| TABLE R04                    | detail                   |
 | ---------------------------- | ------------------------ |
 | **Keys**                     | { detail_id }            |
 | **Functional Dependencies:** |                          |
 | FD0601                       | { detail_id } → { name } |
 | **NORMAL FORM**              | BCNF                     |
 
-| **TABLE R07**                | item                                                         |
+| **TABLE R05**                | item                                                         |
 | ---------------------------- | ------------------------------------------------------------ |
 | **Keys**                     | { item_id }                                                  |
 | **Functional Dependencies:** |                                                              |
 | FD0701                       | { item_id } → { name, stock, description, price, brief_description, price, is_archived, category} |
 | **NORMAL FORM**              | BCNF                                                         |
 
-| **TABLE R08**                | ban                                      |
+| **TABLE R06**                | ban                                      |
 | ---------------------------- | ---------------------------------------- |
 | **Keys**                     | { admin_id, user_id }                    |
 | **Functional Dependencies:** |                                          |
 | FD0801                       | { admin_id, user_id } → { date, reason } |
 | **NORMAL FORM**              | BCNF                                     |
 
-| **TABLE R09**                | country                   |
+| **TABLE R07**                | country                   |
 | ---------------------------- | ------------------------- |
 | **Keys**                     | { country_id }            |
 | **Functional Dependencies:** |                           |
 | FD0901                       | { country_id } → { name } |
 | **NORMAL FORM**              | BCNF                      |
 
-| **TABLE R10**                | address                                              |
+| **TABLE R8**                 | address                                              |
 | ---------------------------- | ---------------------------------------------------- |
 | **Keys**                     | { address_id }                                       |
 | **Functional Dependencies:** |                                                      |
 | FD1001                       | { address_id } → { city, street, zip_code, country } |
 | **NORMAL FORM**              | BCNF                                                 |
 
-| **TABLE R11**                | purchase                   |
+| **TABLE R9**                 | purchase                   |
 | ---------------------------- | -------------------------- |
 | **Keys**                     | { purchase_id }            |
 | **Functional Dependencies:** |                            |
 | FD1101                       | { purchase_id } → { date } |
 | **NORMAL FORM**              | BCNF                       |
 
-| **TABLE R12**                | purchase_item                                           |
+| **TABLE R10**                | purchase_item                                           |
 | ---------------------------- | ------------------------------------------------------- |
 | **Keys**                     | { purchase_id, item_id }                                |
 | **Functional Dependencies:** |                                                         |
 | FD1201                       | { purchase_id, item_id } → { purchase_price, quantity } |
 | **NORMAL FORM**              | BCNF                                                    |
 
-| **TABLE R13**                | photo                   |
+| **TABLE R11**                | photo                   |
 | ---------------------------- | ----------------------- |
 | **Keys**                     | { photo_id }            |
 | **Functional Dependencies:** |                         |
-| FD1301                       | { photo_id } → { path } |
+| FD1101                       | { photo_id } → { path } |
 | **NORMAL FORM**              | BCNF                    |
 
-| TABLE R014                   | advertisement                                            |
+| TABLE R12                    | advertisement                                            |
 | ---------------------------- | -------------------------------------------------------- |
 | **Keys**                     | { advertisement_id }, { title }                          |
 | **Functional Dependencies:** |                                                          |
-| FD1401                       | { advertisement_id} → { title, begin_date,  end_date }   |
-| FD1402                       | { title } -> { advertisement_id, begin_date,  end_date } |
+| FD1201                       | { advertisement_id} → { title, begin_date,  end_date }   |
+| FD1202                       | { title } -> { advertisement_id, begin_date,  end_date } |
 | **NORMAL FORM**              | BCNF                                                     |
 
-| TABLE R015                   | item_photo                 |
+| TABLE R13                    | item_photo                 |
 | ---------------------------- | -------------------------- |
 | **Keys**                     | { photo_id }               |
 | **Functional Dependencies:** |                            |
-| FD1501                       | { photo_id } → { item_id } |
+| FD1301                       | { photo_id } → { item_id } |
 | **NORMAL FORM**              | BCNF                       |
 
-| TABLE R016                   | cart                                               |
+| TABLE R14                    | cart                                               |
 | ---------------------------- | -------------------------------------------------- |
 | **Keys**                     | { user_id, item_id }                               |
 | **Functional Dependencies:** |                                                    |
-| FD1601                       | { user_id, item_id } → { add_date, is_seen, type } |
+| FD1401                       | { user_id, item_id } → { add_date, is_seen, type } |
 | **NORMAL FORM**              | BCNF                                               |
 
-| TABLE R017                   | wishlist                            |
+| TABLE R15                    | wishlist                            |
 | ---------------------------- | ----------------------------------- |
 | **Keys**                     | { user_id, item_id }                |
 | **Functional Dependencies:** |                                     |
-| FD1701                       | { user_id, item_id } → { add_date } |
+| FD1501                       | { user_id, item_id } → { add_date } |
 | **NORMAL FORM**              | BCNF                                |
 
-| TABLE R018                   | notification                                                 |
+| TABLE R016                   | notification                                                 |
 | ---------------------------- | ------------------------------------------------------------ |
 | **Keys**                     | { user_id, item_id }                                         |
 | **Functional Dependencies:** |                                                              |
-| FD1801                       | { user_id, item_id } → {item_id, discount_id,date, is_seen, type } |
+| FD1601                       | { user_id, item_id } → {item_id, discount_id,date, is_seen, type } |
 | **NORMAL FORM**              | BCNF                                                         |
 
-| TABLE R019                   | discount                                      |
+| TABLE R17                    | discount                                      |
 | ---------------------------- | --------------------------------------------- |
 | **Keys**                     | { id }                                        |
 | **Functional Dependencies:** |                                               |
-| FD1901                       | { id } → { percentage, begin_date, end_date } |
+| FD1701                       | { id } → { percentage, begin_date, end_date } |
 | **NORMAL FORM**              | BCNF                                          |
 
-| TABLE R020                   | apply_discount           |
+| TABLE R18                    | apply_discount           |
 | ---------------------------- | ------------------------ |
 | **Keys**                     | { item_id, discount_id } |
 | **Functional Dependencies:** |                          |
 | (none)                       |                          |
 | **NORMAL FORM**              | BCNF                     |
 
-| TABLE R021                   | item_detail                               |
+| TABLE R19                    | item_detail                               |
 | ---------------------------- | ----------------------------------------- |
 | **Keys**                     | { item_id, detail_id }                    |
 | **Functional Dependencies:** |                                           |
-| FD2101                       | { item_id, detail_id } -> { detail_info } |
+| FD1901                       | { item_id, detail_id } -> { detail_info } |
 | **NORMAL FORM**              | BCNF                                      |
 
-| TABLE R022                   | category_detail                           |
+| TABLE R20                    | category_detail                           |
 | ---------------------------- | ----------------------------------------- |
 | **Keys**                     | { category_id, detail_id }                |
 | **Functional Dependencies:** |                                           |
-| FD2101                       | { item_id, detail_id } -> { detail_info } |
+| FD2001                       | { item_id, detail_id } -> { detail_info } |
 | **NORMAL FORM**              | BCNF                                      |
 
 
@@ -241,26 +226,22 @@ In this section, the functional dependencies and the normal form each table is i
 | R02 | photo | thousands |units per day|
 | R03               | address | thousands |units per day|
 | R04             | users                | thousands |dozens per day|
-| R05 | admins | hundred |units per month|
-| R06 | authenticated | thousands |dozens per day|
-| R07 | review | tens of thousands |hundreds per day|
-| R08 | details | hundreds |units per year|
-| R09 | category | units |units per year|
-| R10 | item | thousands |units per month|
-| R11 | ban | hundreds |units per week|
-| R12 | purchase | thousands |units per day|
-| R13 | purchaseItem | tens of thousands |dozens per day|
-| R14 | advertisement | thousands |units per week|
-| R15 | itemPhoto | thousands |units per day|
-| R16             | cart    | tens of thousands |dozens per day|
-| R17             | wishlist | tens of thousands |dozens per day|
-| R18 | discount | hundred |units per month|
-| R19 | notification | tens of thousands |dozens per day|
-| R20 | discountNotification | thousands |dozens per day|
-| R21 | stockNotification | thousands |dozens per day|
-| R22 | applyDiscount | thousand |hundred per month|
-| R23 | itemDetail | tens of thousands |dozens per month|
-| R24 | categoryDetail | hundreds |dozens per year|
+| R05 | review | tens of thousands |hundreds per day|
+| R06 | details | hundreds |units per year|
+| R07 | category | units |units per year|
+| R08 | item | thousands |units per month|
+| R09 | ban | hundreds |units per week|
+| R10 | purchase | thousands |units per day|
+| R11 | purchaseItem | tens of thousands |dozens per day|
+| R12 | advertisement | thousands |units per week|
+| R13 | itemPhoto | thousands |units per day|
+| R14            | cart    | tens of thousands |dozens per day|
+| R15             | wishlist | tens of thousands |dozens per day|
+| R16 | discount | hundred |units per month|
+| R17 | notification | tens of thousands |dozens per day|
+| R18 | discountNotification | thousands |dozens per day|
+| R19 | itemDetail | tens of thousands |dozens per month|
+| R20 | categoryDetail | hundreds |dozens per year|
 
 
 #### 1.2. Frequent Queries
@@ -285,7 +266,7 @@ SELECT * FROM users WHERE user_id = $id;
 SELECT addr.* 
 FROM users JOIN 
 (
-	SELECT * FROM address JOIN country USING (country_id)
+	FROM address JOIN country USING (country_id)
 ) AS addr ON (users.shipping_address = addr.address_id)
 WHERE users.user_id = $id
 ```
@@ -299,7 +280,7 @@ WHERE users.user_id = $id
 SELECT addr.* 
 FROM users JOIN 
 (
-	SELECT * FROM address JOIN country USING (country_id)
+	FROM address JOIN country USING (country_id)
 ) AS addr ON (users.billing_address = addr.address_id)
 WHERE users.user_id = $id
 ```
@@ -310,21 +291,16 @@ WHERE users.user_id = $id
 | Query frequency   | thousands per day |
 
 ```sql
+#login using username
 SELECT user_id FROM USER
-WHERE (email = $username_or_email OR username = $username_or_email) AND password = $pwd
+WHERE username = $username AND password = $pwd
+
+#login using email
+SELECT user_id FROM USER
+WHERE email = $username AND password = $pwd
 ```
 
-| Query reference   | SELECT05                 |
-| ----------------- | ------------------------ |
-| Query description | search items of category |
-| Query frequency   | thousands per day        |
-
-```sql
-SELECT item.* FROM item
-WHERE category_id = $cat_id AND item.is_archived = false
-```
-
-| Query reference   | SELECT06                  |
+| Query reference   | SELECT05                  |
 | ----------------- | ------------------------- |
 | Query description | get item's info           |
 | Query frequency   | tens of thousands per day |
@@ -333,11 +309,11 @@ WHERE category_id = $cat_id AND item.is_archived = false
 SELECT item.item_id, details_info.detail_info, details_info.name 
 FROM item 
 JOIN 
-(SELECT * FROM item_detail JOIN details USING (detail_id ))  AS details_info
+(FROM item_detail JOIN details USING (detail_id ))  AS details_info
 USING (item_id)
 ```
 
-| Query reference   | SELECT07                                |
+| Query reference   | SELECT06                                |
 | ----------------- | --------------------------------------- |
 | Query description | search for an item that is not archived |
 | Query frequency   | tens of thousands per day               |
@@ -347,17 +323,7 @@ SELECT *, ts_rank_cd(search, query) FROM item, to_tsquery('english', 'descriptio
 WHERE search @@ query AND is_archived = false
 ```
 
-| Query reference   | SELECT08                            |
-| ----------------- | ----------------------------------- |
-| Query description | search for an item in a price range |
-| Query frequency   | tens of thousands per day           |
-
-```sql
-SELECT item.* FROM item
-WHERE price < $max_price AND price > $min_price AND item.is_archived = false
-```
-
-| Query reference   | SELECT09                                              |
+| Query reference   | SELECT07                                              |
 | ----------------- | ----------------------------------------------------- |
 | Query description | search for an item in a price range within a cetegory |
 | Query frequency   | tens of thousands per day                             |
@@ -367,17 +333,7 @@ SELECT item.* FROM item
 WHERE price < $max_price AND price > $min_price AND category_id = $cat_id AND item.is_archived = false
 ```
 
-| Query reference   | SELECT10                |
-| ----------------- | ----------------------- |
-| Query description | search user by username |
-| Query frequency   | dozens per day          |
-
-```sql
-SELECT user FROM users
-WHERE username = $usrname
-```
-
-| Query reference   | SELECT11              |
+| Query reference   | SELECT08              |
 | ----------------- | --------------------- |
 | Query description | get a user's wishlist |
 | Query frequency   | thousands per day     |
@@ -390,7 +346,7 @@ ON (wishlist_items.user_id = users.user_id)
 WHERE users.user_id = $usr_id
 ```
 
-| Query reference   | SELECT12          |
+| Query reference   | SELECT09          |
 | ----------------- | ----------------- |
 | Query description | get a user's cart |
 | Query frequency   | thousands per day |
@@ -403,7 +359,7 @@ ON (cart_items.user_id = users.user_id)
 WHERE users.user_id = $usr_id
 ```
 
-| Query reference   | SELECT13                        |
+| Query reference   | SELECT10                        |
 | ----------------- | ------------------------------- |
 | Query description | all detail's name of a category |
 | Query frequency   | hundreds per day                |
@@ -414,7 +370,7 @@ FROM category JOIN (category_detail JOIN details USING (detail_id)) AS detail_na
 WHERE category.category_id = $cat_id 
 ```
 
-| Query reference   | SELECT14                       |
+| Query reference   | SELECT11                       |
 | ----------------- | ------------------------------ |
 | Query description | categories for dropdown filter |
 | Query frequency   | thousands per day              |
@@ -425,7 +381,7 @@ FROM category
 WHERE category.category_id = $cat_id
 ```
 
-| Query reference   | SELECT15          |
+| Query reference   | SELECT12          |
 | ----------------- | ----------------- |
 | Query description | get items reviews |
 | Query frequency   | thousands per day |
@@ -436,7 +392,7 @@ FROM users JOIN (review JOIN item USING (item_id)) AS item_reviews USING (user_i
 WHERE item_reviews.item_id = $item_id
 ```
 
-| Query reference   | SELECT16          |
+| Query reference   | SELECT13          |
 | ----------------- | ----------------- |
 | Query description | get items reviews |
 | Query frequency   | thousands per day |
@@ -447,7 +403,7 @@ FROM users JOIN (review JOIN item USING (item_id)) AS item_reviews USING (user_i
 WHERE item_reviews.item_id = $item_id
 ```
 
-| Query reference   | SELECT17                 |
+| Query reference   | SELECT14                 |
 | ----------------- | ------------------------ |
 | Query description | get user's notifications |
 | Query frequency   | thousands per day        |
@@ -458,17 +414,7 @@ FROM users JOIN (SELECT notification.*, item.name AS item_name FROM notification
 WHERE users.user_id = $usr_id
 ```
 
-| Query reference   | SELECT18                  |
-| ----------------- | ------------------------- |
-| Query description | search for an item        |
-| Query frequency   | tens of thousands per day |
-
-```sql
-SELECT * FROM items
-WHERE search @@ plainto_ts_query('english', $search)
-```
-
-| Query reference   | SELECT19                   |
+| Query reference   | SELECT15                   |
 | ----------------- | -------------------------- |
 | Query description | search for item's discount |
 | Query frequency   | thousands per day          |
@@ -479,7 +425,7 @@ FROM item JOIN (apply_discount JOIN discount USING (discount_id)) AS appliadble_
 WHERE item.item_id = $itm_id
 ```
 
-| Query reference   | SELECT20                    |
+| Query reference   | SELECT16                    |
 | ----------------- | --------------------------- |
 | Query description | get all available discounts |
 | Query frequency   | thousands per day           |
@@ -490,7 +436,7 @@ FROM advertisement
 WHERE begin_date >= now()::date AND end_date <= now()::date
 ```
 
-| Query reference   | SELECT21          |
+| Query reference   | SELECT17          |
 | ----------------- | ----------------- |
 | Query description | get all discounts |
 | Query frequency   | thousands per day |
@@ -500,7 +446,7 @@ SELECT *
 FROM advertisement
 ```
 
-| Query reference   | SELECT22                |
+| Query reference   | SELECT18                |
 | ----------------- | ----------------------- |
 | Query description | user's purchase history |
 | Query frequency   | thousands per day       |
@@ -511,7 +457,7 @@ FROM users JOIN (purchase JOIN purchase_item USING (purchase_id)) AS prcs_items 
 WHERE users.user_id = $usr_id
 ```
 
-| Query reference   | SELECT23                    |
+| Query reference   | SELECT19                    |
 | ----------------- | --------------------------- |
 | Query description | get all of an item's photos |
 | Query frequency   | thousands per day           |
@@ -521,9 +467,6 @@ SELECT item_photos.path
 FROM item JOIN (item_photo JOIN photo USING (photo_id)) as item_photos USING (item_id)
 WHERE item.item_id = $itm_id
 ```
-
-
-#### 
 
 
 #### 1.3. Frequent Updates
@@ -821,8 +764,6 @@ DROP TABLE IF EXISTS review CASCADE;
 DROP TABLE IF EXISTS item CASCADE;
 DROP TABLE IF EXISTS details CASCADE;
 DROP TABLE IF EXISTS category CASCADE;
-DROP TABLE IF EXISTS authenticated CASCADE;
-DROP TABLE IF EXISTS admins CASCADE;
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS address CASCADE;
 DROP TABLE IF EXISTS photo CASCADE;
@@ -853,32 +794,24 @@ CREATE TABLE address (
 
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
-    username text NOT NULL CONSTRAINT username_uk UNIQUE,
-    email text NOT NULL CONSTRAINT user_email_uk UNIQUE,
+    username text CONSTRAINT username_uk UNIQUE,
+    email text CONSTRAINT user_email_uk UNIQUE,
     first_name text NOT NULL,
     last_name text NOT NULL,
     password text NOT NULL,
     deleted BOOLEAN DEFAULT FALSE,
+    is_admin BOOLEAN DEFAULT FALSE,
+    balance MONEY DEFAULT 0 NOT NULL,
     img INTEGER REFERENCES photo(photo_id) ON UPDATE CASCADE,
     billing_address INTEGER REFERENCES address(address_id) ON UPDATE CASCADE,
     shipping_address INTEGER REFERENCES address(address_id) ON UPDATE CASCADE
 );
 
-CREATE TABLE admins (
-    admin_id INTEGER REFERENCES users(user_id) ON UPDATE CASCADE PRIMARY KEY
-);
-
-CREATE TABLE authenticated (
-    authenticated_id INTEGER REFERENCES users(user_id) ON UPDATE CASCADE PRIMARY KEY,
-    balance money DEFAULT 0 NOT NULL
-);
-
-
 CREATE TABLE category (
     category_id SERIAL PRIMARY KEY,
     name text NOT NULL UNIQUE
 );
-
+ 
 CREATE TABLE details (
     detail_id SERIAL PRIMARY KEY,
     name text NOT NULL UNIQUE
@@ -893,8 +826,12 @@ CREATE TABLE item (
     price MONEY NOT NULL CONSTRAINT pos_price CHECK (price >= 0::MONEY),
     is_archived BOOLEAN NOT NULL DEFAULT false,
     category_id INTEGER REFERENCES category (category_id) ON UPDATE CASCADE,
-    score INTEGER NOT NULL CONSTRAINT rating_ck CHECK (((score > 0) AND (score <= 5)))
+    score INTEGER NOT NULL CONSTRAINT rating_ck CHECK (((score >= 0) AND (score <= 5)))
 );
+
+ALTER TABLE item
+    ADD COLUMN search tsvector
+    GENERATED ALWAYS AS (to_tsvector('english', coalesce(name, '') || ' ' || coalesce(description, ''))) STORED;
 
 CREATE TABLE review (
     review_id SERIAL PRIMARY KEY,
@@ -904,7 +841,7 @@ CREATE TABLE review (
     "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     rating INTEGER NOT NULL CONSTRAINT rating_ck CHECK (((rating > 0) AND (rating <= 5)))
 );
-
+ 
 CREATE TABLE ban (
     admin_id INTEGER NOT NULL REFERENCES admins(admin_id) ON UPDATE CASCADE,
     user_id INTEGER NOT NULL REFERENCES users(user_id) ON UPDATE CASCADE,
@@ -918,7 +855,7 @@ CREATE TABLE purchase (
     user_id INTEGER REFERENCES authenticated (authenticated_id) ON UPDATE CASCADE,
     "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
 );
-
+ 
 CREATE TABLE purchase_item (
     purchase_id INTEGER NOT NULL REFERENCES purchase (purchase_id) ON UPDATE CASCADE,
     item_id INTEGER NOT NULL REFERENCES item (item_id) ON UPDATE CASCADE,
@@ -941,7 +878,7 @@ CREATE TABLE item_photo (
     item_id INTEGER NOT NULL REFERENCES item (item_id) ON UPDATE CASCADE
 
 );
-
+ 
 
 CREATE TABLE cart (
     user_id INTEGER REFERENCES authenticated (authenticated_id) ON UPDATE CASCADE,
@@ -950,7 +887,7 @@ CREATE TABLE cart (
     quantity INTEGER NOT NULL CONSTRAINT quantity_more_zero CHECK (quantity > 0),
     PRIMARY KEY (user_id, item_id)
 );
-
+ 
 
 CREATE TABLE wishlist (
     user_id INTEGER REFERENCES authenticated (authenticated_id) ON UPDATE CASCADE,
