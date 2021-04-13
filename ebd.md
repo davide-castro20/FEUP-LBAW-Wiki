@@ -309,7 +309,7 @@ WHERE email = $username AND password = $pwd
 SELECT item.item_id, details_info.detail_info, details_info.name 
 FROM item 
 JOIN 
-(FROM item_detail JOIN details USING (detail_id ))  AS details_info
+(item_detail JOIN details USING (detail_id ))  AS details_info
 USING (item_id)
 ```
 
@@ -392,17 +392,6 @@ FROM users JOIN (review JOIN item USING (item_id)) AS item_reviews USING (user_i
 WHERE item_reviews.item_id = $item_id
 ```
 
-| Query reference   | SELECT13          |
-| ----------------- | ----------------- |
-| Query description | get items reviews |
-| Query frequency   | thousands per day |
-
-```sql
-SELECT users.username, item_reviews.comment_text, item_reviews.date, item_reviews.rating
-FROM users JOIN (review JOIN item USING (item_id)) AS item_reviews USING (user_id)
-WHERE item_reviews.item_id = $item_id
-```
-
 | Query reference   | SELECT14                 |
 | ----------------- | ------------------------ |
 | Query description | get user's notifications |
@@ -410,7 +399,8 @@ WHERE item_reviews.item_id = $item_id
 
 ```sql
 SELECT notification_item.*
-FROM users JOIN (SELECT notification.*, item.name AS item_name FROM notification JOIN item USING (item_id)) AS notification_item USING (user_id)
+FROM users JOIN (
+    notification JOIN item USING (item_id)) AS notification_item USING (user_id)
 WHERE users.user_id = $usr_id
 ```
 
@@ -467,6 +457,33 @@ SELECT item_photos.path
 FROM item JOIN (item_photo JOIN photo USING (photo_id)) as item_photos USING (item_id)
 WHERE item.item_id = $itm_id
 ```
+
+| Query reference   | SELECT20                                                |
+| ----------------- | ------------------------------------------------------- |
+| Query description | get the user's top 3 most frequent categories purchases |
+| Query frequency   | thousands per day                                       |
+
+```sql
+select category.name, count(*) as occurrences
+from category join
+(
+    --gets users bought items
+    item join
+    (
+        -- gets user's bought items ids
+        purchase_item join
+        (users join purchase using (user_id)) as user_purchases using (purchase_id)
+    ) as bought_items_ids using(item_id)
+) as bought_items using (category_id)
+where bought_items.user_id = $user_id
+group by (category.name)
+order by occurrences desc
+limit 3;
+
+```
+
+
+#### 
 
 
 #### 1.3. Frequent Updates
@@ -694,6 +711,32 @@ CREATE TRIGGER remove_archived_from_cart_and_wishlist
 AFTER UPDATE ON item
 FOR EACH ROW
 EXECUTE PROCEDURE remove_cart_and_wishlist();
+```
+
+| **Trigger**     | TRIGGER03                                               |
+| --------------- | ------------------------------------------------------- |
+| **Description** | When an item is added, updates it's tsvector for search |
+| `SQL code`      |                                                         |
+
+```sql
+DROP TRIGGER IF EXISTS update_item_tsvector ON item;
+DROP FUNCTION IF EXISTS update_item_tsvector() CASCADE;
+CREATE FUNCTION update_item_tsvector() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    update item 
+	set search = to_tsvector('english', coalesce(NEW.name, '') || ' ' || coalesce(NEW.description, ''))
+	where new.item_id=item.item_id;
+    RETURN NEW;
+
+END
+
+$BODY$
+LANGUAGE plpgsql;
+CREATE TRIGGER update_item_tsvector
+AFTER INSERT ON item
+FOR EACH ROW
+EXECUTE PROCEDURE update_item_tsvector();
 ```
 
 
