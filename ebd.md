@@ -749,47 +749,40 @@ CREATE INDEX purchase_user_id ON purchase USING hash(user_id);
 | **Justification**   | To improve the performance of full text search on item. GIN because it's faster for lookups   |
 ```sql
 CREATE INDEX item_search_index ON item USING GIN (search);
-```                                               
+```
 
 ### 3. Triggers
 
-> User-defined functions and trigger procedures that add control structures to the SQL language or perform complex computations, are identified and described to be trusted by the database server. Every kind of function (SQL functions, Stored procedures, Trigger procedures) can take base types, composite types, or combinations of these as arguments (parameters). In addition, every kind of function can return a base type or a composite type. Functions can also be defined to return sets of base or composite values.  
+> User-defined functions and trigger procedures that add control structures to the SQL language or perform complex computations, are identified and described to be trusted by the database server. Every kind of function (SQL functions, Stored procedures, Trigger procedures) can take base types, composite types, or combinations of these as arguments (parameters). In addition, every kind of function can return a base type or a composite type. Functions can also be defined to return sets of base or composite values. 
 
-| **Trigger**      | TRIGGER01                              |
-| ---              | ---                                    |
-| **Description**  | When a user is inserted into the database, an authenticated user is created too |
-| `SQL code`                                             ||
+| **Trigger**     | TRIGGER01                                                    |
+| --------------- | ------------------------------------------------------------ |
+| **Description** | When an item is removed, it is also removed from every user's cart and wishlist |
+| `SQL code`      |                                                              |
 
 ```sql
-CREATE FUNCTION add_authenticated() RETURNS TRIGGER AS
+DROP FUNCTION if exists remove_cart_and_wishlist CASCADE;
+DROP TRIGGER if exists remove_archived_from_cart_and_wishlist ON item CASCADE;
+CREATE FUNCTION remove_cart_and_wishlist() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    IF EXISTS(SELECT * FROM authenticated WHERE NEW.user_id = authenticated_id) THEN
-        RAISE EXCEPTION 'Authenticated already exists when user with same id did not.';
-    END IF;
-    INSERT INTO authenticated (
-        authenticated_id
-    )
-    VALUES(
-        NEW.user_id
-    );
+    IF (OLD.is_archived <> NEW.is_archived) THEN
+        DELETE FROM wishlist WHERE item_id = NEW.item_id;
+	END IF;
     RETURN NEW;
-
 END
-
 $BODY$
+
 LANGUAGE plpgsql;
-CREATE TRIGGER user_creation
-AFTER INSERT ON users
+CREATE TRIGGER remove_archived_from_cart_and_wishlist
+AFTER UPDATE ON item
 FOR EACH ROW
-EXECUTE PROCEDURE add_authenticated();
+EXECUTE PROCEDURE remove_cart_and_wishlist();
 ```
-
-
 
 | **Trigger**     | TRIGGER02                                                    |
 | --------------- | ------------------------------------------------------------ |
-| **Description** | When an item is removed, it is also removed from every user's cart and wishlist |
+| **Description** | When an item is archived, it is also removed from every user's cart and wishlist |
 | `SQL code`      |                                                              |
 
 ```sql
@@ -810,7 +803,117 @@ FOR EACH ROW
 EXECUTE PROCEDURE remove_cart_and_wishlist();
 ```
 
-| **Trigger**     | TRIGGER03                                               |
+| **Trigger**     | TRIGGER03                                                    |
+| --------------- | ------------------------------------------------------------ |
+| **Description** | When an item out of stock gets stock, every user that has it in their wishlist gets a notification. |
+| `SQL code`      |                                                              |
+
+```sql
+DROP FUNCTION if exists add_stock_notification CASCADE;
+DROP TRIGGER if exists stock_notif ON item CASCADE;
+CREATE FUNCTION add_stock_notification() RETURNS TRIGGER AS
+
+$BODY$
+BEGIN
+    IF ( NEW.stock > OLD.stock) THEN
+        IF(OLD.stock = 0) THEN
+            INSERT INTO notification (user_id, discount_id, item_id, type)
+            SELECT users.user_id, NULL, NEW.item_id, 'Stock'
+            FROM users INNER JOIN wishlist using(user_id)
+            WHERE wishlist.item_id = NEW.item_id;
+        END IF;
+    END IF;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER stock_notif
+AFTER UPDATE ON item
+FOR EACH ROW
+EXECUTE PROCEDURE add_stock_notification();
+```
+
+| **Trigger**     | TRIGGER04                                                  |
+| --------------- | ---------------------------------------------------------- |
+| **Description** | When a review is added, the item's rating is recalculated. |
+| `SQL code`      |                                                            |
+
+```sql
+DROP FUNCTION if exists update_score CASCADE;
+DROP TRIGGER if exists score_on_review ON review CASCADE;
+CREATE FUNCTION update_score() RETURNS TRIGGER AS
+
+$BODY$
+BEGIN
+    UPDATE item
+    SET score = 
+    (SELECT AVG(rating)
+    FROM review
+    WHERE review.item_id = NEW.item_id)
+    WHERE item_id = NEW.item_id;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+```
+
+| **Trigger**     | TRIGGER05                                                    |
+| --------------- | ------------------------------------------------------------ |
+| **Description** | When a review is updated, if the new score is different from the old score |
+| `SQL code`      |                                                              |
+
+```sql
+DROP FUNCTION if exists update_score CASCADE;
+DROP TRIGGER if exists score_on_review ON review CASCADE;
+CREATE FUNCTION update_score() RETURNS TRIGGER AS
+
+$BODY$
+BEGIN
+    IF (NEW.rating <> OLD.rating) THEN
+        UPDATE item
+        SET score = 
+        (SELECT AVG(rating)
+        FROM review
+        WHERE review.item_id = NEW.item_id)
+        WHERE item_id = NEW.item_id;
+    END IF;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+```
+
+| **Trigger**     | TRIGGER06                                                    |
+| --------------- | ------------------------------------------------------------ |
+| **Description** | When a review is deleted, the item's score is updated. If there are no reviews left, the score gets set to 0. |
+| `SQL code`      |                                                              |
+
+```sql
+DROP FUNCTION if exists update_score_delete CASCADE;
+DROP TRIGGER if exists score_on_review_delete ON review CASCADE;
+CREATE FUNCTION update_score_delete() RETURNS TRIGGER AS
+
+$BODY$
+BEGIN
+    UPDATE item
+    SET score = 
+    COALESCE((SELECT AVG(rating)
+    FROM review
+    WHERE review.item_id = OLD.item_id), 0)
+    WHERE item_id = OLD.item_id;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER score_on_review_delete
+AFTER DELETE ON review
+FOR EACH ROW
+EXECUTE PROCEDURE update_score_delete();
+```
+
+| **Trigger**     | TRIGGER07                                               |
 | --------------- | ------------------------------------------------------- |
 | **Description** | When an item is added, updates it's tsvector for search |
 | `SQL code`      |                                                         |
@@ -837,7 +940,7 @@ FOR EACH ROW
 EXECUTE PROCEDURE update_item_tsvector();
 ```
 
-| **Trigger**     | TRIGGER04                                               |
+| **Trigger**     | TRIGGER08                                               |
 | --------------- | ------------------------------------------------------- |
 | **Description** | When a detail is added to an item, updates its tsvector |
 | `SQL code`      |                                                         |
