@@ -32,12 +32,12 @@ In this artifact our website's database relational schema is presented as well a
 | R02                | address(<ins>address_id</ins>, city **NN**, street **NN**, zip_code **NN**, country&#8594;country) |
 | R03                | photo(<ins>photoID</ins>, path **NN**)                       |
 | R04                | users(<ins>user_id</ins>, first_name , last_name, username <b>UK </b>, email <b>UK</b>, password, billing_addr&#8594;address, shipping_addr&#8594;address,photo_id&#8594;photo, deleted **DF** False, balance **DF** 0, is_admin **DF** False) |
-| R05                | review(<ins>review_id</ins>, user_id&#8594;authenticated, comment, date **DF** Today, rating **NN CK** rating > 0 AND rating < = 5) |
+| R05                | review(<ins>review_id</ins>, user_id&#8594;users, comment, date **DF** Today, rating **NN CK** rating > 0 AND rating < = 5) |
 | R06                | category(<ins>category_id</ins>, name **UK**)                |
 | R07                | detail(<ins>detail_id</ins>, name **NN UK**)                 |
 | R08                | item(<ins>item_id</ins>, name **NN**, stock **NN CK** stock >= 0, brief_description, description **NN**, price **NN CK** price> 0, is_archived **DF** False, category&#8594;category, score ) |
 | R09                | ban(<ins>admin_id</ins>&#8594;users, <ins>user_id&#8594;</ins>users, date **DF** Today, reason **NN**) |
-| R10                | purchase(<ins>purchase_id</ins>, user_id&#8594;authenticated, date **DF** Today) |
+| R10                | purchase(<ins>purchase_id</ins>, user_id&#8594;users, date **DF** Today) |
 | R11                | purchase_item(<ins>purchase_id</ins>&#8594;purchase, <ins>item_id</ins>&#8594;item, purchase_price **NN**, quantity **NN**) |
 | R12                | advertisement(<ins>advertisement_id</ins>, title **NN UK**, begin_date **DF** Today, end_date **CK** end_date > begin_date, photo_id&#8594;photo) |
 | R13                | item_photo(<ins>photo_id</ins>&#8594;photo, item_id&#8594;item) |
