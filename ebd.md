@@ -393,7 +393,7 @@ FROM users JOIN (review JOIN item USING (item_id)) AS item_reviews USING (user_i
 WHERE item_reviews.item_id = $item_id
 ```
 
-| Query reference   | SELECT14                 |
+| Query reference   | SELECT13                 |
 | ----------------- | ------------------------ |
 | Query description | get user's notifications |
 | Query frequency   | thousands per day        |
@@ -405,7 +405,7 @@ FROM users JOIN (
 WHERE users.user_id = $usr_id
 ```
 
-| Query reference   | SELECT15                   |
+| Query reference   | SELECT14                   |
 | ----------------- | -------------------------- |
 | Query description | search for item's discount |
 | Query frequency   | thousands per day          |
@@ -416,7 +416,7 @@ FROM item JOIN (apply_discount JOIN discount USING (discount_id)) AS appliadble_
 WHERE item.item_id = $itm_id
 ```
 
-| Query reference   | SELECT16                    |
+| Query reference   | SELECT15                    |
 | ----------------- | --------------------------- |
 | Query description | get all available discounts |
 | Query frequency   | thousands per day           |
@@ -427,7 +427,7 @@ FROM advertisement
 WHERE begin_date >= now()::date AND end_date <= now()::date
 ```
 
-| Query reference   | SELECT17          |
+| Query reference   | SELECT16          |
 | ----------------- | ----------------- |
 | Query description | get all discounts |
 | Query frequency   | thousands per day |
@@ -437,7 +437,7 @@ SELECT *
 FROM advertisement
 ```
 
-| Query reference   | SELECT18                |
+| Query reference   | SELECT17                |
 | ----------------- | ----------------------- |
 | Query description | user's purchase history |
 | Query frequency   | thousands per day       |
@@ -448,7 +448,7 @@ FROM users JOIN (purchase JOIN purchase_item USING (purchase_id)) AS prcs_items 
 WHERE users.user_id = $usr_id
 ```
 
-| Query reference   | SELECT19                    |
+| Query reference   | SELECT18                    |
 | ----------------- | --------------------------- |
 | Query description | get all of an item's photos |
 | Query frequency   | thousands per day           |
@@ -459,7 +459,7 @@ FROM item JOIN (item_photo JOIN photo USING (photo_id)) as item_photos USING (it
 WHERE item.item_id = $itm_id
 ```
 
-| Query reference   | SELECT20                                                |
+| Query reference   | SELECT19                                                |
 | ----------------- | ------------------------------------------------------- |
 | Query description | get the user's top 3 most frequent categories purchases |
 | Query frequency   | thousands per day                                       |
@@ -484,7 +484,7 @@ limit 3;
 ```
 
 
-#### 
+
 
 
 #### 1.3. Frequent Updates
@@ -698,7 +698,7 @@ CLUSTER review using item_review_idx;
 
 | **Index**           | IDX06                                  |
 | ---                 | ---                                    |
-| **Related queries** | SELECT16                         |
+| **Related queries** | SELECT15                        |
 | **Relation**        | advertisement    |
 | **Attribute**       | begin_date   |
 | **Type**            | B-tree             |
@@ -711,7 +711,7 @@ CREATE INDEX advertisement_start_date ON advertisement USING btree(begin_date);
 
 | **Index**           | IDX07                                  |
 | ---                 | ---                                    |
-| **Related queries** | SELECT16                         |
+| **Related queries** | SELECT15                        |
 | **Relation**        | advertisement    |
 | **Attribute**       | end_date   |
 | **Type**            | B-tree             |
