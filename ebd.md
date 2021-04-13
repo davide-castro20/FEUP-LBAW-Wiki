@@ -974,7 +974,26 @@ FOR EACH ROW
 EXECUTE PROCEDURE update_item_tsvector_detail();
 ```
 
+| **Trigger**     | RULE01                                                       |
+| --------------- | ------------------------------------------------------------ |
+| **Description** | //When a user is deleted, instead of being deleted, most of their info is set to null; deleted is set to true and is_admin isn't changed |
+| `SQL code`      |                                                              |
 
+```sql
+DROP rule IF EXISTS users_delete_rule ON users CASCADE;
+
+CREATE RULE users_delete_rule
+AS ON DELETE TO users
+DO INSTEAD (
+	UPDATE users
+	SET first_name = null,
+    last_name = null,
+    username = null,
+	email = null,
+    password = null,
+    deleted = true;
+	SELECT * FROM item;)
+```
 
 ### 4. Transactions
 
