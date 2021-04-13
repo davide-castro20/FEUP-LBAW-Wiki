@@ -56,7 +56,7 @@ All users' attributes must be not null when deleted is false but all but the id 
 | Domain Name | Domain Specification                               |
 | ----------- | -------------------------------------------------- |
 | Today       | DATE DEFAULT CURRENT_DATE                          |
-| Status      | ENUM ('Processing', 'Delivered', 'Shipped','Lost') |
+| TYPE      | ENUM ('Discount', 'Stock') |
 
 ### 3. Schema validation
 
