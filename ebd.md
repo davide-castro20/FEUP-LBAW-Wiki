@@ -311,6 +311,7 @@ FROM item
 JOIN 
 (item_detail JOIN details USING (detail_id ))  AS details_info
 USING (item_id)
+WHERE item.item_id = $item_id
 ```
 
 | Query reference   | SELECT06                                |
