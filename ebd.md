@@ -38,7 +38,7 @@ In this artifact our website's database relational schema is presented as well a
 | R08                | item(<ins>item_id</ins>, name **NN**, stock **NN CK** stock >= 0, brief_description, description **NN**, price **NN CK** price> 0, is_archived **DF** False, category&#8594;category, score ) |
 | R09                | ban(<ins>admin_id</ins>&#8594;users, <ins>user_id&#8594;</ins>users, date **DF** Today, reason **NN**) |
 | R10                | purchase(<ins>purchase_id</ins>, user_id&#8594;users, date **DF** Today) |
-| R11                | purchase_item(<ins>purchase_id</ins>&#8594;purchase, <ins>item_id</ins>&#8594;item, purchase_price **NN**, quantity **NN**) |
+| R11                | purchase_item(<ins>purchase_id</ins>&#8594;purchase, <ins>item_id</ins>&#8594;item, price **NN**, quantity **NN**) |
 | R12                | advertisement(<ins>advertisement_id</ins>, title **NN UK**, begin_date **DF** Today, end_date **CK** end_date > begin_date, photo_id&#8594;photo) |
 | R13                | item_photo(<ins>photo_id</ins>&#8594;photo, item_id&#8594;item) |
 | R14                | cart(<ins>user_id</ins>&#8594;user, <ins>item_id</ins>&#8594;item, add_date **DF** Today, quantity **CK** quantity > 0) |
