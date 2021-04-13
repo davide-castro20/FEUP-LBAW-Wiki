@@ -725,7 +725,8 @@ CREATE FUNCTION update_item_tsvector() RETURNS TRIGGER AS
 $BODY$
 BEGIN
     update item 
-	set search = to_tsvector('english', coalesce(NEW.name, '') || ' ' || coalesce(NEW.description, ''))
+	set search = setweight(to_tsvector('english',coalesce(item.name,'')), 'A') ||
+	setweight(to_tsvector('english',coalesce(item.description,'')), 'B')
 	where new.item_id=item.item_id;
     RETURN NEW;
 
@@ -737,6 +738,40 @@ CREATE TRIGGER update_item_tsvector
 AFTER INSERT ON item
 FOR EACH ROW
 EXECUTE PROCEDURE update_item_tsvector();
+```
+
+| **Trigger**     | TRIGGER04                                               |
+| --------------- | ------------------------------------------------------- |
+| **Description** | When a detail is added to an item, updates its tsvector |
+| `SQL code`      |                                                         |
+
+```sql
+DROP TRIGGER IF EXISTS update_item_tsvector_detail ON item_detail;
+DROP FUNCTION IF EXISTS update_item_tsvector_detail() CASCADE;
+CREATE FUNCTION update_item_tsvector_detail() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    update item 
+	
+	set search = setweight(to_tsvector('english',coalesce(item.name,'')), 'A') ||
+	setweight(to_tsvector('english',coalesce(item.description,'')), 'B') || setweight(to_tsvector('english',coalesce(s.detail_info,'')), 'C')
+	from 
+	(
+		
+		select string_agg(detail_info, ' ') as detail_info
+		from item_detail
+		where new.item_id=item_detail.item_id
+	) as s
+	where new.item_id=item.item_id;
+    RETURN NEW;
+END
+
+$BODY$
+LANGUAGE plpgsql;
+CREATE TRIGGER update_item_tsvector_detail
+AFTER INSERT ON item_detail
+FOR EACH ROW
+EXECUTE PROCEDURE update_item_tsvector_detail();
 ```
 
 
