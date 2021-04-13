@@ -410,7 +410,7 @@ WHERE users.user_id = $usr_id
 | Query frequency   | thousands per day          |
 
 ```sql
-SELECT appliadble_discount.*
+SELECT appliable_discount.*
 FROM item JOIN (apply_discount JOIN discount USING (discount_id)) AS appliadble_discount USING (item_id)
 WHERE item.item_id = $itm_id
 ```
@@ -630,29 +630,125 @@ DELETE FROM "wishlist"
 
 | **Index**           | IDX01                                  |
 | ---                 | ---                                    |
-| **Related queries** | SELECT06                         |
+| **Related queries** | SELECT05                         |
 | **Relation**        | item_detail    |
-| **Attribute**       | "item_id"   |
+| **Attribute**       | item_id   |
 | **Type**            | B-tree             |
 | **Cardinality**     | Medium |
 | **Clustering**      | Yes                |
 | **Justification**   | To allow getting all details of an item. Its clustered to allow getting all the details of an item faster.  Cardinality is medium    |
 ```sql
 CREATE INDEX item_detail_itemID ON item_detail USING btree(item_id);
+CLUSTER item_detail using item_detail_itemID;
 ```
+
+| **Index**           | IDX02                                  |
+| ---                 | ---                                    |
+| **Related queries** | SELECT07                         |
+| **Relation**        | item    |
+| **Attribute**       | price   |
+| **Type**            | B-tree             |
+| **Cardinality**     | Medium |
+| **Clustering**      | No                |
+| **Justification**   | To allow searching items by price range faster. Cardinality is medium|
+```sql
+CREATE INDEX item_price ON item USING btree(price);
+```
+
+| **Index**           | IDX03                                  |
+| ---                 | ---                                    |
+| **Related queries** | SELECT08                         |
+| **Relation**        | wishlist    |
+| **Attribute**       | user_id   |
+| **Type**            | hash             |
+| **Cardinality**     | Medium |
+| **Clustering**      | No                |
+| **Justification**   | To allow for faster access to user wishlist. Cardinality is medium|
+```sql
+CREATE INDEX wishlist_user_id ON wishlist USING hash(user_id);
+```
+
+| **Index**           | IDX04                                  |
+| ---                 | ---                                    |
+| **Related queries** | SELECT09                         |
+| **Relation**        | cart    |
+| **Attribute**       | user_id   |
+| **Type**            | hash             |
+| **Cardinality**     | Medium |
+| **Clustering**      | No                |
+| **Justification**   | To allow for faster access to user cart. Cardinality is medium|
+```sql
+CREATE INDEX cart_user_id ON cart USING hash(user_id);
+```
+
+| **Index**           | IDX05                                  |
+| ---                 | ---                                    |
+| **Related queries** | SELECT12                         |
+| **Relation**        | review    |
+| **Attribute**       | item_id   |
+| **Type**            | B-tree             |
+| **Cardinality**     | Medium |
+| **Clustering**      | Yes                |
+| **Justification**   | To allow for getting all the reviews of an item faster, clustering them |
+```sql
+CREATE INDEX item_review_idx ON review USING btree(item_id);
+CLUSTER review using item_review_idx;
+```
+
+| **Index**           | IDX06                                  |
+| ---                 | ---                                    |
+| **Related queries** | SELECT16                         |
+| **Relation**        | advertisement    |
+| **Attribute**       | begin_date   |
+| **Type**            | B-tree             |
+| **Cardinality**     | Medium |
+| **Clustering**      | No                |
+| **Justification**   | To allow searching items by start date faster. Cardinality is medium|
+```sql
+CREATE INDEX advertisement_start_date ON advertisement USING btree(begin_date);
+```
+
+| **Index**           | IDX07                                  |
+| ---                 | ---                                    |
+| **Related queries** | SELECT16                         |
+| **Relation**        | advertisement    |
+| **Attribute**       | end_date   |
+| **Type**            | B-tree             |
+| **Cardinality**     | Medium |
+| **Clustering**      | No                |
+| **Justification**   | To allow searching items by end date faster. Cardinality is medium|
+```sql
+CREATE INDEX advertisement_start_date ON advertisement USING btree(end_date);
+```
+
+| **Index**           | IDX08                                  |
+| ---                 | ---                                    |
+| **Related queries** | SELECT18                         |
+| **Relation**        | purchase    |
+| **Attribute**       | user_id   |
+| **Type**            | hash             |
+| **Cardinality**     | Medium |
+| **Clustering**      | No                |
+| **Justification**   | To allow for faster access to user purchase. Cardinality is medium|
+```sql
+CREATE INDEX purchase_user_id ON purchase USING hash(user_id);
+```
+
 #### 2.2. Full-text Search Indices 
 
 > The system being developed must provide full-text search features supported by PostgreSQL. Thus, it is necessary to specify the fields where full-text search will be available and the associated setup, namely all necessary configurations, indexes definitions and other relevant details.  
 
-| **Index**           | IDX01                                  |
+| **Index**           | IDX09                                  |
 | ---                 | ---                                    |
-| **Related queries** | SELECT01, ...                          |
-| **Relation**        | Relation where the index is applied    |
-| **Attribute**       | Attribute where the index is applied   |
-| **Type**            | B-tree, Hash, GiST or GIN              |
-| **Clustering**      | Clustering of the index                |
-| **Justification**   | Justification for the proposed index   |
-| `SQL code`                                                  ||
+| **Related queries** | SELECT06                          |
+| **Relation**        | item    |
+| **Attribute**       | search   |
+| **Type**            | GIN           |
+| **Clustering**      | No                |
+| **Justification**   | To improve the performance of full text search on item. GIN because it's faster for lookups   |
+```sql
+CREATE INDEX item_search_index ON item USING GIN (search);
+```                                               
 
 ### 3. Triggers
 
