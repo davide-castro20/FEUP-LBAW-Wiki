@@ -35,7 +35,7 @@ In this artifact our website's database relational schema is presented as well a
 | R05                | review(<ins>review_id</ins>, user_id&#8594;authenticated, comment, date **DF** Today, rating **NN CK** rating > 0 AND rating < = 5) |
 | R06                | category(<ins>category_id</ins>, name **UK**)                |
 | R07                | detail(<ins>detail_id</ins>, name **NN UK**)                 |
-| R08                | item(<ins>item_id</ins>, name **NN**, stock **NN CK** stock >= 0, brief_description, description **NN**, price **NN CK** price> 0, isArchived **DF** False, category&#8594;category, score ) |
+| R08                | item(<ins>item_id</ins>, name **NN**, stock **NN CK** stock >= 0, brief_description, description **NN**, price **NN CK** price> 0, is_archived **DF** False, category&#8594;category, score ) |
 | R09                | ban(<ins>admin_id</ins>&#8594;admin, <ins>user_id&#8594;</ins>authenticated, date **DF** Today, reason **NN**) |
 | R10                | purchase(<ins>purchase_id</ins>, user_id&#8594;authenticated, date **DF** Today) |
 | R11                | purchase_item(<ins>purchase_id</ins>&#8594;purchase, <ins>item_id</ins>&#8594;item, purchase_price **NN**, quantity **NN**) |
