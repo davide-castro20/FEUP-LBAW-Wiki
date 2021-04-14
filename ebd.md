@@ -986,6 +986,43 @@ FOR EACH ROW
 EXECUTE PROCEDURE update_item_tsvector_detail();
 ```
 
+| **Trigger**     | TRIGGER09                                                    |
+| --------------- | ------------------------------------------------------------ |
+| **Description** | When a user is banned, all their comments are deleted and the stock is added to the items |
+| `SQL code`      |                                                              |
+
+```sql
+DROP FUNCTION if exists remove_banned_user_comments CASCADE;
+DROP TRIGGER if exists remove_banned_user_comments ON ban CASCADE;
+
+
+CREATE FUNCTION remove_banned_user_comments() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    DELETE FROM review WHERE review.user_id = NEW.user_id;
+	
+	UPDATE item 
+    Set stock = item.stock + joined_cart.quantity
+    FROM (cart INNER JOIN item using(item_id)) as joined_cart
+    where user_id = NEW.user_id AND joined_cart.user_id = NEW.user_id AND joined_cart.item_id = item.item_id;
+	
+    DELETE FROM cart
+    WHERE user_id = NEW.user_id;
+END;
+$BODY$
+LANGUAGE plpgsql;
+
+
+CREATE TRIGGER remove_banned_user_comments
+AFTER INSERT ON ban
+FOR EACH ROW
+EXECUTE PROCEDURE remove_banned_user_comments();
+```
+
+|
+|
+|
+
 | **Trigger**     | RULE01                                                       |
 | --------------- | ------------------------------------------------------------ |
 | **Description** | //When a user is deleted, instead of being deleted, most of their info is set to null; deleted is set to true and is_admin isn't changed |
