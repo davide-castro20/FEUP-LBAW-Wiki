@@ -1019,13 +1019,44 @@ FOR EACH ROW
 EXECUTE PROCEDURE remove_banned_user_comments();
 ```
 
+| **Trigger**     | TRIGGER10                                                    |
+| --------------- | ------------------------------------------------------------ |
+| **Description** | If a user has an item already on the cart, instead of adding the same item again its quantity is added. |
+| `SQL code`      |                                                              |
+
+```sql
+DROP TRIGGER if exists check_if_already_on_cart ON cart CASCADE;
+DROP FUNCTION if exists check_if_already_on_cart CASCADE;
+
+
+CREATE FUNCTION check_if_already_on_cart() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF(EXISTS (SELECT * FROM cart WHERE (NEW.user_id = cart.user_id AND NEW.item_id = cart.item_id)))
+	THEN
+		UPDATE cart
+		SET quantity = quantity + NEW.quantity
+		WHERE NEW.user_id = cart.user_id AND NEW.item_id = cart.item_id;
+		RETURN NULL;
+	END IF;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+
+CREATE TRIGGER check_if_already_on_cart
+BEFORE INSERT ON cart
+FOR EACH ROW
+EXECUTE PROCEDURE check_if_already_on_cart();
+```
+
 |
 |
 |
 
 | **Trigger**     | RULE01                                                       |
 | --------------- | ------------------------------------------------------------ |
-| **Description** | //When a user is deleted, instead of being deleted, most of their info is set to null; deleted is set to true and is_admin isn't changed |
+| **Description** | When a user is deleted, instead of being deleted, most of their info is set to null; deleted is set to true and is_admin isn't changed |
 | `SQL code`      |                                                              |
 
 ```sql
@@ -1137,13 +1168,13 @@ DECLARE purchase_ident INTEGER := 0;
 BEGIN
         SELECT sum((price - price*get_discount(item_id, now())) * quantity) INTO sum_prices
         FROM item JOIN cart USING (item_id)
-        WHERE user_id = 1;
+        WHERE user_id = $user_id;
          
     IF (
         
         (SELECT balance 
         FROM users
-        WHERE user_id = 1)
+        WHERE user_id = $user_id)
         -
         (sum_prices)
         >= 0::MONEY
@@ -1152,14 +1183,14 @@ BEGIN
         
             UPDATE users
             SET balance = balance - sum_prices
-            WHERE user_id = 1;
+            WHERE user_id = $user_id;
 
-            INSERT INTO purchase(user_id,date) VALUES (1, now()) RETURNING purchase_id INTO purchase_ident;
+            INSERT INTO purchase(user_id,date) VALUES ($user_id, now()) RETURNING purchase_id INTO purchase_ident;
 
             INSERT INTO purchase_item (purchase_id, item_id, price, quantity)
                 SELECT purchase_ident, item_id, (price-price*get_discount(item_id, now())) * quantity, quantity
                 FROM item JOIN cart USING (item_id)
-                WHERE user_id = 1;
+                WHERE user_id = $user_id;
         
     END IF;
 END
