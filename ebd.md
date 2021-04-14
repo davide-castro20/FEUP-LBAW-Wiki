@@ -1050,13 +1050,9 @@ FOR EACH ROW
 EXECUTE PROCEDURE check_if_already_on_cart();
 ```
 
-|
-|
-|
-
 | **Trigger**     | RULE01                                                       |
 | --------------- | ------------------------------------------------------------ |
-| **Description** | When a user is deleted, instead of being deleted, most of their info is set to null; deleted is set to true and is_admin isn't changed |
+| **Description** | When a user is deleted, instead of being deleted, most of their info that already isn't automatically set to null is set to null; deleted is set to true, is_admin is set to false and balance is set to 0. The user's photo and billing and shipping address table entry are delete. The user's cart is deleted and the items they had in the cart get the respective amout of stock added back. |
 | `SQL code`      |                                                              |
 
 ```sql
@@ -1065,14 +1061,27 @@ DROP rule IF EXISTS users_delete_rule ON users CASCADE;
 CREATE RULE users_delete_rule
 AS ON DELETE TO users
 DO INSTEAD (
-	UPDATE users
+    UPDATE item 
+    Set stock = item.stock + joined_cart.quantity
+    FROM (cart INNER JOIN item using(item_id)) as joined_cart
+    where user_id = OLD.user_id AND joined_cart.user_id = OLD.user_id AND joined_cart.item_id = item.item_id;
+    DELETE FROM cart
+    WHERE user_id = OLD.user_id;
+    UPDATE users
 	SET first_name = null,
     last_name = null,
     username = null,
 	email = null,
     password = null,
-    deleted = true;
-	SELECT * FROM item;)
+    deleted = true,
+    is_admin = false,
+    balance = 0
+    WHERE OLD.user_id = user_id;
+	DELETE FROM photo
+	WHERE photo_id = OLD.img;
+    DELETE FROM address
+    WHERE address_id = OLD.shipping_address OR address_id = OLD.billing_address;
+);
 ```
 
 ### 4. Transactions
