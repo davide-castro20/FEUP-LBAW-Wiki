@@ -1100,31 +1100,66 @@ COMMIT;
 
 | T02 | Balance and purchase on Checkout                             |
 | --------------- | ----------------------------------- |
-| Justification   | When a user performs a checkout using money from their account balance, it is important to make sure that their balance and the cart are not updated externally during the operation, and so it is necessary to use a transaction. Serializable isolation is used to avoid dirty and nonrepeatable reads on the balance and cart tables while also making sure that all necessary rows, the items in the cart, are read (no phantoms). |
+| Justification   | When a user performs a checkout using money from their account balance, it is important to make sure that their balance and the cart are not updated externally during the operation, and so it is necessary to use a transaction. Also, the purchase records with the correct discounts should be added, should the discounts change during the operation. Serializable isolation is used to avoid dirty and nonrepeatable reads on the balance and cart tables while also making sure that all necessary rows, the items in the cart, are read (no phantoms). |
 | Isolation level | Serializable |
 
 ```sql
+DROP FUNCTION if exists get_discount CASCADE;
+CREATE FUNCTION get_discount(i INTEGER, d TIMESTAMP WITH TIME ZONE) 
+RETURNS INTEGER AS 
+$$
+DECLARE item_discount INTEGER := 0;
+BEGIN
+    SELECT max(discount.percentage) INTO item_discount
+    FROM apply_discount JOIN discount USING (discount_id)
+    WHERE item_id = $1 AND begin_date <= $2 AND end_date >= $2;
+    
+    if(item_discount IS NULL) then
+        RETURN 0;
+    else
+        return item_discount;
+    end if;
+END;
+$$ 
+LANGUAGE plpgsql;count;
+    end if;
+END;
+$$ 
+LANGUAGE plpgsql;
+
+
 BEGIN TRANSACTION;
 SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
-
 DO
 $$
+DECLARE sum_prices MONEY := 0::MONEY;
+DECLARE purchase_ident INTEGER := 0;
 BEGIN
+        SELECT sum((price - price*get_discount(item_id, now())) * quantity) INTO sum_prices
+        FROM item JOIN cart USING (item_id)
+        WHERE user_id = 1;
+         
     IF (
+        
         (SELECT balance 
         FROM users
-        WHERE user_id = $user_id)
+        WHERE user_id = 1)
         -
-        (SELECT sum(price) 
-        FROM item 
-        WHERE item_id IN (SELECT item_id FROM cart WHERE user_id = $user_id)) 
+        (sum_prices)
         >= 0::MONEY
-        ) THEN
+        )
+        THEN 
         
-        UPDATE users
-        SET balance = balance - (SELECT price FROM item WHERE item_id = $item_id) 
-        WHERE item_id = $item_id;
-        
+            UPDATE users
+            SET balance = balance - sum_prices
+            WHERE user_id = 1;
+
+            INSERT INTO purchase(user_id,date) VALUES (1, now()) RETURNING purchase_id INTO purchase_ident;
+
+            INSERT INTO purchase_item (purchase_id, item_id, price, quantity)
+                SELECT purchase_ident, item_id, (price-price*get_discount(item_id, now())) * quantity, quantity
+                FROM item JOIN cart USING (item_id)
+                WHERE user_id = 1;
         
     END IF;
 END
