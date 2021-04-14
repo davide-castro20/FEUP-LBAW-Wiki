@@ -20,7 +20,14 @@ Our website aims to help customers get what then need when they need it during t
 
 ### 2. Permissions
 
-> Define the permissions used by each module, necessary to access its data and features.  
+|   |   |   |
+|---|---|---|
+| PUB  | Public | Group of users without privileges |
+| USR  | User | Authenticated user |
+| OWN  | Owner | Group of users who own something (e.g. own profile) |
+| ADM  | Administrator | Group of administrators |
+
+
 
 ### 3. Modules
 
