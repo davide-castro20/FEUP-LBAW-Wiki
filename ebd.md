@@ -574,8 +574,8 @@ INSERT INTO "ban" (adminID,userID,date,reason)
 | **Description** | Make new purchase |
 | **Frequency**   | dozens per day                     |
 ```sql 
-INSERT INTO "purchase" (purchase_id,userID,date)
-    VALUES ($purchase_id,$userID,$date)
+INSERT INTO "purchase" (userID,date)
+    VALUES ($userID,$date)
 ```
 
 | **Query**       | INSERT07                           |
@@ -601,8 +601,20 @@ INSERT INTO "wishlist" (user_id,item_id,add_date)
 | **Description** | New notification |
 | **Frequency**   | dozens per day                     |
 ```sql 
-INSERT INTO "notification" (notification_id,user_id,item_id,discount_id,date,is_seen,type)
-    VALUES ($notification_id,$user_id,$item_id,$discount_id,$date,$is_seen,$type)
+INSERT INTO "notification" (user_id,item_id,discount_id,date,is_seen,type)
+    VALUES ($user_id,$item_id,$discount_id,$date,$is_seen,$type)
+```
+
+| **Query**       | INSERT10                           |
+| ---             | ---                                    |
+| **Description** | Discount on category |
+| **Frequency**   | units per week                     |
+```sql 
+INSERT INTO apply_discount(item_id,discount_id)
+    SELECT item_id, $discount_id
+    FROM item JOIN category USING category_id
+    WHERE category.name = $category
+
 ```
 
 | **Query**       | DELETE01 |
@@ -1049,7 +1061,7 @@ $$;
 COMMIT;
 ```
 
-| T02 | Balance on Checkout                             |
+| T02 | Balance and purchase on Checkout                             |
 | --------------- | ----------------------------------- |
 | Justification   | When a user performs a checkout using money from their account balance, it is important to make sure that their balance and the cart are not updated externally during the operation, and so it is necessary to use a transaction. Serializable isolation is used to avoid dirty and nonrepeatable reads on the balance and cart tables while also making sure that all necessary rows, the items in the cart, are read (no phantoms). |
 | Isolation level | Serializable |
@@ -1063,18 +1075,19 @@ $$
 BEGIN
     IF (
         (SELECT balance 
-        FROM authenticated 
-        WHERE authenticated_id = $authenticated_id)
+        FROM users
+        WHERE user_id = $user_id)
         -
         (SELECT sum(price) 
         FROM item 
-        WHERE item_id IN (SELECT item_id FROM cart WHERE authenticated_id = $authenticated_id)) 
+        WHERE item_id IN (SELECT item_id FROM cart WHERE user_id = $user_id)) 
         >= 0::MONEY
         ) THEN
         
-        UPDATE authenticated 
+        UPDATE users
         SET balance = balance - (SELECT price FROM item WHERE item_id = $item_id) 
         WHERE item_id = $item_id;
+        
         
     END IF;
 END
