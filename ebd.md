@@ -612,7 +612,7 @@ INSERT INTO "notification" (user_id,item_id,discount_id,date,is_seen,type)
 ```sql 
 INSERT INTO apply_discount(item_id,discount_id)
     SELECT item_id, $discount_id
-    FROM item JOIN category USING category_id
+    FROM item JOIN category USING (category_id)
     WHERE category.name = $category
 
 ```
