@@ -2354,23 +2354,23 @@ INSERT INTO purchase_item (purchase_id, item_id, price, quantity) VALUES (9, 17,
 INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (1, 3, 1, 'Very good!', '08/09/2007 09:48:00', 4);
 INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (2, 4, 1, 'Expensive but worth every penny', '08/30/2007 10:00:00', 5);
 INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (3, 3, 2, 'Awful! Do not buy this', '03/17/2000 07:05:00', 1);
-INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (4, 5, 2, '', '08/24/2006 02:38:00', 1);
-INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (5, 4, 3, '', '09/06/2011 06:22:00', 4);
-INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (6, 5, 4, '', '02/24/2009 00:45:00', 5);
-INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (7, 3, 5, '', '04/25/2000 09:30:00', 1);
-INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (8, 7, 6, '', '06/28/2018 10:33:00', 1);
-INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (9, 4, 7, '', '07/30/2010 05:21:00', 5);
-INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (10, 8, 7, '', '03/03/2006 07:52:00', 3);
-INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (11, 3, 8, '', '03/26/2003 04:18:00', 5);
-INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (12, 6, 9, '', '12/17/2001 00:38:00', 1);
-INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (13, 8, 10, '', '05/29/2013 10:34:00', 2);
-INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (14, 4, 11, '', '12/11/2005 00:43:00', 5);
-INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (15, 2, 13, '', '01/22/2016 01:17:00', 5);
-INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (16, 6, 14, '', '04/30/2013 09:43:00', 2);
-INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (17, 8, 15, '', '04/21/2000 03:13:00', 5);
-INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (18, 6, 18, '', '05/11/2002 01:41:00', 1);
-INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (19, 6, 19, '', '05/11/2006 04:41:00', 4);
-INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (20, 7, 20, '', '09/06/2013 06:28:00', 4);
+INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (4, 5, 2, 'This laptop is perfect for what I want. I can take it with me and work anywhere! Nice battery duration also.', '08/24/2006 02:38:00', 5);
+INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (9, 4, 2, 'A must buy for whoever wants a small and light laptop that can do the work', '07/30/2010 05:21:00', 5);
+INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (5, 4, 3, 'I fell in love with this book. Totally recommend it', '09/06/2011 06:22:00', 4);
+INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (6, 5, 4, 'I feel like a proper business man after reading this', '02/24/2009 00:45:00', 5);
+INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (7, 3, 5, 'It broke after a day of use. Do not buy this, material is too cheap', '04/25/2000 09:30:00', 1);
+INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (8, 7, 6, 'Had to return this. Does not work well, at all', '06/28/2018 10:33:00', 1);
+INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (10, 8, 9, 'its a good phone, better than most but wayyy too expensive', '03/03/2006 07:52:00', 3);
+INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (11, 3, 9, 'Ive always bought iPhones for years and this one doesnt disappoint! It is a bit expensive but you cannot find anything better out there', '03/26/2003 04:18:00', 5);
+INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (12, 6, 9, 'apple what are you doing???', '12/17/2001 00:38:00', 1);
+INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (13, 8, 10, 'I was enjoying it, until the folding part of the screen started getting weird', '05/29/2013 10:34:00', 2);
+INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (14, 4, 11, 'perfect weight and sound. always use them to listen to music while im studying', '12/11/2005 00:43:00', 5);
+INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (15, 2, 16, 'Ive been gaming on this tv and its just a blast. Amazing quality', '01/22/2016 01:17:00', 5);
+INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (16, 6, 17, 'the image quality is just stunning. best tv ive ever bought', '04/30/2013 09:43:00', 5);
+INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (17, 8, 17, 'This is literally the future', '04/21/2000 03:13:00', 5);
+INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (18, 6, 18, 'Not as good as the other ones, but still a fun ride', '05/11/2002 01:41:00', 3);
+INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (19, 6, 19, 'EPIIIICCCCC!! MUST WATCH', '05/11/2006 04:41:00', 5);
+INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (20, 7, 20, 'Average movie, not much to say', '09/06/2013 06:28:00', 3);
 ```
 
 
