@@ -218,8 +218,7 @@ This artifact cointais all indexes, triggers, functions and transactions needed 
 ### 1. Database Workload  
 
 #### 1.1. Tuple Estimation
-
-> Estimate of tuples at each relation.  	
+	
 
 | **Relation reference** | **Relation Name** | **Order of magnitude**        | **Estimated growth** |
 | ------------------ | ------------- | ------------------------- | -------- |
