@@ -209,12 +209,9 @@ In this section, the functional dependencies and the normal form each table is i
 
 ## A6: Indexes, triggers, user functions, transactions and population
 
-> Brief presentation of the product.  
-> Brief presentation of the artefact goals.
+This artifact cointais all indexes, triggers, functions and transactions needed for the database to work as well as the estimated growth of the database.
 
-### 1. Database Workload
-
-> A study of the predicted system load (database load), organized in subsections.  
+### 1. Database Workload  
 
 #### 1.1. Tuple Estimation
 
@@ -246,7 +243,6 @@ In this section, the functional dependencies and the normal form each table is i
 
 #### 1.2. Frequent Queries
 
-> Most important queries (SELECT) and their frequency.  
 
 | Query reference   | SELECT01          |
 | ----------------- | ----------------- |
@@ -484,12 +480,8 @@ limit 3;
 ```
 
 
-
-
-
 #### 1.3. Frequent Updates
 
-> Most important updates (INSERT, UPDATE, DELETE) and their frequency.  
 
 | **Query**       | UPDATE01                               |
 | ---             | ---                                    |
@@ -749,7 +741,6 @@ CREATE INDEX purchase_user_id ON purchase USING hash(user_id);
 
 #### 2.2. Full-text Search Indices 
 
-> The system being developed must provide full-text search features supported by PostgreSQL. Thus, it is necessary to specify the fields where full-text search will be available and the associated setup, namely all necessary configurations, indexes definitions and other relevant details.  
 
 | **Index**           | IDX09                                  |
 | ---                 | ---                                    |
@@ -765,7 +756,6 @@ CREATE INDEX item_search_index ON item USING GIN (search);
 
 ### 3. Triggers
 
-> User-defined functions and trigger procedures that add control structures to the SQL language or perform complex computations, are identified and described to be trusted by the database server. Every kind of function (SQL functions, Stored procedures, Trigger procedures) can take base types, composite types, or combinations of these as arguments (parameters). In addition, every kind of function can return a base type or a composite type. Functions can also be defined to return sets of base or composite values. 
 
 | **Trigger**     | TRIGGER01                                                    |
 | --------------- | ------------------------------------------------------------ |
@@ -1196,12 +1186,6 @@ COMMIT;
 
 ### 4. SQL Code
 
-> The database scripts are included in this annex to the EBD component.
->
-> The database creation script and the population script should be presented as separate elements.
-> The creation script includes the code necessary to build (and rebuild) the database.
-> The population script includes an amount of tuples suitable for testing and with plausible values for the fields of the database.  
-> This code should also be included in the group's git repository and links included here.
 
 #### A.1. Database schema
 
