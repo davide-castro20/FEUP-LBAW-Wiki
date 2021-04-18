@@ -2074,17 +2074,6 @@ INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_
 INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (8, 'New Lenovo laptops now available', '07/09/2006 06:18:00', '06/28/2021 05:47:00', 29);
 INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (9, 'All action movies on sale', '01/27/2000 05:34:00', '04/14/2021 09:13:00', 38);
 INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (10, 'Black Friday 2020', '12/05/2004 02:33:00', '04/26/2021 02:56:00', 38);
--- INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (11, '', '03/02/2019 02:38:00', '05/23/2021 03:14:00', 38);
--- INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (12, 'Dr', '10/01/2001 07:26:00', '07/01/2021 08:04:00', 31);
--- INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (13, 'Mstr', '07/31/2014 06:00:00', '08/06/2021 01:43:00', 31);
--- INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (14, 'Mstr', '04/25/2002 03:25:00', '06/14/2021 10:50:00', 35);
--- INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (15, 'Prof', '10/08/2002 01:08:00', '06/20/2021 09:37:00', 35);
--- INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (16, 'Mstr', '01/08/2003 00:15:00', '05/28/2021 10:33:00', 37);
--- INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (17, 'Mstr', '10/26/2008 03:49:00', '06/06/2021 00:20:00', 37);
--- INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (18, 'Prof', '03/04/2010 07:25:00', '07/09/2021 04:30:00', 31);
--- INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (19, 'Lady', '04/12/2001 06:27:00', '04/13/2021 09:24:00', 31);
--- INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (20, 'Lady', '09/22/2019 00:45:00', '05/11/2021 09:13:00', 31);
-
 
 
 INSERT INTO apply_discount (item_id, discount_id) VALUES (10, 7);
