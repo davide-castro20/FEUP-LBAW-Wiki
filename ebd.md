@@ -50,6 +50,10 @@ In this artifact our website's database relational schema is presented as well a
 | R20                | category_detail(<ins>category_id</ins>&#8594;category, <ins>detail_id</ins>&#8594;detail) |
 
 All users' attributes must be not null when deleted is false but all but the id are null when deleted is true. Because of this, the attributes cannot have the flag not null.
+Generalizations:
+- Authenticated/Admin: Added a boolean to represent an admin as creating a new table with no fields is not recommended in this case.
+- Types of notifications: Merged them together as they have the same atributes except for one.
+- Photos: Since the relation for the photos of users and advertisements is 1-1, it better if the user and the advertisement keep a reference to their photo.
 
 ### 2. Domains
 
