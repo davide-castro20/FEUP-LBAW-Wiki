@@ -907,7 +907,7 @@ EXECUTE PROCEDURE update_score_delete();
 
 | **Trigger**     | TRIGGER06                                               |
 | --------------- | ------------------------------------------------------- |
-| **Description** | When an item is added, updates it's tsvector for search |
+| **Description** | When an item is added or updated, it's tsvector is updated for search |
 | `SQL code`      |                                                         |
 
 ```sql
@@ -934,7 +934,7 @@ EXECUTE PROCEDURE update_item_tsvector();
 
 | **Trigger**     | TRIGGER07                                               |
 | --------------- | ------------------------------------------------------- |
-| **Description** | When a detail is added to an item, updates its tsvector |
+| **Description** | When a detail is added or updated to an item, its tsvector is updated for search |
 | `SQL code`      |                                                         |
 
 ```sql
