@@ -697,7 +697,7 @@ CREATE INDEX cart_user_id ON cart USING hash(user_id);
 | **Type**            | B-tree             |
 | **Cardinality**     | Medium |
 | **Clustering**      | Yes                |
-| **Justification**   | To allow for getting all the reviews of an item faster, clustering them |
+| **Justification**   | To allow for getting all the reviews of an item faster, clustering them. Cardinality is medium |
 ```sql
 CREATE INDEX item_review_idx ON review USING btree(item_id);
 CLUSTER review using item_review_idx;
