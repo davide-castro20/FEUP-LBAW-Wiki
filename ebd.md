@@ -916,10 +916,13 @@ DROP FUNCTION IF EXISTS update_item_tsvector() CASCADE;
 CREATE FUNCTION update_item_tsvector() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    update item 
-	set search = setweight(to_tsvector('english',coalesce(item.name,'')), 'A') ||
-	setweight(to_tsvector('english',coalesce(item.description,'')), 'B')
-	where new.item_id=item.item_id;
+    IF pg_trigger_depth() <=1 THEN 
+    		update item 
+		set search = setweight(to_tsvector('english',coalesce(item.name,'')), 'A') ||
+		setweight(to_tsvector('english',coalesce(item.description,'')), 'B')
+		where new.item_id=item.item_id;
+	
+	END IF;
     RETURN NEW;
 
 END
@@ -1539,10 +1542,12 @@ DROP FUNCTION IF EXISTS update_item_tsvector() CASCADE;
 CREATE FUNCTION update_item_tsvector() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    update item 
-	set search = setweight(to_tsvector('english',coalesce(item.name,'')), 'A') ||
-	setweight(to_tsvector('english',coalesce(item.description,'')), 'B')
-	where new.item_id=item.item_id;
+    IF pg_trigger_depth() <=1 THEN 
+            update item 
+	    set search = setweight(to_tsvector('english',coalesce(item.name,'')), 'A') ||
+	    setweight(to_tsvector('english',coalesce(item.description,'')), 'B')
+	    where new.item_id=item.item_id;
+	END IF;
     RETURN NEW;
 
 END
