@@ -816,7 +816,7 @@ FOR EACH ROW
 EXECUTE PROCEDURE add_stock_notification();
 ```
 
-| **Trigger**     | TRIGGER04                                                  |
+| **Trigger**     | TRIGGER03                                                |
 | --------------- | ---------------------------------------------------------- |
 | **Description** | When a review is added, the item's rating is recalculated. |
 | `SQL code`      |                                                            |
@@ -845,7 +845,7 @@ FOR EACH ROW
 EXECUTE PROCEDURE update_score();
 ```
 
-| **Trigger**     | TRIGGER05                                                    |
+| **Trigger**     | TRIGGER04                                                    |
 | --------------- | ------------------------------------------------------------ |
 | **Description** | When a review is updated, if the new score is different from the old score |
 | `SQL code`      |                                                              |
@@ -876,7 +876,7 @@ FOR EACH ROW
 EXECUTE PROCEDURE update_score_change_review();
 ```
 
-| **Trigger**     | TRIGGER06                                                    |
+| **Trigger**     | TRIGGER05                                                    |
 | --------------- | ------------------------------------------------------------ |
 | **Description** | When a review is deleted, the item's score is updated. If there are no reviews left, the score gets set to 0. |
 | `SQL code`      |                                                              |
@@ -905,7 +905,7 @@ FOR EACH ROW
 EXECUTE PROCEDURE update_score_delete();
 ```
 
-| **Trigger**     | TRIGGER07                                               |
+| **Trigger**     | TRIGGER06                                               |
 | --------------- | ------------------------------------------------------- |
 | **Description** | When an item is added, updates it's tsvector for search |
 | `SQL code`      |                                                         |
@@ -932,7 +932,7 @@ FOR EACH ROW
 EXECUTE PROCEDURE update_item_tsvector();
 ```
 
-| **Trigger**     | TRIGGER08                                               |
+| **Trigger**     | TRIGGER07                                               |
 | --------------- | ------------------------------------------------------- |
 | **Description** | When a detail is added to an item, updates its tsvector |
 | `SQL code`      |                                                         |
@@ -966,7 +966,7 @@ FOR EACH ROW
 EXECUTE PROCEDURE update_item_tsvector_detail();
 ```
 
-| **Trigger**     | TRIGGER09                                                    |
+| **Trigger**     | TRIGGER08                                                    |
 | --------------- | ------------------------------------------------------------ |
 | **Description** | When a user is banned, all their comments are deleted and the stock is added to the items |
 | `SQL code`      |                                                              |
