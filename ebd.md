@@ -927,7 +927,7 @@ END
 $BODY$
 LANGUAGE plpgsql;
 CREATE TRIGGER update_item_tsvector
-AFTER INSERT ON item
+AFTER INSERT OR UPDATE ON item
 FOR EACH ROW
 EXECUTE PROCEDURE update_item_tsvector();
 ```
@@ -961,7 +961,7 @@ END
 $BODY$
 LANGUAGE plpgsql;
 CREATE TRIGGER update_item_tsvector_detail
-AFTER INSERT ON item_detail
+AFTER INSERT OR UPDATE ON item_detail
 FOR EACH ROW
 EXECUTE PROCEDURE update_item_tsvector_detail();
 ```
@@ -1550,7 +1550,7 @@ END
 $BODY$
 LANGUAGE plpgsql;
 CREATE TRIGGER update_item_tsvector
-AFTER INSERT ON item
+AFTER INSERT OR UPDATE ON item
 FOR EACH ROW
 EXECUTE PROCEDURE update_item_tsvector();
 
@@ -1580,7 +1580,7 @@ $BODY$
 
 LANGUAGE plpgsql;
 CREATE TRIGGER update_item_tsvector_detail
-AFTER INSERT ON item_detail
+AFTER INSERT OR UPDATE ON item_detail
 FOR EACH ROW
 EXECUTE PROCEDURE update_item_tsvector_detail();
 
