@@ -1993,46 +1993,55 @@ INSERT INTO item_detail (item_id, detail_id, detail_info) VALUES (20, 23, 'Blu-r
 
 
 
-INSERT INTO photo (photo_id, path) VALUES (1, 'http://dummyimage.com/250x100.png/ff4444/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (2, 'http://dummyimage.com/176x100.png/ff4444/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (3, 'http://dummyimage.com/139x100.png/ff4444/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (4, 'http://dummyimage.com/122x100.png/ff4444/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (5, 'http://dummyimage.com/110x100.png/cc0000/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (6, 'http://dummyimage.com/152x100.png/cc0000/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (7, 'http://dummyimage.com/188x100.png/cc0000/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (8, 'http://dummyimage.com/212x100.png/5fa2dd/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (9, 'http://dummyimage.com/233x100.png/ff4444/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (10, 'http://dummyimage.com/241x100.png/5fa2dd/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (11, 'http://dummyimage.com/197x100.png/dddddd/000000');
-INSERT INTO photo (photo_id, path) VALUES (12, 'http://dummyimage.com/139x100.png/cc0000/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (13, 'http://dummyimage.com/216x100.png/ff4444/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (14, 'http://dummyimage.com/107x100.png/dddddd/000000');
-INSERT INTO photo (photo_id, path) VALUES (15, 'http://dummyimage.com/184x100.png/cc0000/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (16, 'http://dummyimage.com/115x100.png/dddddd/000000');
-INSERT INTO photo (photo_id, path) VALUES (17, 'http://dummyimage.com/223x100.png/5fa2dd/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (18, 'http://dummyimage.com/124x100.png/ff4444/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (19, 'http://dummyimage.com/173x100.png/dddddd/000000');
-INSERT INTO photo (photo_id, path) VALUES (20, 'http://dummyimage.com/227x100.png/ff4444/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (21, 'http://dummyimage.com/170x100.png/dddddd/000000');
-INSERT INTO photo (photo_id, path) VALUES (22, 'http://dummyimage.com/236x100.png/5fa2dd/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (23, 'http://dummyimage.com/183x100.png/ff4444/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (24, 'http://dummyimage.com/147x100.png/5fa2dd/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (25, 'http://dummyimage.com/101x100.png/ff4444/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (26, 'http://dummyimage.com/216x100.png/cc0000/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (27, 'http://dummyimage.com/116x100.png/5fa2dd/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (28, 'http://dummyimage.com/143x100.png/cc0000/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (29, 'http://dummyimage.com/103x100.png/cc0000/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (30, 'http://dummyimage.com/194x100.png/dddddd/000000');
-INSERT INTO photo (photo_id, path) VALUES (31, 'http://dummyimage.com/105x100.png/ff4444/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (32, 'http://dummyimage.com/221x100.png/ff4444/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (33, 'http://dummyimage.com/176x100.png/5fa2dd/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (34, 'http://dummyimage.com/168x100.png/cc0000/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (35, 'http://dummyimage.com/225x100.png/5fa2dd/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (36, 'http://dummyimage.com/144x100.png/cc0000/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (37, 'http://dummyimage.com/104x100.png/dddddd/000000');
-INSERT INTO photo (photo_id, path) VALUES (38, 'http://dummyimage.com/119x100.png/cc0000/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (39, 'http://dummyimage.com/167x100.png/dddddd/000000');
-INSERT INTO photo (photo_id, path) VALUES (40, 'http://dummyimage.com/148x100.png/5fa2dd/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (1, 'http://dummyimage.com/219x100.png/5fa2dd/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (2, 'http://dummyimage.com/162x100.png/cc0000/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (3, 'http://dummyimage.com/235x100.png/cc0000/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (4, 'http://dummyimage.com/164x100.png/cc0000/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (5, 'http://dummyimage.com/214x100.png/cc0000/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (6, 'http://dummyimage.com/186x100.png/ff4444/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (7, 'http://dummyimage.com/131x100.png/dddddd/000000');
+INSERT INTO photo (photo_id, path) VALUES (8, 'http://dummyimage.com/195x100.png/5fa2dd/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (9, 'http://dummyimage.com/163x100.png/ff4444/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (10, 'http://dummyimage.com/231x100.png/cc0000/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (11, 'http://dummyimage.com/195x100.png/dddddd/000000');
+INSERT INTO photo (photo_id, path) VALUES (12, 'http://dummyimage.com/122x100.png/5fa2dd/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (13, 'http://dummyimage.com/143x100.png/cc0000/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (14, 'http://dummyimage.com/139x100.png/dddddd/000000');
+INSERT INTO photo (photo_id, path) VALUES (15, 'http://dummyimage.com/104x100.png/ff4444/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (16, 'http://dummyimage.com/232x100.png/dddddd/000000');
+INSERT INTO photo (photo_id, path) VALUES (17, 'http://dummyimage.com/127x100.png/ff4444/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (18, 'http://dummyimage.com/204x100.png/cc0000/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (19, 'http://dummyimage.com/151x100.png/5fa2dd/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (20, 'http://dummyimage.com/182x100.png/dddddd/000000');
+INSERT INTO photo (photo_id, path) VALUES (21, 'http://dummyimage.com/207x100.png/dddddd/000000');
+INSERT INTO photo (photo_id, path) VALUES (22, 'http://dummyimage.com/158x100.png/ff4444/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (23, 'http://dummyimage.com/207x100.png/5fa2dd/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (24, 'http://dummyimage.com/222x100.png/cc0000/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (25, 'http://dummyimage.com/174x100.png/cc0000/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (26, 'http://dummyimage.com/217x100.png/5fa2dd/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (27, 'http://dummyimage.com/224x100.png/5fa2dd/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (28, 'http://dummyimage.com/189x100.png/5fa2dd/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (29, 'http://dummyimage.com/116x100.png/cc0000/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (30, 'http://dummyimage.com/180x100.png/cc0000/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (31, 'http://dummyimage.com/129x100.png/5fa2dd/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (32, 'http://dummyimage.com/107x100.png/ff4444/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (33, 'http://dummyimage.com/156x100.png/ff4444/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (34, 'http://dummyimage.com/186x100.png/5fa2dd/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (35, 'http://dummyimage.com/242x100.png/cc0000/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (36, 'http://dummyimage.com/156x100.png/5fa2dd/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (37, 'http://dummyimage.com/161x100.png/cc0000/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (38, 'http://dummyimage.com/175x100.png/dddddd/000000');
+INSERT INTO photo (photo_id, path) VALUES (39, 'http://dummyimage.com/212x100.png/5fa2dd/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (40, 'http://dummyimage.com/118x100.png/cc0000/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (41, 'http://dummyimage.com/227x100.png/ff4444/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (42, 'http://dummyimage.com/181x100.png/cc0000/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (43, 'http://dummyimage.com/182x100.png/5fa2dd/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (44, 'http://dummyimage.com/219x100.png/cc0000/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (45, 'http://dummyimage.com/185x100.png/5fa2dd/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (46, 'http://dummyimage.com/153x100.png/cc0000/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (47, 'http://dummyimage.com/184x100.png/ff4444/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (48, 'http://dummyimage.com/183x100.png/ff4444/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (49, 'http://dummyimage.com/108x100.png/ff4444/ffffff');
 
 
 
@@ -2069,16 +2078,16 @@ INSERT INTO address (address_id, city, street, zip_code, country_id) VALUES (30,
 
 
 
-INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (1, 'New gaming laptops', '05/06/2014 09:00:00', '08/07/2021 10:27:00', 10);
-INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (2, 'Back to school! New school materials', '09/07/2016 03:22:00', '06/16/2021 06:50:00', 10);
-INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (3, 'New selection of UHD televisions', '04/16/2007 04:29:00', '08/08/2021 01:19:00', NULL);
-INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (4, 'New iPhones now available', '03/16/2018 02:04:00', '06/25/2021 03:17:00', 10);
-INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (5, 'Discounts up to 50% on Xiaomi smarthphones', '02/08/2014 04:22:00', '07/28/2021 07:25:00', 15);
-INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (6, 'Laptops on discount', '05/29/2003 03:21:00', '05/15/2021 09:56:00', 20);
-INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (7, 'Discount on all school materials', '12/03/2016 09:06:00', '04/26/2021 02:56:00', 26);
-INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (8, 'New Lenovo laptops now available', '07/09/2006 06:18:00', '06/28/2021 05:47:00', 29);
-INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (9, 'All action movies on sale', '01/27/2000 05:34:00', '04/14/2021 09:13:00', 38);
-INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (10, 'Black Friday 2020', '12/05/2004 02:33:00', '04/26/2021 02:56:00', 38);
+INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (1, 'New gaming laptops', '05/06/2014 09:00:00', '08/07/2021 10:27:00', 31);
+INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (2, 'Back to school! New school materials', '09/07/2016 03:22:00', '06/16/2021 06:50:00', 32);
+INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (3, 'New selection of UHD televisions', '04/16/2007 04:29:00', '08/08/2021 01:19:00', 33);
+INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (4, 'New iPhones now available', '03/16/2018 02:04:00', '06/25/2021 03:17:00', 34);
+INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (5, 'Discounts up to 50% on Xiaomi smarthphones', '02/08/2014 04:22:00', '07/28/2021 07:25:00', 35);
+INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (6, 'Laptops on discount', '05/29/2003 03:21:00', '05/15/2021 09:56:00', 36);
+INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (7, 'Discount on all school materials', '12/03/2016 09:06:00', '04/26/2021 02:56:00', 37);
+INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (8, 'New Lenovo laptops now available', '07/09/2006 06:18:00', '06/28/2021 05:47:00', 38);
+INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (9, 'All action movies on sale', '01/27/2000 05:34:00', '04/14/2021 09:13:00', 39);
+INSERT INTO advertisement (advertisement_id, title, begin_date, end_date, photo_id) VALUES (10, 'Black Friday 2020', '12/05/2004 02:33:00', '04/26/2021 02:56:00', 40);
 
 
 INSERT INTO apply_discount (item_id, discount_id) VALUES (10, 7);
@@ -2204,15 +2213,15 @@ INSERT INTO item_photo (photo_id, item_id) VALUES (30, 20);
 
 
 
-INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (1, 'Tom9', 'Freddy.Bergdahl@telefonica.com', 'Rachel', 'Hummel', 'E6MM7ndGb22eq3K5v10ACxLDFVmAKZmNgePm3AWrssEitMI00wa72A1FVzt8FvymLylng2WG2cVTcnTzVAlpsGLZiZeZdc4NiIv6mpE', False, True, '8128488.8', 5, 7, 7);
-INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (2, 'Sophia', 'Mart.Hollman@msn.dk', 'Lia', 'Polti', 'TyNHIpa6MKX444MXmmO5qcNaC8QjHS7GLRQXjUKIlCQ2SSFGcKKcvC0ppNSEAIygTFH0MMHiin4eznQ2jYLdTSaUVIP6try8bSHprUuzfSjNnDVB1Z0pVqjkOLhEV6MnZS', False, True, '5223662.0', 5, 7, 7);
-INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (3, 'Carlos83', 'gamingwithapotato@gmail.com', 'Herbert', 'Anderson', 'btWp5iKDSHBYQyZZ7sHIa0zDaATKZbeeSeCycslTiaXyeOemaY1vWYGWXHWijO2pKpmJex08LsomZ7ySNzaMZbKIELfkYhIwoEuDJ2QhSQXY24EwJhcJ5ZQYYBQ7VVfTEXio2GcVABEQgeEoJJHfBb8gBpDtCT0gmUhei1dmunu', False, False, '2938243.84', 8, 16, 16);
-INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (4, 'Helma', 'FreddyWarner@gawab.ca', 'Fons', 'Lawton', 'LgMjfTOWQBTFcsYhiBNdXFIlPTHcC5As82bBHDLyKQedYTadPbM2bkUULpSdxr66wWfMMERFtypXB2hLZNsfiftmhBqkBAXs268TL5ZIdpe7MhD8NanLtHMaVTDnSPcOT4Sf6aEbs3PlvaHL63jk6oUovkrdxHSnHlkBMWAXTDTyh7kko50yuj0Lmp', False, False, '9568377.54', 8, 21, 21);
-INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (5, 'Bess0', 'BiancaDulisse2@lycos.co.uk', 'Isaac', 'Cohen', 'FI5UQZrxYEDkEEQCz3E368V6jc3cwswNM3flBO0uWJveppbkE1MyQtYKQrsoZIdFMEb4YWmI3YypgPig0eOSJlVfUtOfb37ipo3phmOeFp8y2w2u637UCiD8781eoZISDTRC', False, False, '7089429.27', 8, NULL, 21);
-INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (6, 'Suzanne36', 'RogierGuethlein4@weboffice.de', 'Javier', 'Petrzelka', 'FSBQAVmZ8SpmTRgXX1RRG8I2aHVo3g1SunXdfAqLYWpbGwB6OdGTbcUsDepaaOcaaW7s7df3cpMhoBeRWv4TPcsOiromF1hmRj5Q1tgm8Ib8Eq2kpblgLVOJ8NphoTpSc3BMn4TeoR42', False, False, '5078026.12', 12, 22, 22);
-INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (7, 'Steph3', 'HToler@mymail.us', 'Mads', 'Storrs', 'pJ1ZJCvfbRXFfiXmgjulat3mZJWTlEXcNZAdYGXHlyCDvSkFfb3D81dy6xwWDdUIZSOLMdyKNE6VePjpakevNbMbK4ZTL7BsdBJVOLvcA14imZ2D5cJxes8q8zjD4YGnde5w7OmYWjNiOcPuuoebcZAU4eZWU8nDcggeZ3V2zll5Qee5BmxE0PczBvVuGtPG1TAA46NrxxTj14dN3', False, False, '1081580.6', 12, 22, 22);
-INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (8, 'Piotr', 'Mandy.Fernandez5@freeweb.co.uk', 'Shermie', 'Helfrich', 'Y81DcKmovDAcVMYS47A6bsb1mSNqNlLvHXXrqNzvtxy4aK3uPZRwI5yVjstKp27NrRFZwdY50TMKDh1I0iwKCoEyvN81GjCvKVUtjYpeJUBLs1fgypQUSCj8ZiTvZ2zeCJngQUoWaZvkpO5WHl2Vn67gwP7ba033QApowfwnExc3dqdIoQIIk5XimAdcq1yt8lFRbFyHlvtQzRnNwVRSzoYnJQR8DcDSVqJLHwxOwNg6B7pHqqXS', False, False, '2299613.26', 12, 22, 22);
-INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (9, 'Herb246', 'Trees.Gaskins5@gawab.es', 'Pieter', 'Orcutt', 'rNlwgEByc12R715pWnUlKzqtUI3kC3gvsFV2HPgRdUSi5dce64hZXZYXJ2zlWYjMLzPQFna6hEZ7QdOCtPGUauUufDDOjrfIg8joPvALzxEaMjgyvnChJOXgJwpwKbx3KtNsy3UbgOL4jgDAV', False, False, '2950352.32', 19, NULL, 22);
+INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (1, 'Tom9', 'Freddy.Bergdahl@telefonica.com', 'Rachel', 'Hummel', 'E6MM7ndGb22eq3K5v10ACxLDFVmAKZmNgePm3AWrssEitMI00wa72A1FVzt8FvymLylng2WG2cVTcnTzVAlpsGLZiZeZdc4NiIv6mpE', False, True, '8128488.8', 41, 7, 7);
+INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (2, 'Sophia', 'Mart.Hollman@msn.dk', 'Lia', 'Polti', 'TyNHIpa6MKX444MXmmO5qcNaC8QjHS7GLRQXjUKIlCQ2SSFGcKKcvC0ppNSEAIygTFH0MMHiin4eznQ2jYLdTSaUVIP6try8bSHprUuzfSjNnDVB1Z0pVqjkOLhEV6MnZS', False, True, '5223662.0', 42, 7, 7);
+INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (3, 'Carlos83', 'gamingwithapotato@gmail.com', 'Herbert', 'Anderson', 'btWp5iKDSHBYQyZZ7sHIa0zDaATKZbeeSeCycslTiaXyeOemaY1vWYGWXHWijO2pKpmJex08LsomZ7ySNzaMZbKIELfkYhIwoEuDJ2QhSQXY24EwJhcJ5ZQYYBQ7VVfTEXio2GcVABEQgeEoJJHfBb8gBpDtCT0gmUhei1dmunu', False, False, '2938243.84', 43, 16, 16);
+INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (4, 'Helma', 'FreddyWarner@gawab.ca', 'Fons', 'Lawton', 'LgMjfTOWQBTFcsYhiBNdXFIlPTHcC5As82bBHDLyKQedYTadPbM2bkUULpSdxr66wWfMMERFtypXB2hLZNsfiftmhBqkBAXs268TL5ZIdpe7MhD8NanLtHMaVTDnSPcOT4Sf6aEbs3PlvaHL63jk6oUovkrdxHSnHlkBMWAXTDTyh7kko50yuj0Lmp', False, False, '9568377.54', 44, 21, 21);
+INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (5, 'Bess0', 'BiancaDulisse2@lycos.co.uk', 'Isaac', 'Cohen', 'FI5UQZrxYEDkEEQCz3E368V6jc3cwswNM3flBO0uWJveppbkE1MyQtYKQrsoZIdFMEb4YWmI3YypgPig0eOSJlVfUtOfb37ipo3phmOeFp8y2w2u637UCiD8781eoZISDTRC', False, False, '7089429.27', 45, NULL, 21);
+INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (6, 'Suzanne36', 'RogierGuethlein4@weboffice.de', 'Javier', 'Petrzelka', 'FSBQAVmZ8SpmTRgXX1RRG8I2aHVo3g1SunXdfAqLYWpbGwB6OdGTbcUsDepaaOcaaW7s7df3cpMhoBeRWv4TPcsOiromF1hmRj5Q1tgm8Ib8Eq2kpblgLVOJ8NphoTpSc3BMn4TeoR42', False, False, '5078026.12', 46, 22, 22);
+INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (7, 'Steph3', 'HToler@mymail.us', 'Mads', 'Storrs', 'pJ1ZJCvfbRXFfiXmgjulat3mZJWTlEXcNZAdYGXHlyCDvSkFfb3D81dy6xwWDdUIZSOLMdyKNE6VePjpakevNbMbK4ZTL7BsdBJVOLvcA14imZ2D5cJxes8q8zjD4YGnde5w7OmYWjNiOcPuuoebcZAU4eZWU8nDcggeZ3V2zll5Qee5BmxE0PczBvVuGtPG1TAA46NrxxTj14dN3', False, False, '1081580.6', 47, 22, 22);
+INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (8, 'Piotr', 'Mandy.Fernandez5@freeweb.co.uk', 'Shermie', 'Helfrich', 'Y81DcKmovDAcVMYS47A6bsb1mSNqNlLvHXXrqNzvtxy4aK3uPZRwI5yVjstKp27NrRFZwdY50TMKDh1I0iwKCoEyvN81GjCvKVUtjYpeJUBLs1fgypQUSCj8ZiTvZ2zeCJngQUoWaZvkpO5WHl2Vn67gwP7ba033QApowfwnExc3dqdIoQIIk5XimAdcq1yt8lFRbFyHlvtQzRnNwVRSzoYnJQR8DcDSVqJLHwxOwNg6B7pHqqXS', False, False, '2299613.26', 48, 22, 22);
+INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (9, 'Herb246', 'Trees.Gaskins5@gawab.es', 'Pieter', 'Orcutt', 'rNlwgEByc12R715pWnUlKzqtUI3kC3gvsFV2HPgRdUSi5dce64hZXZYXJ2zlWYjMLzPQFna6hEZ7QdOCtPGUauUufDDOjrfIg8joPvALzxEaMjgyvnChJOXgJwpwKbx3KtNsy3UbgOL4jgDAV', False, False, '2950352.32', 49, NULL, 22);
 INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (10, NULL, NULL, NULL, NULL, 'xFUYINBeq4oPvnONs18WJZ0RqwjYYFPA4MuwQalgNjPODG2FEBcYjYN6azaYebnt6dfpg3AnBgfY4sq4Erv8', True, False, NULL, NULL, NULL, NULL);
 
 
@@ -2251,48 +2260,48 @@ INSERT INTO ban (admin_id, user_id, date, reason) VALUES (1, 4, '07/12/2020 00:4
 INSERT INTO ban (admin_id, user_id, date, reason) VALUES (2, 9, '10/04/2021 00:11:00', 'Racist comment');
 
 
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (9, 6, '10/13/2010 09:58:00', 559201);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (3, 9, '04/22/2000 01:43:00', 588684);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (2, 11, '01/20/2002 08:38:00', 577882);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (6, 19, '09/02/2016 00:17:00', 840149);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (10, 7, '08/06/2006 01:44:00', 525813);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (5, 15, '03/31/2011 00:32:00', 682721);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (2, 19, '10/27/2002 01:18:00', 379295);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (8, 1, '10/15/2014 08:51:00', 890067);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (2, 8, '12/28/2010 08:03:00', 943734);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (2, 12, '02/17/2006 04:49:00', 33703);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (2, 16, '01/19/2012 03:22:00', 791136);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (1, 6, '04/08/2001 00:08:00', 420499);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (10, 11, '06/30/2015 04:13:00', 197609);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (4, 2, '10/08/2020 04:09:00', 80862);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (10, 8, '02/19/2000 10:45:00', 452809);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (8, 11, '01/02/2000 03:07:00', 937706);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (7, 18, '04/23/2002 02:32:00', 826320);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (7, 8, '05/18/2008 04:32:00', 781553);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (8, 9, '02/22/2013 08:25:00', 773985);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (8, 15, '11/22/2017 06:07:00', 79919);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (6, 16, '09/30/2017 07:47:00', 341931);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (4, 4, '06/20/2006 08:52:00', 691917);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (4, 14, '11/15/2002 07:15:00', 262435);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (5, 19, '10/13/2019 01:36:00', 259005);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (1, 2, '03/11/2011 04:24:00', 562391);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (7, 9, '10/25/2004 05:52:00', 38882);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (9, 14, '12/05/2011 02:34:00', 824950);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (7, 15, '11/18/2013 05:02:00', 62563);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (1, 8, '06/26/2013 10:13:00', 652476);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (10, 17, '04/02/2015 03:25:00', 483959);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (7, 2, '05/23/2019 10:22:00', 284675);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (9, 4, '08/31/2008 01:32:00', 791928);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (9, 11, '01/08/2009 00:30:00', 701088);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (6, 14, '03/31/2005 07:53:00', 851144);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (10, 1, '08/17/2001 02:22:00', 472745);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (5, 10, '09/28/2014 10:35:00', 498751);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (3, 19, '09/24/2019 02:22:00', 937278);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (8, 5, '03/26/2020 07:47:00', 307244);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (6, 3, '06/04/2003 08:48:00', 521967);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (7, 5, '05/20/2007 01:16:00', 753500);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (9, 7, '06/06/2012 01:53:00', 998619);
-INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (9, 13, '05/09/2010 09:42:00', 50961);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (9, 6, '10/13/2010 09:58:00', 2);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (3, 9, '04/22/2000 01:43:00', 1);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (2, 11, '01/20/2002 08:38:00', 3);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (6, 19, '09/02/2016 00:17:00', 2);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (10, 7, '08/06/2006 01:44:00', 1);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (5, 15, '03/31/2011 00:32:00', 3);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (2, 19, '10/27/2002 01:18:00', 4);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (8, 1, '10/15/2014 08:51:00', 5);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (2, 8, '12/28/2010 08:03:00', 2);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (2, 12, '02/17/2006 04:49:00', 10);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (2, 16, '01/19/2012 03:22:00', 3);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (1, 6, '04/08/2001 00:08:00', 4);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (10, 11, '06/30/2015 04:13:00', 1);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (4, 2, '10/08/2020 04:09:00', 5);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (10, 8, '02/19/2000 10:45:00', 5);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (8, 11, '01/02/2000 03:07:00', 5);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (7, 18, '04/23/2002 02:32:00', 21);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (7, 8, '05/18/2008 04:32:00', 3);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (8, 9, '02/22/2013 08:25:00', 1);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (8, 15, '11/22/2017 06:07:00', 2);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (6, 16, '09/30/2017 07:47:00', 3);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (4, 4, '06/20/2006 08:52:00', 4);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (4, 14, '11/15/2002 07:15:00', 1);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (5, 19, '10/13/2019 01:36:00', 2);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (1, 2, '03/11/2011 04:24:00', 3);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (7, 9, '10/25/2004 05:52:00', 4);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (9, 14, '12/05/2011 02:34:00', 1);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (7, 15, '11/18/2013 05:02:00', 2);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (1, 8, '06/26/2013 10:13:00', 3);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (10, 17, '04/02/2015 03:25:00', 1);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (7, 2, '05/23/2019 10:22:00', 5);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (9, 4, '08/31/2008 01:32:00', 3);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (9, 11, '01/08/2009 00:30:00', 5);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (6, 14, '03/31/2005 07:53:00', 6);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (10, 1, '08/17/2001 02:22:00', 5);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (5, 10, '09/28/2014 10:35:00', 1);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (3, 19, '09/24/2019 02:22:00', 6);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (8, 5, '03/26/2020 07:47:00', 2);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (6, 3, '06/04/2003 08:48:00', 3);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (7, 5, '05/20/2007 01:16:00', 2);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (9, 7, '06/06/2012 01:53:00', 1);
+INSERT INTO cart (user_id, item_id, add_date, quantity) VALUES (9, 13, '05/09/2010 09:42:00', 3);
 
 
 
