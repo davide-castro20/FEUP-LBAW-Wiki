@@ -181,9 +181,9 @@ In this section, the functional dependencies and the normal form each table is i
 
 | TABLE R17                    | discount                                      |
 | ---------------------------- | --------------------------------------------- |
-| **Keys**                     | { id }                                        |
+| **Keys**                     | { discount_id }                                        |
 | **Functional Dependencies:** |                                               |
-| FD1701                       | { id } → { percentage, begin_date, end_date } |
+| FD1701                       | { discount_id } → { percentage, begin_date, end_date } |
 | **NORMAL FORM**              | BCNF                                          |
 
 | TABLE R18                    | apply_discount           |
