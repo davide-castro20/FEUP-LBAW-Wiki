@@ -1002,7 +1002,7 @@ EXECUTE PROCEDURE remove_banned_user_comments();
 
 | **Trigger**     | TRIGGER09                                                    |
 | --------------- | ------------------------------------------------------------ |
-| **Description** | If a user has an item already on the cart, instead of adding the same item again its quantity is added. |
+| **Description** | If a user has an item already on the cart, instead of adding the same item again, its quantity is added. |
 | `SQL code`      |                                                              |
 
 ```sql
