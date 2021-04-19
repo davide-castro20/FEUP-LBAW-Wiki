@@ -75,7 +75,7 @@ In this section, the functional dependencies and the normal form each table is i
 
 | **TABLE R0**2                | review                                             |
 | :--------------------------- | :------------------------------------------------- |
-| **Keys**                     | { review_id}                                       |
+| **Keys**                     | { review_id }                                       |
 | **Functional Dependencies:** |                                                    |
 | FD0401                       | { review_id } → { user_id, comment, date, rating } |
 | **NORMAL FORM**              | BCNF                                               |
