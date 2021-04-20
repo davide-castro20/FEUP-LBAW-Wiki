@@ -35,7 +35,7 @@ OpenAPI specification in YAML format to describe the web application's web resou
 
 Link to the `.yaml` file in the group's repository.
 
-Link to the Swagger generated documentation (e.g. `https://app.swaggerhub.com/apis-docs/...`).
+Link to the Swagger generated documentation (https://app.swaggerhub.com/apis/Diogogrosario/LBAW-FNEUC/1.0#/M02%3A%20Products%20and%20categories/R201).
 ```yaml
 openapi: 3.0.0
 
