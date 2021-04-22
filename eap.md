@@ -12,7 +12,7 @@ Our website aims to help customers get what then need when they need it during t
 |   |   |
 |---|---|
 | M01: Authentication and profile  | Web resources associated with user authentication and profile management. Includes the following system features: login/logout, registration, credential recovery, view and edit personal profile information.  |
-| M02: Products, categories  | Web resources associated with the searching, filtering and listing of all products and categories available to the user.  |
+| M02: Products and categories  | Web resources associated with the searching, filtering and listing of all products and categories available to the user.  |
 | M03: Management  | Web resources associated with website management, such as: promote and ban users, add, view, edit and remove item listings, delete user comments. |
 | M04: Static pages  | Web resources associated with static pages, such as: FAQ, About and Contacts.  |
 | M05: Products and reviews  | Web resources associated with products and reviews. Includes system features: Add, edit and remove reviews, and see product rating. |
