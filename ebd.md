@@ -59,8 +59,8 @@ Generalizations:
 
 | Domain Name | Domain Specification                               |
 | ----------- | -------------------------------------------------- |
-| Today       | DATE DEFAULT CURRENT_DATE                          |
-| TYPE      | ENUM ('Discount', 'Stock') |
+| purchaseState | ENUM ('Sent','Processing','Arrived'); |
+| notificationType | ENUM ('Discount', 'Stock') |
 
 ### 3. Schema validation
 
@@ -218,7 +218,7 @@ This artifact cointais all indexes, triggers, functions and transactions needed 
 ### 1. Database Workload  
 
 #### 1.1. Tuple Estimation
-	
+
 
 | **Relation reference** | **Relation Name** | **Order of magnitude**        | **Estimated growth** |
 | ------------------ | ------------- | ------------------------- | -------- |
@@ -840,7 +840,7 @@ $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER score_on_review 
-AFTER UPDATE ON review
+AFTER INSERT ON review
 FOR EACH ROW
 EXECUTE PROCEDURE update_score();
 ```
@@ -1218,8 +1218,10 @@ DROP TABLE IF EXISTS photo CASCADE;
 DROP TABLE IF EXISTS country CASCADE;
 
 DROP TYPE IF EXISTS notificationType;
+DROP TYPE IF EXISTS purchaseState;
 
 CREATE TYPE notificationType AS ENUM ('Stock','Discount');
+CREATE TYPE purchaseState AS ENUM ('Sent','Processing','Arrived');
 
 CREATE TABLE country (
     country_id SERIAL PRIMARY KEY,
@@ -1250,9 +1252,9 @@ CREATE TABLE users (
     deleted BOOLEAN DEFAULT FALSE,
     is_admin BOOLEAN DEFAULT FALSE,
     balance MONEY DEFAULT 0,
-    img INTEGER REFERENCES photo(photo_id) ON UPDATE CASCADE,
-    billing_address INTEGER REFERENCES address(address_id) ON UPDATE CASCADE,
-    shipping_address INTEGER REFERENCES address(address_id) ON UPDATE CASCADE
+    img INTEGER REFERENCES photo(photo_id) ON UPDATE CASCADE ON DELETE SET NULL,
+    billing_address INTEGER REFERENCES address(address_id) ON UPDATE CASCADE ON DELETE SET NULL,
+    shipping_address INTEGER REFERENCES address(address_id) ON UPDATE CASCADE ON DELETE SET NULL
 );
 
 CREATE TABLE category (
@@ -1298,7 +1300,8 @@ CREATE TABLE ban (
 CREATE TABLE purchase (
     purchase_id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(user_id) ON UPDATE CASCADE,
-    "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
+    "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
+    state purchaseState
 );
  
 CREATE TABLE purchase_item (
@@ -1481,7 +1484,7 @@ $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER score_on_review 
-AFTER UPDATE ON review
+AFTER INSERT ON review
 FOR EACH ROW
 EXECUTE PROCEDURE update_score();
 
@@ -2318,16 +2321,16 @@ INSERT INTO notification (user_id, discount_id, notification_id, item_id, type, 
 
 
 
-INSERT INTO purchase (purchase_id, user_id, date) VALUES (1, 3, '12/27/2003 09:09:00');
-INSERT INTO purchase (purchase_id, user_id, date) VALUES (2, 3, '07/29/2012 02:09:00');
-INSERT INTO purchase (purchase_id, user_id, date) VALUES (3, 4, '05/30/2017 01:17:00');
-INSERT INTO purchase (purchase_id, user_id, date) VALUES (4, 5, '09/12/2000 07:13:00');
-INSERT INTO purchase (purchase_id, user_id, date) VALUES (5, 6, '08/12/2006 00:14:00');
-INSERT INTO purchase (purchase_id, user_id, date) VALUES (6, 6, '02/10/2011 04:52:00');
-INSERT INTO purchase (purchase_id, user_id, date) VALUES (7, 6, '07/01/2000 04:25:00');
-INSERT INTO purchase (purchase_id, user_id, date) VALUES (8, 8, '05/28/2017 01:44:00');
-INSERT INTO purchase (purchase_id, user_id, date) VALUES (9, 9, '08/25/2003 04:53:00');
-INSERT INTO purchase (purchase_id, user_id, date) VALUES (10, 10, '10/10/2015 05:38:00');
+INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (1, 3, '12/27/2003 09:09:00','Arrived');
+INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (2, 3, '07/29/2012 02:09:00','Arrived');
+INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (3, 4, '05/30/2017 01:17:00','Arrived');
+INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (4, 5, '09/12/2000 07:13:00','Arrived');
+INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (5, 6, '08/12/2006 00:14:00','Arrived');
+INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (6, 6, '02/10/2011 04:52:00','Processing');
+INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (7, 6, '07/01/2000 04:25:00','Processing');
+INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (8, 8, '05/28/2017 01:44:00','Processing');
+INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (9, 9, '08/25/2003 04:53:00','Sent');
+INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (10, 10, '10/10/2015 05:38:00','Sent');
 
 
 
@@ -2385,8 +2388,9 @@ INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VAL
 ## Revision history
 
 Changes made to the first submission:
-1. Item 1
-1. ..
+1. Added ON DELETE SET NULL to users atributes
+1. Added an enum to show the purchase state
+1. Fixed a duplicate trigger issue
 
 ***
 GROUP2111, 18/04/2021
