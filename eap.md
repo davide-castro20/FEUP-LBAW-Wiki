@@ -1313,8 +1313,9 @@ Changes made to the first submission:
 1. ..
 
 ***
-GROUP21gg, DD/MM/2021
- 
-* Group member 1 name, email (Editor)
-* Group member 2 name, email
-* ...
+GROUP2111, 26/04/2021
+
+* Diogo Guimarães do Rosário, [up201806582@fe.up.pt](mailto:up201806582@fe.up.pt) (Editor)
+* Henrique Melo Ribeiro, [up201806529@fe.up.pt](mailto:up201806529@fe.up.pt)
+* Davide António Ferreira Castro, [up201806512@fe.up.pt](mailto:up201806512@fe.up.pt)
+* João Alexandre Lobo Cardoso, [up201806531@fe.up.pt](mailto:up201806531@fe.up.pt)
