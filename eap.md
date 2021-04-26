@@ -59,7 +59,7 @@ tags:
   - name: 'M01: Authentication and profile'
   - name: 'M02: Products and categories'
   - name: 'M03: Management'
-  - name: 'M04: Static pages'
+  - name: 'M04: Static Pages'
   - name: 'M05: Products and reviews'
   - name: 'M06: Wishlist and cart'
 
@@ -130,11 +130,11 @@ paths:
                   description: 'Successful signout. Redirect to mainpage.'
                   value: '/mainpage'                 
   
-  /signup:
+  /register:
     get:
       operationId: R104
-      summary: 'R104: Signup Form'
-      description: 'Provide new user signup form. Access: PUB'
+      summary: 'R104: Register Form'
+      description: 'Provide new user register form. Access: PUB'
       tags:
         - 'M01: Authentication and profile'
       responses:
@@ -143,8 +143,8 @@ paths:
 
     post:
       operationId: R105
-      summary: 'R105: Signup Action'
-      description: 'Processes the new user signup form submission. Access: PUB'
+      summary: 'R105: Register Action'
+      description: 'Processes the new user register form submission. Access: PUB'
       tags:
         - 'M01: Authentication and profile'
 
@@ -188,12 +188,85 @@ paths:
                   value: '/mainpage'
                 302Failure:
                   description: 'Failed signup. Redirect to signup form.'
-                  value: '/signup'                          
+                  value: '/signup'      
+                  
+  /users/{id}/edit:
+  
+    parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+    
+    get:
+      operationId: R106
+      summary: 'R106: Edit Profile Form'
+      description: 'Provide edit profile form. Access: USR'
+      tags:
+        - 'M01: Authentication and profile'
+      responses:
+        '200':
+          description: 'Ok. Show [UI13](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/wikis/er#ui13-user-profile)'
+
+    patch:
+      operationId: R107
+      summary: 'R107: Edit Profile Action'
+      description: 'Processes the edit profile form submission. Access: USR'
+      tags:
+        - 'M01: Authentication and profile'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                password:
+                  type: string
+                picture:
+                  type: string
+                  format: binary
+                address:
+                  type: object
+                  properties:
+                    zip-code:
+                      type: string
+                    street:
+                      type: string
+                    city: 
+                      type: string
+                    country:
+                      type: string
+
+      responses:
+        '302':
+          description: 'Redirect after processing the new user information.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful edit. Redirect to user profile.'
+                  value: '/users/{id}'
+                302Failure:
+                  description: 'Failed edit. Redirect to user profile.'
+                  value: '/users/{id}'                
                   
   /credentialRecovery:
     get:
-      operationId: R106
-      summary: 'R106: Credential Recovery Form'
+      operationId: R108
+      summary: 'R108: Credential Recovery Form'
       description: 'Provide credential recovery form. Access: PUB'
       tags:
         - 'M01: Authentication and profile'
@@ -202,8 +275,8 @@ paths:
           description: 'NOT YET DONE!!!!!!!!!!!'
 
     post:
-      operationId: R107
-      summary: 'R107: Credential Recovery Action'
+      operationId: R109
+      summary: 'R109: Credential Recovery Action'
       description: 'Processes the credential recovery form submission. Access: PUB'
       tags:
         - 'M01: Authentication and profile'
@@ -234,9 +307,9 @@ paths:
                   
   /users/{id}:
     get:
-      operationId: R108
-      summary: 'R108: View user profile'
-      description: 'Show the individual user profile. Access: USR, ADM'
+      operationId: R110
+      summary: 'R110: View user profile'
+      description: 'Show the individual user profile. Access: OWN, ADM'
       tags:
         - 'M01: Authentication and profile'
 
@@ -250,6 +323,117 @@ paths:
       responses:
         '200':
           description: 'Ok. Show [UI13](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/wikis/er#ui13-user-profile)'
+          
+  /users/{id}/update_billing_address:
+    post:
+      operationId: R111
+      summary: 'R111: Update billing address'
+      description: 'AJAX request. Update the user''s billing address. Access: OWN'
+      tags:
+        - 'M01: Authentication and profile'
+
+      parameters:
+        - in: path
+          name: id
+          description: User identifier
+          schema:
+            type: integer
+          required: true
+      
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                street:
+                  type: string
+                country:
+                  type: string
+                zip_code:
+                  type: string
+                city:
+                  type: string
+                  
+      responses:
+          '200':
+            description: 'Address updated successfuly.'
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    street:
+                      type: string
+                    country:
+                      type: string
+                    zip_code:
+                      type: string
+                    city:
+                      type: string
+                      
+                example:
+                  street: 'Washington Avenue'
+                  county: 'USA'
+                  zip_code: '124231'
+                  city: 'Washington DC'
+                  
+  /users/{id}/update_shipping_address:
+    post:
+      operationId: R112
+      summary: 'R112: Update shipping address'
+      description: 'AJAX request. Update the user''s shipping address. Access: OWN'
+      tags:
+        - 'M01: Authentication and profile'
+
+      parameters:
+        - in: path
+          name: id
+          description: User identifier
+          schema:
+            type: integer
+          required: true
+      
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                street:
+                  type: string
+                country:
+                  type: string
+                zip_code:
+                  type: string
+                city:
+                  type: string
+
+      responses:
+        '200':
+          description: 'Address updated successfuly.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  street:
+                    type: string
+                  country:
+                    type: string
+                  zip_code:
+                    type: string
+                  city:
+                    type: string
+                    
+              example:
+                street: 'Washington Avenue'
+                county: 'USA'
+                zip_code: '124231'
+                city: 'Washington DC'
+
           
   /api/products:
     get:
@@ -327,7 +511,754 @@ paths:
                     category: Video Games
                     description: Cyber Punk is a futuristic RPG that will blow you away with stunning graphics
                     inStock: false
-                    details: ["18+"]
+                    details: [["18+", "Age restriction"], ["01-10-2020", "Release Date"], ["CDPR", "Developer"]]
+  /products/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        
+    get:
+      operationId: R202
+      summary: 'R202: View product page'
+      description: "Show a product's page containing all its information. Access: PUB"
+
+      tags:
+        - 'M02: Products and categories'
+
+      responses:
+        '200':
+          description: 'Ok. Show [UI08](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/wikis/er#ui08-item)'
+        '404':
+          description: 'Product not found!'
+
+
+  /products/{id}/review:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        
+    put:
+      operationId: R501
+      summary: 'R501: Submit product review'
+      description: "AJAX request. Submits a review with rating to a product. Access: USR"
+      tags:
+        - 'M05: Products and reviews'
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                review_text:
+                  type: string
+                rating:
+                  type: integer
+              required:
+                - rating
+
+      responses:
+        '201':
+          description: "Review added successfully."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  text:
+                    type: string
+                  rating:
+                    type: integer
+
+              example:
+                id: 1
+                text: "Amazing product"
+                rating: 5
+        '401':
+          description: "Unauthenticated user cannot review product."
+        '403':
+          description: "User already reviewed this product / invalid review."
+
+    patch:
+      operationId: R502
+      summary: 'R502: Edit product review'
+      description: "AJAX request. Updates a user review of the product. Access: OWN"
+      tags:
+        - 'M05: Products and reviews'
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                review_id:
+                  type: integer
+                review_text:
+                  type: string
+                rating:
+                  type: integer
+              required:
+                - review_id
+                - rating
+
+      responses:
+        '200':
+          description: "Review edited successfully."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  text:
+                    type: string
+                  rating:
+                    type: integer
+
+              example:
+                id: 1
+                text: "Not amazing anymore"
+                rating: 3
+        '401':
+          description: "Unauthenticated user cannot edit review."
+        '406':
+          description: "Invalid review. Update failed."
+    delete:
+      operationId: R503
+      summary: 'R503: Delete product review'
+      description: "AJAX that deletes a user review of the product. Access: OWN, ADM"
+      tags:
+        - 'M05: Products and reviews'
+
+      responses:
+        '200':
+          description: "Review deleted successfully."
+        '401':
+          description: "Unauthenticated user cannot delete reviews."
+        '406':
+          description: "Invalid review. Deletion failed."
+
+  /about:
+    get:
+      operationId: R401
+      summary: 'R401: View About page'
+      description: 'Get the About page. Access: PUB'
+      tags:
+        - 'M04: Static Pages'
+
+      responses:
+        '200':
+          description: 'Ok. Show [UI02](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/wikis/er#ui02-about)'
+
+  /faq:
+    get:
+      operationId: R402
+      summary: 'R402: View FAQ page'
+      description: 'Get the FAQ page. Access: PUB'
+      tags:
+        - 'M04: Static Pages'
+
+      responses:
+        '200':
+          description: 'Ok. Show [UI03](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/wikis/er#ui03-faq)'
+
+  /contacts:
+    get:
+      operationId: R403
+      summary: 'R403: View Contacts page'
+      description: 'Get the Contacts page. Access: PUB'
+      tags:
+        - 'M04: Static Pages'
+
+      responses:
+        '200':
+          description: 'Ok. Show [UI04](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/wikis/er#ui04-contacts)'
+    
+  
+  /admin:
+    get:
+      operationId: R301
+      summary: 'R301: View administration page'
+      description: "Show administration area. Acess: ADM"
+
+      tags:
+        - 'M03: Management'
+
+      responses:
+        '200':
+          description: 'Ok. Show [UI06](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/wikis/er#ui06-admin-main-page)'
+  
+  /admin/usermanagement:
+    get:
+      operationId: R302
+      summary: 'R302: View user administration page'
+      description: "Show user administration area. Acess: ADM"
+
+      tags:
+        - 'M03: Management'
+
+      responses:
+        '200':
+          description: 'Ok. Show [UI14](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/wikis/er#ui14-user-administration)'
+  
+  /admin/addproduct:
+    get:
+      operationId: R303
+      summary: 'R303: Add product Form'
+      description: 'Provide add product form. Access: ADM'
+      tags:
+        - 'M03: Management'
+      responses:
+        '200':
+          description: 'Ok. Show [UI05](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/wikis/er#ui05-add-a-new-item)'
+    put:
+      operationId: R304
+      summary: 'R304: Add product Action'
+      description: 'Processes the add product form submission. Access: ADM'
+      tags:
+        - 'M03: Management'
+ 
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:          # <!--- form field name
+                  type: string
+                price:    # <!--- form field name
+                  type: integer
+                category:          # <!--- form field name
+                  type: string
+                pictures:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+                details:
+                      type: array
+                      items:
+                        type: array
+                        items: 
+                          type: string
+                brief_description:          # <!--- form field name
+                  type: string
+                description:          # <!--- form field name
+                  type: string
+              required:
+                - name
+                - price
+                - category
+                - pictures
+                - brief_description
+                - description
+                - details
+ 
+      responses:
+        '302':
+          description: 'Redirect after processing the product addition fields.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful addition. Redirect to item page.'
+                  value: '/products/{id}'
+                302Error:
+                  description: 'Failed authentication. Redirect to add product form.'
+                  value: '/admin/addproduct'
+          
+  /admin/usermanagement/ban/{id}:  
+    parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+
+    post:
+      operationId: R305
+      summary: 'R305: Ban user Action'
+      description: 'Processes the ban user operation. Access: ADM'
+      tags:
+        - 'M03: Management'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                ban_reason:
+                  type: string
+
+      responses:
+        '302':
+          description: 'Redirect after processing the user ban.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful ban. Redirect to user management.'
+                  value: '/admin/usermanagement'
+                302Failure:
+                  description: 'Failed ban. Redirect to user management.'
+                  value: '/admin/usermanagement' 
+  
+  /admin/usermanagement/promote/{id}:  
+    
+    patch:
+      operationId: R306
+      summary: 'R306: Promote user Action'
+      description: 'Processes the promote user operation. Access: ADM'
+      tags:
+        - 'M03: Management'
+        
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+
+      responses:
+        '302':
+          description: 'Redirect after processing the user promotion.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful promotion. Redirect to user management.'
+                  value: '/admin/usermanagement'
+                302Failure:
+                  description: 'Failed promotion. Redirect to user management.'
+                  value: '/admin/usermanagement'  
+                  
+  /products/{id}/deletecomment/{id2}:
+    delete:
+      operationId: R307
+      summary: 'R307: Delete comment Action'
+      description: 'Processes the delete comment operation. Access: ADM'
+
+      tags:
+        - 'M03: Management'
+
+      parameters:
+        - in: path
+          name: id
+          description: Product identifier
+          schema:
+            type: integer
+          required: true
+        - in: path
+          name: id2
+          description: Comment identifier
+          schema:
+            type: integer
+          required: true
+
+      responses:
+        '302':
+          description: 'Redirect after deleting the comment.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful comment deletion. Redirect to item page.'
+                  value: '/product/{id}'
+                302Failure:
+                  description: 'Failed comment deletion. Redirect to item page.'
+                  value: '/product/{id}'  
+                  
+  /admin/add_discount_product:
+    post:
+      operationId: R308
+      summary: 'R308: Add product discount Action'
+      description: 'AJAX request. Add a discount to a chosen product. Access: ADM'
+      tags:
+        - 'M03: Management'
+ 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: integer
+                percentage:
+                  type: integer
+                begin_date:
+                  type: string
+                end_date:
+                  type: string      
+                
+      responses:
+        '200':
+          description: 'Discount added to product successfuly.'
+          
+  /admin/add_discount_category:
+    post:
+      operationId: R309
+      summary: 'R309: Add category discount Action'
+      description: 'AJAX request. Add a discount to all products of a chosen category. Access: ADM'
+      tags:
+        - 'M03: Management'
+ 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category_id:
+                  type: integer
+                percentage:
+                  type: integer
+                begin_date:
+                  type: string
+                end_date:
+                  type: string      
+                
+      responses:
+        '200':
+          description: 'Discount added to product successfuly.'
+          
+  /admin/remove_discount:
+    post:
+      operationId: R310
+      summary: 'R310: Remove product discounts Action'
+      description: 'AJAX request. Removes current discounts on a product. Access: ADM'
+      tags:
+        - 'M03: Management'
+ 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: integer
+                
+      responses:
+        '200':
+          description: 'Discounts removed from product successfuly.'
+          
+  /admin/purchases/{id}/update_purchase_status:
+    post:
+      operationId: R311
+      summary: 'R311: Update purchase status Action'
+      description: 'AJAX request. Update the status of a purchase. Access: ADM'
+      tags:
+        - 'M03: Management'
+        
+      parameters:
+        - in: path
+          name: id
+          description: Purchase identifier
+          schema:
+            type: integer
+          required: true
+      
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: integer   # <!--- status type
+                
+      responses:
+        '200':
+          description: 'Discounts removed from product successfuly.'
+                  
+  /products/{id}/edit:
+    post:
+      operationId: R203
+      summary: 'R203: Edit product Action'
+      description: 'Processes the edit product form submission. Access: ADM'
+      tags:
+        - 'M02: Products and categories'
+ 
+      parameters:
+        - in: path
+          name: id
+          description: Product identifier
+          schema:
+            type: integer
+          required: true
+          
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:          # <!--- form field name
+                  type: string
+                price:    # <!--- form field name
+                  type: integer
+                category:          # <!--- form field name
+                  type: string
+                pictures:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+                brief_description:          # <!--- form field name
+                  type: string
+                details:
+                      type: array
+                      items:
+                        type: array
+                        items: 
+                          type: string
+                description:          # <!--- form field name
+                  type: string        
+      responses:
+        '302':
+          description: 'Redirect after processing the edit product form fields.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful edit. Redirect to item page.'
+                  value: '/products/{id}'
+                302Error:
+                  description: 'Failed edit. Redirect to item page.'
+                  value: '/products/{id}'
+    
+  /products/{id}/delete:
+    delete:
+      operationId: R204
+      summary: 'R204: Delete product Action'
+      description: 'Processes the delete product action. Access: ADM'
+      tags:
+        - 'M02: Products and categories'
+ 
+      parameters:
+        - in: path
+          name: id
+          description: Product identifier
+          schema:
+            type: integer
+          required: true
+           
+      responses:
+        '302':
+          description: 'Redirect after processing the product deletion.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful deletion. Redirect to main page.'
+                  value: '/mainpage'
+                302Error:
+                  description: 'Failed deletion. Redirect to main page.'
+                  value: '/mainpage'
+                  
+  /products/{id}/update_stock:
+    post:
+      operationId: R205
+      summary: 'R205: Update product stock Action'
+      description: 'AJAX request. Update the current stock of a product. Access: ADM'
+      tags:
+        - 'M02: Products and categories'
+  
+      parameters:
+        - in: path
+          name: id
+          description: Product identifier
+          schema:
+            type: integer
+          required: true
+           
+      responses:
+        '200':
+            description: 'Sucessfully added item to wishlist.'
+        '401':
+          description: 'Unauthorized user cannot edit product stock'
+                  
+                  
+  /api/add_to_wishlist:
+  
+    post:
+        operationId: R601
+        summary: 'R601: Add item to wishlist API'
+        description: 'AJAX request. Adds an item to the users wishlist. Access: OWN'
+        tags:
+          -  'M06: Wishlist and cart'
+          
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: integer
+        responses:
+          '200':
+            description: 'Sucessfully added item to wishlist.'
+          '401':
+            description: 'The password does not correspond to the email.'
+            
+
+  /api/remove_from_wishlist:
+  
+    post:
+      operationId: R602
+      summary: 'R602: Remove item from wishlist'
+      description: 'AJAX request. Removes an item from the user''s wishlist. Access: OWN'
+      tags:
+        -  'M06: Wishlist and cart'
+          
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:        
+              type: integer
+                
+      responses:
+        '200':
+          description: 'Sucessfully removed item from wishlist.'
+        '401':
+          description: 'Unauthenticated user cannot remove item from wishlist.'
+        '406':
+          description: 'Item not in the wishlist'
+   
+  /users/{id}/cart:
+    get:
+      operationId: R603
+      summary: 'R603: View user''s cart'
+      description: 'Redirect to user''s cart page. Access: OWN'
+      tags:
+        - 'M06: Wishlist and cart'
+        
+      parameters:
+      - in: path
+        name: id
+        description: id of the user that has the correponding cart
+        schema:
+          type: integer
+        required: true
+        
+      responses:
+        '200':
+          description: 'Ok. Show [UI07](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/wikis/er#ui07-cart)'
+          
+  /api/add_to_cart:
+    
+    post:
+      operationId: R604
+      summary: 'R603: Add item to cart'
+      description: 'AJAX request. Adds an item with chosen quantity to the users cart. Access: OWN'
+      tags:
+        -  'M06: Wishlist and cart'
+          
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:         
+                  type: integer
+                quantity:    
+                  type: integer
+              required:
+              - product_id
+              - quantity
+                
+      responses:
+        '200':
+          description: 'Sucessfully added item to cart.'
+        '406':
+          description: 'Item not available.'
+          
+  /api/remove_from_cart:
+  
+    post:
+      operationId: R605
+      summary: 'R604: Remove item from cart'
+      description: 'AJAX request. Removes an item from the user''s cart. Access: OWN'
+      tags:
+        -  'M06: Wishlist and cart'
+          
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:        
+              type: integer
+                
+      responses:
+        '200':
+          description: 'Sucessfully removed item from cart.'
+        '401':
+          description: 'Unauthenticated user cannot remove item from cart.'
+        '406':
+          description: 'Item not in the cart'
+          
+  /api/edit_quantity_cart:
+    patch:
+      operationId: R606
+      summary: 'R605: Edit Product cart quantity'
+      description: 'AJAX request. Updates the quantity of a product in the user''s cart. Access: OWN'
+      tags:
+        - 'M06: Wishlist and cart'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: integer
+                quantity:
+                  type: integer
+              required:
+              - product_id
+              - quantity
+
+      responses:
+        '200':
+          description: 'Sucessfully updated item quantity.'
+        '401':
+          description: 'Unauthenticated user cannot update quantity in cart.'
+        '406':
+          description: 'Item not in the cart'
 
 ...
 ```
