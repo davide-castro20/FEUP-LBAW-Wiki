@@ -4,8 +4,7 @@ Our website aims to help customers get what then need when they need it during t
 
 ## A7: High-level architecture. Privileges. Web resources specification
 
-> Brief presentation of the product.  
-> Brief presentation of the artefact goals.
+This artifact intends to document the catalogue of resources and the properties of each resource available to all users. The artifact contains operations over data such as: create, delete, update and read.
 
 ### 1. Overview
 
