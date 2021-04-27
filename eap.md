@@ -35,7 +35,7 @@ OpenAPI specification in YAML format to describe the web application's web resou
 
 Link to the `.yaml` file in the group's repository.
 
-Link to the Swagger generated documentation (https://app.swaggerhub.com/apis/Diogogrosario/LBAW-FNEUC/1.0#/M02%3A%20Products%20and%20categories/R201).
+Link to the Swagger generated documentation (https://app.swaggerhub.com/apis/LBAW-FEUP-11/lbaw-fneuc_web_api/1.0).
 ```yaml
 openapi: 3.0.0
 
@@ -47,7 +47,7 @@ info:
 servers:
 # Added by API Auto Mocking Plugin
 - description: SwaggerHub API Auto Mocking
-  url: https://virtserver.swaggerhub.com/Diogogrosario/LBAW-FNEUC/1.0
+  url: https://virtserver.swaggerhub.com/LBAW-FEUP-11/LBAW-FNEUC/1.0
 - url: http://lbaw-prod.fe.up.pt
   description: Production server
 
@@ -324,7 +324,7 @@ paths:
         '200':
           description: 'Ok. Show [UI13](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/wikis/er#ui13-user-profile)'
           
-  /users/{id}/update_billing_address:
+  /users/{id}/billing_address:
     post:
       operationId: R111
       summary: 'R111: Update billing address'
@@ -379,7 +379,7 @@ paths:
                   zip_code: '124231'
                   city: 'Washington DC'
                   
-  /users/{id}/update_shipping_address:
+  /users/{id}/shipping_address:
     post:
       operationId: R112
       summary: 'R112: Update shipping address'
@@ -433,7 +433,25 @@ paths:
                 county: 'USA'
                 zip_code: '124231'
                 city: 'Washington DC'
+                
+  /users/{id}/purchase_history:
+    get:
+      operationId: R113
+      summary: 'R113: View user''s purchase history'
+      description: 'Show the individual user purchase history. Access: OWN, ADM'
+      tags:
+        - 'M01: Authentication and profile'
 
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+
+      responses:
+        '200':
+          description: 'Ok. Show [UI09](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/wikis/er#ui09-purchase-history)'
           
   /api/products:
     get:
@@ -516,6 +534,7 @@ paths:
     parameters:
       - in: path
         name: id
+        description: Product Identifier
         schema:
           type: integer
         required: true
@@ -533,17 +552,17 @@ paths:
           description: 'Ok. Show [UI08](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/wikis/er#ui08-item)'
         '404':
           description: 'Product not found!'
-
-
+        
   /products/{id}/review:
     parameters:
       - in: path
         name: id
+        description: Product Identifier
         schema:
           type: integer
         required: true
         
-    put:
+    post:
       operationId: R501
       summary: 'R501: Submit product review'
       description: "AJAX request. Submits a review with rating to a product. Access: USR"
@@ -891,7 +910,7 @@ paths:
                   description: 'Failed comment deletion. Redirect to item page.'
                   value: '/product/{id}'  
                   
-  /admin/add_discount_product:
+  /admin/discount_product:
     post:
       operationId: R308
       summary: 'R308: Add product discount Action'
@@ -919,7 +938,7 @@ paths:
         '200':
           description: 'Discount added to product successfuly.'
           
-  /admin/add_discount_category:
+  /admin/discount_category:
     post:
       operationId: R309
       summary: 'R309: Add category discount Action'
@@ -947,7 +966,7 @@ paths:
         '200':
           description: 'Discount added to product successfuly.'
           
-  /admin/remove_discount:
+  /admin/discounts:
     post:
       operationId: R310
       summary: 'R310: Remove product discounts Action'
@@ -969,8 +988,8 @@ paths:
         '200':
           description: 'Discounts removed from product successfuly.'
           
-  /admin/purchases/{id}/update_purchase_status:
-    post:
+  /admin/purchases/{id}/purchase_status:
+    patch:
       operationId: R311
       summary: 'R311: Update purchase status Action'
       description: 'AJAX request. Update the status of a purchase. Access: ADM'
@@ -995,8 +1014,7 @@ paths:
       responses:
         '200':
           description: 'Discounts removed from product successfuly.'
-                  
-  /products/{id}/edit:
+
     post:
       operationId: R203
       summary: 'R203: Edit product Action'
@@ -1054,8 +1072,7 @@ paths:
                 302Error:
                   description: 'Failed edit. Redirect to item page.'
                   value: '/products/{id}'
-    
-  /products/{id}/delete:
+                  
     delete:
       operationId: R204
       summary: 'R204: Delete product Action'
@@ -1086,7 +1103,7 @@ paths:
                   description: 'Failed deletion. Redirect to main page.'
                   value: '/mainpage'
                   
-  /products/{id}/update_stock:
+  /products/{id}/stock:
     post:
       operationId: R205
       summary: 'R205: Update product stock Action'
@@ -1109,43 +1126,35 @@ paths:
           description: 'Unauthorized user cannot edit product stock'
                   
                   
-  /api/add_to_wishlist:
-  
+  /api/wishlist/{id}:
+    parameters:
+      - in: path
+        name: id
+        description: Product identifier
+        schema:
+          type: integer
+        required: true
+        
     post:
-        operationId: R601
-        summary: 'R601: Add item to wishlist API'
-        description: 'AJAX request. Adds an item to the users wishlist. Access: OWN'
-        tags:
-          -  'M06: Wishlist and cart'
-          
-        requestBody:
-          required: true
-          content:
-            application/json:
-              schema:
-                type: integer
-        responses:
-          '200':
-            description: 'Sucessfully added item to wishlist.'
-          '401':
-            description: 'The password does not correspond to the email.'
-            
-
-  /api/remove_from_wishlist:
+      operationId: R601
+      summary: 'R601: Add item to wishlist API'
+      description: 'AJAX request. Adds an item to the users wishlist. Access: OWN'
+      tags:
+        -  'M06: Wishlist and cart'
+        
+      responses:
+        '200':
+          description: 'Sucessfully added item to wishlist.'
+        '401':
+          description: 'The password does not correspond to the email.'
   
-    post:
+    delete:
       operationId: R602
       summary: 'R602: Remove item from wishlist'
       description: 'AJAX request. Removes an item from the user''s wishlist. Access: OWN'
       tags:
         -  'M06: Wishlist and cart'
           
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:        
-              type: integer
                 
       responses:
         '200':
@@ -1175,11 +1184,18 @@ paths:
         '200':
           description: 'Ok. Show [UI07](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/wikis/er#ui07-cart)'
           
-  /api/add_to_cart:
-    
+  /api/cart/{id}:
+    parameters:
+      - in: path
+        name: id
+        description: product 
+        schema:
+          type: integer
+        required: true
+        
     post:
       operationId: R604
-      summary: 'R603: Add item to cart'
+      summary: 'R604: Add item to cart'
       description: 'AJAX request. Adds an item with chosen quantity to the users cart. Access: OWN'
       tags:
         -  'M06: Wishlist and cart'
@@ -1204,22 +1220,14 @@ paths:
           description: 'Sucessfully added item to cart.'
         '406':
           description: 'Item not available.'
-          
-  /api/remove_from_cart:
   
-    post:
+    delete:
       operationId: R605
-      summary: 'R604: Remove item from cart'
+      summary: 'R605: Remove item from cart'
       description: 'AJAX request. Removes an item from the user''s cart. Access: OWN'
       tags:
         -  'M06: Wishlist and cart'
-          
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:        
-              type: integer
+
                 
       responses:
         '200':
@@ -1229,28 +1237,28 @@ paths:
         '406':
           description: 'Item not in the cart'
           
-  /api/edit_quantity_cart:
+  /api/cart/{id}/{quantity}:
+    parameters:
+      - in: path
+        name: id
+        description: Product identifier 
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: quantity
+        description: Quantity 
+        schema:
+          type: integer
+        required: true
+        
     patch:
       operationId: R606
-      summary: 'R605: Edit Product cart quantity'
+      summary: 'R606: Edit Product cart quantity'
       description: 'AJAX request. Updates the quantity of a product in the user''s cart. Access: OWN'
       tags:
         - 'M06: Wishlist and cart'
 
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              properties:
-                product_id:
-                  type: integer
-                quantity:
-                  type: integer
-              required:
-              - product_id
-              - quantity
 
       responses:
         '200':
@@ -1259,6 +1267,59 @@ paths:
           description: 'Unauthenticated user cannot update quantity in cart.'
         '406':
           description: 'Item not in the cart'
+          
+  /admin/announcement:
+    post:
+      operationId: R312
+      summary: 'R312: Add announcement Action'
+      description: 'AJAX request. Add an announcement. Access: ADM'
+      tags:
+        - 'M03: Management'
+ 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                picture:
+                  type: string
+                  format: binary   
+                
+      responses:
+        '200':
+          description: 'Announcement added successfuly.'
+          
+  /admin/announcement/{id}:
+    parameters:
+      - in: path
+        name: id
+        description: Announcement identifier 
+        schema:
+          type: integer
+        required: true
+        
+    post:
+      operationId: R313
+      summary: 'R313: Remove announcement Action'
+      description: 'AJAX request. Remove an announcement. Access: ADM'
+      tags:
+        - 'M03: Management'
+ 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                announcement_id:
+                  type: integer
+                
+      responses:
+        '200':
+          description: 'Announcement removed successfuly.'
 
 ...
 ```
