@@ -1035,7 +1035,35 @@ FOR EACH ROW
 EXECUTE PROCEDURE check_if_already_on_cart();
 ```
 
-| **Trigger**     | RULE01                                                       |
+| **Trigger**     | TRIGGER10                                                    |
+| --------------- | ------------------------------------------------------------ |
+| **Description** | When an item out of stock gets stock, every admin gets a noitification. |
+| `SQL code`      |                                                              |
+
+```sql
+DROP FUNCTION if exists notify_admin_if_out_of_stock CASCADE;
+DROP TRIGGER if exists notify_admin ON item CASCADE;
+CREATE FUNCTION notify_admin_if_out_of_stock() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF (NEW.stock = 0 AND OLD.stock <> 0) THEN
+        INSERT INTO notification(user_id, discount_id, item_id, type)
+        SELECT users.user_id, NULL, NEW.item_id, 'Stock'
+        FROM users 
+        WHERE users.is_admin = TRUE;
+    END IF;
+    RETURN NEW;
+END
+$BODY$
+
+LANGUAGE plpgsql;
+CREATE TRIGGER notify_admin
+AFTER UPDATE ON item
+FOR EACH ROW
+EXECUTE PROCEDURE notify_admin_if_out_of_stock();
+```
+
+| **Rule**        | RULE01                                                       |
 | --------------- | ------------------------------------------------------------ |
 | **Description** | When a user is deleted, instead of being deleted, most of their info that already isn't automatically set to null is set to null; deleted is set to true, is_admin is set to false and balance is set to 0. The user's photo and billing and shipping address table entry are delete. The user's cart is deleted and the items they had in the cart get the respective amout of stock added back. |
 | `SQL code`      |                                                              |
@@ -2391,6 +2419,7 @@ Changes made to the first submission:
 1. Added ON DELETE SET NULL to users atributes
 1. Added an enum to show the purchase state
 1. Fixed a duplicate trigger issue
+1. Added notify_admin trigger and corresponding function; Changed "Trigger" to "Rule" in rule01
 
 ***
 GROUP2111, 18/04/2021
