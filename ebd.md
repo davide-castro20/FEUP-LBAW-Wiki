@@ -1672,6 +1672,28 @@ BEFORE INSERT ON cart
 FOR EACH ROW
 EXECUTE PROCEDURE check_if_already_on_cart();
 
+--Trigger 10
+DROP FUNCTION if exists notify_admin_if_out_of_stock CASCADE;
+DROP TRIGGER if exists notify_admin ON item CASCADE;
+CREATE FUNCTION notify_admin_if_out_of_stock() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF (NEW.stock = 0 AND OLD.stock <> 0) THEN
+        INSERT INTO notification(user_id, discount_id, item_id, type)
+        SELECT users.user_id, NULL, NEW.item_id, 'Stock'
+        FROM users 
+        WHERE users.is_admin = TRUE;
+    END IF;
+    RETURN NEW;
+END
+$BODY$
+
+LANGUAGE plpgsql;
+CREATE TRIGGER notify_admin
+AFTER UPDATE ON item
+FOR EACH ROW
+EXECUTE PROCEDURE notify_admin_if_out_of_stock();
+
 
 --Rule 1
 DROP rule IF EXISTS users_delete_rule ON users CASCADE;
