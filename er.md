@@ -63,7 +63,7 @@ This section contains the user stories that will be considered during developmen
 
 | Identifier | Name                 | Priority | Description                                                                                                                 |
 |------------|----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------|
-| US21       | View purchase history  | high     | As an *Authenticated*, I want to see my purchasing history, so that I can see the products I have bought|                                                  |
+| US21       | View purchase history  | high     | As an *Authenticated*, I want to see my purchasing history, so that I can see the products I have bought|
 | US23       | Rate item             | high     | As an *Authenticated*, I would like to attribute a score to an item, so that other users can know my basic opinion of the item        |
 | US24       | Comment item         | high     | As an *Authenticated*, I would like to attach a comment to an item, so that other users can know my more complete opinion of the item |
 | US25     | Remove comment      | high   | As an *Authenticated*, I want to be able to be able to delete my own comments so that I'm able to remove comments that I don't find useful                      |
@@ -73,11 +73,12 @@ This section contains the user stories that will be considered during developmen
 | US29  | Logout | high | As an *Authenticated*, I want to be able to log out from my account, so that I can exit my account|
 | US210       | Edit profile     | high| As an *Authenticated*, I want to be able to edit my profile so that I can keep it up to date     |
 | US211       | Recharge account balance     | high| As an *Authenticated*, I want to be able to recharge my account balance, so that I can make more purchases     |
-| US212       | View product recommendations | medium | As an *Authenticated*, I would like to have a list of recommended items according to my history of products, so that I can easily find products that may be of my interest |
-| US213       | View notifications | medium | As an *Authenticated*, I would like to have notifications when my comment is answered, a product in my wishlist is re-stocked or put on sale, so that I can be on time to make the best purchases |
-| US214       | View wish list        | medium   | As an *Authenticated*, I want to see my wish list, so that I can decide if I want to purchase the items in it|
-| US215       | Add to wish list        | medium   | As an *Authenticated*, I want to add items to my wish list, so that I can purchase them easily in the future                          |
-| US216       | Remove from wish list      | medium   | As an *Authenticated*, I want to remove an item from my wish list, so that I can forget the item                                      |
+| US212 | View Cart | high | As an *Authenticated*, I want to see my car, so that I can make sure i added the correct items to it |
+| US213      | View product recommendations | medium | As an *Authenticated*, I would like to have a list of recommended items according to my history of products, so that I can easily find products that may be of my interest |
+| US214      | View notifications | medium | As an *Authenticated*, I would like to have notifications when my comment is answered, a product in my wishlist is re-stocked or put on sale, so that I can be on time to make the best purchases |
+| US215 | View wish list | medium | As an *Authenticated*, I want to see my wish list, so that I can decide if I want to purchase the items in it |
+| US216      | Add to wish list        | medium   | As an *Authenticated*, I want to add items to my wish list, so that I can purchase them easily in the future                          |
+| US217      | Remove from wish list      | medium   | As an *Authenticated*, I want to remove an item from my wish list, so that I can forget the item                                      |
 
 ​                                 
 
@@ -92,12 +93,13 @@ This section contains the user stories that will be considered during developmen
 | US35  | Remove comments  | high  | As an *Administrator*, I want to remove comments, so that I can filter inappropriate language|
 | US36  | View notifications of items without stock | high | As an *Administrator*, I want to have a notification alert me when an item is out of stock, so that I can re-stock them as soon as possible|
 | US37  | Logout | high | As an *Administrator*, I want to be able to log out from my account, so that I can exit my account|
-| US38  | Put item on sale | medium | As an *Administrator*, I want to have the ability to put items on sale, so that I can get attract uses to buy products that are not selling as well|
-| US39  | View statistics of sold items | medium | As an *Administrator*, I want to have easy access to statistics of items filtered by different categories of users, so that I can have a better overview of what items sell better|
-| US310  | Ban user accounts | medium | As an *Administrator*, I want to be able to ban users, so that I'm able to remove problematic users|
-| US311  | Unban user accounts | medium | As an *Administrator*, I want to be able to unban users, so that I'm able to forgive certain users or correct a mistake I have made |
-| US312  | View  users profile | medium | As an *Administrator*, I want to be able to view all users profile, so that I can get check their information|
-| US313  | View users buy history | low | As an *Administrator*, I want to be able to view customer's purchase history, so that I can get a better understanding of what users look for the most|
+| US38 | View all unbanned users | high | As an *Administrator*, I want to be able to see a list of all unbanned users, so that I can manage them with ease |
+| US39 | Put item on sale | medium | As an *Administrator*, I want to have the ability to put items on sale, so that I can get attract uses to buy products that are not selling as well|
+| US310 | View statistics of sold items | medium | As an *Administrator*, I want to have easy access to statistics of items filtered by different categories of users, so that I can have a better overview of what items sell better|
+| US311 | Ban user accounts | medium | As an *Administrator*, I want to be able to ban users, so that I'm able to remove problematic users|
+| US312 | Unban user accounts | medium | As an *Administrator*, I want to be able to unban users, so that I'm able to forgive certain users or correct a mistake I have made |
+| US313 | View  users profile | medium | As an *Administrator*, I want to be able to view all users profile, so that I can get check their information|
+| US314 | View users buy history | low | As an *Administrator*, I want to be able to view customer's purchase history, so that I can get a better understanding of what users look for the most|
 
 
 
@@ -341,8 +343,8 @@ Page where an authenticated user can see and manage his wishlist.
 ## Revision history
 
 Changes made to the first submission:
-1. Item 1
-1. ...
+1. Added user story US212
+1. Added user story US38
 
 ***
 GROUP2111, 9/03/2021
