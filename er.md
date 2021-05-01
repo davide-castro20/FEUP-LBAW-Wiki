@@ -64,21 +64,21 @@ This section contains the user stories that will be considered during developmen
 | Identifier | Name                 | Priority | Description                                                                                                                 |
 |------------|----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------|
 | US21       | View purchase history  | high     | As an *Authenticated*, I want to see my purchasing history, so that I can see the products I have bought|
-| US23       | Rate item             | high     | As an *Authenticated*, I would like to attribute a score to an item, so that other users can know my basic opinion of the item        |
-| US24       | Comment item         | high     | As an *Authenticated*, I would like to attach a comment to an item, so that other users can know my more complete opinion of the item |
-| US25     | Remove comment      | high   | As an *Authenticated*, I want to be able to be able to delete my own comments so that I'm able to remove comments that I don't find useful                      |
-| US26       | Add to cart          | high     | As an *Authenticated*, I want to add an item to my cart, so that I am able to purchase it|
-| US27       | Remove from cart          | high     | As an *Authenticated*, I want to remove an item from my cart, so that I can reconsider my purchase before I finalize it|
-| US28       | Checkout cart          | high     | As an *Authenticated*, I want to checkout my cart, so that I can purchase the items I want |
-| US29  | Logout | high | As an *Authenticated*, I want to be able to log out from my account, so that I can exit my account|
-| US210       | Edit profile     | high| As an *Authenticated*, I want to be able to edit my profile so that I can keep it up to date     |
-| US211       | Recharge account balance     | high| As an *Authenticated*, I want to be able to recharge my account balance, so that I can make more purchases     |
-| US212 | View Cart | high | As an *Authenticated*, I want to see my car, so that I can make sure i added the correct items to it |
-| US213      | View product recommendations | medium | As an *Authenticated*, I would like to have a list of recommended items according to my history of products, so that I can easily find products that may be of my interest |
-| US214      | View notifications | medium | As an *Authenticated*, I would like to have notifications when my comment is answered, a product in my wishlist is re-stocked or put on sale, so that I can be on time to make the best purchases |
-| US215 | View wish list | medium | As an *Authenticated*, I want to see my wish list, so that I can decide if I want to purchase the items in it |
-| US216      | Add to wish list        | medium   | As an *Authenticated*, I want to add items to my wish list, so that I can purchase them easily in the future                          |
-| US217      | Remove from wish list      | medium   | As an *Authenticated*, I want to remove an item from my wish list, so that I can forget the item                                      |
+| US22      | Rate item             | high     | As an *Authenticated*, I would like to attribute a score to an item, so that other users can know my basic opinion of the item        |
+| US23      | Comment item         | high     | As an *Authenticated*, I would like to attach a comment to an item, so that other users can know my more complete opinion of the item |
+| US24    | Remove comment      | high   | As an *Authenticated*, I want to be able to be able to delete my own comments so that I'm able to remove comments that I don't find useful                      |
+| US25      | Add to cart          | high     | As an *Authenticated*, I want to add an item to my cart, so that I am able to purchase it|
+| US26      | Remove from cart          | high     | As an *Authenticated*, I want to remove an item from my cart, so that I can reconsider my purchase before I finalize it|
+| US27      | Checkout cart          | high     | As an *Authenticated*, I want to checkout my cart, so that I can purchase the items I want |
+| US28 | Logout | high | As an *Authenticated*, I want to be able to log out from my account, so that I can exit my account|
+| US29      | Edit profile     | high| As an *Authenticated*, I want to be able to edit my profile so that I can keep it up to date     |
+| US210      | Recharge account balance     | high| As an *Authenticated*, I want to be able to recharge my account balance, so that I can make more purchases     |
+| US211 | View Cart | high | As an *Authenticated*, I want to see my car, so that I can make sure i added the correct items to it |
+| US212     | View product recommendations | medium | As an *Authenticated*, I would like to have a list of recommended items according to my history of products, so that I can easily find products that may be of my interest |
+| US213     | View notifications | medium | As an *Authenticated*, I would like to have notifications when my comment is answered, a product in my wishlist is re-stocked or put on sale, so that I can be on time to make the best purchases |
+| US214 | View wish list | medium | As an *Authenticated*, I want to see my wish list, so that I can decide if I want to purchase the items in it |
+| US215     | Add to wish list        | medium   | As an *Authenticated*, I want to add items to my wish list, so that I can purchase them easily in the future                          |
+| US216     | Remove from wish list      | medium   | As an *Authenticated*, I want to remove an item from my wish list, so that I can forget the item                                      |
 
 ​                                 
 
@@ -345,6 +345,7 @@ Page where an authenticated user can see and manage his wishlist.
 Changes made to the first submission:
 1. Added user story US212
 1. Added user story US38
+1. Updated Authenticated user stories numeration
 
 ***
 GROUP2111, 9/03/2021

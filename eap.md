@@ -1333,22 +1333,27 @@ paths:
 
 #### 1.1. Implemented User Stories
 
-> Identify the user stories that were implemented in the prototype.  
-
 | User Story reference | Name        | Priority | Description                                                  |
 | -------------------- | ----------- | -------- | ------------------------------------------------------------ |
 | US01                 | Access Home | high     | As a *User*, I want to access the website's homepage, so that I can know its general-purpose |
 | US02 | Access About Page | high | As a *User*, I want to access the 'About' page, so that I can see a complete and detailed description of the website |
 | US03 | See Contacts      | high | As a *User*, I want to consult the website's contacts, so that I know how to contact the team if needed |
 | US04 | Search items      | high | As a *User*, I want to search for an item's name, so that I can get more information about it |
+| US06 | View items | high | As a *User*, I want to view all the items, so that I can see all the products available |
 | US11 | Sign-up               | high | As a *Visitor*, I want to be able to create a new account so that I'm able to authenticate myself |
 | US12 | Sign-in               | high | As a *Visitor*, I want to be able to authenticate myself so that I'm able to buy products |
 | US13 | Administrator Sign-in | high | As a *Visitor*, I want to be able to sign-in as an administrator if I'm permitted to do so |
 | US21 | View purchase history | high | As an *Authenticated*, I want to see my purchasing history, so that I can see the products I have bought |
-| US29 | Logout | high | As an *Authenticated*, I want to be able to log out from my account, so that I can exit my account |
-| US212 | View Cart | high | As an *Authenticated*, I want to see my car, so that I can make sure i added the correct items to it |
-| US214 | View notifications | medium | As an *Authenticated*, I would like to have notifications when my comment is answered, a product in my wishlist is re-stocked or put on sale, so that I can be on time to make the best purchases |
-| US215 | View wish list | medium | As an *Authenticated*, I want to see my wish list, so that I can decide if I want to purchase the items in it |
+| US22 | Rate item | high | As an *Authenticated*, I would like to attribute a score to an item, so that other users can know my basic opinion of the item |
+| US23 | Comment item | high | As an *Authenticated*, I would like to attach a comment to an item, so that other users can know my more complete opinion of the item |
+| US24 | Remove comment | high | As an *Authenticated*, I want to be able to be able to delete my own comments so that I'm able to remove comments that I don't find useful |
+| US25 | Add to cart | high | As an *Authenticated*, I want to add an item to my cart, so that I am able to purchase it |
+| US26 | Remove from cart | high | As an *Authenticated*, I want to remove an item from my cart, so that I can reconsider my purchase before I finalize it |
+| US28 | Logout | high | As an *Authenticated*, I want to be able to log out from my account, so that I can exit my account |
+| US211 | View Cart | high | As an *Authenticated*, I want to see my car, so that I can make sure i added the correct items to it |
+| US212 | View product recommendations | medium | As an *Authenticated*, I would like to have a list of recommended items according to my history of products, so that I can easily find products that may be of my interest |
+| US213 | View notifications | medium | As an *Authenticated*, I would like to have notifications when my comment is answered, a product in my wishlist is re-stocked or put on sale, so that I can be on time to make the best purchases |
+| US214 | View wish list | medium | As an *Authenticated*, I want to see my wish list, so that I can decide if I want to purchase the items in it |
 | US37 | Logout | high | As an *Administrator*, I want to be able to log out from my account, so that I can exit my account |
 | US312 | View  users profile | medium | As an *Administrator*, I want to be able to view all users profile, so that I can get check their information |
 | US38 | View all unbanned users | high | As an *Administrator*, I want to be able to see a list of all unbanned users, so that I can manage them with ease |
@@ -1372,8 +1377,25 @@ paths:
 
 ### 2. Prototype
 
-> URL of the prototype plus user credentials necessary to test all features.  
-> Link to the prototype source code in the group's git repository.  
+Prototype: http://lbaw2111.lbaw-prod.fe.up.pt/
+
+Credentials:
+
+​		Admin: 
+
+​					Email: lbawAdmin@gmail.com
+
+​					Password: lbawadmin
+
+​		User: 
+
+​					Email: normallogin@gmail.com
+
+​					Password: normaluser
+
+
+
+Source code: https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/
 
 
 ---
