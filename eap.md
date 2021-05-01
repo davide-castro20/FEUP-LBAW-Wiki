@@ -323,6 +323,36 @@ paths:
         '200':
           description: 'Ok. Show [UI13](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/wikis/er#ui13-user-profile)'
           
+    delete:
+      operationId: R114
+      summary: 'R114: Delete account Action'
+      description: 'Processes the delete account action. Access: OWN'
+      tags:
+        - 'M01: Authentication and profile'
+ 
+      parameters:
+        - in: path
+          name: id
+          description: User identifier
+          schema:
+            type: integer
+          required: true
+           
+      responses:
+        '302':
+          description: 'Redirect after processing the account deletion.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful deletion. Redirect to main page.'
+                  value: '/mainpage'
+                302Error:
+                  description: 'Failed deletion. Redirect to user profile page.'
+                  value: '/users/{id}'
+          
   /users/{id}/billing_address:
     post:
       operationId: R111
@@ -606,6 +636,21 @@ paths:
         '403':
           description: "User already reviewed this product / invalid review."
 
+  /products/{id}/review/{reviewId}:
+    parameters:
+      - in: path
+        name: id
+        description: Product Identifier
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: reviewId
+        description: Review Identifier
+        schema:
+          type: integer
+        required: true
+      
     patch:
       operationId: R502
       summary: 'R502: Edit product review'
@@ -620,8 +665,6 @@ paths:
             schema:
               type: object
               properties:
-                review_id:
-                  type: integer
                 review_text:
                   type: string
                 rating:
@@ -638,8 +681,6 @@ paths:
               schema:
                 type: object
                 properties:
-                  id:
-                    type: integer
                   text:
                     type: string
                   rating:
@@ -964,6 +1005,8 @@ paths:
       responses:
         '200':
           description: 'Discount added to product successfuly.'
+        '401':
+          description: 'Product not found'
           
   /admin/discounts:
     post:
@@ -986,6 +1029,19 @@ paths:
       responses:
         '200':
           description: 'Discounts removed from product successfuly.'
+        '401':
+          description: 'Item or discount not found'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                401Item:
+                  description: 'Item not found'
+                401Discount:
+                  description: 'Discount not found'
+              
+              
           
   /admin/purchases/{id}/purchase_status:
     patch:
@@ -1134,9 +1190,28 @@ paths:
           type: integer
         required: true
         
-    post:
+    get:
       operationId: R601
-      summary: 'R601: Add item to wishlist API'
+      summary: 'R601: View user''s wishlist'
+      description: 'Redirect to user''s wishlist page. Access: OWN'
+      tags:
+        - 'M06: Wishlist and cart'
+        
+      parameters:
+      - in: path
+        name: id
+        description: id of the user that has the correponding cart
+        schema:
+          type: integer
+        required: true
+        
+      responses:
+        '200':
+          description: 'Ok. Show [UI07](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/wikis/er#ui07-cart)'
+        
+    post:
+      operationId: R602
+      summary: 'R602: Add item to wishlist API'
       description: 'AJAX request. Adds an item to the users wishlist. Access: OWN'
       tags:
         -  'M06: Wishlist and cart'
@@ -1148,8 +1223,8 @@ paths:
           description: 'The password does not correspond to the email.'
   
     delete:
-      operationId: R602
-      summary: 'R602: Remove item from wishlist'
+      operationId: R603
+      summary: 'R603: Remove item from wishlist'
       description: 'AJAX request. Removes an item from the user''s wishlist. Access: OWN'
       tags:
         -  'M06: Wishlist and cart'
@@ -1165,8 +1240,8 @@ paths:
    
   /users/{id}/cart:
     get:
-      operationId: R603
-      summary: 'R603: View user''s cart'
+      operationId: R604
+      summary: 'R604: View user''s cart'
       description: 'Redirect to user''s cart page. Access: OWN'
       tags:
         - 'M06: Wishlist and cart'
@@ -1193,8 +1268,8 @@ paths:
         required: true
         
     post:
-      operationId: R604
-      summary: 'R604: Add item to cart'
+      operationId: R605
+      summary: 'R605: Add item to cart'
       description: 'AJAX request. Adds an item with chosen quantity to the users cart. Access: OWN'
       tags:
         -  'M06: Wishlist and cart'
@@ -1221,8 +1296,8 @@ paths:
           description: 'Item not available.'
   
     delete:
-      operationId: R605
-      summary: 'R605: Remove item from cart'
+      operationId: R606
+      summary: 'R606: Remove item from cart'
       description: 'AJAX request. Removes an item from the user''s cart. Access: OWN'
       tags:
         -  'M06: Wishlist and cart'
@@ -1252,8 +1327,8 @@ paths:
         required: true
         
     patch:
-      operationId: R606
-      summary: 'R606: Edit Product cart quantity'
+      operationId: R607
+      summary: 'R607: Edit Product cart quantity'
       description: 'AJAX request. Updates the quantity of a product in the user''s cart. Access: OWN'
       tags:
         - 'M06: Wishlist and cart'
@@ -1319,8 +1394,66 @@ paths:
       responses:
         '200':
           description: 'Announcement removed successfuly.'
+          
+  /checkout:
+    get:
+      operationId: R608
+      summary: 'R608: Checkout Form'
+      description: 'Provide checkout form. Access: USR'
+      tags:
+        - 'M06: Wishlist and cart'
+      responses:
+        '200':
+          description: 'Ok. "NOT YET IMPLEMENTED'
 
-...
+    post:
+      operationId: R609
+      summary: 'R609: Checkout Action'
+      description: 'Processes the checkout form submission. Access: PUB'
+      tags:
+        - 'M06: Wishlist and cart'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: object
+                  properties:
+                    zip-code:
+                      type: string
+                    street:
+                      type: string
+                    city: 
+                      type: string
+                    country:
+                      type: string
+                shipping:
+                  type: string
+                payment_method:
+                  type: string
+              required:
+                - address
+                - shipping
+                - payment_method
+
+      responses:
+        '302':
+          description: 'Redirect after processing the checkout information.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful checkout. Redirect to mainpage.'
+                  value: '/mainpage'
+                302Failure:
+                  description: 'Failed checkout. Redirect to checkout.'
+                  value: '/checkout'
 ```
 
 
