@@ -632,14 +632,8 @@ paths:
         '403':
           description: "User already reviewed this product / invalid review."
 
-  /item/{id}/review/{reviewId}:
+  /review/{reviewId}:
     parameters:
-      - in: path
-        name: id
-        description: Product Identifier
-        schema:
-          type: integer
-        required: true
       - in: path
         name: reviewId
         description: Review Identifier
@@ -768,7 +762,7 @@ paths:
         '200':
           description: 'Ok. Show [UI14](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/wikis/er#ui14-user-administration)'
   
-  /management/addItem:
+  /management/item:
     get:
       operationId: R303
       summary: 'R303: Add product Form'
@@ -778,7 +772,7 @@ paths:
       responses:
         '200':
           description: 'Ok. Show [UI05](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/wikis/er#ui05-add-a-new-item)'
-    put:
+    post:
       operationId: R304
       summary: 'R304: Add product Action'
       description: 'Processes the add product form submission. Access: ADM'
@@ -836,22 +830,23 @@ paths:
                 302Error:
                   description: 'Failed authentication. Redirect to add product form.'
                   value: '/admin/addproduct'
-          
-  /admin/userManagement/ban/{id}:  
+                  
+  /management/item/{id}:
     parameters:
-        - in: path
-          name: id
-          schema:
-            type: integer
-          required: true
-
-    post:
+      - in: path
+        name: id
+        description: Product identifier
+        schema:
+          type: integer
+        required: true
+        
+    put:
       operationId: R305
-      summary: 'R305: Ban user Action'
-      description: 'Processes the ban user operation. Access: ADM'
+      summary: 'R305: Edit product Action'
+      description: 'Processes edit product form submission. Access: ADM'
       tags:
         - 'M03: Management'
-
+ 
       requestBody:
         required: true
         content:
@@ -859,8 +854,68 @@ paths:
             schema:
               type: object
               properties:
-                ban_reason:
+                name:          
                   type: string
+                price:   
+                  type: integer
+                category:          
+                  type: string
+                pictures:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+                details:
+                      type: array
+                      items:
+                        type: array
+                        items: 
+                          type: string
+                brief_description:          # <!--- form field name
+                  type: string
+                description:          # <!--- form field name
+                  type: string
+              required:
+                - name
+                - price
+                - category
+                - pictures
+                - brief_description
+                - description
+                - details
+ 
+      responses:
+        '302':
+          description: 'Redirect after processing the product addition fields.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful addition. Redirect to item page.'
+                  value: '/products/{id}'
+                302Error:
+                  description: 'Failed authentication. Redirect to add product form.'
+                  value: '/admin/addproduct'      
+  /admin/userManagement/ban:  
+
+    post:
+      operationId: R306
+      summary: 'R306: Ban user Action'
+      description: 'Processes the ban user operation. Access: ADM'
+      tags:
+        - 'M03: Management'
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
 
       responses:
         '302':
@@ -877,21 +932,24 @@ paths:
                   description: 'Failed ban. Redirect to user management.'
                   value: '/admin/userManagement' 
   
-  /admin/userManagement/promote/{id}:  
+  /admin/userManagement/promote:  
     
     patch:
-      operationId: R306
-      summary: 'R306: Promote user Action'
+      operationId: R307
+      summary: 'R307: Promote user Action'
       description: 'Processes the promote user operation. Access: ADM'
       tags:
         - 'M03: Management'
         
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
+      requestBody:
         required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
 
       responses:
         '302':
@@ -908,48 +966,10 @@ paths:
                   description: 'Failed promotion. Redirect to user management.'
                   value: '/admin/userManagement'  
                   
-  /products/{id}/deleteComment/{id2}:
-    delete:
-      operationId: R307
-      summary: 'R307: Delete comment Action'
-      description: 'Processes the delete comment operation. Access: ADM'
-
-      tags:
-        - 'M03: Management'
-
-      parameters:
-        - in: path
-          name: id
-          description: Product identifier
-          schema:
-            type: integer
-          required: true
-        - in: path
-          name: id2
-          description: Comment identifier
-          schema:
-            type: integer
-          required: true
-
-      responses:
-        '302':
-          description: 'Redirect after deleting the comment.'
-          headers:
-            Location:
-              schema:
-                type: string
-              examples:
-                302Success:
-                  description: 'Successful comment deletion. Redirect to item page.'
-                  value: '/product/{id}'
-                302Failure:
-                  description: 'Failed comment deletion. Redirect to item page.'
-                  value: '/product/{id}'  
-                  
   /admin/discountProduct:
     post:
-      operationId: R308
-      summary: 'R308: Add product discount Action'
+      operationId: R309
+      summary: 'R309: Add product discount Action'
       description: 'AJAX request. Add a discount to a chosen product. Access: ADM'
       tags:
         - 'M03: Management'
@@ -976,8 +996,8 @@ paths:
           
   /admin/discountCategory:
     post:
-      operationId: R309
-      summary: 'R309: Add category discount Action'
+      operationId: R310
+      summary: 'R310: Add category discount Action'
       description: 'AJAX request. Add a discount to all products of a chosen category. Access: ADM'
       tags:
         - 'M03: Management'
@@ -1006,8 +1026,8 @@ paths:
           
   /admin/discounts:
     post:
-      operationId: R310
-      summary: 'R310: Remove product discounts Action'
+      operationId: R311
+      summary: 'R311: Remove product discounts Action'
       description: 'AJAX request. Removes current discounts on a product. Access: ADM'
       tags:
         - 'M03: Management'
@@ -1041,8 +1061,8 @@ paths:
           
   /admin/purchases/{id}/purchaseStatus:
     patch:
-      operationId: R311
-      summary: 'R311: Update purchase status Action'
+      operationId: R312
+      summary: 'R312: Update purchase status Action'
       description: 'AJAX request. Update the status of a purchase. Access: ADM'
       tags:
         - 'M03: Management'
@@ -1155,7 +1175,7 @@ paths:
                   value: '/mainpage'
                   
   /item/{id}/stock:
-    post:
+    patch:
       operationId: R205
       summary: 'R205: Update product stock Action'
       description: 'AJAX request. Update the current stock of a product. Access: ADM'
@@ -1169,6 +1189,16 @@ paths:
           schema:
             type: integer
           required: true
+          
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                stock:
+                  type: integer
            
       responses:
         '200':
@@ -1177,7 +1207,7 @@ paths:
           description: 'Unauthorized user cannot edit product stock'
                   
                   
-  /userProfile/{id}/wishlist:
+  /user/{id}/wishlist:
     parameters:
       - in: path
         name: id
@@ -1195,7 +1225,8 @@ paths:
       responses:
         '200':
           description: 'Ok. Show [UI07](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/wikis/er#ui07-cart)'
-        
+  
+  /wishlist:
     post:
       operationId: R602
       summary: 'R602: Add item to wishlist API'
@@ -1219,7 +1250,7 @@ paths:
         '401':
           description: 'The password does not correspond to the email.'
 
-  /apit/wishlist/{id}:
+  /wishlist/{id}:
     parameters:
       - in: path
         name: id
@@ -1243,11 +1274,11 @@ paths:
         '406':
           description: 'Item not in the wishlist'
    
-  /userProfile/{id}/cart:
+  /user/{id}/cart:
     get:
       operationId: R604
       summary: 'R604: View user''s cart'
-      description: 'Redirect to user''s cart page. Access: OWN'
+      description: 'Redirect to user''s cart page. Access: OWN, ADM'
       tags:
         - 'M06: Wishlist and cart'
         
@@ -1263,7 +1294,7 @@ paths:
         '200':
           description: 'Ok. Show [UI07](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/wikis/er#ui07-cart)'
           
-  /api/cart/{id}:
+  /cart/{id}:
     parameters:
       - in: path
         name: id
@@ -1287,29 +1318,27 @@ paths:
           description: 'Unauthenticated user cannot remove item from cart.'
         '406':
           description: 'Item not in the cart'
-          
-  /api/cart/{id}/{quantity}:
-    parameters:
-      - in: path
-        name: id
-        description: Product identifier 
-        schema:
-          type: integer
-        required: true
-      - in: path
-        name: quantity
-        description: Quantity 
-        schema:
-          type: integer
-        required: true
         
+  /cart:
     post:
       operationId: R605
       summary: 'R605: Add item to cart'
       description: 'AJAX request. Adds an item with chosen quantity to the users cart. Access: OWN'
       tags:
         -  'M06: Wishlist and cart'
-                
+      
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productID:
+                  type: integer 
+                quantity:
+                  type: integer
+                  
       responses:
         '200':
           description: 'Sucessfully added item to cart.'
@@ -1323,7 +1352,18 @@ paths:
       tags:
         - 'M06: Wishlist and cart'
 
-
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productID:
+                  type: integer 
+                quantity:
+                  type: integer
+      
       responses:
         '200':
           description: 'Sucessfully updated item quantity.'
@@ -1334,8 +1374,8 @@ paths:
           
   /admin/announcement:
     post:
-      operationId: R312
-      summary: 'R312: Add announcement Action'
+      operationId: R313
+      summary: 'R313: Add announcement Action'
       description: 'AJAX request. Add an announcement. Access: ADM'
       tags:
         - 'M03: Management'
@@ -1365,8 +1405,8 @@ paths:
         required: true
         
     post:
-      operationId: R313
-      summary: 'R313: Remove announcement Action'
+      operationId: R314
+      summary: 'R314: Remove announcement Action'
       description: 'AJAX request. Remove an announcement. Access: ADM'
       tags:
         - 'M03: Management'
