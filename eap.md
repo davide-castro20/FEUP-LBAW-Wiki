@@ -1539,13 +1539,13 @@ Module M05: Products and reviews
 
 Module M06: Wishlist and cart
 
-| Web Resource Reference      | URL                         |
-| --------------------------- | --------------------------- |
-| R601: View user's wishlist  | /userProfile/{id1}/wishlist |
-| R604: View user's cart      | /userProfile/{id}/cart      |
-| R605: Add item to cart      | /api/cart/{id}/{quantity}   |
-| R606: Remove item from cart | /api/cart/{id}              |
-| R608: Checkout Form         | /checkout                   |
+| Web Resource Reference      | URL                            |
+| --------------------------- | ------------------------------ |
+| R601: View user's wishlist  | /userProfile/{id1}/wishlist    |
+| R604: View user's cart      | /userProfile/{id}/cart         |
+| R605: Add item to cart      | POST /api/cart/{id}/{quantity} |
+| R606: Remove item from cart | DELETE /api/cart/{id}          |
+| R608: Checkout Form         | /checkout                      |
 
 
 
