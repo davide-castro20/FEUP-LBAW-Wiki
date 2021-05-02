@@ -1449,8 +1449,7 @@ paths:
 
 ## A8: Vertical prototype
 
-> Brief presentation of the product.  
-> Brief presentation of the artefact goals.
+The vertical prototype includes the implementation of some of the user stories described in the er artifacts and aims to validate our product. Our main focus was the item page and some of it's interactions, but we also implemented all user interfaces as well as the authentication system (such as login, register and logout), some policies and middlewares.
 
 ### 1. Implemented Features
 
