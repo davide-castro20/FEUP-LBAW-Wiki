@@ -1571,9 +1571,9 @@ Module M05: Products and reviews
 
 | Web Resource Reference      | URL                                 |
 | --------------------------- | ----------------------------------- |
-| R501: Submit product review | POST item/{id}/review               |
-| R502: Edit product review   | PUT review/{reviewId}               |
-| R503: Delete product review | DELETE /item/{id}/review/{reviewId} |
+| R501: Submit product review | POST /item/{id}/review               |
+| R502: Edit product review   | PUT /review/{reviewId}               |
+| R503: Delete product review | DELETE /review/{reviewId} |
 
 
 
@@ -1583,8 +1583,8 @@ Module M06: Wishlist and cart
 | --------------------------- | ------------------------------ |
 | R601: View user's wishlist  | /userProfile/{id1}/wishlist    |
 | R604: View user's cart      | /userProfile/{id}/cart         |
-| R605: Add item to cart      | POST /api/cart/{id}/{quantity} |
-| R606: Remove item from cart | DELETE /api/cart/{id}          |
+| R605: Add item to cart      | POST /cart                     |
+| R606: Remove item from cart | DELETE /cart/{id}              |
 | R608: Checkout Form         | /checkout                      |
 
 
