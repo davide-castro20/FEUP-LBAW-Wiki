@@ -31,7 +31,7 @@ This artifact intends to document the catalogue of resources and the properties 
 ### 3. OpenAPI Specification
 
 Link to the Swagger generated documentation (https://app.swaggerhub.com/apis/LBAW-FEUP-11/lbaw-fneuc_web_api/1.0).  
-Link to the OpenAPI specification file in the repository: [a7_openapi](../blob/master/a7_openapi.yaml).
+Link to the OpenAPI specification file in the repository: [a7_openapi](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/blob/master/a7_openapi.yaml).
 ```yaml
 openapi: 3.0.0
 
