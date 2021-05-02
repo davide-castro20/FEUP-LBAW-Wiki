@@ -8,7 +8,7 @@ This artifact intends to document the catalogue of resources and the properties 
 
 ### 1. Overview
 
-|   |   |
+| Module Name | Module Description |
 |---|---|
 | M01: Authentication and profile  | Web resources associated with user authentication and profile management. Includes the following system features: login/logout, registration, credential recovery, view and edit personal profile information.  |
 | M02: Products and categories  | Web resources associated with the searching, filtering and listing of all products and categories available to the user.  |
@@ -30,10 +30,6 @@ This artifact intends to document the catalogue of resources and the properties 
 
 ### 3. OpenAPI Specification
 
-OpenAPI specification in YAML format to describe the web application's web resources.
-
-Link to the `.yaml` file in the group's repository.
-
 Link to the Swagger generated documentation (https://app.swaggerhub.com/apis/LBAW-FEUP-11/lbaw-fneuc_web_api/1.0).
 ```yaml
 openapi: 3.0.0
@@ -47,7 +43,7 @@ servers:
 # Added by API Auto Mocking Plugin
 - description: SwaggerHub API Auto Mocking
   url: https://virtserver.swaggerhub.com/LBAW-FEUP-11/LBAW-FNEUC/1.0
-- url: http://lbaw-prod.fe.up.pt
+- url: http://lbaw2111.lbaw-prod.fe.up.pt/
   description: Production server
 
 externalDocs:
@@ -63,11 +59,11 @@ tags:
   - name: 'M06: Wishlist and cart'
 
 paths:
-  /signin:
+  /login:
     get:
       operationId: R101
-      summary: 'R101: Signin Form'
-      description: 'Provide signin form. Access: PUB'
+      summary: 'R101: Login Form'
+      description: 'Provide Login form. Access: PUB'
       tags:
         - 'M01: Authentication and profile'
       responses:
@@ -75,8 +71,8 @@ paths:
           description: 'Ok. Show [UI11](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/wikis/er#ui11-sign-in)'
     post:
       operationId: R102
-      summary: 'R102: Signin Action'
-      description: 'Processes the signin form submission. Access: PUB'
+      summary: 'R102: Login Action'
+      description: 'Processes the Login form submission. Access: PUB'
       tags:
         - 'M01: Authentication and profile'
  
@@ -97,7 +93,7 @@ paths:
  
       responses:
         '302':
-          description: 'Redirect after processing the signin credentials.'
+          description: 'Redirect after processing the login credentials.'
           headers:
             Location:
               schema:
@@ -107,26 +103,26 @@ paths:
                   description: 'Successful authentication. Redirect to mainpage.'
                   value: '/mainpage'
                 302Error:
-                  description: 'Failed authentication. Redirect to signin form.'
-                  value: '/signin'
+                  description: 'Failed authentication. Redirect to login form.'
+                  value: '/login'
   
-  /signout:
+  /logout:
     post:
       operationId: R103
-      summary: 'R103: Signout Action'
-      description: 'Signout the current authenticated used. Access: USR, ADM'
+      summary: 'R103: Logout Action'
+      description: 'Logout the current authenticated used. Access: USR, ADM'
       tags:
         - 'M01: Authentication and profile'
       responses:
         '302':
-          description: 'Redirect after processing signout.'
+          description: 'Redirect after processing logout.'
           headers:
             Location:
               schema:
                 type: string
               examples:
                 302Success:
-                  description: 'Successful signout. Redirect to mainpage.'
+                  description: 'Successful logout. Redirect to mainpage.'
                   value: '/mainpage'                 
   
   /register:
@@ -189,7 +185,7 @@ paths:
                   description: 'Failed signup. Redirect to signup form.'
                   value: '/signup'      
                   
-  /users/{id}/edit:
+  /userProfile/{id}/edit:
   
     parameters:
         - in: path
@@ -257,10 +253,10 @@ paths:
               examples:
                 302Success:
                   description: 'Successful edit. Redirect to user profile.'
-                  value: '/users/{id}'
+                  value: '/userProfile/{id}'
                 302Failure:
                   description: 'Failed edit. Redirect to user profile.'
-                  value: '/users/{id}'                
+                  value: '/userProfile/{id}'                
                   
   /credentialRecovery:
     get:
@@ -301,10 +297,10 @@ paths:
                 type: string
               examples:
                 302Success:
-                  description: 'Successful credential recovery. Redirect to signin.'
-                  value: '/signin'
+                  description: 'Successful credential recovery. Redirect to login.'
+                  value: '/login'
                   
-  /users/{id}:
+  /userProfile/{id}:
     get:
       operationId: R110
       summary: 'R110: View user profile'
@@ -324,8 +320,8 @@ paths:
           description: 'Ok. Show [UI13](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/wikis/er#ui13-user-profile)'
           
     delete:
-      operationId: R114
-      summary: 'R114: Delete account Action'
+      operationId: R111
+      summary: 'R111: Delete account Action'
       description: 'Processes the delete account action. Access: OWN'
       tags:
         - 'M01: Authentication and profile'
@@ -351,12 +347,12 @@ paths:
                   value: '/mainpage'
                 302Error:
                   description: 'Failed deletion. Redirect to user profile page.'
-                  value: '/users/{id}'
+                  value: '/userProfile/{id}'
           
-  /users/{id}/billing_address:
+  /userProfile/{id}/billingAddress:
     post:
-      operationId: R111
-      summary: 'R111: Update billing address'
+      operationId: R112
+      summary: 'R112: Update billing address'
       description: 'AJAX request. Update the user''s billing address. Access: OWN'
       tags:
         - 'M01: Authentication and profile'
@@ -408,10 +404,10 @@ paths:
                   zip_code: '124231'
                   city: 'Washington DC'
                   
-  /users/{id}/shipping_address:
+  /userProfile/{id}/shippingAddress:
     post:
-      operationId: R112
-      summary: 'R112: Update shipping address'
+      operationId: R113
+      summary: 'R113: Update shipping address'
       description: 'AJAX request. Update the user''s shipping address. Access: OWN'
       tags:
         - 'M01: Authentication and profile'
@@ -463,10 +459,10 @@ paths:
                 zip_code: '124231'
                 city: 'Washington DC'
                 
-  /users/{id}/purchase_history:
+  /userProfile/{id}/purchaseHistory:
     get:
-      operationId: R113
-      summary: 'R113: View user''s purchase history'
+      operationId: R114
+      summary: 'R114: View user''s purchase history'
       description: 'Show the individual user purchase history. Access: OWN, ADM'
       tags:
         - 'M01: Authentication and profile'
@@ -482,7 +478,7 @@ paths:
         '200':
           description: 'Ok. Show [UI09](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/wikis/er#ui09-purchase-history)'
           
-  /api/products:
+  /api/items:
     get:
       operationId: R201
       summary: 'R201: Search products API'
@@ -499,7 +495,7 @@ paths:
             type: string
           required: false
         - in: query
-          name: item
+          name: category
           description: Category of the products
           schema:
             type: string
@@ -559,7 +555,7 @@ paths:
                     description: Cyber Punk is a futuristic RPG that will blow you away with stunning graphics
                     inStock: false
                     details: [["18+", "Age restriction"], ["01-10-2020", "Release Date"], ["CDPR", "Developer"]]
-  /products/{id}:
+  /item/{id}:
     parameters:
       - in: path
         name: id
@@ -582,7 +578,7 @@ paths:
         '404':
           description: 'Product not found!'
         
-  /products/{id}/review:
+  /item/{id}/review:
     parameters:
       - in: path
         name: id
@@ -636,7 +632,7 @@ paths:
         '403':
           description: "User already reviewed this product / invalid review."
 
-  /products/{id}/review/{reviewId}:
+  /item/{id}/review/{reviewId}:
     parameters:
       - in: path
         name: id
@@ -651,7 +647,7 @@ paths:
           type: integer
         required: true
       
-    patch:
+    put:
       operationId: R502
       summary: 'R502: Edit product review'
       description: "AJAX request. Updates a user review of the product. Access: OWN"
@@ -746,7 +742,7 @@ paths:
           description: 'Ok. Show [UI04](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/wikis/er#ui04-contacts)'
     
   
-  /admin:
+  /management:
     get:
       operationId: R301
       summary: 'R301: View administration page'
@@ -759,7 +755,7 @@ paths:
         '200':
           description: 'Ok. Show [UI06](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/wikis/er#ui06-admin-main-page)'
   
-  /admin/usermanagement:
+  /management/manageUsers:
     get:
       operationId: R302
       summary: 'R302: View user administration page'
@@ -772,7 +768,7 @@ paths:
         '200':
           description: 'Ok. Show [UI14](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/wikis/er#ui14-user-administration)'
   
-  /admin/addproduct:
+  /management/addItem:
     get:
       operationId: R303
       summary: 'R303: Add product Form'
@@ -841,7 +837,7 @@ paths:
                   description: 'Failed authentication. Redirect to add product form.'
                   value: '/admin/addproduct'
           
-  /admin/usermanagement/ban/{id}:  
+  /admin/userManagement/ban/{id}:  
     parameters:
         - in: path
           name: id
@@ -876,12 +872,12 @@ paths:
               examples:
                 302Success:
                   description: 'Successful ban. Redirect to user management.'
-                  value: '/admin/usermanagement'
+                  value: '/admin/userManagement'
                 302Failure:
                   description: 'Failed ban. Redirect to user management.'
-                  value: '/admin/usermanagement' 
+                  value: '/admin/userManagement' 
   
-  /admin/usermanagement/promote/{id}:  
+  /admin/userManagement/promote/{id}:  
     
     patch:
       operationId: R306
@@ -907,12 +903,12 @@ paths:
               examples:
                 302Success:
                   description: 'Successful promotion. Redirect to user management.'
-                  value: '/admin/usermanagement'
+                  value: '/admin/userManagement'
                 302Failure:
                   description: 'Failed promotion. Redirect to user management.'
-                  value: '/admin/usermanagement'  
+                  value: '/admin/userManagement'  
                   
-  /products/{id}/deletecomment/{id2}:
+  /products/{id}/deleteComment/{id2}:
     delete:
       operationId: R307
       summary: 'R307: Delete comment Action'
@@ -950,7 +946,7 @@ paths:
                   description: 'Failed comment deletion. Redirect to item page.'
                   value: '/product/{id}'  
                   
-  /admin/discount_product:
+  /admin/discountProduct:
     post:
       operationId: R308
       summary: 'R308: Add product discount Action'
@@ -978,7 +974,7 @@ paths:
         '200':
           description: 'Discount added to product successfuly.'
           
-  /admin/discount_category:
+  /admin/discountCategory:
     post:
       operationId: R309
       summary: 'R309: Add category discount Action'
@@ -1043,7 +1039,7 @@ paths:
               
               
           
-  /admin/purchases/{id}/purchase_status:
+  /admin/purchases/{id}/purchaseStatus:
     patch:
       operationId: R311
       summary: 'R311: Update purchase status Action'
@@ -1158,7 +1154,7 @@ paths:
                   description: 'Failed deletion. Redirect to main page.'
                   value: '/mainpage'
                   
-  /products/{id}/stock:
+  /item/{id}/stock:
     post:
       operationId: R205
       summary: 'R205: Update product stock Action'
@@ -1181,30 +1177,21 @@ paths:
           description: 'Unauthorized user cannot edit product stock'
                   
                   
-  /api/wishlist/{id}:
+  /userProfile/{id}/wishlist:
     parameters:
       - in: path
         name: id
-        description: Product identifier
+        description: User identifier
         schema:
           type: integer
         required: true
-        
+      
     get:
       operationId: R601
       summary: 'R601: View user''s wishlist'
-      description: 'Redirect to user''s wishlist page. Access: OWN'
+      description: 'Redirect to user''s wishlist page. Access: OWN, ADM'
       tags:
         - 'M06: Wishlist and cart'
-        
-      parameters:
-      - in: path
-        name: id
-        description: id of the user that has the correponding cart
-        schema:
-          type: integer
-        required: true
-        
       responses:
         '200':
           description: 'Ok. Show [UI07](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/wikis/er#ui07-cart)'
@@ -1216,19 +1203,37 @@ paths:
       tags:
         -  'M06: Wishlist and cart'
         
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productID:
+                  type: integer  
+                  
       responses:
         '200':
           description: 'Sucessfully added item to wishlist.'
         '401':
           description: 'The password does not correspond to the email.'
-  
+
+  /apit/wishlist/{id}:
+    parameters:
+      - in: path
+        name: id
+        description: Product identifier
+        schema:
+          type: integer
+        required: true
+        
     delete:
       operationId: R603
       summary: 'R603: Remove item from wishlist'
       description: 'AJAX request. Removes an item from the user''s wishlist. Access: OWN'
       tags:
         -  'M06: Wishlist and cart'
-          
                 
       responses:
         '200':
@@ -1238,7 +1243,7 @@ paths:
         '406':
           description: 'Item not in the wishlist'
    
-  /users/{id}/cart:
+  /userProfile/{id}/cart:
     get:
       operationId: R604
       summary: 'R604: View user''s cart'
@@ -1266,34 +1271,6 @@ paths:
         schema:
           type: integer
         required: true
-        
-    post:
-      operationId: R605
-      summary: 'R605: Add item to cart'
-      description: 'AJAX request. Adds an item with chosen quantity to the users cart. Access: OWN'
-      tags:
-        -  'M06: Wishlist and cart'
-          
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                product_id:         
-                  type: integer
-                quantity:    
-                  type: integer
-              required:
-              - product_id
-              - quantity
-                
-      responses:
-        '200':
-          description: 'Sucessfully added item to cart.'
-        '406':
-          description: 'Item not available.'
   
     delete:
       operationId: R606
@@ -1325,6 +1302,19 @@ paths:
         schema:
           type: integer
         required: true
+        
+    post:
+      operationId: R605
+      summary: 'R605: Add item to cart'
+      description: 'AJAX request. Adds an item with chosen quantity to the users cart. Access: OWN'
+      tags:
+        -  'M06: Wishlist and cart'
+                
+      responses:
+        '200':
+          description: 'Sucessfully added item to cart.'
+        '406':
+          description: 'Item not available.'
         
     patch:
       operationId: R607
@@ -1494,19 +1484,70 @@ paths:
 
 #### 1.2. Implemented Web Resources
 
-> Identify the web resources that were implemented in the prototype.  
+Module M01: Authentication and profile
 
-> Module M01: Module Name  
+| Web Resource Reference             | URL                               |
+| ---------------------------------- | --------------------------------- |
+| R101: Login Form                   | /login                            |
+| R102: Login Action                 | POST /login                       |
+| R103: Logout Action                | POST /logout                      |
+| R104: Register Form                | /register                         |
+| R105: Register Action              | POST /register                    |
+| R110: View user profile            | /userProfile/{id}                 |
+| R114: View user's purchase history | /userProfile/{id}/purchaseHistory |
 
-| Web Resource Reference | URL                            |
-| ---------------------- | ------------------------------ |
-| R01: Web resource name | URL to access the web resource |
 
-...
 
-> Module M02: Module Name  
+Module M02: Products and categories
 
-...
+| Web Resource Reference    | URL        |
+| ------------------------- | ---------- |
+| R201: Search products API | /api/items |
+| R202: View product page   | /item/{id} |
+
+
+
+Module M03: Management
+
+| Web Resource Reference              | URL                     |
+| ----------------------------------- | ----------------------- |
+| R301: View administration page      | /management             |
+| R302: View user administration page | /management/manageUsers |
+| R303: Add product Form              | /management/addItem     |
+
+
+
+Module M04: Static Pages
+
+| Web Resource Reference   | URL       |
+| ------------------------ | --------- |
+| R401: View About page    | /about    |
+| R402: View FAQ page      | /faq      |
+| R403: View Contacts page | /contacts |
+
+
+
+Module M05: Products and reviews
+
+| Web Resource Reference      | URL                                 |
+| --------------------------- | ----------------------------------- |
+| R501: Submit product review | POST item/{id}/review               |
+| R502: Edit product review   | PUT review/{reviewId}               |
+| R503: Delete product review | DELETE /item/{id}/review/{reviewId} |
+
+
+
+Module M06: Wishlist and cart
+
+| Web Resource Reference      | URL                         |
+| --------------------------- | --------------------------- |
+| R601: View user's wishlist  | /userProfile/{id1}/wishlist |
+| R604: View user's cart      | /userProfile/{id}/cart      |
+| R605: Add item to cart      | /api/cart/{id}/{quantity}   |
+| R606: Remove item from cart | /api/cart/{id}              |
+| R608: Checkout Form         | /checkout                   |
+
+
 
 ### 2. Prototype
 
