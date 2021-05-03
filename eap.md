@@ -19,7 +19,7 @@ This artifact intends to document the catalogue of resources and the properties 
 
 ### 2. Permissions
 
-|   |   |   |
+| ID | Full Name | Description |
 |---|---|---|
 | PUB  | Public | Group of users without privileges |
 | USR  | User | Authenticated user |
