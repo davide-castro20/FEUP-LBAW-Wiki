@@ -13,22 +13,23 @@ Our website aims to help customers get what then need when they need it during t
 
 ### 2. Usage
 
-> URL to the product: http://lbaw21gg.lbaw-prod.fe.up.pt  
+URL to the product: http://lbaw2111.lbaw-prod.fe.up.pt  
 
 #### 2.1. Administration Credentials
 
-> Administration URL: URL  
+> Administration URL: URL 
 
-| Username | Password |
-| -------- | -------- |
-| admin    | password |
+ URL to the product's management page: http://lbaw2111.lbaw-prod.fe.up.pt/management 
+
+| Email                 | Password   |
+| --------------------- | ---------- |
+| normallogin@gmail.com | normaluser |
 
 #### 2.2. User Credentials
 
-| Type          | Username  | Password |
-| ------------- | --------- | -------- |
-| basic account | user 1    | password |
-| news editor   | user 1    | password |
+| Type          | Email               | Password  |
+| ------------- | ------------------- | --------- |
+| basic account | lbawAdmin@gmail.com | lbawAdmin |
 
 ### 3. Application Help
 
