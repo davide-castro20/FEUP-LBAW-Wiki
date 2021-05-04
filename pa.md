@@ -73,28 +73,28 @@ Our website aims to help customers get what then need when they need it during t
 |---|---|---|---|---|---|
 | US01  | Access Home  | Module 2 | Mandatory | **Henrique Ribeiro**, Davide Castro | 100% | 
 | US02  | Access About Page | Module 4  | Important | **Henrique Ribeiro**, Davide Castro  | 100% | 
-| US03  | See Contacts | Module 4 | Module 4 | **Henrique Ribeiro**, Davide Castro  | 100% | 
-| US04  | Search items | high | As a *User*, I want to search for an item's name, so that I can get more information about it |
-| US05  | Filter items | high | As a *User*, I want to filter for public information, like categories, items and prices, so that I can be informed about the platform's content |
-| US06  | View items | high | As a *User*, I want to view all the items, so that I can see all the products available |
-| US07  | Delete account | medium | As a *User*, I want to be able to delete my account, so that I can remove my account from the system |
-| US11       | Sign-up                    | high     | As a *Visitor*, I want to be able to create a new account so that I'm able to authenticate myself |
-| US12       | Sign-in                    | high     | As a *Visitor*, I want to be able to authenticate myself so that I'm able to buy products |
-| US13       | Administrator Sign-in      | high     | As a *Visitor*, I want to be able to sign-in as an administrator if I'm permitted to do so |
-| US14       | Sign-up using external API | low      | As a *Visitor*, I want to be able to create a new account using my existent Google account |
-| US15       | Sign-in using external API | low      | As a *Visitor*, I want to be able to sign-in using my Google account |
-| US21       | View purchase history  | high     | As an *Authenticated*, I want to see my purchasing history, so that I can see the products I have bought|
-| US22      | Rate item             | high     | As an *Authenticated*, I would like to attribute a score to an item, so that other users can know my basic opinion of the item        |
-| US23      | Comment item         | high     | As an *Authenticated*, I would like to attach a comment to an item, so that other users can know my more complete opinion of the item |
-| US24    | Remove comment      | high   | As an *Authenticated*, I want to be able to be able to delete my own comments so that I'm able to remove comments that I don't find useful                      |
-| US25      | Add to cart          | high     | As an *Authenticated*, I want to add an item to my cart, so that I am able to purchase it|
-| US26      | Remove from cart          | high     | As an *Authenticated*, I want to remove an item from my cart, so that I can reconsider my purchase before I finalize it|
-| US27      | Checkout cart          | high     | As an *Authenticated*, I want to checkout my cart, so that I can purchase the items I want |
-| US28 | Logout | high | As an *Authenticated*, I want to be able to log out from my account, so that I can exit my account|
-| US29      | Edit profile     | high| As an *Authenticated*, I want to be able to edit my profile so that I can keep it up to date     |
-| US210      | Recharge account balance     | high| As an *Authenticated*, I want to be able to recharge my account balance, so that I can make more purchases     |
-| US211 | View Cart | high | As an *Authenticated*, I want to see my car, so that I can make sure i added the correct items to it |
-| US212     | View product recommendations | medium | As an *Authenticated*, I would like to have a list of recommended items according to my history of products, so that I can easily find products that may be of my interest |
+| US03  | See Contacts | Module 4 | Important | **Henrique Ribeiro**, Davide Castro  | 100% | 
+| US04  | Search items | Module 2 | Mandatory | **Henrique Ribeiro**, Davide Castro  | 100% |
+| US05  | Filter items | Module 2 | Mandatory | **João Cardoso**, Davide Castro  | 25% |
+| US06  | View items | Module 2 | Mandatory | **Henrique Ribeiro**, Davide Castro  | 100% |
+| US07  | Delete account | Module 1 | Mandatory | **Diogo Rosário**, Henrique Ribeiro | 0% |
+| US11       | Sign-up                    | Module 1 | Mandatory | **Henrique Ribeiro** | 100% |
+| US12       | Sign-in                    | Module 1 | Mandatory | **Henrique Ribeiro** | 100% |
+| US13       | Administrator Sign-in      | Module 1 | Mandatory | **Henrique Ribeiro** | 100% |
+| US14       | Sign-up using external API | Module 1 | Optional | **Diogo Rosário**, Henrique Ribeiro | 0% |
+| US15       | Sign-in using external API | Module 1 | Optional | **Diogo Rosário**, Henrique Ribeiro | 0% |
+| US21       | View purchase history  | Module 1 | Important | **Davide Castro**, Henrique Ribeiro | 100% |
+| US22      | Rate item             | Module 2 | Important | **Davide Castro**, Henrique Ribeiro | 100% |
+| US23      | Comment item         | Module 2 | Important | **Davide Castro**, Henrique Ribeiro | 100% |
+| US24    | Remove comment      | Module 2 | Important | **Davide Castro**, Henrique Ribeiro | 100% |
+| US25      | Add to cart          | Module 6 | Mandatory | **Davide Castro**, Henrique Ribeiro | 100% |
+| US26      | Remove from cart          | Module 6 | Mandatory | **Davide Castro**, Henrique Ribeiro | 100% |
+| US27      | Checkout cart          | Module 6 | Mandatory | **Davide Castro**, Diogo Rosário | 0% |
+| US28 | Logout | Module 1 | Important | **Henrique Ribeiro** | 100% |
+| US29      | Edit profile     | Module 1 | Important | **João Cardoso**, Davide Castro | 0% |
+| US210      | Recharge account balance     | Module 1 | Mandatory | **Davide Castro**, Henrique Ribeiro | 0% |
+| US211 | View Cart | Module 6 | Mandatory | **Henrique Ribeiro** | 100% |
+| US212     | View product recommendations | Module 1 | Important | **Henrique Ribeiro** | 100% |
 | US213     | View notifications | medium | As an *Authenticated*, I would like to have notifications when my comment is answered, a product in my wishlist is re-stocked or put on sale, so that I can be on time to make the best purchases |
 | US214 | View wish list | medium | As an *Authenticated*, I want to see my wish list, so that I can decide if I want to purchase the items in it |
 | US215     | Add to wish list        | medium   | As an *Authenticated*, I want to add items to my wish list, so that I can purchase them easily in the future                          |
