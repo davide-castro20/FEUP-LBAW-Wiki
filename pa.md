@@ -59,17 +59,22 @@ Our website aims to help customers get what then need when they need it during t
 #### 8.1. Libraries Used
 
 > Include reference to all the libraries and frameworks used in the product.  
-> Include library name and reference, description of the use, and link to example where it's used in the product.  
+> Include library name and reference, description of the use, and link to the example where it's used in the product.  
 
 #### 8.2 User Stories
 
-> Detail the status of the implementation of each user story.  
-> Also include the new user stories that were created during the project.  
+> This subsection should include all high and medium priority user stories, sorted by order of implementation. Implementation should be sequential according to the order identified below. 
 
-| US Identifier | Name    | Priority                       | Team members               | State  |
-| ------------- | ------- | ------------------------------ | -------------------------- | ------ |
-| US01          | US Name | Mandatory; Important; Optional | John Silva, Ana Sousa ...  |  100%  |
-| US02          | US Name | Mandatory; Important; Optional | John Silva                 |   75%  | 
+> If there are new user stories, also include them in this table. 
+> The owner of the user story should have the name in **bold**.
+> This table should be updated when a user story is completed and another one started. 
+
+| US Identifier | Name    | Module | Priority                       | Team Members               | State  |
+| ------------- | ------- | ------ | ------------------------------ | -------------------------- | ------ |
+|  US01          | US Name 1 | Module A | Mandatory | **John Silva**, Ana Alice   |  100%  |
+|  US02          | US Name 2 | Module A | Important | **Ana Alice**, John Silva                 |   75%  | 
+|  US03          | US Name 3 | Module B | Optional | **Francisco Alves**                 |   5%  | 
+|  US04          | US Name 4 | Module A | Optional | -                 |   0%  | 
 
 
 ---
