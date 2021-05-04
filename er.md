@@ -6,7 +6,7 @@ Our website aims to help customers get what they need when they need it during t
 
 This project intends to specify, develop and promote an information system available through the web for the management of an online store, in which users can buy products.  
 
-We have a group of products to sell and we feel that a physical storefront wouldn't be enough to sell them. In addition, because of current circumstances, the physical contact required to sell our products in such a way has been heavily discouraged. Because of this, we are creating an online website to facilitate the transactions and increase the scope of potential buyers. We aim to create a platform with a responsive design, to give our uses the best browsing experience available in the market, allowing users to search through various categories, filter items, search them by name or choose from a recommended list.
+We have a group of products to sell and we feel that our current physical storefront isn't enough to sell them. In addition, because of current circumstances, the physical contact required to sell our products in such a way has been heavily discouraged. Because of this, we are creating an online website to facilitate the transactions and increase the scope of potential buyers. We aim to create a platform with a responsive design, to give our uses the best browsing experience available in the market, allowing users to search through various categories, filter items, search them by name or choose from a recommended list.
 
 Users are separated into three different types: system administrators and buyers, who have to register and log into the system, and guests. The user authentication can be done with an external API or using our website's authentication system, which requires an e-mail, a username and a password.
 
@@ -52,35 +52,35 @@ This section contains the user stories that will be considered during developmen
 | US07  | Delete account | medium | As a *User*, I want to be able to delete my account, so that I can remove my account from the system |
 
 #### 2.2 **Visitor**
-| Identifier | Name                       | Priority | Description                                                                                  |
-|------------|----------------------------|----------|----------------------------------------------------------------------------------------------|
+| Identifier | Name                       | Priority | Description                                                  |
+| ---------- | -------------------------- | -------- | ------------------------------------------------------------ |
 | US11       | Sign-up                    | high     | As a *Visitor*, I want to be able to create a new account so that I'm able to authenticate myself |
-| US12       | Sign-in                    | high     | As a *Visitor*, I want to be able to authenticate myself so that I'm able to buy products         |
-| US13       | Administrator Sign-in      | high     | As a *Visitor*, I want to be able to sign-in as an administrator if I'm permitted to do so  |
-| US14       | Sign-up using external API | low      | As a *Visitor*, I want to be able to create a new account using my existent Google account        |
-| US15       | Sign-in using external API | low      | As a *Visitor*, I want to be able to sign-in using my Google account
-
+| US12       | Sign-in                    | high     | As a *Visitor*, I want to be able to authenticate myself so that I'm able to buy products |
+| US13       | Administrator Sign-in      | high     | As a *Visitor*, I want to be able to sign-in as an administrator if I'm permitted to do so |
+| US14       | Sign-up using external API | low      | As a *Visitor*, I want to be able to create a new account using my existent Google account |
+| US15       | Sign-in using external API | low      | As a *Visitor*, I want to be able to sign-in using my Google account |
 #### 2.3 **Authenticated**
 
 | Identifier | Name                 | Priority | Description                                                                                                                 |
 |------------|----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------|
-| US21       | View purchase history  | high     | As an *Authenticated*, I want to see my purchasing history, so that I can see the products I have bought|                                                  |
-| US23       | Rate item             | high     | As an *Authenticated*, I would like to attribute a score to an item, so that other users can know my basic opinion of the item        |
-| US24       | Comment item         | high     | As an *Authenticated*, I would like to attach a comment to an item, so that other users can know my more complete opinion of the item |
-| US25     | Remove comment      | high   | As an *Authenticated*, I want to be able to be able to delete my own comments so that I'm able to remove comments that I don't find useful                      |
-| US26       | Add to cart          | high     | As an *Authenticated*, I want to add an item to my cart, so that I am able to purchase it|
-| US27       | Remove from cart          | high     | As an *Authenticated*, I want to remove an item from my cart, so that I can reconsider my purchase before I finalize it|
-| US28       | Checkout cart          | high     | As an *Authenticated*, I want to checkout my cart, so that I can purchase the items I want |
-| US29  | Logout | high | As an *Authenticated*, I want to be able to log out from my account, so that I can exit my account|
-| US210       | Edit profile     | high| As an *Authenticated*, I want to be able to edit my profile so that I can keep it up to date     |
-| US211       | Recharge account balance     | high| As an *Authenticated*, I want to be able to recharge my account balance, so that I can make more purchases     |
-| US212       | View product recommendations | medium | As an *Authenticated*, I would like to have a list of recommended items according to my history of products, so that I can easily find products that may be of my interest |
-| US213       | View notifications | medium | As an *Authenticated*, I would like to have notifications when my comment is answered, a product in my wishlist is re-stocked or put on sale, so that I can be on time to make the best purchases |
-| US214       | View wish list        | medium   | As an *Authenticated*, I want to see my wish list, so that I can decide if I want to purchase the items in it|
-| US215       | Add to wish list        | medium   | As an *Authenticated*, I want to add items to my wish list, so that I can purchase them easily in the future                          |
-| US216       | Remove from wish list      | medium   | As an *Authenticated*, I want to remove an item from my wish list, so that I can forget the item                                      |
+| US21       | View purchase history  | high     | As an *Authenticated*, I want to see my purchasing history, so that I can see the products I have bought|
+| US22      | Rate item             | high     | As an *Authenticated*, I would like to attribute a score to an item, so that other users can know my basic opinion of the item        |
+| US23      | Comment item         | high     | As an *Authenticated*, I would like to attach a comment to an item, so that other users can know my more complete opinion of the item |
+| US24    | Remove comment      | high   | As an *Authenticated*, I want to be able to be able to delete my own comments so that I'm able to remove comments that I don't find useful                      |
+| US25      | Add to cart          | high     | As an *Authenticated*, I want to add an item to my cart, so that I am able to purchase it|
+| US26      | Remove from cart          | high     | As an *Authenticated*, I want to remove an item from my cart, so that I can reconsider my purchase before I finalize it|
+| US27      | Checkout cart          | high     | As an *Authenticated*, I want to checkout my cart, so that I can purchase the items I want |
+| US28 | Logout | high | As an *Authenticated*, I want to be able to log out from my account, so that I can exit my account|
+| US29      | Edit profile     | high| As an *Authenticated*, I want to be able to edit my profile so that I can keep it up to date     |
+| US210      | Recharge account balance     | high| As an *Authenticated*, I want to be able to recharge my account balance, so that I can make more purchases     |
+| US211 | View Cart | high | As an *Authenticated*, I want to see my car, so that I can make sure i added the correct items to it |
+| US212     | View product recommendations | medium | As an *Authenticated*, I would like to have a list of recommended items according to my history of products, so that I can easily find products that may be of my interest |
+| US213     | View notifications | medium | As an *Authenticated*, I would like to have notifications when my comment is answered, a product in my wishlist is re-stocked or put on sale, so that I can be on time to make the best purchases |
+| US214 | View wish list | medium | As an *Authenticated*, I want to see my wish list, so that I can decide if I want to purchase the items in it |
+| US215     | Add to wish list        | medium   | As an *Authenticated*, I want to add items to my wish list, so that I can purchase them easily in the future                          |
+| US216     | Remove from wish list      | medium   | As an *Authenticated*, I want to remove an item from my wish list, so that I can forget the item                                      |
 
-                                 
+​                                 
 
 #### 2.4 **Administrator**
 
@@ -93,12 +93,13 @@ This section contains the user stories that will be considered during developmen
 | US35  | Remove comments  | high  | As an *Administrator*, I want to remove comments, so that I can filter inappropriate language|
 | US36  | View notifications of items without stock | high | As an *Administrator*, I want to have a notification alert me when an item is out of stock, so that I can re-stock them as soon as possible|
 | US37  | Logout | high | As an *Administrator*, I want to be able to log out from my account, so that I can exit my account|
-| US38  | Put item on sale | medium | As an *Administrator*, I want to have the ability to put items on sale, so that I can get attract uses to buy products that are not selling as well|
-| US39  | View statistics of sold items | medium | As an *Administrator*, I want to have easy access to statistics of items filtered by different categories of users, so that I can have a better overview of what items sell better|
-| US310  | Ban user accounts | medium | As an *Administrator*, I want to be able to ban users, so that I'm able to remove problematic users|
-| US311  | Unban user accounts | medium | As an *Administrator*, I want to be able to unban users, so that I'm able to forgive certain users or correct a mistake I have made |
-| US312  | View  users profile | medium | As an *Administrator*, I want to be able to view all users profile, so that I can get check their information|
-| US313  | View users buy history | low | As an *Administrator*, I want to be able to view customer's purchase history, so that I can get a better understanding of what users look for the most|
+| US38 | View all unbanned users | high | As an *Administrator*, I want to be able to see a list of all unbanned users, so that I can manage them with ease |
+| US39 | Put item on sale | medium | As an *Administrator*, I want to have the ability to put items on sale, so that I can get attract uses to buy products that are not selling as well|
+| US310 | View statistics of sold items | medium | As an *Administrator*, I want to have easy access to statistics of items filtered by different categories of users, so that I can have a better overview of what items sell better|
+| US311 | Ban user accounts | medium | As an *Administrator*, I want to be able to ban users, so that I'm able to remove problematic users|
+| US312 | Unban user accounts | medium | As an *Administrator*, I want to be able to unban users, so that I'm able to forgive certain users or correct a mistake I have made |
+| US313 | View  users profile | medium | As an *Administrator*, I want to be able to view all users profile, so that I can get check their information|
+| US314 | View users buy history | low | As an *Administrator*, I want to be able to view customer's purchase history, so that I can get a better understanding of what users look for the most|
 
 
 
@@ -207,17 +208,134 @@ Figure 8: Sign in/Sign up Wireflow
 
 These pages allow users to sign in/sign up.
 
-[Link to Invision Invision](https://projects.invisionapp.com/freehand/document/yG4NadLWr)
+[Link to Invision](https://projects.invisionapp.com/freehand/document/yG4NadLWr)
 
 
 ### 4. Interfaces
 
-> Screenshots, structured in subsections, including a reference, a description and a URL to the working version.
 
-#### UI01: Home
+
+#### UI01: Homepage
+![Homepage PC](./images/homepage_pc.png) ![Homepage mobile](./images/homepage_mobile.png)  
+Figure 9: Homepage
+
+[Homepage](http://lbaw2111-piu.lbaw-prod.fe.up.pt/homepage.php)  
+
+Site's main page. Presents the user with a list of good selling products for unauthenticated users and recommended items to authenticated users.
 
 #### UI02: About
+![About PC](./images/about_pc.png) ![About mobile](./images/about_mobile.png)  
+Figure 10: About
 
+[About](http://lbaw2111-piu.lbaw-prod.fe.up.pt/about.php)  
+
+Page with a short description about how the site came to be.
+
+
+#### UI03: FAQ
+![FAQ PC](./images/faq_pc.png) ![FAQ mobile](./images/faq_mobile.png)  
+Figure 11: FAQ
+
+[FAQ](http://lbaw2111-piu.lbaw-prod.fe.up.pt/FAQ.php)  
+
+Frequently asked questions about our site/products.
+
+#### UI04: Contacts
+![Contacts PC](./images/contact_pc.png) ![Contacts mobile](./images/contact_mobile.png)  
+Figure 10: Contacts
+
+[Contacts](http://lbaw2111-piu.lbaw-prod.fe.up.pt/contacts.php)  
+
+Usefull contacts.
+
+#### UI05: Add a new item
+![Add item PC](./images/addItem_pc.png) ![Add item mobile](./images/addItem_mobile.png)  
+Figure 11: Add a new item
+
+[Add Item](http://lbaw2111-piu.lbaw-prod.fe.up.pt/addItem.php)  
+
+Page where an admin can add new items that weren't prviously available.
+
+#### UI06: Admin Main page
+![Admin Main page PC](./images/adminMainPage_pc.png) ![Admin Main page mobile](./images/adminMainPage_mobile.png)   
+Figure 12: Admin Main page
+
+[Admin Main page](http://lbaw2111-piu.lbaw-prod.fe.up.pt/adminMainPage.php)  
+
+Administration's main page where an admin can select what to do.
+
+#### UI07: Cart 
+![Cart PC](./images/cart_pc.png) ![Cart mobile](./images/cart_mobile.png)   
+Figure 13: Cart
+
+[Cart](http://lbaw2111-piu.lbaw-prod.fe.up.pt/cart.php)  
+
+Page where an authenticated user can see what he/she has in the cart and procced to checkout.
+
+#### UI08: Item
+![Item PC](./images/item_pc.png) ![Item mobile](./images/item_mobile.png)   
+Figure 14: Item
+
+[Item](http://lbaw2111-piu.lbaw-prod.fe.up.pt/item.php)  
+
+Page where a user can see the details of an item.
+
+#### UI09: Purchase History
+![Purchase History PC](./images/purchaseHistory_pc.png) ![Purchase History mobile](./images/purchaseHistory_mobile.png)   
+Figure 15: Purchase History
+
+[Purchase History](http://lbaw2111-piu.lbaw-prod.fe.up.pt/purchaseHistory.php)  
+
+Page where an authenticated user can see his purchase history.
+
+#### UI10: Search Results
+![Search Results PC](./images/searchResults_pc.png) ![Search Results mobile](./images/searchResults_mobile.png)   
+Figure 16: Search Results
+
+[Search Results](http://lbaw2111-piu.lbaw-prod.fe.up.pt/searchResults.php)  
+
+Page where a user can see the results of his search/filter.
+
+#### UI11: Sign in
+![Sign in PC](./images/signin_pc.png) ![Sign in mobile](./images/signin_mobile.png)   
+Figure 17: Sign in
+
+[Sign in](http://lbaw2111-piu.lbaw-prod.fe.up.pt/signin.php)  
+
+Page where a guest can sign in via his account or a google account.
+
+#### UI12: Sign up
+![Sign up PC](./images/signup_pc.png) ![Sign up mobile](./images/signup_mobile.png)   
+Figure 18: Sign up
+
+[Sign up](http://lbaw2111-piu.lbaw-prod.fe.up.pt/signup.php)  
+
+Page where a guest can sign up.
+
+#### UI13: User Profile 
+![User Profile PC](./images/user_pc.png) ![User Profile mobile](./images/user_mobile.png)   
+Figure 19: User Profile
+
+[User Profile](http://lbaw2111-piu.lbaw-prod.fe.up.pt/user.php)  
+
+Page where an authenticated user can see his details and change them.
+
+
+#### UI14: User Administration 
+![User Administration PC](./images/userAdministration_pc.png) ![User Administration mobile](./images/userAdministration_mobile.png)   
+Figure 20: User Administration
+
+[User Administration](http://lbaw2111-piu.lbaw-prod.fe.up.pt/userAdministration.php)  
+
+Page where an admin can manage users(ban them or promote them to admin).
+
+#### UI15: Wishlist
+![Wishlist PC](./images/wishlist_pc.png) ![Wishlist mobile](./images/wishlist_mobile.png)   
+Figure 21: Wishlist
+
+[Wishlist](http://lbaw2111-piu.lbaw-prod.fe.up.pt/wishlist.php)  
+
+Page where an authenticated user can see and manage his wishlist.
 
 ---
 
@@ -225,11 +343,12 @@ These pages allow users to sign in/sign up.
 ## Revision history
 
 Changes made to the first submission:
-1. Item 1
-1. ...
+1. Added user story US212
+1. Added user story US38
+1. Updated Authenticated user stories numeration
 
 ***
-GROUP2111, 28/02/2021
+GROUP2111, 9/03/2021
 
 * Diogo Guimarães do Rosário, [up201806582@fe.up.pt](mailto:up201806582@fe.up.pt) (Editor)
 * Henrique Melo Ribeiro, [up201806529@fe.up.pt](mailto:up201806529@fe.up.pt)
