@@ -69,11 +69,11 @@ Our website aims to help customers get what then need when they need it during t
 > The owner of the user story should have the name in **bold**.
 > This table should be updated when a user story is completed and another one started. 
 
-| Identifier  | Name  | Priority  | Description  |
-|---|---|---|---|
-| US01  | Access Home  | high  | As a *User*, I want to access the website's homepage, so that I can know its general-purpose  |
-| US02  | Access About Page  | high  | As a *User*, I want to access the 'About' page, so that I can see a complete and detailed description of the website  |
-| US03  | See Contacts  | high  | As a *User*, I want to consult the website's contacts, so that I know how to contact the team if needed  |
+| Identifier  | Name  | Module | Priority  | Team member | State | 
+|---|---|---|---|---|---|
+| US01  | Access Home  | Module 2 | Mandatory | **Henrique Ribeiro**, Davide Castro | 100% | 
+| US02  | Access About Page | Module 4  | Important | **Henrique Ribeiro**, Davide Castro  | 100% | 
+| US03  | See Contacts | Module 4 | Module 4 | **Henrique Ribeiro**, Davide Castro  | 100% | 
 | US04  | Search items | high | As a *User*, I want to search for an item's name, so that I can get more information about it |
 | US05  | Filter items | high | As a *User*, I want to filter for public information, like categories, items and prices, so that I can be informed about the platform's content |
 | US06  | View items | high | As a *User*, I want to view all the items, so that I can see all the products available |
