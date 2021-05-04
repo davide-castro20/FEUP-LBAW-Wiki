@@ -1618,8 +1618,8 @@ Source code: https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/
 ## Revision history
 
 Changes made to the first submission:
-1. Item 1
-1. ..
+1. Added '/' to the about page's link
+
 
 ***
 GROUP2111, 26/04/2021
