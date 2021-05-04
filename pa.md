@@ -95,24 +95,24 @@ Our website aims to help customers get what then need when they need it during t
 | US210      | Recharge account balance     | Module 1 | Mandatory | **Davide Castro**, Henrique Ribeiro | 0% |
 | US211 | View Cart | Module 6 | Mandatory | **Henrique Ribeiro** | 100% |
 | US212     | View product recommendations | Module 1 | Important | **Henrique Ribeiro** | 100% |
-| US213     | View notifications | medium | As an *Authenticated*, I would like to have notifications when my comment is answered, a product in my wishlist is re-stocked or put on sale, so that I can be on time to make the best purchases |
-| US214 | View wish list | medium | As an *Authenticated*, I want to see my wish list, so that I can decide if I want to purchase the items in it |
-| US215     | Add to wish list        | medium   | As an *Authenticated*, I want to add items to my wish list, so that I can purchase them easily in the future                          |
-| US216     | Remove from wish list      | medium   | As an *Authenticated*, I want to remove an item from my wish list, so that I can forget the item                                      |
-| US31  | Create items  | high  | As an *Administrator*, I want to create item listings, so that I can sell new items |
-| US32  | Remove items  | high  | As an *Administrator*, I want to remove item listings, so that I can prevent users from buying certain items |
-| US33  | Edit items  | high  | As an *Administrator*, I want to edit item listings, so that I change the items I am selling |
-| US34  | Create admin accounts  | high  | As an *Administrator*, I want to create administrator accounts, so that others can have administrator permissions  |
-| US35  | Remove comments  | high  | As an *Administrator*, I want to remove comments, so that I can filter inappropriate language|
-| US36  | View notifications of items without stock | high | As an *Administrator*, I want to have a notification alert me when an item is out of stock, so that I can re-stock them as soon as possible|
-| US37  | Logout | high | As an *Administrator*, I want to be able to log out from my account, so that I can exit my account|
-| US38 | View all unbanned users | high | As an *Administrator*, I want to be able to see a list of all unbanned users, so that I can manage them with ease |
-| US39 | Put item on sale | medium | As an *Administrator*, I want to have the ability to put items on sale, so that I can get attract uses to buy products that are not selling as well|
-| US310 | View statistics of sold items | medium | As an *Administrator*, I want to have easy access to statistics of items filtered by different categories of users, so that I can have a better overview of what items sell better|
-| US311 | Ban user accounts | medium | As an *Administrator*, I want to be able to ban users, so that I'm able to remove problematic users|
-| US312 | Unban user accounts | medium | As an *Administrator*, I want to be able to unban users, so that I'm able to forgive certain users or correct a mistake I have made |
-| US313 | View  users profile | medium | As an *Administrator*, I want to be able to view all users profile, so that I can get check their information|
-| US314 | View users buy history | low | As an *Administrator*, I want to be able to view customer's purchase history, so that I can get a better understanding of what users look for the most|
+| US213     | View notifications | Module 1 | Important | **Henrique Ribeiro**, Diogo Rosário | 50% |
+| US214 | View wish list | Module 6 | Important | **Henrique Ribeiro** | 100% |
+| US215     | Add to wish list        | Module 6 | Important | **Davide Castro** | 0% |
+| US216     | Remove from wish list      | Module 6 | Important | **Davide Castro** | 0% |
+| US31  | Create items  | Module 3 | Mandatory | **Diogo Rosário**, Henrique Ribeiro | 0% |
+| US32  | Remove items  | Module 3 | Mandatory | **Diogo Rosário**, Henrique Ribeiro | 0% |
+| US33  | Edit items  | Module 3 | Mandatory | **Diogo Rosário**, Henrique Ribeiro | 0% |
+| US34  | Create admin accounts  | Module 3 | Mandatory | **João Cardoso**, Davide Castro | 0% |
+| US35  | Remove comments  | Module 5 | Mandatory | **Henrique Ribeiro**, Davide Castro | 100% |
+| US36  | View notifications of items without stock | Module 3 | Important | **João Cardoso**, Davide Castro | 0% |
+| US37  | Logout | Module 1 | Mandatory | **Henrique Ribeiro**, Davide Castro | 100% |
+| US38 | View all unbanned users | Module 3 | Mandatory | **Henrique Ribeiro**, Davide Castro | 100% |
+| US39 | Put item on sale | Module 5 | Mandatory | **Diogo Rosário**, Davide Castro | 0% |
+| US310 | View statistics of sold items | Module 1 | Optional | **Henrique Ribeiro**, Davide Castro | 0% |
+| US311 | Ban user accounts | Module 3 | Mandatory | **Davide Castro**, Diogo Rosário | 0% |
+| US312 | Unban user accounts | Module 3 | Mandatory | ** Diogo Rosário**, Davide Castro | 0% |
+| US313 | View  users profile | Module 1 | Mandatory | **Henrique Ribeiro**, Davide Castro | 100% |
+| US314 | View users buy history | Module 1 | Mandatory | **Henrique Ribeiro**, Davide Castro | 100% |
 
 
 ---
