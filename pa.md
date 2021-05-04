@@ -75,45 +75,45 @@ URL to the product: http://lbaw2111.lbaw-prod.fe.up.pt
 | US11       | Sign-up                    | M1: Authentication and Profile | Mandatory | **Henrique Ribeiro** | 100% |
 | US12       | Sign-in                    | M1: Authentication and Profile | Mandatory | **Henrique Ribeiro** | 100% |
 | US13       | Administrator Sign-in      | M1: Authentication and Profile | Mandatory | **Henrique Ribeiro** | 100% |
-| US21       | View purchase history  | M1: Authentication and Profile | Important | **Davide Castro**, Henrique Ribeiro | 100% |
-| US28 | Logout | M1: Authentication and Profile | Important | **Henrique Ribeiro** | 100% |
-| US212     | View product recommendations | M1: Authentication and Profile | Important | **Henrique Ribeiro** | 100% |
 | US37  | Logout | M1: Authentication and Profile | Mandatory | **Henrique Ribeiro**, Davide Castro | 100% |
 | US313 | View  users profile | M1: Authentication and Profile | Mandatory | **Henrique Ribeiro**, Davide Castro | 100% |
 | US314 | View users buy history | M1: Authentication and Profile | Mandatory | **Henrique Ribeiro**, Davide Castro | 100% |
 | US01  | Access Home  | M2: Products and Categories | Mandatory | **Henrique Ribeiro**, Davide Castro | 100% |
 | US04  | Search items | M2: Products and Categories | Mandatory | **Henrique Ribeiro**, Davide Castro  | 100% |
 | US06  | View items | M2: Products and Categories | Mandatory | **Henrique Ribeiro**, Davide Castro  | 100% |
-| US22      | Rate item             | M2: Products and Categories | Important | **Davide Castro**, Henrique Ribeiro | 100% |
-| US23      | Comment item         | M2: Products and Categories | Important | **Davide Castro**, Henrique Ribeiro | 100% |
-| US24    | Remove comment      | M2: Products and Categories | Important | **Davide Castro**, Henrique Ribeiro | 100% |
 | US38 | View all unbanned users | M3: Management | Mandatory | **Henrique Ribeiro**, Davide Castro | 100% |
-| US02  | Access About Page | M4: Static Pages | Important | **Henrique Ribeiro**, Davide Castro  | 100% |
-| US03  | See Contacts | M4: Static Pages | Important | **Henrique Ribeiro**, Davide Castro  | 100% |
 | US35  | Remove comments  | M5: Products and Reviews | Mandatory | **Henrique Ribeiro**, Davide Castro | 100% |
 | US25      | Add to cart          | M6: Wishlist and Cart | Mandatory | **Davide Castro**, Henrique Ribeiro | 100% |
 | US26      | Remove from cart          | M6: Wishlist and Cart | Mandatory | **Davide Castro**, Henrique Ribeiro | 100% |
 | US211 | View Cart | M6: Wishlist and Cart | Mandatory | **Henrique Ribeiro** | 100% |
+| US21       | View purchase history  | M1: Authentication and Profile | Important | **Davide Castro**, Henrique Ribeiro | 100% |
+| US28 | Logout | M1: Authentication and Profile | Important | **Henrique Ribeiro** | 100% |
+| US212     | View product recommendations | M1: Authentication and Profile | Important | **Henrique Ribeiro** | 100% |
+| US22      | Rate item             | M2: Products and Categories | Important | **Davide Castro**, Henrique Ribeiro | 100% |
+| US23      | Comment item         | M2: Products and Categories | Important | **Davide Castro**, Henrique Ribeiro | 100% |
+| US24    | Remove comment      | M2: Products and Categories | Important | **Davide Castro**, Henrique Ribeiro | 100% |
+| US02  | Access About Page | M4: Static Pages | Important | **Henrique Ribeiro**, Davide Castro  | 100% |
+| US03  | See Contacts | M4: Static Pages | Important | **Henrique Ribeiro**, Davide Castro  | 100% |
 | US214 | View wish list | M6: Wishlist and Cart | Important | **Henrique Ribeiro** | 100% |
 | US213     | View notifications | M1: Authentication and Profile | Important | **Henrique Ribeiro**, Diogo Rosário | 50% |
 | US05  | Filter items | M2: Products and Categories | Mandatory | **João Cardoso**, Davide Castro  | 25% |
+| US27      | Checkout cart          | M6: Wishlist and Cart | Mandatory | **Davide Castro**, Diogo Rosário | 0% |
 | US07  | Delete account | M1: Authentication and Profile | Mandatory | **Diogo Rosário**, Henrique Ribeiro | 0% |
-| US15       | Sign-in using external API | M1: Authentication and Profile | Optional | **Diogo Rosário**, Henrique Ribeiro | 0% |
-| US14       | Sign-up using external API | M1: Authentication and Profile | Optional | **Diogo Rosário**, Henrique Ribeiro | 0% |
-| US29      | Edit profile     | M1: Authentication and Profile | Important | **João Cardoso**, Davide Castro | 0% |
 | US210      | Recharge account balance     | M1: Authentication and Profile | Mandatory | **Davide Castro**, Henrique Ribeiro | 0% |
-| US310 | View statistics of sold items | M1: Authentication and Profile | Optional | **Henrique Ribeiro**, Davide Castro | 0% |
 | US31  | Create items  | M3: Management | Mandatory | **Diogo Rosário**, Henrique Ribeiro | 0% |
 | US32  | Remove items  | M3: Management | Mandatory | **Diogo Rosário**, Henrique Ribeiro | 0% |
 | US33  | Edit items  | M3: Management | Mandatory | **Diogo Rosário**, Henrique Ribeiro | 0% |
 | US34  | Create admin accounts  | M3: Management | Mandatory | **João Cardoso**, Davide Castro | 0% |
-| US36  | View notifications of items without stock | M3: Management | Important | **João Cardoso**, Davide Castro | 0% |
 | US311 | Ban user accounts | M3: Management | Mandatory | **Davide Castro**, Diogo Rosário | 0% |
 | US312 | Unban user accounts | M3: Management | Mandatory | **Diogo Rosário**, Davide Castro | 0% |
 | US39 | Put item on sale | M5: Products and Reviews | Mandatory | **Diogo Rosário**, Davide Castro | 0% |
-| US27      | Checkout cart          | M6: Wishlist and Cart | Mandatory | **Davide Castro**, Diogo Rosário | 0% |
+| US29      | Edit profile     | M1: Authentication and Profile | Important | **João Cardoso**, Davide Castro | 0% |
+| US36  | View notifications of items without stock | M3: Management | Important | **João Cardoso**, Davide Castro | 0% |
 | US215     | Add to wish list        | M6: Wishlist and Cart | Important | **Davide Castro** | 0% |
 | US216     | Remove from wish list      | M6: Wishlist and Cart | Important | **Davide Castro** | 0% |
+| US15       | Sign-in using external API | M1: Authentication and Profile | Optional | **Diogo Rosário**, Henrique Ribeiro | 0% |
+| US14       | Sign-up using external API | M1: Authentication and Profile | Optional | **Diogo Rosário**, Henrique Ribeiro | 0% |
+| US310 | View statistics of sold items | M1: Authentication and Profile | Optional | **Henrique Ribeiro**, Davide Castro | 0% |
 
 
 ---
