@@ -109,7 +109,7 @@ URL to the product: http://lbaw2111.lbaw-prod.fe.up.pt
 | US34  | Create admin accounts  | M3: Management | Mandatory | **João Cardoso**, Davide Castro | 0% |
 | US36  | View notifications of items without stock | M3: Management | Important | **João Cardoso**, Davide Castro | 0% |
 | US311 | Ban user accounts | M3: Management | Mandatory | **Davide Castro**, Diogo Rosário | 0% |
-| US312 | Unban user accounts | M3: Management | Mandatory | ** Diogo Rosário**, Davide Castro | 0% |
+| US312 | Unban user accounts | M3: Management | Mandatory | **Diogo Rosário**, Davide Castro | 0% |
 | US39 | Put item on sale | M5: Products and Reviews | Mandatory | **Diogo Rosário**, Davide Castro | 0% |
 | US27      | Checkout cart          | M6: Wishlist and Cart | Mandatory | **Davide Castro**, Diogo Rosário | 0% |
 | US215     | Add to wish list        | M6: Wishlist and Cart | Important | **Davide Castro** | 0% |
