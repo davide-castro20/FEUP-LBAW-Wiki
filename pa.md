@@ -69,7 +69,6 @@ Our website aims to help customers get what then need when they need it during t
 > The owner of the user story should have the name in **bold**.
 > This table should be updated when a user story is completed and another one started. 
 
-#### 8.2.1 **User**
 | Identifier  | Name  | Priority  | Description  |
 |---|---|---|---|
 | US01  | Access Home  | high  | As a *User*, I want to access the website's homepage, so that I can know its general-purpose  |
@@ -79,19 +78,11 @@ Our website aims to help customers get what then need when they need it during t
 | US05  | Filter items | high | As a *User*, I want to filter for public information, like categories, items and prices, so that I can be informed about the platform's content |
 | US06  | View items | high | As a *User*, I want to view all the items, so that I can see all the products available |
 | US07  | Delete account | medium | As a *User*, I want to be able to delete my account, so that I can remove my account from the system |
-
-#### 8.2.2 **Visitor**
-| Identifier | Name                       | Priority | Description                                                  |
-| ---------- | -------------------------- | -------- | ------------------------------------------------------------ |
 | US11       | Sign-up                    | high     | As a *Visitor*, I want to be able to create a new account so that I'm able to authenticate myself |
 | US12       | Sign-in                    | high     | As a *Visitor*, I want to be able to authenticate myself so that I'm able to buy products |
 | US13       | Administrator Sign-in      | high     | As a *Visitor*, I want to be able to sign-in as an administrator if I'm permitted to do so |
 | US14       | Sign-up using external API | low      | As a *Visitor*, I want to be able to create a new account using my existent Google account |
 | US15       | Sign-in using external API | low      | As a *Visitor*, I want to be able to sign-in using my Google account |
-#### 8.2.3 **Authenticated**
-
-| Identifier | Name                 | Priority | Description                                                                                                                 |
-|------------|----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------|
 | US21       | View purchase history  | high     | As an *Authenticated*, I want to see my purchasing history, so that I can see the products I have bought|
 | US22      | Rate item             | high     | As an *Authenticated*, I would like to attribute a score to an item, so that other users can know my basic opinion of the item        |
 | US23      | Comment item         | high     | As an *Authenticated*, I would like to attach a comment to an item, so that other users can know my more complete opinion of the item |
@@ -108,13 +99,6 @@ Our website aims to help customers get what then need when they need it during t
 | US214 | View wish list | medium | As an *Authenticated*, I want to see my wish list, so that I can decide if I want to purchase the items in it |
 | US215     | Add to wish list        | medium   | As an *Authenticated*, I want to add items to my wish list, so that I can purchase them easily in the future                          |
 | US216     | Remove from wish list      | medium   | As an *Authenticated*, I want to remove an item from my wish list, so that I can forget the item                                      |
-
-​                                 
-
-#### 8.2.4 **Administrator**
-
-| Identifier  | Name  | Priority  | Description  |
-|---|---|---|---|
 | US31  | Create items  | high  | As an *Administrator*, I want to create item listings, so that I can sell new items |
 | US32  | Remove items  | high  | As an *Administrator*, I want to remove item listings, so that I can prevent users from buying certain items |
 | US33  | Edit items  | high  | As an *Administrator*, I want to edit item listings, so that I change the items I am selling |
