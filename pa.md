@@ -103,7 +103,7 @@ URL to the product: http://lbaw2111.lbaw-prod.fe.up.pt
 | US02  | Access About Page | M4: Static Pages | Important | **Henrique Ribeiro**, Davide Castro  | 100% |
 | US03  | See Contacts | M4: Static Pages | Important | **Henrique Ribeiro**, Davide Castro  | 100% |
 | US214 | View wish list | M6: Wishlist and Cart | Important | **Henrique Ribeiro** | 100% |
-| US05  | Filter items | M2: Products and Categories | Mandatory | **João Cardoso**, Davide Castro  | 75% |
+| US05  | Filter items | M2: Products and Categories | Mandatory | **João Cardoso**, Davide Castro  | 100% |
 | US29      | Edit profile     | M1: Authentication and Profile | Important | **João Cardoso**, Davide Castro | 50% |
 | US31  | Create items  | M3: Management | Mandatory | **Diogo Rosário**, Henrique Ribeiro | 25% |
 | US27      | Checkout cart          | M6: Wishlist and Cart | Mandatory | **Davide Castro**, Diogo Rosário | 0% |
