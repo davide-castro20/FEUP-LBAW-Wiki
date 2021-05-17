@@ -89,7 +89,6 @@ URL to the product: http://lbaw2111.lbaw-prod.fe.up.pt
 | US32  | Remove items  | M3: Management | Mandatory | **Diogo Rosário**, Henrique Ribeiro | 100% |
 | US33  | Edit items  | M3: Management | Mandatory | **Diogo Rosário**, Henrique Ribeiro | 100% |
 | US34  | Create admin accounts  | M3: Management | Mandatory | **João Cardoso**, Davide Castro | 100% |
-| US31  | Create items  | M3: Management | Mandatory | **Diogo Rosário**, Henrique Ribeiro | 90% |
 | US311 | Ban user accounts | M3: Management | Mandatory | **Davide Castro**, Diogo Rosário | 100% |
 | US312 | Unban user accounts | M3: Management | Mandatory | **Diogo Rosário**, Davide Castro | 100% |
 | US35  | Remove comments  | M5: Products and Reviews | Mandatory | **Henrique Ribeiro**, Davide Castro | 100% |
@@ -110,6 +109,7 @@ URL to the product: http://lbaw2111.lbaw-prod.fe.up.pt
 | US214 | View wish list | M6: Wishlist and Cart | Important | **Henrique Ribeiro** | 100% |
 | US215     | Add to wish list        | M6: Wishlist and Cart | Important | **Davide Castro** | 100% |
 | US216     | Remove from wish list      | M6: Wishlist and Cart | Important | **Davide Castro** | 100% |
+| US31  | Create items  | M3: Management | Mandatory | **Diogo Rosário**, Henrique Ribeiro | 90% |
 | US27      | Checkout cart          | M6: Wishlist and Cart | Mandatory | **Davide Castro**, Diogo Rosário | 70% |
 | US39 | Put item on sale | M5: Products and Reviews | Mandatory | **Diogo Rosário**, Davide Castro | 0% |
 | US29      | Edit profile     | M1: Authentication and Profile | Important | **João Cardoso**, Davide Castro | 50% |
