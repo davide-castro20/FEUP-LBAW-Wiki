@@ -1190,7 +1190,7 @@ DECLARE item_discount INTEGER := 0;
 BEGIN
     SELECT max(discount.percentage) INTO item_discount
     FROM apply_discount JOIN discount USING (discount_id)
-    WHERE item_id = $1 AND begin_date <= $2 AND end_date >= $2;
+    WHERE item_id = i AND begin_date <= d AND end_date >= d;
     
     if(item_discount IS NULL) then
         RETURN 0;
@@ -1208,7 +1208,7 @@ $$
 DECLARE sum_prices MONEY := 0::MONEY;
 DECLARE purchase_ident INTEGER := 0;
 BEGIN
-        SELECT sum((price - price*get_discount(item_id, now())) * quantity) INTO sum_prices
+        SELECT sum((price - price*(get_discount(item_id, now())/100)) * quantity) INTO sum_prices
         FROM item JOIN cart USING (item_id)
         WHERE user_id = $user_id;
          
@@ -1230,7 +1230,7 @@ BEGIN
             INSERT INTO purchase(user_id,date) VALUES ($user_id, now()) RETURNING purchase_id INTO purchase_ident;
 
             INSERT INTO purchase_item (purchase_id, item_id, price, quantity)
-                SELECT purchase_ident, item_id, (price-price*get_discount(item_id, now())) * quantity, quantity
+                SELECT purchase_ident, item_id, price-price*(get_discount(item_id, now())/100), quantity
                 FROM item JOIN cart USING (item_id)
                 WHERE user_id = $user_id;
         
@@ -1822,7 +1822,7 @@ DECLARE item_discount INTEGER := 0;
 BEGIN
     SELECT max(discount.percentage) INTO item_discount
     FROM apply_discount JOIN discount USING (discount_id)
-    WHERE item_id = $1 AND begin_date <= $2 AND end_date >= $2;
+    WHERE item_id = i AND begin_date <= d AND end_date >= d;
     
     if(item_discount IS NULL) then
         RETURN 0;
@@ -1839,7 +1839,7 @@ DECLARE
 sum_prices MONEY := 0::MONEY;
 purchase_ident INTEGER := 0;
 BEGIN
-SELECT sum((price - price*get_discount(item_id, now())) * quantity) INTO sum_prices
+SELECT sum((price - price*(get_discount(item_id, now())/100)) * quantity) INTO sum_prices
         FROM item JOIN cart USING (item_id)
         WHERE cart.user_id = userID;
          
@@ -1861,7 +1861,7 @@ SELECT sum((price - price*get_discount(item_id, now())) * quantity) INTO sum_pri
             INSERT INTO purchase(user_id,date) VALUES (userID, now()) RETURNING purchase_id INTO purchase_ident;
 
             INSERT INTO purchase_item (purchase_id, item_id, price, quantity)
-                SELECT purchase_ident, item_id, (price-price*get_discount(item_id, now())) * quantity, quantity
+                SELECT purchase_ident, item_id, price-price*(get_discount(item_id, now())/100), quantity
                 FROM item JOIN cart USING (item_id)
                 WHERE user_id = userID;
         
@@ -2486,6 +2486,7 @@ Changes made to the first submission:
 1. Fixed a duplicate trigger issue
 1. Added notify_admin trigger and corresponding function; Changed "Trigger" to "Rule" in rule01
 1. Added update_stock_remove_from_cart trigger and function; Changed transaction 1 procedure's name from 'remove_stock' to 'add_to_cart'
+1. Fixed Transaction 2 code (fixed variable names and price with discount calculation)
 
 ***
 GROUP2111, 18/04/2021
