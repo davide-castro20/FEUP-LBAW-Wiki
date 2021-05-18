@@ -1227,7 +1227,7 @@ BEGIN
             SET balance = balance - sum_prices
             WHERE user_id = $user_id;
 
-            INSERT INTO purchase(user_id,date) VALUES ($user_id, now()) RETURNING purchase_id INTO purchase_ident;
+            INSERT INTO purchase(user_id,date,billing_address,shipping_address) VALUES (userID, now(), billing, shipping) RETURNING purchase_id INTO purchase_ident;
 
             INSERT INTO purchase_item (purchase_id, item_id, price, quantity)
                 SELECT purchase_ident, item_id, price-price*(get_discount(item_id, now())/100), quantity
@@ -1354,7 +1354,9 @@ CREATE TABLE purchase (
     purchase_id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(user_id) ON UPDATE CASCADE,
     "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
-    state purchaseState
+    billing_address INTEGER REFERENCES address(address_id) ON UPDATE CASCADE,
+    shipping_address INTEGER REFERENCES address(address_id) ON UPDATE CASCADE,
+    state purchaseState DEFAULT 'Processing'
 );
  
 CREATE TABLE purchase_item (
@@ -1833,7 +1835,7 @@ END;
 $$ 
 LANGUAGE plpgsql;
 
-CREATE OR REPLACE PROCEDURE discounts(userID INTEGER)
+CREATE OR REPLACE PROCEDURE checkout(userID INTEGER, billing INTEGER, shipping INTEGER)
 LANGUAGE plpgsql AS $$
 DECLARE 
 sum_prices MONEY := 0::MONEY;
@@ -1858,7 +1860,7 @@ SELECT sum((price - price*(get_discount(item_id, now())/100)) * quantity) INTO s
             SET balance = balance - sum_prices
             WHERE user_id = userID;
 
-            INSERT INTO purchase(user_id,date) VALUES (userID, now()) RETURNING purchase_id INTO purchase_ident;
+            INSERT INTO purchase(user_id,date,billing_address,shipping_address) VALUES (userID, now(), billing, shipping) RETURNING purchase_id INTO purchase_ident;
 
             INSERT INTO purchase_item (purchase_id, item_id, price, quantity)
                 SELECT purchase_ident, item_id, price-price*(get_discount(item_id, now())/100), quantity
@@ -2414,16 +2416,17 @@ INSERT INTO notification (user_id, discount_id, notification_id, item_id, type, 
 
 
 
-INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (1, 3, '12/27/2003 09:09:00','Arrived');
-INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (2, 3, '07/29/2012 02:09:00','Arrived');
-INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (3, 4, '05/30/2017 01:17:00','Arrived');
-INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (4, 5, '09/12/2000 07:13:00','Arrived');
-INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (5, 6, '08/12/2006 00:14:00','Arrived');
-INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (6, 6, '02/10/2011 04:52:00','Processing');
-INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (7, 6, '07/01/2000 04:25:00','Processing');
-INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (8, 8, '05/28/2017 01:44:00','Processing');
-INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (9, 9, '08/25/2003 04:53:00','Sent');
-INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (10, 10, '10/10/2015 05:38:00','Sent');
+INSERT INTO purchase (purchase_id, user_id, date, billing_address, shipping_address, state) VALUES (1, 3, '12/27/2003 09:09:00', 31, 31, 'Arrived');
+INSERT INTO purchase (purchase_id, user_id, date, billing_address, shipping_address, state) VALUES (2, 3, '07/29/2012 02:09:00', 32, 33,'Arrived');
+INSERT INTO purchase (purchase_id, user_id, date, billing_address, shipping_address, state) VALUES (3, 4, '05/30/2017 01:17:00', 34, 34,'Arrived');
+INSERT INTO purchase (purchase_id, user_id, date, billing_address, shipping_address, state) VALUES (4, 5, '09/12/2000 07:13:00', 35, 35,'Arrived');
+INSERT INTO purchase (purchase_id, user_id, date, billing_address, shipping_address, state) VALUES (5, 6, '08/12/2006 00:14:00', 36, 37,'Arrived');
+INSERT INTO purchase (purchase_id, user_id, date, billing_address, shipping_address, state) VALUES (6, 6, '02/10/2011 04:52:00', 38, 38,'Processing');
+INSERT INTO purchase (purchase_id, user_id, date, billing_address, shipping_address, state) VALUES (7, 6, '07/01/2000 04:25:00', 39, 39,'Processing');
+INSERT INTO purchase (purchase_id, user_id, date, billing_address, shipping_address, state) VALUES (8, 8, '05/28/2017 01:44:00', 40, 40,'Processing');
+INSERT INTO purchase (purchase_id, user_id, date, billing_address, shipping_address, state) VALUES (9, 9, '08/25/2003 04:53:00', 41, 41,'Sent');
+INSERT INTO purchase (purchase_id, user_id, date, billing_address, shipping_address, state) VALUES (10, 10, '10/10/2015 05:38:00', 42, 42,'Sent');
+
 
 
 
@@ -2486,7 +2489,7 @@ Changes made to the first submission:
 1. Fixed a duplicate trigger issue
 1. Added notify_admin trigger and corresponding function; Changed "Trigger" to "Rule" in rule01
 1. Added update_stock_remove_from_cart trigger and function; Changed transaction 1 procedure's name from 'remove_stock' to 'add_to_cart'
-1. Fixed Transaction 2 code (fixed variable names and price with discount calculation)
+1. Fixed Transaction 2 code (fixed variable names and price with discount calculation). Added shipping and billing addresses to purchase table.
 
 ***
 GROUP2111, 18/04/2021
