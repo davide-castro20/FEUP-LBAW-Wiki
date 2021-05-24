@@ -1063,31 +1063,6 @@ FOR EACH ROW
 EXECUTE PROCEDURE notify_admin_if_out_of_stock();
 ```
 
-| **Trigger**     | TRIGGER11                                                    |
-| --------------- | ------------------------------------------------------------ |
-| **Description** | When an item is removed from a user's cart, its stock must be updated. |
-| `SQL code`      |                                                              |
-
-```sql
-DROP FUNCTION if exists update_stock_remove_from_cart CASCADE;
-DROP TRIGGER if exists update_stock_remove_from_cart ON cart CASCADE;
-CREATE FUNCTION update_stock_remove_from_cart() RETURNS TRIGGER AS
-$BODY$
-BEGIN
-    UPDATE item
-    SET stock = stock + OLD.quantity
-    WHERE item.item_id = OLD.item_id;
-    RETURN OLD;
-END
-$BODY$
-
-LANGUAGE plpgsql;
-CREATE TRIGGER update_stock_remove_from_cart
-AFTER DELETE ON cart
-FOR EACH ROW
-EXECUTE PROCEDURE update_stock_remove_from_cart();
-```
-
 | **Rule**        | RULE01                                                       |
 | --------------- | ------------------------------------------------------------ |
 | **Description** | When a user is deleted, instead of being deleted, most of their info that already isn't automatically set to null is set to null; deleted is set to true, is_admin is set to false and balance is set to 0. The user's photo and billing and shipping address table entry are delete. The user's cart is deleted and the items they had in the cart get the respective amout of stock added back. |
@@ -1720,44 +1695,6 @@ CREATE TRIGGER notify_admin
 AFTER UPDATE ON item
 FOR EACH ROW
 EXECUTE PROCEDURE notify_admin_if_out_of_stock();
-
---Trigger 11
-DROP FUNCTION if exists update_stock_remove_from_cart CASCADE;
-DROP TRIGGER if exists update_stock_remove_from_cart ON cart CASCADE;
-CREATE FUNCTION update_stock_remove_from_cart() RETURNS TRIGGER AS
-$BODY$
-BEGIN
-    UPDATE item
-    SET stock = stock + OLD.quantity
-    WHERE item.item_id = OLD.item_id;
-    RETURN OLD;
-END
-$BODY$
-
-LANGUAGE plpgsql;
-CREATE TRIGGER update_stock_remove_from_cart
-AFTER DELETE ON cart
-FOR EACH ROW
-EXECUTE PROCEDURE update_stock_remove_from_cart();
-
---Trigger 12
-DROP FUNCTION if exists update_stock_update_quantity_cart CASCADE;
-DROP TRIGGER if exists update_stock_update_quantity_cart ON cart CASCADE;
-CREATE FUNCTION update_stock_update_quantity_cart() RETURNS TRIGGER AS
-$BODY$
-BEGIN
-    UPDATE item
-    SET stock = stock - (NEW.quantity - OLD.quantity)
-    WHERE item.item_id = OLD.item_id;
-    RETURN NEW;
-END
-$BODY$
-
-LANGUAGE plpgsql;
-CREATE TRIGGER update_stock_update_quantity_cart
-BEFORE UPDATE ON cart
-FOR EACH ROW
-EXECUTE PROCEDURE update_stock_update_quantity_cart();
 
 --Rule 1
 DROP rule IF EXISTS users_delete_rule ON users CASCADE;
@@ -2512,6 +2449,7 @@ Changes made to the first submission:
 1. Added notify_admin trigger and corresponding function; Changed "Trigger" to "Rule" in rule01
 1. Added update_stock_remove_from_cart trigger and function; Changed transaction 1 procedure's name from 'remove_stock' to 'add_to_cart'
 1. Added remember_token to user table and reset_password table for "forgot password" feature 
+1. Removed update_stock_remove_from_cart as it is not needed anymore
 
 ***
 GROUP2111, 18/04/2021
