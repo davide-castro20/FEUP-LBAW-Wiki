@@ -1181,11 +1181,16 @@ SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
 DO
 $$
 DECLARE sum_prices MONEY := 0::MONEY;
-DECLARE purchase_ident INTEGER := 0;
+shipping_price MONEY := 0::MONEY;
+purchase_ident INTEGER := 0;
 BEGIN
     SELECT sum((price - (price*get_discount(item_id, now())/100)) * quantity) INTO sum_prices
     FROM item JOIN cart USING (item_id)
     WHERE cart.user_id = userID;
+
+    SELECT price INTO shipping_price
+    FROM shipping_option
+    WHERE shipping_id = shipping_option_id;
          
     IF (
         
@@ -1193,16 +1198,16 @@ BEGIN
         FROM users
         WHERE user_id = userID)
         -
-        (sum_prices)
+        (sum_prices + shipping_price)
         >= 0::MONEY
         )
         THEN 
         
             UPDATE users
-            SET balance = balance - sum_prices
+            SET balance = balance - (sum_prices + shipping_price)
             WHERE user_id = userID;
 
-            INSERT INTO purchase(user_id,date,billing_address,shipping_address) VALUES (userID, now(), billing, shipping) RETURNING purchase_id INTO purchase_ident;
+            INSERT INTO purchase(user_id,date,billing_address,shipping_address,shipping_method) VALUES (userID, now(), billing, shipping, shipping_option_id) RETURNING purchase_id INTO purchase_ident;
 
             INSERT INTO purchase_item (purchase_id, item_id, price, quantity)
                 SELECT purchase_ident, item_id, price-((price*get_discount(item_id, now()))/100), quantity
@@ -1244,6 +1249,8 @@ DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS address CASCADE;
 DROP TABLE IF EXISTS photo CASCADE;
 DROP TABLE IF EXISTS country CASCADE;
+DROP TABLE IF EXISTS password_resets CASCADE;
+DROP TABLE IF EXISTS shipping_option CASCADE;
 
 DROP TYPE IF EXISTS notificationType;
 DROP TYPE IF EXISTS purchaseState;
@@ -1282,7 +1289,9 @@ CREATE TABLE users (
     balance MONEY DEFAULT 0,
     img INTEGER REFERENCES photo(photo_id) ON UPDATE CASCADE ON DELETE SET NULL,
     billing_address INTEGER REFERENCES address(address_id) ON UPDATE CASCADE ON DELETE SET NULL,
-    shipping_address INTEGER REFERENCES address(address_id) ON UPDATE CASCADE ON DELETE SET NULL
+    shipping_address INTEGER REFERENCES address(address_id) ON UPDATE CASCADE ON DELETE SET NULL,
+    remember_token TEXT,
+    email_verified_at TIMESTAMP
 );
 
 CREATE TABLE category (
@@ -1325,12 +1334,22 @@ CREATE TABLE ban (
     PRIMARY KEY (admin_id, user_id)
 );
 
+
+CREATE TABLE shipping_option (
+    shipping_id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL CONSTRAINT shipping_uk UNIQUE,
+    description TEXT,
+    price MONEY NOT NULL CONSTRAINT pos_price CHECK (price >= 0::MONEY),
+    img INTEGER REFERENCES photo(photo_id) ON UPDATE CASCADE ON DELETE SET NULL
+);
+
 CREATE TABLE purchase (
     purchase_id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(user_id) ON UPDATE CASCADE,
     "date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     billing_address INTEGER REFERENCES address(address_id) ON UPDATE CASCADE,
     shipping_address INTEGER REFERENCES address(address_id) ON UPDATE CASCADE,
+    shipping_method INTEGER REFERENCES shipping_option(shipping_id) ON UPDATE CASCADE,
     state purchaseState DEFAULT 'Processing'
 );
  
@@ -1409,6 +1428,12 @@ CREATE TABLE category_detail (
     category_id INTEGER NOT NULL REFERENCES category (category_id) ON UPDATE CASCADE,
     detail_id INTEGER NOT NULL REFERENCES details (detail_id) ON UPDATE CASCADE,
     PRIMARY KEY (category_id, detail_id)
+);
+
+CREATE TABLE password_resets(
+    email TEXT PRIMARY KEY,
+    token TEXT,
+    created_at TIMESTAMP
 );
 
 
@@ -1777,7 +1802,7 @@ RETURNS INTEGER AS
 $$
 DECLARE item_discount INTEGER := 0;
 BEGIN
-    if(d = NULL)
+    if(d = NULL) then
         d := now();
     end if;
     
@@ -1794,15 +1819,21 @@ END;
 $$ 
 LANGUAGE plpgsql;
 
-CREATE OR REPLACE PROCEDURE checkout(userID INTEGER, billing INTEGER, shipping INTEGER)
+
+CREATE OR REPLACE PROCEDURE checkout(userID INTEGER, billing INTEGER, shipping INTEGER, shipping_option_id INTEGER)
 LANGUAGE plpgsql AS $$
 DECLARE 
 sum_prices MONEY := 0::MONEY;
+shipping_price MONEY := 0::MONEY;
 purchase_ident INTEGER := 0;
 BEGIN
     SELECT sum((price - (price*get_discount(item_id, now())/100)) * quantity) INTO sum_prices
     FROM item JOIN cart USING (item_id)
     WHERE cart.user_id = userID;
+
+    SELECT price INTO shipping_price
+    FROM shipping_option
+    WHERE shipping_id = shipping_option_id;
          
     IF (
         
@@ -1810,16 +1841,16 @@ BEGIN
         FROM users
         WHERE user_id = userID)
         -
-        (sum_prices)
+        (sum_prices + shipping_price)
         >= 0::MONEY
         )
         THEN 
         
             UPDATE users
-            SET balance = balance - sum_prices
+            SET balance = balance - (sum_prices + shipping_price)
             WHERE user_id = userID;
 
-            INSERT INTO purchase(user_id,date,billing_address,shipping_address) VALUES (userID, now(), billing, shipping) RETURNING purchase_id INTO purchase_ident;
+            INSERT INTO purchase(user_id,date,billing_address,shipping_address,shipping_method) VALUES (userID, now(), billing, shipping, shipping_option_id) RETURNING purchase_id INTO purchase_ident;
 
             INSERT INTO purchase_item (purchase_id, item_id, price, quantity)
                 SELECT purchase_ident, item_id, price-((price*get_discount(item_id, now()))/100), quantity
@@ -1831,11 +1862,8 @@ END
 $$;
 
 
-```
 
-#### A.2. Database population
 
-```sql
 INSERT INTO category (category_id, name) VALUES (1, 'Computers');
 INSERT INTO category (category_id, name) VALUES (2, 'Books');
 INSERT INTO category (category_id, name) VALUES (3, 'Eletrodomestics');
@@ -2051,55 +2079,59 @@ INSERT INTO item_detail (item_id, detail_id, detail_info) VALUES (20, 23, 'Blu-r
 
 
 
-INSERT INTO photo (photo_id, path) VALUES (1, 'http://dummyimage.com/219x100.png/5fa2dd/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (2, 'http://dummyimage.com/162x100.png/cc0000/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (3, 'http://dummyimage.com/235x100.png/cc0000/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (4, 'http://dummyimage.com/164x100.png/cc0000/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (5, 'http://dummyimage.com/214x100.png/cc0000/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (6, 'http://dummyimage.com/186x100.png/ff4444/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (7, 'http://dummyimage.com/131x100.png/dddddd/000000');
-INSERT INTO photo (photo_id, path) VALUES (8, 'http://dummyimage.com/195x100.png/5fa2dd/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (9, 'http://dummyimage.com/163x100.png/ff4444/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (10, 'http://dummyimage.com/231x100.png/cc0000/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (11, 'http://dummyimage.com/195x100.png/dddddd/000000');
-INSERT INTO photo (photo_id, path) VALUES (12, 'http://dummyimage.com/122x100.png/5fa2dd/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (13, 'http://dummyimage.com/143x100.png/cc0000/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (14, 'http://dummyimage.com/139x100.png/dddddd/000000');
-INSERT INTO photo (photo_id, path) VALUES (15, 'http://dummyimage.com/104x100.png/ff4444/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (16, 'http://dummyimage.com/232x100.png/dddddd/000000');
-INSERT INTO photo (photo_id, path) VALUES (17, 'http://dummyimage.com/127x100.png/ff4444/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (18, 'http://dummyimage.com/204x100.png/cc0000/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (19, 'http://dummyimage.com/151x100.png/5fa2dd/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (20, 'http://dummyimage.com/182x100.png/dddddd/000000');
-INSERT INTO photo (photo_id, path) VALUES (21, 'http://dummyimage.com/207x100.png/dddddd/000000');
-INSERT INTO photo (photo_id, path) VALUES (22, 'http://dummyimage.com/158x100.png/ff4444/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (23, 'http://dummyimage.com/207x100.png/5fa2dd/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (24, 'http://dummyimage.com/222x100.png/cc0000/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (25, 'http://dummyimage.com/174x100.png/cc0000/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (26, 'http://dummyimage.com/217x100.png/5fa2dd/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (27, 'http://dummyimage.com/224x100.png/5fa2dd/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (28, 'http://dummyimage.com/189x100.png/5fa2dd/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (29, 'http://dummyimage.com/116x100.png/cc0000/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (30, 'http://dummyimage.com/180x100.png/cc0000/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (31, 'http://dummyimage.com/129x100.png/5fa2dd/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (32, 'http://dummyimage.com/107x100.png/ff4444/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (33, 'http://dummyimage.com/156x100.png/ff4444/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (34, 'http://dummyimage.com/186x100.png/5fa2dd/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (35, 'http://dummyimage.com/242x100.png/cc0000/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (36, 'http://dummyimage.com/156x100.png/5fa2dd/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (37, 'http://dummyimage.com/161x100.png/cc0000/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (38, 'http://dummyimage.com/175x100.png/dddddd/000000');
-INSERT INTO photo (photo_id, path) VALUES (39, 'http://dummyimage.com/212x100.png/5fa2dd/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (40, 'http://dummyimage.com/118x100.png/cc0000/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (41, 'http://dummyimage.com/227x100.png/ff4444/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (42, 'http://dummyimage.com/181x100.png/cc0000/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (43, 'http://dummyimage.com/182x100.png/5fa2dd/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (44, 'http://dummyimage.com/219x100.png/cc0000/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (45, 'http://dummyimage.com/185x100.png/5fa2dd/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (46, 'http://dummyimage.com/153x100.png/cc0000/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (47, 'http://dummyimage.com/184x100.png/ff4444/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (48, 'http://dummyimage.com/183x100.png/ff4444/ffffff');
-INSERT INTO photo (photo_id, path) VALUES (49, 'http://dummyimage.com/108x100.png/ff4444/ffffff');
+INSERT INTO photo (photo_id, path) VALUES (1, 'image1.png');
+INSERT INTO photo (photo_id, path) VALUES (2, 'image2.png');
+INSERT INTO photo (photo_id, path) VALUES (3, 'image3.png');
+INSERT INTO photo (photo_id, path) VALUES (4, 'image4.png');
+INSERT INTO photo (photo_id, path) VALUES (5, 'image5.png');
+INSERT INTO photo (photo_id, path) VALUES (6, 'image6.png');
+INSERT INTO photo (photo_id, path) VALUES (7, 'image7.png');
+INSERT INTO photo (photo_id, path) VALUES (8, 'image8.png');
+INSERT INTO photo (photo_id, path) VALUES (9, 'image9.png');
+INSERT INTO photo (photo_id, path) VALUES (10, 'image10.png');
+INSERT INTO photo (photo_id, path) VALUES (11, 'image11.png');
+INSERT INTO photo (photo_id, path) VALUES (12, 'image12.png');
+INSERT INTO photo (photo_id, path) VALUES (13, 'image13.png');
+INSERT INTO photo (photo_id, path) VALUES (14, 'image14.png');
+INSERT INTO photo (photo_id, path) VALUES (15, 'image15.png');
+INSERT INTO photo (photo_id, path) VALUES (16, 'image16.png');
+INSERT INTO photo (photo_id, path) VALUES (17, 'image17.png');
+INSERT INTO photo (photo_id, path) VALUES (18, 'image18.png');
+INSERT INTO photo (photo_id, path) VALUES (19, 'image19.png');
+INSERT INTO photo (photo_id, path) VALUES (20, 'image20.png');
+INSERT INTO photo (photo_id, path) VALUES (21, 'image21.png');
+INSERT INTO photo (photo_id, path) VALUES (22, 'image22.png');
+INSERT INTO photo (photo_id, path) VALUES (23, 'image23.png');
+INSERT INTO photo (photo_id, path) VALUES (24, 'image24.png');
+INSERT INTO photo (photo_id, path) VALUES (25, 'image25.png');
+INSERT INTO photo (photo_id, path) VALUES (26, 'image26.png');
+INSERT INTO photo (photo_id, path) VALUES (27, 'image27.png');
+INSERT INTO photo (photo_id, path) VALUES (28, 'image28.png');
+INSERT INTO photo (photo_id, path) VALUES (29, 'image29.png');
+INSERT INTO photo (photo_id, path) VALUES (30, 'image30.png');
+INSERT INTO photo (photo_id, path) VALUES (31, 'image31.png');
+INSERT INTO photo (photo_id, path) VALUES (32, 'image32.png');
+INSERT INTO photo (photo_id, path) VALUES (33, 'image33.png');
+INSERT INTO photo (photo_id, path) VALUES (34, 'image34.png');
+INSERT INTO photo (photo_id, path) VALUES (35, 'image35.png');
+INSERT INTO photo (photo_id, path) VALUES (36, 'image36.png');
+INSERT INTO photo (photo_id, path) VALUES (37, 'image37.png');
+INSERT INTO photo (photo_id, path) VALUES (38, 'image38.png');
+INSERT INTO photo (photo_id, path) VALUES (39, 'image39.png');
+INSERT INTO photo (photo_id, path) VALUES (40, 'image40.png');
+INSERT INTO photo (photo_id, path) VALUES (41, 'image41.png');
+INSERT INTO photo (photo_id, path) VALUES (42, 'image42.png');
+INSERT INTO photo (photo_id, path) VALUES (43, 'image43.png');
+INSERT INTO photo (photo_id, path) VALUES (44, 'image44.png');
+INSERT INTO photo (photo_id, path) VALUES (45, 'image45.png');
+INSERT INTO photo (photo_id, path) VALUES (46, 'image46.png');
+INSERT INTO photo (photo_id, path) VALUES (47, 'image47.png');
+INSERT INTO photo (photo_id, path) VALUES (48, 'image48.png');
+INSERT INTO photo (photo_id, path) VALUES (49, 'image49.png');
+INSERT INTO photo (photo_id, path) VALUES (50, 'ctt.jpg');
+INSERT INTO photo (photo_id, path) VALUES (51, 'dhl.jpg');
+INSERT INTO photo (photo_id, path) VALUES (52, 'fedex.jpg');
+
 
 
 
@@ -2133,6 +2165,18 @@ INSERT INTO address (address_id, city, street, zip_code, country_id) VALUES (27,
 INSERT INTO address (address_id, city, street, zip_code, country_id) VALUES (28, 'Changsha', 'Eighth Road', '24709', 9);
 INSERT INTO address (address_id, city, street, zip_code, country_id) VALUES (29, 'SANTIAGO', 'SouthDrive', '55296', 12);
 INSERT INTO address (address_id, city, street, zip_code, country_id) VALUES (30, 'Jeddah', 'MainStreet', '90597', 12);
+insert into address (address_id, city, street, zip_code, country_id) values (31, 'Lampihung', '16213 Farmco Circle', '309379', 1);
+insert into address (address_id, city, street, zip_code, country_id) values (32, 'Quinta', '04089 Kinsman Road', '4860-077', 2);
+insert into address (address_id, city, street, zip_code, country_id) values (33, 'Sujitan', '09600 Columbus Terrace', '569 92', 3);
+insert into address (address_id, city, street, zip_code, country_id) values (34, 'Ulaan Khat', '6803 Holy Cross Lane', '253618', 4);
+insert into address (address_id, city, street, zip_code, country_id) values (35, 'Potikosin', '9 Truax Hill', '68300', 5);
+insert into address (address_id, city, street, zip_code, country_id) values (36, 'Polešovice', '94 Autumn Leaf Street', '687 37', 6);
+insert into address (address_id, city, street, zip_code, country_id) values (37, 'Sheffield', '0983 Bashford Terrace', 'S1', 7);
+insert into address (address_id, city, street, zip_code, country_id) values (38, 'Skelivka', '56 Burning Wood Crossing', '309379', 8);
+insert into address (address_id, city, street, zip_code, country_id) values (39, 'Maracás', '90762 Norway Maple Pass', '45360-000', 9);
+insert into address (address_id, city, street, zip_code, country_id) values (40, 'Brasília', '556 Troy Hill', '70000-000', 10);
+insert into address (address_id, city, street, zip_code, country_id) values (41, 'Kalá Déndra', '744 Marcy Avenue', '70000-120', 1);
+insert into address (address_id, city, street, zip_code, country_id) values (42, 'Doubravice nad Svitavou', '8418 Tennyson Alley', '679 11', 2);
 
 
 
@@ -2270,18 +2314,16 @@ INSERT INTO item_photo (photo_id, item_id) VALUES (29, 20);
 INSERT INTO item_photo (photo_id, item_id) VALUES (30, 20);
 
 
-
-INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (1, 'Tom9', 'Freddy.Bergdahl@telefonica.com', 'Rachel', 'Hummel', 'E6MM7ndGb22eq3K5v10ACxLDFVmAKZmNgePm3AWrssEitMI00wa72A1FVzt8FvymLylng2WG2cVTcnTzVAlpsGLZiZeZdc4NiIv6mpE', False, True, '8128488.8', 41, 7, 7);
-INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (2, 'Sophia', 'Mart.Hollman@msn.dk', 'Lia', 'Polti', 'TyNHIpa6MKX444MXmmO5qcNaC8QjHS7GLRQXjUKIlCQ2SSFGcKKcvC0ppNSEAIygTFH0MMHiin4eznQ2jYLdTSaUVIP6try8bSHprUuzfSjNnDVB1Z0pVqjkOLhEV6MnZS', False, True, '5223662.0', 42, 7, 7);
+INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address, email_verified_at) VALUES (1, 'Lbaw2021NormalUser', 'normallogin@gmail.com', 'Rachel', 'Hummel', '$2y$10$eSVHRjoF5AzoLLqMhfW2meNE1s4O0OwPqWSuLmJl/OzIkvQ95Y/Hi', False, False, '8128488.8', 41, 7, 7, '2021-05-20 18:09:42');
+INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address, email_verified_at) VALUES (6, 'LbawAdmin2021', 'lbawAdmin@gmail.com', 'Lia', 'Polti', '$2y$10$W5RgDZEJVmBepJEVMQ702eKIhGm0MD44A6x9BP/OsGyEv60heQaAS', False, True, '5223662.0', 42, 7, 7, '2021-05-20 18:09:42');
 INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (3, 'Carlos83', 'gamingwithapotato@gmail.com', 'Herbert', 'Anderson', 'btWp5iKDSHBYQyZZ7sHIa0zDaATKZbeeSeCycslTiaXyeOemaY1vWYGWXHWijO2pKpmJex08LsomZ7ySNzaMZbKIELfkYhIwoEuDJ2QhSQXY24EwJhcJ5ZQYYBQ7VVfTEXio2GcVABEQgeEoJJHfBb8gBpDtCT0gmUhei1dmunu', False, False, '2938243.84', 43, 16, 16);
 INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (4, 'Helma', 'FreddyWarner@gawab.ca', 'Fons', 'Lawton', 'LgMjfTOWQBTFcsYhiBNdXFIlPTHcC5As82bBHDLyKQedYTadPbM2bkUULpSdxr66wWfMMERFtypXB2hLZNsfiftmhBqkBAXs268TL5ZIdpe7MhD8NanLtHMaVTDnSPcOT4Sf6aEbs3PlvaHL63jk6oUovkrdxHSnHlkBMWAXTDTyh7kko50yuj0Lmp', False, False, '9568377.54', 44, 21, 21);
 INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (5, 'Bess0', 'BiancaDulisse2@lycos.co.uk', 'Isaac', 'Cohen', 'FI5UQZrxYEDkEEQCz3E368V6jc3cwswNM3flBO0uWJveppbkE1MyQtYKQrsoZIdFMEb4YWmI3YypgPig0eOSJlVfUtOfb37ipo3phmOeFp8y2w2u637UCiD8781eoZISDTRC', False, False, '7089429.27', 45, NULL, 21);
-INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (6, 'Suzanne36', 'RogierGuethlein4@weboffice.de', 'Javier', 'Petrzelka', 'FSBQAVmZ8SpmTRgXX1RRG8I2aHVo3g1SunXdfAqLYWpbGwB6OdGTbcUsDepaaOcaaW7s7df3cpMhoBeRWv4TPcsOiromF1hmRj5Q1tgm8Ib8Eq2kpblgLVOJ8NphoTpSc3BMn4TeoR42', False, False, '5078026.12', 46, 22, 22);
+INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (2, 'Suzanne36', 'RogierGuethlein4@weboffice.de', 'Javier', 'Petrzelka', 'FSBQAVmZ8SpmTRgXX1RRG8I2aHVo3g1SunXdfAqLYWpbGwB6OdGTbcUsDepaaOcaaW7s7df3cpMhoBeRWv4TPcsOiromF1hmRj5Q1tgm8Ib8Eq2kpblgLVOJ8NphoTpSc3BMn4TeoR42', False, False, '5078026.12', 46, 22, 22);
 INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (7, 'Steph3', 'HToler@mymail.us', 'Mads', 'Storrs', 'pJ1ZJCvfbRXFfiXmgjulat3mZJWTlEXcNZAdYGXHlyCDvSkFfb3D81dy6xwWDdUIZSOLMdyKNE6VePjpakevNbMbK4ZTL7BsdBJVOLvcA14imZ2D5cJxes8q8zjD4YGnde5w7OmYWjNiOcPuuoebcZAU4eZWU8nDcggeZ3V2zll5Qee5BmxE0PczBvVuGtPG1TAA46NrxxTj14dN3', False, False, '1081580.6', 47, 22, 22);
 INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (8, 'Piotr', 'Mandy.Fernandez5@freeweb.co.uk', 'Shermie', 'Helfrich', 'Y81DcKmovDAcVMYS47A6bsb1mSNqNlLvHXXrqNzvtxy4aK3uPZRwI5yVjstKp27NrRFZwdY50TMKDh1I0iwKCoEyvN81GjCvKVUtjYpeJUBLs1fgypQUSCj8ZiTvZ2zeCJngQUoWaZvkpO5WHl2Vn67gwP7ba033QApowfwnExc3dqdIoQIIk5XimAdcq1yt8lFRbFyHlvtQzRnNwVRSzoYnJQR8DcDSVqJLHwxOwNg6B7pHqqXS', False, False, '2299613.26', 48, 22, 22);
 INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (9, 'Herb246', 'Trees.Gaskins5@gawab.es', 'Pieter', 'Orcutt', 'rNlwgEByc12R715pWnUlKzqtUI3kC3gvsFV2HPgRdUSi5dce64hZXZYXJ2zlWYjMLzPQFna6hEZ7QdOCtPGUauUufDDOjrfIg8joPvALzxEaMjgyvnChJOXgJwpwKbx3KtNsy3UbgOL4jgDAV', False, False, '2950352.32', 49, NULL, 22);
 INSERT INTO users (user_id, username, email, first_name, last_name, password, deleted, is_admin, balance, img, billing_address, shipping_address) VALUES (10, NULL, NULL, NULL, NULL, 'xFUYINBeq4oPvnONs18WJZ0RqwjYYFPA4MuwQalgNjPODG2FEBcYjYN6azaYebnt6dfpg3AnBgfY4sq4Erv8', True, False, NULL, NULL, NULL, NULL);
-
 
 
 INSERT INTO wishlist (user_id, item_id, add_date) VALUES (7, 7, '04/20/2003 06:27:00');
@@ -2376,16 +2418,22 @@ INSERT INTO notification (user_id, discount_id, notification_id, item_id, type, 
 
 
 
-INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (1, 3, '12/27/2003 09:09:00','Arrived');
-INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (2, 3, '07/29/2012 02:09:00','Arrived');
-INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (3, 4, '05/30/2017 01:17:00','Arrived');
-INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (4, 5, '09/12/2000 07:13:00','Arrived');
-INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (5, 6, '08/12/2006 00:14:00','Arrived');
-INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (6, 6, '02/10/2011 04:52:00','Processing');
-INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (7, 6, '07/01/2000 04:25:00','Processing');
-INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (8, 8, '05/28/2017 01:44:00','Processing');
-INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (9, 9, '08/25/2003 04:53:00','Sent');
-INSERT INTO purchase (purchase_id, user_id, date, state) VALUES (10, 10, '10/10/2015 05:38:00','Sent');
+INSERT INTO shipping_option (shipping_id, name, description, price, img) VALUES (1, 'CTT', '', 1.5, 50);
+INSERT INTO shipping_option (shipping_id, name, description, price, img) VALUES (2, 'DHL', '', 2, 51);
+INSERT INTO shipping_option (shipping_id, name, description, price, img) VALUES (3, 'FedEx', '', 2.4, 52);
+
+
+
+INSERT INTO purchase (purchase_id, user_id, date, billing_address, shipping_address, shipping_method, state) VALUES (1, 3, '12/27/2003 09:09:00', 31, 31, 1, 'Arrived');
+INSERT INTO purchase (purchase_id, user_id, date, billing_address, shipping_address, shipping_method, state) VALUES (2, 3, '07/29/2012 02:09:00', 32, 33, 2, 'Arrived');
+INSERT INTO purchase (purchase_id, user_id, date, billing_address, shipping_address, shipping_method, state) VALUES (3, 4, '05/30/2017 01:17:00', 34, 34, 1, 'Arrived');
+INSERT INTO purchase (purchase_id, user_id, date, billing_address, shipping_address, shipping_method, state) VALUES (4, 5, '09/12/2000 07:13:00', 35, 35, 3, 'Arrived');
+INSERT INTO purchase (purchase_id, user_id, date, billing_address, shipping_address, shipping_method, state) VALUES (5, 6, '08/12/2006 00:14:00', 36, 37, 1, 'Arrived');
+INSERT INTO purchase (purchase_id, user_id, date, billing_address, shipping_address, shipping_method, state) VALUES (6, 6, '02/10/2011 04:52:00', 38, 38, 2, 'Processing');
+INSERT INTO purchase (purchase_id, user_id, date, billing_address, shipping_address, shipping_method, state) VALUES (7, 6, '07/01/2000 04:25:00', 39, 39, 3, 'Processing');
+INSERT INTO purchase (purchase_id, user_id, date, billing_address, shipping_address, shipping_method, state) VALUES (8, 8, '05/28/2017 01:44:00', 40, 40, 1, 'Processing');
+INSERT INTO purchase (purchase_id, user_id, date, billing_address, shipping_address, shipping_method, state) VALUES (9, 9, '08/25/2003 04:53:00', 41, 41, 2, 'Sent');
+INSERT INTO purchase (purchase_id, user_id, date, billing_address, shipping_address, shipping_method, state) VALUES (10, 10, '10/10/2015 05:38:00', 42, 42, 1, 'Sent');
 
 
 
@@ -2432,6 +2480,22 @@ INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VAL
 INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (18, 6, 18, 'Not as good as the other ones, but still a fun ride', '05/11/2002 01:41:00', 3);
 INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (19, 6, 19, 'EPIIIICCCCC!! MUST WATCH', '05/11/2006 04:41:00', 5);
 INSERT INTO review (review_id, user_id, item_id, comment_text, date, rating) VALUES (20, 7, 20, 'Average movie, not much to say', '09/06/2013 06:28:00', 3);
+
+
+-- Sync the auto increment ids
+SELECT pg_catalog.setval(pg_get_serial_sequence('users', 'user_id'), (SELECT MAX(user_id) FROM users));
+SELECT pg_catalog.setval(pg_get_serial_sequence('notification', 'notification_id'), (SELECT MAX(notification_id) FROM notification));
+SELECT pg_catalog.setval(pg_get_serial_sequence('discount', 'discount_id'), (SELECT MAX(discount_id) FROM discount));
+SELECT pg_catalog.setval(pg_get_serial_sequence('advertisement', 'advertisement_id'), (SELECT MAX(advertisement_id) FROM advertisement));
+SELECT pg_catalog.setval(pg_get_serial_sequence('purchase', 'purchase_id'), (SELECT MAX(purchase_id) FROM purchase));
+SELECT pg_catalog.setval(pg_get_serial_sequence('review', 'review_id'), (SELECT MAX(review_id) FROM review));
+SELECT pg_catalog.setval(pg_get_serial_sequence('item', 'item_id'), (SELECT MAX(item_id) FROM item));
+SELECT pg_catalog.setval(pg_get_serial_sequence('details', 'detail_id'), (SELECT MAX(detail_id) FROM details));
+SELECT pg_catalog.setval(pg_get_serial_sequence('category', 'category_id'), (SELECT MAX(category_id) FROM category));
+SELECT pg_catalog.setval(pg_get_serial_sequence('address', 'address_id'), (SELECT MAX(address_id) FROM address));
+SELECT pg_catalog.setval(pg_get_serial_sequence('photo', 'photo_id'), (SELECT MAX(photo_id) FROM photo));
+SELECT pg_catalog.setval(pg_get_serial_sequence('country', 'country_id'), (SELECT MAX(country_id) FROM country));
+SELECT pg_catalog.setval(pg_get_serial_sequence('shipping_option', 'shipping_id'), (SELECT MAX(shipping_id) FROM shipping_option));
 ```
 
 
@@ -2450,6 +2514,7 @@ Changes made to the first submission:
 1. Added update_stock_remove_from_cart trigger and function; Changed transaction 1 procedure's name from 'remove_stock' to 'add_to_cart'
 1. Added remember_token to user table and reset_password table for "forgot password" feature 
 1. Removed update_stock_remove_from_cart as it is not needed anymore
+1. Updated Transaction 2 and purchase table to support shipping option, and added shipping options table.
 
 ***
 GROUP2111, 18/04/2021
