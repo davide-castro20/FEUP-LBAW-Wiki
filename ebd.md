@@ -1112,39 +1112,24 @@ SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
 
 DO $$
 BEGIN
-    SELECT item_id
+    PERFORM item_id
     FROM cart
-    WHERE user_id = $user_id AND item_id = $item_id;
+    WHERE user_id = userID AND item_id = itemID;
 
-    IF NOT found THEN
-        IF (
-        SELECT stock 
-        FROM item 
-        WHERE item_id = $item_id) >= $quantity 
-        THEN
-    	    UPDATE item 
-            SET stock = stock - $quantity 
-            WHERE item_id = $item_id; 
-    
-            INSERT INTO cart
-            VALUES($user_id, $item_id, now()::DATE, $quantity);
-            
-        END IF;
-    ELSE 
-        IF (
-            SELECT stock 
-            FROM item 
-            WHERE item_id = $item_id) >= $quantity 
-        THEN
-    	    UPDATE item 
-            SET stock = stock - $quantity 
-            WHERE item_id = $item_id; 
-    
-            UPDATE cart
-            SET quantity = quantity + $quantity;
-            
-        END IF;
+    IF (
+    SELECT stock 
+    FROM item 
+    WHERE item_id = itemID) >= quantityBought 
+    THEN
+        UPDATE item 
+        SET stock = stock - quantityBought 
+        WHERE item_id = itemID; 
+
+        INSERT INTO cart
+        VALUES(userID, itemID, now()::DATE, quantityBought);
+        
     END IF;
+
 END
 $$;
 
@@ -1761,37 +1746,23 @@ BEGIN
     FROM cart
     WHERE user_id = userID AND item_id = itemID;
 
-    IF NOT found THEN
-        IF (
-        SELECT stock 
-        FROM item 
-        WHERE item_id = itemID) >= quantityBought 
-        THEN
-    	    UPDATE item 
-            SET stock = stock - quantityBought 
-            WHERE item_id = itemID; 
-    
-            INSERT INTO cart
-            VALUES(userID, itemID, now()::DATE, quantityBought);
-            
-        END IF;
-    ELSE 
-        IF (
-            SELECT stock 
-            FROM item 
-            WHERE item_id = itemID) >= quantityBought 
-        THEN
-    	    UPDATE item 
-            SET stock = stock - quantityBought 
-            WHERE item_id = itemID; 
-    
-            UPDATE cart
-            SET quantity = quantity + quantityBought;
-            
-        END IF;
+    IF (
+    SELECT stock 
+    FROM item 
+    WHERE item_id = itemID) >= quantityBought 
+    THEN
+        UPDATE item 
+        SET stock = stock - quantityBought 
+        WHERE item_id = itemID; 
+
+        INSERT INTO cart
+        VALUES(userID, itemID, now()::DATE, quantityBought);
+        
     END IF;
+
 END
 $$;
+
 
 
 --Transaction 2
@@ -2515,6 +2486,7 @@ Changes made to the first submission:
 1. Added remember_token to user table and reset_password table for "forgot password" feature 
 1. Removed update_stock_remove_from_cart as it is not needed anymore
 1. Updated Transaction 2 and purchase table to support shipping option, and added shipping options table.
+1. Fixed add_to_cart procedure for cases when item was already in cart.
 
 ***
 GROUP2111, 18/04/2021
