@@ -47,6 +47,11 @@ URL to the product: http://lbaw2111.lbaw-prod.fe.up.pt
 > https://ux.sapo.pt/checklists/acessibilidade/  
 > https://ux.sapo.pt/checklists/usabilidade/  
 
+Checklists results for our product:
+
+- ['Accessibility checklist'](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/tree/master/checklists/accessibility.pdf)
+- ['Usability checklist'](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/tree/master/checklists/usability.pd)
+
 ### 6. HTML & CSS Validation
 
 > Provide the results (as PDF files included in the submitted ZIP file on Moodle) of the validation of the HTML and CSS code using the following tools:  
@@ -86,10 +91,11 @@ URL to the product: http://lbaw2111.lbaw-prod.fe.up.pt
 | US04  | Search items | M2: Products and Categories | Mandatory | **Henrique Ribeiro**, Davide Castro  | 100% |
 | US06  | View items | M2: Products and Categories | Mandatory | **Henrique Ribeiro**, Davide Castro  | 100% |
 | US05  | Filter items | M2: Products and Categories | Mandatory | **João Cardoso**, Davide Castro  | 100% |
-| US38 | View all unbanned users | M3: Management | Mandatory | **Henrique Ribeiro**, Davide Castro | 100% |
+| US31  | Create items  | M3: Management | Mandatory | **Diogo Rosário**, Henrique Ribeiro | 100% |
 | US32  | Remove items  | M3: Management | Mandatory | **Diogo Rosário**, Henrique Ribeiro | 100% |
 | US33  | Edit items  | M3: Management | Mandatory | **Diogo Rosário**, Henrique Ribeiro | 100% |
 | US34  | Create admin accounts  | M3: Management | Mandatory | **João Cardoso**, Davide Castro | 100% |
+| US38 | View all unbanned users | M3: Management | Mandatory | **Henrique Ribeiro**, Davide Castro | 100% |
 | US311 | Ban user accounts | M3: Management | Mandatory | **Davide Castro**, Diogo Rosário | 100% |
 | US312 | Unban user accounts | M3: Management | Mandatory | **Diogo Rosário**, Davide Castro | 100% |
 | US35  | Remove comments  | M5: Products and Reviews | Mandatory | **Henrique Ribeiro**, Davide Castro | 100% |
@@ -99,6 +105,7 @@ URL to the product: http://lbaw2111.lbaw-prod.fe.up.pt
 | US27      | Checkout cart          | M6: Wishlist and Cart | Mandatory | **Davide Castro** | 100% |
 | US211 | View Cart | M6: Wishlist and Cart | Mandatory | **Henrique Ribeiro** | 100% |
 | US28 | Logout | M1: Authentication and Profile | Important | **Henrique Ribeiro** | 100% |
+| US29      | Edit profile     | M1: Authentication and Profile | Important | **João Cardoso**, Davide Castro | 100% |
 | US212     | View product recommendations | M1: Authentication and Profile | Important | **Henrique Ribeiro** | 100% |
 | US213     | View notifications | M1: Authentication and Profile | Important | **Henrique Ribeiro**, Diogo Rosário | 100% |
 | US21       | View purchase history  | M1: Authentication and Profile | Important | **Davide Castro**, Henrique Ribeiro | 100% |
@@ -111,8 +118,6 @@ URL to the product: http://lbaw2111.lbaw-prod.fe.up.pt
 | US214 | View wish list | M6: Wishlist and Cart | Important | **Henrique Ribeiro** | 100% |
 | US215     | Add to wish list        | M6: Wishlist and Cart | Important | **Davide Castro** | 100% |
 | US216     | Remove from wish list      | M6: Wishlist and Cart | Important | **Davide Castro** | 100% |
-| US31  | Create items  | M3: Management | Mandatory | **Diogo Rosário**, Henrique Ribeiro | 90% |
-| US29      | Edit profile     | M1: Authentication and Profile | Important | **João Cardoso**, Davide Castro | 50% |
 | US15       | Sign-in using external API | M1: Authentication and Profile | Optional | **Diogo Rosário**, Henrique Ribeiro | 0% |
 | US14       | Sign-up using external API | M1: Authentication and Profile | Optional | **Diogo Rosário**, Henrique Ribeiro | 0% |
 | US310 | View statistics of sold items | M3: Management | Optional | **Henrique Ribeiro**, Davide Castro | 0% |
@@ -123,13 +128,15 @@ URL to the product: http://lbaw2111.lbaw-prod.fe.up.pt
 
 ## A10: Presentation
 
-> This artefact (A10 - Product Presentation) must be submitted as a PDF on Moodle.
+> This artefact corresponds to the presentation of the product.
 
 ### 1. Product presentation
 
 > Brief presentation of the product and its main features (2 paragraphs max).  
 
 > URL to the product: http://lbaw21gg.lbaw-prod.fe.up.pt  
+>
+> Slides used during the presentation should be added, as a PDF file, to the group's repository and linked to here.
 
 ### 2. Video presentation
 
@@ -137,20 +144,7 @@ URL to the product: http://lbaw2111.lbaw-prod.fe.up.pt
 
 > - Upload the lbaw20gg.mp4 file to the video uploads' [Google folder](https://drive.google.com/open?id=1C8ZAcqh6HRPsQEVpTRDeNNPwzKWXLPh4 "Videos folder")  
 > - The video must not exceed 2 minutes.  
-
-### 4. Overall Group Self-Evaluation
-
-> Group members that have quit should not be included in the list below.
->
-> Keep the text below in your final delivery, it works as a statement from all group members.
-
-All group members have worked in all the components.
-
-The individual contribution of each member to the LBAW project, and considering all artefacts, is expressed in the following list:
-
-* Group member 1 name, _contribution level_ [A to F]
-* Group member 2 name, _contribution level_ [A to F]
-* ...
+> - Include a link to the video on the Google Drive folder.
 
 
 ---
