@@ -17,21 +17,19 @@ URL to the product: http://lbaw2111.lbaw-prod.fe.up.pt
 
 #### 2.1. Administration Credentials
 
-> Administration URL: URL 
+URL to the product's management page: http://lbaw2111.lbaw-prod.fe.up.pt/management 
 
- URL to the product's management page: http://lbaw2111.lbaw-prod.fe.up.pt/management 
-
-| Email                 | Password   |
-| --------------------- | ---------- |
-| normallogin@gmail.com | normaluser |
+| Email               | Password  |
+| ------------------- | --------- |
+| lbawAdmin@gmail.com | lbawadmin |
 
 #### 2.2. User Credentials
 
-| Type                            | Email                                 | Password  |
-| ------------------------------- | ------------------------------------- | --------- |
-| basic account                   | lbawAdmin@gmail.com                   | lbawAdmin |
-| PayPal sandbox personal account | sb-i474td6133157@personal.example.com | e(c?W>y4  |
-| PayPal sandbox business account | sb-6os6a6029158@business.example.com  | \|G)x+Z<1 |
+| Type                            | Email                                 | Password   |
+| ------------------------------- | ------------------------------------- | ---------- |
+| basic account                   | normallogin@gmail.com                 | normaluser |
+| PayPal sandbox personal account | sb-i474td6133157@personal.example.com | e(c?W>y4   |
+| PayPal sandbox business account | sb-6os6a6029158@business.example.com  | \|G)x+Z<1  |
 
 ### 3. Application Help
 
@@ -43,39 +41,50 @@ URL to the product: http://lbaw2111.lbaw-prod.fe.up.pt
 
 ### 5. Check Accessibility and Usability
 
-> Provide the results of accessibility and usability tests (as PDF files included in the submitted ZIP file on Moodle), using respectively the following checklists:  
-> https://ux.sapo.pt/checklists/acessibilidade/  
-> https://ux.sapo.pt/checklists/usabilidade/  
-
 Checklists results for our product:
 
-- ['Accessibility checklist'](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/tree/master/checklists/accessibility.pdf)
-- ['Usability checklist'](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/tree/master/checklists/usability.pd)
+- [Accessibility checklist](./checklists/accessibility.pdf)
+- [Usability checklist](./checklists/usability.pdf)
 
 ### 6. HTML & CSS Validation
 
-> Provide the results (as PDF files included in the submitted ZIP file on Moodle) of the validation of the HTML and CSS code using the following tools:  
-> HTML: https://validator.w3.org/nu/  
-> CSS: https://jigsaw.w3.org/css-validator/  
+Validation results for HTML (https://validator.w3.org/nu/) and CSS (https://jigsaw.w3.org/css-validator/):
+
+- [HTML validation results](./validations/html)
+- [CSS validation results](./validations/css)
 
 ### 7. Revisions to the Project
 
-> Describe the revisions made to the project since the requirements specification stage.  
+**ER - Requirements specification**:
+
+- Added user story US212
+- Added user story US38
+- Updated Authenticated user stories numeration
+- Administrators also have access to normal Authenticated users, such as make purchases and add items to their wishlist
+
+Throughout the project we made minor changes to the project's specification and, as such, we updated ER to reflect those changes. 
+
+**EBD - Database Specification Component**:
+
+- Added ON DELETE SET NULL to users atributes
+- Added an enum to show the purchase state
+- Fixed a duplicate trigger issue
+- Added notify_admin trigger and corresponding function; Changed "Trigger" to "Rule" in rule01
+- Added update_stock_remove_from_cart trigger and function; Changed transaction 1 procedure's name from 'remove_stock' to 'add_to_cart'
+- Added remember_token to user table and reset_password table for "forgot password" feature
+- Removed update_stock_remove_from_cart as it is not needed anymore
+- Updated Transaction 2 and purchase table to support shipping option, and added shipping options table.
+- Fixed add_to_cart procedure for cases when item was already in cart.
+
+
 
 ### 8. Implementation Details
 
 #### 8.1. Libraries Used
 
-> Include reference to all the libraries and frameworks used in the product.  
-> Include library name and reference, description of the use, and link to the example where it's used in the product.  
+- **Laravel-PayPal** (https://github.com/srmklive/laravel-paypal) - Laravel plugin used to handle money transactions through use of the PayPal Orders API. This is used for the PayPal payment option on checkout and to recharge the user's account balance (User Page, Add balance - http://lbaw2111.lbaw-prod.fe.up.pt/userProfile). User is redirected to PayPal Sandbox website to pay.
 
 #### 8.2 User Stories
-
-> This subsection should include all high and medium priority user stories, sorted by order of implementation. Implementation should be sequential according to the order identified below. 
-
-> If there are new user stories, also include them in this table. 
-> The owner of the user story should have the name in **bold**.
-> This table should be updated when a user story is completed and another one started. 
 
 | Identifier  | Name  | Module | Priority  | Team member | State |
 |---|---|---|---|---|---|
@@ -118,17 +127,12 @@ Checklists results for our product:
 | US214 | View wish list | M6: Wishlist and Cart | Important | **Henrique Ribeiro** | 100% |
 | US215     | Add to wish list        | M6: Wishlist and Cart | Important | **Davide Castro** | 100% |
 | US216     | Remove from wish list      | M6: Wishlist and Cart | Important | **Davide Castro** | 100% |
-| US15       | Sign-in using external API | M1: Authentication and Profile | Optional | **Diogo Rosário**, Henrique Ribeiro | 0% |
-| US14       | Sign-up using external API | M1: Authentication and Profile | Optional | **Diogo Rosário**, Henrique Ribeiro | 0% |
-| US310 | View statistics of sold items | M3: Management | Optional | **Henrique Ribeiro**, Davide Castro | 0% |
 
 
 ---
 
 
 ## A10: Presentation
-
-> This artefact corresponds to the presentation of the product.
 
 ### 1. Product presentation
 
@@ -142,7 +146,7 @@ Checklists results for our product:
 
 > Screenshot of the video plus the link to the lbaw20gg.mp4 file  
 
-> - Upload the lbaw20gg.mp4 file to the video uploads' [Google folder](https://drive.google.com/open?id=1C8ZAcqh6HRPsQEVpTRDeNNPwzKWXLPh4 "Videos folder")  
+> - Upload the lbaw20gg.mp4 file to the video uploads' [Google folder](https://drive.google.com/drive/folders/1HDNOZ4y834m7pXgJ0XjNa_ZC26e9-Xge?usp=sharing "Videos folder")  
 > - The video must not exceed 2 minutes.  
 > - Include a link to the video on the Google Drive folder.
 
@@ -152,13 +156,13 @@ Checklists results for our product:
 
 ## Revision history
 
-Changes made to the first submission:
-1. Item 1
-1. ..
+No revisions.
 
 ***
-GROUP21gg, DD/MM/2021
+GROUP2111, 08/06/2021
 
-* Group member 1 name, email (Editor)
-* Group member 2 name, email
-* ...
+* Diogo Guimarães do Rosário, [up201806582@edu.fe.up.pt](mailto:up201806582@fe.up.pt) 
+* Henrique Melo Ribeiro, [up201806529@edu.fe.up.pt](mailto:up201806529@fe.up.pt)
+* Davide António Ferreira Castro, [up201806512@edu.fe.up.pt](mailto:up201806512@fe.up.pt) (Editor)
+* João Alexandre Lobo Cardoso, [up201806531@edu.fe.up.pt](mailto:up201806531@fe.up.pt)
+
