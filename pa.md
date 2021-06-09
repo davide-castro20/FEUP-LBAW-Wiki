@@ -1,15 +1,16 @@
 # PA: Product and Presentation
 
-Our website aims to help customers get what then need when they need it during these troubling times with an enjoyable browsing experience.
-
 ## A9: Product
 
-> Brief presentation of the product developed.  
+Our website aims to help customers get what then need when they need it during these troubling times with an enjoyable browsing experience in a completely functional online store.
 
 ### 1. Installation
 
-> Link to the release with the final version of the source code in the group's git repository.  
-> Full Docker command to test the group's Docker Hub image using the DBM database.  
+Source code: https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/tree/PA
+
+Command to test the Docker image: 
+
+```docker run -it -p 8000:80 -e DB_DATABASE="lbaw2111" -e DB_USERNAME="lbaw2111" -e DB_PASSWORD="CH342529" lbaw2111/lbaw2111```
 
 ### 2. Usage
 
@@ -33,11 +34,11 @@ URL to the product's management page: http://lbaw2111.lbaw-prod.fe.up.pt/managem
 
 ### 3. Application Help
 
-> Describe where help has been implemented, pointing to working examples.  
+In order to help our users know what does what we created some tool tips in important places. One example of contextual help is in the modal for charging the account's balance. Here the user can click a button that displays all he needs to know in order to successfully charge his account. This is also implemented to important user profile's fields and when creating a new account.
 
 ### 4. Input Validation
 
-> Describe how input data was validated, and provide examples to scenarios using HTML validation and server-side validation.  
+The input validation was implemented in many places in order to maintain the correct state of the database. It was used to make sure the password was strong enough, the e-mail is in the correct format and many other things. An example of input validation on the client side is the verification of the format the e-mail when changing it from the user profile. On top of that we also have server side validation, such as verifying if the e-mail is unique when creating a new account or changing the current e-mail.
 
 ### 5. Check Accessibility and Usability
 
@@ -50,8 +51,8 @@ Checklists results for our product:
 
 Validation results for HTML (https://validator.w3.org/nu/) and CSS (https://jigsaw.w3.org/css-validator/):
 
-- [HTML validation results](./validations/html)
-- [CSS validation results](./validations/css)
+- [HTML validation results](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/tree/master/validations/html)
+- [CSS validation results](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2111/-/tree/master/validations/css)
 
 ### 7. Revisions to the Project
 
@@ -136,19 +137,15 @@ Throughout the project we made minor changes to the project's specification and,
 
 ### 1. Product presentation
 
-> Brief presentation of the product and its main features (2 paragraphs max).  
+**Fneuc** is an online store where users can purchase a variety of products. There are 3 types of users. Firstly, the guests (unauthenticated users), then the authenticated users and finally, the admins. Our registered users' main pages contain personalized suggestions, based on their purchase histories. Then, they can select an item, or search using a search box, multiple filters and sorting methods. Whenever they look at an item, they can add/edit/remove (their own) comments, rate the item from 1 to 5 stars, and add it to their cart, although guests can also use the cart. In order for a user to complete account registration, they must click the link in the e-mail they receive when they register an account in order to verify their e-mail address. The user, when logged in, can checkout the items in their cart and pay through PayPal. Alternatively, the user can also add balance through PayPal and use that balance to pay for their items. Admins are able to do anything a user can and can also create/edit new items, apply/remove discounts from them, ban a user and promote a user to admin.
 
-> URL to the product: http://lbaw21gg.lbaw-prod.fe.up.pt  
->
-> Slides used during the presentation should be added, as a PDF file, to the group's repository and linked to here.
+URL to the product: http://lbaw2111.lbaw-prod.fe.up.pt  
 
 ### 2. Video presentation
 
-> Screenshot of the video plus the link to the lbaw20gg.mp4 file  
+![Video Thumbnail](./images/thumbnail.png)
 
-> - Upload the lbaw20gg.mp4 file to the video uploads' [Google folder](https://drive.google.com/drive/folders/1HDNOZ4y834m7pXgJ0XjNa_ZC26e9-Xge?usp=sharing "Videos folder")  
-> - The video must not exceed 2 minutes.  
-> - Include a link to the video on the Google Drive folder.
+Presentation video: [lbaw2111.mp4](https://drive.google.com/file/d/1evdek220yzSDyOTkV5PxV1FVgK1tV6g5/view?usp=sharing)
 
 
 ---
