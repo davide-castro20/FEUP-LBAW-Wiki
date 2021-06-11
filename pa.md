@@ -47,7 +47,7 @@ We also added FAQ and Contacts pages to the website in order to provide addition
 The input validation was implemented in many places in order to maintain the correct state of the database. It was used to make sure the password was strong enough, the e-mail is in the correct format and many other things. An example of input validation on the client side is the verification of the format the e-mail when changing it from the user profile. On top of that we also have server side validation, such as verifying if the e-mail is unique when creating a new account or changing the current e-mail.
 
 ```javascript
-# Client Side
+// Client Side
 function validateEmail(email) {
     const re = /\S+@\S+\.\S+/;
     return re.test(String(email).toLowerCase());
@@ -190,4 +190,3 @@ GROUP2111, 08/06/2021
 * Henrique Melo Ribeiro, [up201806529@edu.fe.up.pt](mailto:up201806529@fe.up.pt)
 * Davide António Ferreira Castro, [up201806512@edu.fe.up.pt](mailto:up201806512@fe.up.pt) (Editor)
 * João Alexandre Lobo Cardoso, [up201806531@edu.fe.up.pt](mailto:up201806531@fe.up.pt)
-
