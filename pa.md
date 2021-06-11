@@ -36,9 +36,37 @@ URL to the product's management page: http://lbaw2111.lbaw-prod.fe.up.pt/managem
 
 In order to help our users know what does what we created some tool tips in important places. One example of contextual help is in the modal for charging the account's balance. Here the user can click a button that displays all he needs to know in order to successfully charge his account. This is also implemented to important user profile's fields and when creating a new account.
 
+![Help in Cart](./images/app_help1.png)
+
+We also added FAQ and Contacts pages to the website in order to provide additional help to the users.
+
+![FAQ page](./images/app_help2.png)
+
 ### 4. Input Validation
 
 The input validation was implemented in many places in order to maintain the correct state of the database. It was used to make sure the password was strong enough, the e-mail is in the correct format and many other things. An example of input validation on the client side is the verification of the format the e-mail when changing it from the user profile. On top of that we also have server side validation, such as verifying if the e-mail is unique when creating a new account or changing the current e-mail.
+
+```javascript
+# Client Side
+function validateEmail(email) {
+    const re = /\S+@\S+\.\S+/;
+    return re.test(String(email).toLowerCase());
+}
+```
+
+```php
+// Server Side
+protected function validator(array $data)
+{
+    return Validator::make($data, [
+        'username' => 'required|string|max:20|unique:users',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|min:6|confirmed',
+        'first_name' => 'required|string|max:255',
+        'last_name' => 'required|string|max:255'
+    ]);
+}
+```
 
 ### 5. Check Accessibility and Usability
 
@@ -162,3 +190,4 @@ GROUP2111, 08/06/2021
 * Henrique Melo Ribeiro, [up201806529@edu.fe.up.pt](mailto:up201806529@fe.up.pt)
 * Davide António Ferreira Castro, [up201806512@edu.fe.up.pt](mailto:up201806512@fe.up.pt) (Editor)
 * João Alexandre Lobo Cardoso, [up201806531@edu.fe.up.pt](mailto:up201806531@fe.up.pt)
+
