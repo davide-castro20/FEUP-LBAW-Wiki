@@ -83,7 +83,7 @@ Throughout the project we made minor changes to the project's specification and,
 
 #### 8.1. Libraries Used
 
-- **Laravel-PayPal** (https://github.com/srmklive/laravel-paypal) - Laravel plugin used to handle money transactions through use of the PayPal Orders API. This is used for the PayPal payment option on checkout and to recharge the user's account balance (User Page, Add balance - http://lbaw2111.lbaw-prod.fe.up.pt/userProfile). User is redirected to PayPal Sandbox website to pay.
+- [**Laravel-PayPal**](https://github.com/srmklive/laravel-paypal) - Laravel plugin used to handle money transactions through use of the PayPal Orders API. This is used for the PayPal payment option on checkout and to recharge the user's account balance (User Page, Add balance - http://lbaw2111.lbaw-prod.fe.up.pt/userProfile). User is redirected to PayPal Sandbox website to pay.
 
 #### 8.2 User Stories
 
@@ -162,4 +162,3 @@ GROUP2111, 08/06/2021
 * Henrique Melo Ribeiro, [up201806529@edu.fe.up.pt](mailto:up201806529@fe.up.pt)
 * Davide António Ferreira Castro, [up201806512@edu.fe.up.pt](mailto:up201806512@fe.up.pt) (Editor)
 * João Alexandre Lobo Cardoso, [up201806531@edu.fe.up.pt](mailto:up201806531@fe.up.pt)
-
